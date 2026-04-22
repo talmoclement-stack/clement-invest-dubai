@@ -912,8 +912,8 @@
     }
 
     @media (max-width: 768px) {
-      nav { padding: 0 20px; height: 64px; }
-      .nav-cta { font-size: 13px; padding: 10px 18px; }
+      nav { padding: 0 20px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+      .nav-cta { font-size: 12px; padding: 8px 14px; white-space: nowrap; }
       .hero {
         grid-template-columns: 1fr;
         min-height: auto;
@@ -928,10 +928,14 @@
         padding: 40px 20px 56px;
       }
       .hero h1 { letter-spacing: -1.8px; }
-      .hero-stats { flex-direction: column; gap: 28px; }
-      .hero-stat + .hero-stat { border-left: none; padding-left: 0; }
+      .hero-stats { flex-direction: row; gap: 16px; flex-wrap: nowrap; padding-top: 28px; }
+      .hero-stat { flex: 1; }
+      .hero-stat + .hero-stat { border-left: 1px solid var(--gray-100); padding-left: 12px; }
+      .hero-stat .stat-num { font-size: 24px; }
+      .hero-stat .stat-label { font-size: 11px; }
+      .hero-cta-group { flex-direction: column; align-items: stretch; gap: 10px; }
       .btn-orange-lg,
-      .btn-emerald-lg { font-size: 15px; padding: 16px 28px; }
+      .btn-emerald-lg { font-size: 15px; padding: 16px 20px; justify-content: center; width: 100%; }
       .video-section,
       .why-section,
       .compare-section,
@@ -939,6 +943,9 @@
       .contact-section { padding: 72px 20px; }
       .why-grid { grid-template-columns: 1fr; }
       .form-card { padding: 36px 24px; }
+      .form-group label { font-size: 11px; }
+      .form-group input, .form-group select { font-size: 15px; }
+      .lm-input { font-size: 15px; }
       footer { padding: 36px 20px; }
       .footer-inner { flex-direction: column; text-align: center; gap: 20px; }
       .footer-links { flex-wrap: wrap; justify-content: center; gap: 20px; }
@@ -947,11 +954,30 @@
     }
 
     @media (max-width: 480px) {
-      .hero h1 { font-size: 36px; letter-spacing: -1.4px; }
+      .hero h1 { font-size: 32px; letter-spacing: -1.4px; }
+      .btn-orange-lg,
+      .btn-emerald-lg { font-size: 14px; padding: 14px 16px; }
       .phone-row { grid-template-columns: 1fr; }
       .compare-table th, .compare-table td { padding: 16px 20px; }
     }
   </style>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RRKM1JY3GV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-RRKM1JY3GV');
+  </script>
+
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wfoxveu0v7");
+  </script>
 </head>
 <body>
 
@@ -960,7 +986,7 @@
 ═══════════════════════════════════════════════ -->
 <nav id="navbar">
   <a href="#" class="nav-logo">Clément <span>Invest Dubai</span></a>
-  <a href="#contact" class="nav-cta">Réserver un appel</a>
+  <a href="#contact" class="nav-cta">Consultation gratuite</a>
 </nav>
 
 
@@ -988,11 +1014,11 @@
 
     <div class="hero-cta-group reveal reveal-d3">
       <a href="#contact" class="btn-orange-lg">
-        Consultation gratuite
+        Consultation gratuite — Je me lance
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
       </a>
       <a href="#selection" class="btn-emerald-lg">
-        📋 Ma sélection du mois
+        Recevoir la sélection du mois →
       </a>
     </div>
 
@@ -1060,7 +1086,7 @@
      style="display:inline-block;background:#FF4D00;color:#ffffff;padding:20px 40px;font-size:16px;font-weight:800;border-radius:12px;text-decoration:none;box-shadow:0 6px 24px rgba(255,77,0,0.35);transition:background 0.2s,transform 0.2s,box-shadow 0.2s;"
      onmouseover="this.style.background='#e64400';this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 32px rgba(255,77,0,0.45)'"
      onmouseout="this.style.background='#FF4D00';this.style.transform='translateY(0)';this.style.boxShadow='0 6px 24px rgba(255,77,0,0.35)'">
-    📅 Je veux être contacté — Gratuit · Sans engagement
+    Consulter gratuitement →
   </a>
 </div>
 
@@ -1212,11 +1238,11 @@
     <form class="lm-form" id="lmForm" onsubmit="handleLmSubmit(event)">
       <div class="lm-fields">
         <input class="lm-input" type="text" name="prenom" placeholder="Votre prénom" required>
-        <input class="lm-input" type="tel" name="telephone" placeholder="Votre numéro de téléphone" required pattern="[+0-9\s\-()]{7,20}">
+        <input class="lm-input" type="tel" name="telephone" id="lm-tel" placeholder="Ex: +33 6 12 34 56 78" required>
         <input class="lm-input" type="email" name="email" placeholder="Votre email (optionnel)">
       </div>
       <div id="lmError" style="display:none;color:#dc2626;font-size:13px;margin-bottom:8px;font-weight:600;">⚠️ Le numéro de téléphone est obligatoire.</div>
-      <button type="submit" class="lm-submit">Recevoir la sélection gratuite →</button>
+      <button type="submit" class="lm-submit">Recevoir ma sélection →</button>
     </form>
     <p class="lm-privacy">🔒 Zéro spam · Désabonnement en 1 clic</p>
 
@@ -1264,8 +1290,9 @@
               <option value="+34">🇪🇸 +34</option>
               <option value="+39">🇮🇹 +39</option>
             </select>
-            <input type="tel" name="telephone" id="field-tel" placeholder="6 12 34 56 78" required>
+            <input type="tel" name="telephone" id="field-tel" placeholder="Ex: +33 6 12 34 56 78" required>
           </div>
+          <div id="contactTelError" style="display:none;color:#dc2626;font-size:13px;margin-top:6px;font-weight:600;">⚠️ Merci d'entrer un numéro valide (ex: +33 6 12 34 56 78)</div>
         </div>
         <div class="form-group">
           <label>Budget approximatif</label>
@@ -1278,7 +1305,7 @@
             <option value="750k+">750 000 € et plus</option>
           </select>
         </div>
-        <button type="submit" class="form-submit">Planifier ma consultation →</button>
+        <button type="submit" class="form-submit">Je veux être rappelé →</button>
         <div class="form-wa-alt">
           <a href="https://wa.me/33624835980" target="_blank" rel="noopener noreferrer">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -1355,6 +1382,11 @@
     });
   });
 
+  function isValidPhone(val) {
+    const cleaned = val.replace(/[\s\-().+]/g, "");
+    return /^[0-9]{7,15}$/.test(cleaned);
+  }
+
   /* Contact form submission */
   async function handleContactSubmit(e) {
     e.preventDefault();
@@ -1366,6 +1398,14 @@
     const tel        = document.getElementById('field-tel').value.trim();
     const budgetSelect = form.querySelector('select[name="budget"]');
     const budget     = budgetSelect ? budgetSelect.options[budgetSelect.selectedIndex].text : '';
+    const contactTelError = document.getElementById('contactTelError');
+
+    if (!isValidPhone(tel)) {
+      contactTelError.style.display = 'block';
+      document.getElementById('field-tel').focus();
+      return;
+    }
+    contactTelError.style.display = 'none';
 
     // Désactiver le bouton pendant l'envoi
     submitBtn.disabled = true;
@@ -1417,10 +1457,11 @@
     const email     = form.querySelector('input[name="email"]').value.trim();
     const errDiv    = document.getElementById('lmError');
 
-    // Téléphone obligatoire
-    if (!telephone) {
+    // Validation téléphone stricte
+    if (!isValidPhone(telephone)) {
+      errDiv.textContent = "⚠️ Merci d'entrer un numéro valide (ex: +33 6 12 34 56 78)";
       errDiv.style.display = 'block';
-      form.querySelector('input[name="telephone"]').focus();
+      document.getElementById('lm-tel').focus();
       return;
     }
     errDiv.style.display = 'none';
