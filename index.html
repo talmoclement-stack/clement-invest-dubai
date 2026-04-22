@@ -461,7 +461,7 @@
     .compare-table {
       width: 100%;
       border-collapse: collapse;
-      min-width: 640px;
+      min-width: 0;
     }
     .compare-table thead tr {
       background: var(--gray-50);
@@ -912,6 +912,32 @@
     }
 
     @media (max-width: 768px) {
+      /* Cacher le sous-titre hero sur mobile pour remonter le CTA */
+      .hero-sub-desktop { display: none; }
+
+      /* Tableau comparatif — version cards empilées sur mobile */
+      .compare-table thead { display: none; }
+      .compare-table tbody tr {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border: 1px solid var(--gray-100);
+        border-radius: 12px;
+        margin-bottom: 12px;
+        overflow: hidden;
+      }
+      .compare-table td { padding: 14px 16px; font-size: 13px; }
+      .cell-criteria {
+        grid-column: 1 / -1;
+        background: var(--gray-50);
+        font-weight: 700;
+        font-size: 13px;
+        padding: 10px 16px;
+        border-bottom: 1px solid var(--gray-100);
+      }
+      .cell-classic { background: #fff8f8; border-right: 1px solid var(--gray-100); }
+      .cell-clement { background: #f0f4ff; }
+      .compare-table-wrap { box-shadow: none; border: none; overflow: visible; }
+
       nav { padding: 0 20px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
       .nav-cta { font-size: 12px; padding: 8px 14px; white-space: nowrap; }
       .hero {
@@ -1008,7 +1034,7 @@
       <span class="line-gold">chiffres.</span>
     </h1>
 
-    <p class="hero-sub reveal reveal-d2">
+    <p class="hero-sub reveal reveal-d2 hero-sub-desktop">
       Données réelles, zéro brochure, zéro pression. Votre projet d'investissement, analysé avec rigueur.
     </p>
 
