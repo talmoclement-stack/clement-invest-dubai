@@ -259,6 +259,7 @@
     @media (max-width: 480px) { .pg2 { grid-template-columns: 1fr; } }
 
     section[id] { scroll-margin-top: calc(var(--nav-h) + 8px); }
+    @media (max-width: 640px) { .sp-grid { grid-template-columns: 1fr !important; } }
   </style>
 </head>
 <body>
@@ -323,19 +324,50 @@
   </div>
 </section>
 
-<!-- ══════════ KPI ══════════ -->
-<div class="kpi-strip">
-  <div class="kpi-grid">
-    <div class="kpi-item"><span class="kpi-value">1,2 T AED</span><span class="kpi-label">PIB Abu Dhabi 2024</span></div>
-    <div class="kpi-item"><span class="kpi-value">+7,5 %</span><span class="kpi-label">Croissance population 2024</span></div>
-    <div class="kpi-item"><span class="kpi-value">1,7 T $</span><span class="kpi-label">Fonds souverains Abu Dhabi</span></div>
-    <div class="kpi-item"><span class="kpi-value">1,31 M AED</span><span class="kpi-label">Ticket d'entrée (dès)</span></div>
-    <div class="kpi-item"><span class="kpi-value">20×</span><span class="kpi-label">Moins d'off-plan qu'à Dubai</span></div>
-    <div class="kpi-item"><span class="kpi-value">38 M sq.ft</span><span class="kpi-label">Masterplan total</span></div>
-    <div class="kpi-item"><span class="kpi-value">60 / 40</span><span class="kpi-label">Plan de paiement</span></div>
-    <div class="kpi-item"><span class="kpi-value">Q4 2029</span><span class="kpi-label">Livraison estimée</span></div>
+<!-- ══════════ SELLING POINTS ══════════ -->
+<section style="background:var(--grey); padding:64px 0;">
+  <div class="container">
+    <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:20px;" class="sp-grid">
+
+      <div style="background:var(--white); border-top:4px solid var(--gold); padding:32px 28px; display:flex; gap:20px; align-items:flex-start;">
+        <div style="font-size:32px; flex-shrink:0; line-height:1;">📈</div>
+        <div>
+          <div style="font-family:'Arial',sans-serif; font-size:10px; text-transform:uppercase; letter-spacing:2px; color:var(--gold); font-weight:700; margin-bottom:10px;">01 — Le marché</div>
+          <h3 style="font-size:17px; margin-bottom:10px; color:var(--navy);">Un marché stable, en forte croissance, où l'offre est inférieure à la demande</h3>
+          <p style="font-size:13px; line-height:1.75;">Abu Dhabi : PIB record 1,2 T AED, population +7,5 % en un an, 1,7 T $ de fonds souverains. Et un marché off-plan 20× plus petit que Dubai pour une destination équivalente. C'est la définition d'un point d'entrée.</p>
+        </div>
+      </div>
+
+      <div style="background:var(--white); border-top:4px solid var(--gold); padding:32px 28px; display:flex; gap:20px; align-items:flex-start;">
+        <div style="font-size:32px; flex-shrink:0; line-height:1;">🏗️</div>
+        <div>
+          <div style="font-family:'Arial',sans-serif; font-size:10px; text-transform:uppercase; letter-spacing:2px; color:var(--gold); font-weight:700; margin-bottom:10px;">02 — Le promoteur</div>
+          <h3 style="font-size:17px; margin-bottom:10px; color:var(--navy);">Un promoteur de qualité, au démarrage de son 1er projet Abu Dhabi</h3>
+          <p style="font-size:13px; line-height:1.75;">Sobha maîtrise 100 % de sa chaîne de production — de la matière première à la clé. Track record béton : Hartland, Siniya Island, Creek Vistas. Leur 1ère fois à Abu Dhabi = leur meilleure exécution. C'est là que se font les plus-values.</p>
+        </div>
+      </div>
+
+      <div style="background:var(--white); border-top:4px solid var(--gold); padding:32px 28px; display:flex; gap:20px; align-items:flex-start;">
+        <div style="font-size:32px; flex-shrink:0; line-height:1;">🌆</div>
+        <div>
+          <div style="font-family:'Arial',sans-serif; font-size:10px; text-transform:uppercase; letter-spacing:2px; color:var(--gold); font-weight:700; margin-bottom:10px;">03 — Le projet</div>
+          <h3 style="font-size:17px; margin-bottom:10px; color:var(--navy);">Pas une résidence. Une ville — plus grande que Downtown Dubai</h3>
+          <p style="font-size:13px; line-height:1.75;">38 M sq.ft, front canaux, golf, nature, retail, écoles — tout intégré. À 10 minutes de Disneyland Abu Dhabi, Yas Island (38 M visites/an), Ferrari World. Le mix Dubai Creek Harbour × Dubai Hills, mais à Abu Dhabi.</p>
+        </div>
+      </div>
+
+      <div style="background:var(--navy); border-top:4px solid var(--gold); padding:32px 28px; display:flex; gap:20px; align-items:flex-start;">
+        <div style="font-size:32px; flex-shrink:0; line-height:1;">💰</div>
+        <div>
+          <div style="font-family:'Arial',sans-serif; font-size:10px; text-transform:uppercase; letter-spacing:2px; color:var(--gold); font-weight:700; margin-bottom:10px;">04 — Le prix</div>
+          <h3 style="font-size:17px; margin-bottom:10px; color:var(--white);">Ticket d'entrée dès 1,31 M AED — plan de paiement 60/40 sur 36 mois</h3>
+          <p style="font-size:13px; line-height:1.75; color:rgba(255,255,255,0.7);">Le prix/sq.ft le plus bas du corridor Yas. 20 % à la réservation, puis 5 % tous les 3 mois pendant la construction. 40 % à la livraison Q4 2029 — quand la plus-value est déjà réalisée.</p>
+        </div>
+      </div>
+
+    </div>
   </div>
-</div>
+</section>
 
 <!-- ══════════ ABU DHABI MARCHÉ ══════════ -->
 <section class="section" id="abu-dhabi">
