@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sobha City Abu Dhabi — Analyse Investisseur</title>
+  <title>Sobha City Abu Dhabi — Dossier Investisseur</title>
   <style>
-    /* ─── Reset & Base ─── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --navy: #0f1f3d;
@@ -15,7 +14,7 @@
       --gold: #c9a96e;
       --grey: #f7f7f5;
       --text: #2d2d2d;
-      --text-light: #666;
+      --muted: #666;
       --border: #e0e0dc;
       --white: #ffffff;
       --nav-h: 60px;
@@ -24,203 +23,145 @@
     body { font-family: 'Georgia', serif; color: var(--text); background: var(--white); overflow-x: hidden; }
     img { max-width: 100%; display: block; object-fit: cover; }
     a { color: inherit; text-decoration: none; }
-
     h1, h2, h3, h4 { font-family: 'Arial', 'Helvetica Neue', sans-serif; color: var(--navy); font-weight: 700; }
     h1 { font-size: clamp(26px, 4.5vw, 50px); line-height: 1.1; }
     h2 { font-size: clamp(20px, 3vw, 34px); line-height: 1.2; }
-    h3 { font-size: clamp(15px, 2vw, 21px); }
-    h4 { font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; }
-    p { font-size: 15px; line-height: 1.8; color: var(--text-light); }
-
+    h3 { font-size: clamp(15px, 2vw, 20px); line-height: 1.3; }
+    p { font-size: 15px; line-height: 1.85; color: var(--muted); }
+    strong { color: var(--text); }
     .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
     .section { padding: 80px 0; }
+    .section-dark { background: var(--navy); padding: 80px 0; }
     .section-alt { background: var(--grey); }
-    .label { font-family: 'Arial', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--gold); font-weight: 700; margin-bottom: 12px; display: block; }
-    .divider { width: 48px; height: 3px; background: var(--gold); margin: 18px 0 30px; }
-    .mt-16 { margin-top: 16px; }
-    .mt-24 { margin-top: 24px; }
-    .mt-40 { margin-top: 40px; }
-    @media (max-width: 768px) { .section { padding: 52px 0; } }
+    .label { font-family: 'Arial', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 2.5px; color: var(--gold); font-weight: 700; margin-bottom: 14px; display: block; }
+    .divider { width: 48px; height: 3px; background: var(--gold); margin: 18px 0 32px; }
+    .mt-16 { margin-top: 16px; } .mt-24 { margin-top: 24px; } .mt-32 { margin-top: 32px; } .mt-40 { margin-top: 40px; } .mt-48 { margin-top: 48px; }
+    @media (max-width: 768px) { .section, .section-dark { padding: 56px 0; } }
 
-    /* ─── IMAGE PLACEHOLDERS ─── */
-    .img-ph {
-      background: linear-gradient(135deg, #1a2c42 0%, #0f1f3d 100%);
-      display: flex; align-items: center; justify-content: center;
-      color: rgba(201,169,110,0.5);
-      font-family: 'Arial', sans-serif; font-size: 11px;
-      letter-spacing: 2px; text-transform: uppercase;
-    }
-
-    /* ─── GATING OVERLAY ─── */
+    /* ─── GATING ─── */
     #gating-overlay {
       position: fixed; inset: 0; z-index: 9999;
-      background: linear-gradient(135deg, var(--navy) 0%, #0a1628 100%);
-      display: flex; align-items: center; justify-content: center;
-      padding: 24px;
+      background: linear-gradient(135deg, var(--navy) 0%, #060f1e 100%);
+      display: flex; align-items: center; justify-content: center; padding: 24px;
       transition: opacity 0.5s ease;
     }
     #gating-overlay.hidden { opacity: 0; pointer-events: none; }
-    .gating-box {
-      background: var(--white);
-      max-width: 460px; width: 100%;
-      padding: 48px 40px;
-      text-align: center;
-    }
+    .gating-box { background: var(--white); max-width: 460px; width: 100%; padding: 48px 40px; text-align: center; }
     @media (max-width: 480px) { .gating-box { padding: 32px 20px; } }
     .gating-logo { font-family: 'Arial', sans-serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 28px; }
-    .gating-box h2 { font-size: 22px; margin-bottom: 8px; }
-    .gating-box p { font-size: 14px; color: var(--text-light); margin-bottom: 28px; line-height: 1.6; }
+    .gating-box h2 { font-size: 21px; margin-bottom: 8px; }
+    .gating-box > p { font-size: 14px; color: var(--muted); margin-bottom: 28px; line-height: 1.65; }
     .gating-form { display: flex; flex-direction: column; gap: 14px; text-align: left; }
     .form-field { display: flex; flex-direction: column; gap: 5px; }
-    .form-field label { font-family: 'Arial', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-light); font-weight: 700; }
-    .form-field input {
-      border: 1.5px solid var(--border);
-      padding: 13px 16px; font-size: 15px;
-      font-family: 'Georgia', serif; outline: none;
-      transition: border-color 0.2s; width: 100%;
-    }
+    .form-field label { font-family: 'Arial', sans-serif; font-size: 10px; text-transform: uppercase; letter-spacing: 1.2px; color: var(--muted); font-weight: 700; }
+    .form-field input { border: 1.5px solid var(--border); padding: 13px 16px; font-size: 15px; font-family: 'Georgia', serif; outline: none; transition: border-color 0.2s; width: 100%; }
     .form-field input:focus { border-color: var(--navy); }
     .form-field input.error { border-color: #c0392b; }
     .field-error { font-family: 'Arial', sans-serif; font-size: 11px; color: #c0392b; display: none; margin-top: 2px; }
     .field-error.visible { display: block; }
-    .btn-primary {
-      background: var(--navy); color: var(--white);
-      border: none; cursor: pointer;
-      padding: 16px 24px;
-      font-family: 'Arial', sans-serif; font-size: 13px;
-      font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
-      transition: background 0.2s; width: 100%; margin-top: 4px;
-    }
+    .btn-primary { background: var(--navy); color: var(--white); border: none; cursor: pointer; padding: 15px 24px; font-family: 'Arial', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; transition: background 0.2s; width: 100%; margin-top: 4px; }
     .btn-primary:hover { background: #162d52; }
-    .gating-disclaimer { font-size: 11px; color: #aaa; margin-top: 16px; line-height: 1.5; text-align: center; }
+    .gating-disclaimer { font-size: 11px; color: #bbb; margin-top: 16px; line-height: 1.5; text-align: center; }
 
-    /* ─── STICKY NAV ─── */
+    /* ─── NAV ─── */
     #main-nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 500;
       background: rgba(10,22,40,0.97); backdrop-filter: blur(8px);
-      height: var(--nav-h);
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 24px;
-      transform: translateY(-100%);
-      transition: transform 0.3s ease;
+      height: var(--nav-h); display: flex; align-items: center; justify-content: space-between; padding: 0 24px;
+      transform: translateY(-100%); transition: transform 0.3s ease;
     }
     #main-nav.visible { transform: translateY(0); }
     .nav-brand { font-family: 'Arial', sans-serif; font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); font-weight: 700; white-space: nowrap; }
-    .nav-links { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
-    .nav-link {
-      font-family: 'Arial', sans-serif; font-size: 10px;
-      text-transform: uppercase; letter-spacing: 1px;
-      color: rgba(255,255,255,0.6); padding: 6px 10px;
-      border: 1px solid transparent;
-      cursor: pointer; transition: all 0.2s; white-space: nowrap;
-    }
+    .nav-links { display: flex; gap: 4px; align-items: center; }
+    .nav-link { font-family: 'Arial', sans-serif; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.55); padding: 6px 9px; border: 1px solid transparent; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
     .nav-link:hover, .nav-link.active { color: var(--white); border-color: rgba(255,255,255,0.2); }
-    .nav-cta {
-      background: var(--gold); color: var(--navy); border: none;
-      cursor: pointer; padding: 9px 18px;
-      font-family: 'Arial', sans-serif; font-size: 10px;
-      font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
-      white-space: nowrap; margin-left: 8px;
-    }
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .nav-brand { font-size: 10px; }
-    }
+    .nav-cta { background: var(--gold); color: var(--navy); border: none; cursor: pointer; padding: 9px 16px; font-family: 'Arial', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; white-space: nowrap; margin-left: 8px; }
+    @media (max-width: 900px) { .nav-links { display: none; } }
 
     /* ─── MOBILE TAB BAR ─── */
-    #mobile-tabs {
-      display: none;
-      position: fixed; bottom: 0; left: 0; right: 0; z-index: 400;
-      background: var(--navy);
-      overflow-x: auto; -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      padding-bottom: env(safe-area-inset-bottom);
-    }
+    #mobile-tabs { display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 400; background: var(--navy); overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: env(safe-area-inset-bottom); }
     #mobile-tabs::-webkit-scrollbar { display: none; }
     #mobile-tabs.visible { display: flex; }
-    .mob-tab {
-      flex: 0 0 auto; padding: 12px 16px;
-      font-family: 'Arial', sans-serif; font-size: 10px;
-      text-transform: uppercase; letter-spacing: 1px;
-      color: rgba(255,255,255,0.55); white-space: nowrap;
-      cursor: pointer; border-bottom: 2px solid transparent;
-      transition: all 0.2s;
-    }
+    .mob-tab { flex: 0 0 auto; padding: 13px 16px; font-family: 'Arial', sans-serif; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.5); white-space: nowrap; cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; }
     .mob-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
-    @media (max-width: 768px) { #mobile-tabs.visible { display: flex; } }
 
     /* ─── HERO ─── */
-    #hero {
-      min-height: 100vh;
-      background: var(--navy);
-      position: relative;
-      display: flex; align-items: flex-end;
-      overflow: hidden;
-    }
-    .hero-bg {
-      position: absolute; inset: 0;
-      background-color: var(--navy-light);
-      /* Image replaced via JS after load */
-      background-size: cover; background-position: center;
-      opacity: 0.5;
-    }
-    .hero-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(10,22,40,0.95) 0%, rgba(10,22,40,0.25) 65%, transparent 100%);
-    }
+    #hero { min-height: 100vh; background: var(--navy); position: relative; display: flex; align-items: flex-end; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0.45; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,22,40,0.97) 0%, rgba(10,22,40,0.2) 65%, transparent 100%); }
     .hero-content { position: relative; z-index: 2; padding: 60px 24px; max-width: 1100px; margin: 0 auto; width: 100%; }
     .hero-eyebrow { font-family: 'Arial', sans-serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 20px; }
-    .hero h1 { color: var(--white); margin-bottom: 20px; max-width: 700px; }
-    .hero-sub { font-size: 17px; color: rgba(255,255,255,0.75); max-width: 560px; margin-bottom: 36px; line-height: 1.7; }
-    .btn-outline-white {
-      display: inline-block; border: 1px solid rgba(255,255,255,0.5);
-      color: var(--white); padding: 14px 28px;
-      font-family: 'Arial', sans-serif; font-size: 12px; font-weight: 700;
-      letter-spacing: 1.5px; text-transform: uppercase;
-      transition: all 0.2s; cursor: pointer; background: transparent;
-    }
+    .hero h1 { color: var(--white); margin-bottom: 20px; max-width: 720px; }
+    .hero-sub { font-size: 17px; color: rgba(255,255,255,0.72); max-width: 580px; margin-bottom: 36px; line-height: 1.75; }
+    .btn-outline-white { display: inline-block; border: 1px solid rgba(255,255,255,0.45); color: var(--white); padding: 13px 26px; font-family: 'Arial', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; transition: all 0.2s; cursor: pointer; background: transparent; }
     .btn-outline-white:hover { background: rgba(255,255,255,0.1); border-color: var(--white); }
 
     /* ─── KPI ─── */
     .kpi-strip { background: var(--navy); }
-    .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
-    @media (max-width: 700px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
-    .kpi-item { padding: 28px 20px; border: 1px solid rgba(255,255,255,0.08); text-align: center; }
-    .kpi-value { font-family: 'Arial', sans-serif; font-size: clamp(20px, 2.5vw, 30px); font-weight: 700; color: var(--gold); display: block; margin-bottom: 5px; }
-    .kpi-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,0.45); font-family: 'Arial', sans-serif; }
+    .kpi-grid { display: grid; grid-template-columns: repeat(4,1fr); }
+    @media (max-width: 700px) { .kpi-grid { grid-template-columns: repeat(2,1fr); } }
+    .kpi-item { padding: 26px 18px; border: 1px solid rgba(255,255,255,0.07); text-align: center; }
+    .kpi-value { font-family: 'Arial', sans-serif; font-size: clamp(18px,2.5vw,28px); font-weight: 700; color: var(--gold); display: block; margin-bottom: 5px; }
+    .kpi-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,0.4); font-family: 'Arial', sans-serif; }
 
-    /* ─── TWO COL ─── */
+    /* ─── GRIDS ─── */
     .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
-    .two-col.rev { }
     @media (max-width: 768px) { .two-col { grid-template-columns: 1fr; gap: 36px; } }
+    .three-col { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    @media (max-width: 640px) { .three-col { grid-template-columns: 1fr; } }
+
+    /* ─── CARDS ─── */
+    .stat-card { padding: 28px 24px; border-top: 3px solid var(--gold); background: var(--white); }
+    .stat-card .big { font-family: 'Arial', sans-serif; font-size: 36px; font-weight: 700; color: var(--navy); line-height: 1; display: block; margin-bottom: 6px; }
+    .stat-card .lbl { font-family: 'Arial', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); margin-bottom: 10px; display: block; }
+    .stat-card p { font-size: 13px; line-height: 1.65; }
 
     /* ─── INVESTOR BOX ─── */
     .investor-box { background: var(--sage-light); border-left: 3px solid var(--sage); padding: 20px 24px; margin-top: 24px; }
-    .investor-box strong { display: block; font-family: 'Arial', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--sage); margin-bottom: 8px; }
+    .investor-box strong { display: block; font-family: 'Arial', sans-serif; font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--sage); margin-bottom: 8px; }
     .investor-box p { color: var(--text); font-size: 14px; }
+    .investor-box ul { padding-left: 16px; }
+    .investor-box ul li { font-size: 14px; color: var(--text); line-height: 1.75; }
+
+    /* ─── HIGHLIGHT BOX ─── */
+    .hl-box { background: var(--navy); color: var(--white); padding: 28px 28px; margin-top: 32px; }
+    .hl-box .quote { font-size: 18px; line-height: 1.65; color: rgba(255,255,255,0.9); font-style: italic; margin-bottom: 12px; }
+    .hl-box .source { font-family: 'Arial', sans-serif; font-size: 11px; color: var(--gold); letter-spacing: 1px; text-transform: uppercase; }
+
+    /* ─── DISTANCE LIST ─── */
+    .dist-list { list-style: none; }
+    .dist-item { display: flex; justify-content: space-between; align-items: center; padding: 13px 0; border-bottom: 1px solid var(--border); font-family: 'Arial', sans-serif; font-size: 14px; }
+    .dist-item:last-child { border-bottom: none; }
+    .dist-item .place { color: var(--text); }
+    .dist-item .time { color: var(--sage); font-weight: 700; font-size: 13px; }
+
+    /* ─── TRACK RECORD ─── */
+    .track-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 32px; }
+    @media (max-width: 600px) { .track-grid { grid-template-columns: repeat(2,1fr); } }
+    .track-card { background: var(--navy-light); padding: 20px; }
+    .track-card .tc-name { font-family: 'Arial', sans-serif; font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+    .track-card .tc-loc { font-family: 'Arial', sans-serif; font-size: 11px; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+    .track-card .tc-desc { font-size: 12px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+
+    /* ─── DIFFERENTIANTS ─── */
+    .diff-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; margin-top: 32px; }
+    @media (max-width: 640px) { .diff-grid { grid-template-columns: 1fr; } }
+    .diff-card { padding: 26px 24px; border: 1px solid var(--border); background: var(--white); }
+    .diff-card .num { font-family: 'Arial', sans-serif; font-size: 32px; font-weight: 700; color: var(--gold); line-height: 1; margin-bottom: 10px; }
+    .diff-card h4 { color: var(--navy); font-size: 13px; letter-spacing: 0.5px; margin-bottom: 10px; }
+    .diff-card p { font-size: 13px; line-height: 1.7; }
 
     /* ─── AMENITIES ─── */
-    .amenities-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .amenities-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
     @media (max-width: 580px) { .amenities-grid { grid-template-columns: 1fr; } }
     .amenity-card { border: 1px solid var(--border); padding: 22px; background: var(--white); }
-    .amenity-card h4 { color: var(--navy); margin-bottom: 14px; }
+    .amenity-card h4 { color: var(--navy); margin-bottom: 14px; font-size: 11px; letter-spacing: 1.5px; }
     .amenity-card ul { list-style: none; }
-    .amenity-card li { font-size: 13px; color: var(--text-light); padding: 5px 0; border-bottom: 1px solid var(--grey); display: flex; gap: 8px; }
+    .amenity-card li { font-size: 13px; color: var(--muted); padding: 5px 0; border-bottom: 1px solid var(--grey); display: flex; gap: 8px; }
     .amenity-card li::before { content: '—'; color: var(--gold); flex-shrink: 0; font-family: 'Arial', sans-serif; }
     .amenity-card li:last-child { border-bottom: none; }
 
-    /* ─── PAYMENT TIMELINE ─── */
-    .timeline { display: flex; gap: 0; }
-    @media (max-width: 580px) { .timeline { flex-direction: column; } }
-    .tl-step { flex: 1; padding: 24px 18px; border: 1px solid var(--border); text-align: center; margin-right: -1px; }
-    .tl-step.hl { background: var(--navy); border-color: var(--navy); }
-    .tl-pct { font-family: 'Arial', sans-serif; font-size: 30px; font-weight: 700; color: var(--navy); display: block; margin-bottom: 4px; }
-    .tl-step.hl .tl-pct, .tl-step.hl .tl-lbl { color: var(--white); }
-    .tl-step.hl .tl-sub { color: rgba(255,255,255,0.55); }
-    .tl-lbl { font-family: 'Arial', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--navy); }
-    .tl-sub { font-size: 12px; color: var(--text-light); margin-top: 6px; line-height: 1.5; }
-
-    /* ─── TABLES ─── */
+    /* ─── PRICING ─── */
     .tbl-wrap { overflow-x: auto; }
     .pricing-table { width: 100%; border-collapse: collapse; font-family: 'Arial', sans-serif; font-size: 13px; margin-top: 20px; min-width: 500px; }
     .pricing-table th { background: var(--navy); color: var(--white); padding: 11px 13px; text-align: left; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; }
@@ -232,56 +173,65 @@
     /* ─── BENCHMARK BARS ─── */
     .bench-grid { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
     .bench-row { display: flex; align-items: center; gap: 12px; }
-    .bench-label { font-family: 'Arial', sans-serif; font-size: 12px; color: var(--text-light); width: 160px; flex-shrink: 0; text-align: right; }
-    @media (max-width: 500px) { .bench-label { width: 90px; font-size: 10px; } }
+    .bench-label { font-family: 'Arial', sans-serif; font-size: 12px; color: var(--muted); width: 150px; flex-shrink: 0; text-align: right; }
+    @media (max-width: 500px) { .bench-label { width: 80px; font-size: 10px; } }
     .bench-bar-wrap { flex: 1; height: 30px; background: #eee; }
     .bench-bar { height: 100%; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; }
     .bench-bar span { font-family: 'Arial', sans-serif; font-size: 11px; font-weight: 700; color: var(--white); }
     .bench-row.sobha .bench-bar { background: var(--sage); }
     .bench-row:not(.sobha) .bench-bar { background: var(--navy-light); }
 
-    /* ─── LOCATION ─── */
-    .dist-list { list-style: none; }
-    .dist-item { display: flex; justify-content: space-between; align-items: center; padding: 13px 0; border-bottom: 1px solid var(--border); font-family: 'Arial', sans-serif; font-size: 14px; }
-    .dist-item:last-child { border-bottom: none; }
-    .dist-item .place { color: var(--text); }
-    .dist-item .time { color: var(--sage); font-weight: 700; font-size: 13px; }
+    /* ─── PAYMENT ─── */
+    .timeline { display: flex; }
+    @media (max-width: 580px) { .timeline { flex-direction: column; } }
+    .tl-step { flex: 1; padding: 24px 18px; border: 1px solid var(--border); text-align: center; margin-right: -1px; }
+    .tl-step.hl { background: var(--navy); border-color: var(--navy); }
+    .tl-pct { font-family: 'Arial', sans-serif; font-size: 30px; font-weight: 700; color: var(--navy); display: block; margin-bottom: 4px; }
+    .tl-step.hl .tl-pct, .tl-step.hl .tl-lbl { color: var(--white); }
+    .tl-step.hl .tl-sub { color: rgba(255,255,255,0.55); }
+    .tl-lbl { font-family: 'Arial', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--navy); }
+    .tl-sub { font-size: 12px; color: var(--muted); margin-top: 6px; line-height: 1.5; }
 
-    /* ─── SOBHA PILLARS ─── */
-    .pillars { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 36px; }
-    @media (max-width: 580px) { .pillars { grid-template-columns: 1fr; } }
-    .pillar { padding: 24px 20px; border-top: 3px solid var(--gold); }
-    .pillar h4 { margin-bottom: 8px; color: var(--navy); }
-    .pillar p { font-size: 13px; line-height: 1.65; }
+    /* ─── PROFIL INVESTISSEUR ─── */
+    .profil-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 32px; }
+    @media (max-width: 640px) { .profil-grid { grid-template-columns: 1fr; } }
+    .profil-card { padding: 26px 24px; }
+    .profil-card.green { background: var(--sage-light); border-left: 3px solid var(--sage); }
+    .profil-card.amber { background: #fffbf0; border-left: 3px solid var(--gold); }
+    .profil-card h4 { font-family: 'Arial', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 14px; }
+    .profil-card.green h4 { color: var(--sage); }
+    .profil-card.amber h4 { color: var(--gold); }
+    .profil-card ul { list-style: none; }
+    .profil-card ul li { font-size: 14px; color: var(--text); line-height: 1.8; padding: 4px 0; display: flex; gap: 8px; align-items: flex-start; }
+    .profil-card.green li::before { content: '✓'; color: var(--sage); font-weight: 700; flex-shrink: 0; }
+    .profil-card.amber li::before { content: '✕'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
 
-    /* ─── PHOTO GRIDS ─── */
-    .pg2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    @media (max-width: 480px) { .pg2 { grid-template-columns: 1fr; } }
-
-    /* ─── RISK BOXES ─── */
-    .risk-box { background: #fffbf0; border-left: 3px solid var(--gold); padding: 18px 22px; margin-bottom: 14px; }
-    .risk-box strong { font-family: 'Arial', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--gold); display: block; margin-bottom: 5px; }
-    .risk-box p { font-size: 13px; color: var(--text); }
-
-    /* ─── CTA SECTION ─── */
-    #contact { background: var(--navy); padding: 80px 24px; text-align: center; }
-    #contact h2 { color: var(--white); margin-bottom: 12px; }
-    #contact > p { color: rgba(255,255,255,0.7); max-width: 500px; margin: 0 auto 40px; font-size: 16px; }
+    /* ─── CTA ─── */
+    #contact { background: var(--navy); }
+    .cta-inner { padding: 80px 24px; max-width: 1100px; margin: 0 auto; text-align: center; }
+    .cta-inner h2 { color: var(--white); margin-bottom: 12px; }
+    .cta-inner > p { color: rgba(255,255,255,0.68); max-width: 500px; margin: 0 auto 40px; font-size: 16px; }
     .cta-form { max-width: 420px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; text-align: left; }
-    .cta-form .form-field label { color: rgba(255,255,255,0.5); }
-    .cta-form input { border: 1.5px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.07); color: var(--white); padding: 14px 16px; font-size: 15px; font-family: 'Georgia', serif; outline: none; transition: border-color 0.2s; width: 100%; }
-    .cta-form input::placeholder { color: rgba(255,255,255,0.3); }
+    .cta-form .form-field label { color: rgba(255,255,255,0.45); }
+    .cta-form input { border: 1.5px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.06); color: var(--white); padding: 14px 16px; font-size: 15px; font-family: 'Georgia', serif; outline: none; transition: border-color 0.2s; width: 100%; }
+    .cta-form input::placeholder { color: rgba(255,255,255,0.28); }
     .cta-form input:focus { border-color: var(--gold); }
     .cta-form input.error { border-color: #e74c3c; }
-    .btn-gold { background: var(--gold); color: var(--navy); border: none; cursor: pointer; padding: 16px 24px; font-family: 'Arial', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; transition: opacity 0.2s; width: 100%; }
+    .btn-gold { background: var(--gold); color: var(--navy); border: none; cursor: pointer; padding: 15px 24px; font-family: 'Arial', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; transition: opacity 0.2s; width: 100%; }
     .btn-gold:hover { opacity: 0.9; }
-    .cta-disclaimer { font-size: 11px; color: rgba(255,255,255,0.3); margin-top: 12px; text-align: center; }
+    .cta-disclaimer { font-size: 11px; color: rgba(255,255,255,0.28); margin-top: 12px; text-align: center; }
 
     /* ─── FOOTER ─── */
     footer { background: #070d1a; padding: 28px 24px; text-align: center; }
-    footer p { font-family: 'Arial', sans-serif; font-size: 10px; color: rgba(255,255,255,0.25); line-height: 1.9; }
+    footer p { font-family: 'Arial', sans-serif; font-size: 10px; color: rgba(255,255,255,0.22); line-height: 1.9; }
 
-    /* ─── SECTION SCROLL PADDING ─── */
+    /* ─── PHOTO PLACEHOLDERS ─── */
+    .img-ph { background: linear-gradient(135deg, #1a2c42 0%, #0f1f3d 100%); display: flex; align-items: center; justify-content: center; color: rgba(201,169,110,0.4); font-family: 'Arial', sans-serif; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; }
+
+    /* ─── PG2 ─── */
+    .pg2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media (max-width: 480px) { .pg2 { grid-template-columns: 1fr; } }
+
     section[id] { scroll-margin-top: calc(var(--nav-h) + 8px); }
   </style>
 </head>
@@ -292,7 +242,7 @@
   <div class="gating-box">
     <div class="gating-logo">Clément Talmo · Advisory Dubai & Abu Dhabi</div>
     <h2>Accéder au dossier investisseur</h2>
-    <p>Sobha City Abu Dhabi — Analyse complète : pricing, plan de paiement, benchmark concurrentiel.</p>
+    <p>Sobha City Abu Dhabi — Analyse complète : marché, localisation, promoteur, pricing, plan de paiement.</p>
     <form class="gating-form" id="gating-form" onsubmit="handleGating(event)" novalidate>
       <div class="form-field">
         <label for="gate-prenom">Prénom</label>
@@ -302,11 +252,11 @@
       <div class="form-field">
         <label for="gate-tel">Numéro de téléphone</label>
         <input type="tel" id="gate-tel" placeholder="+33 6 12 34 56 78" autocomplete="tel">
-        <span class="field-error" id="err-tel">Numéro invalide. Format attendu : +33612345678 ou 0612345678.</span>
+        <span class="field-error" id="err-tel">Numéro invalide — ex : +33612345678 ou 0612345678</span>
       </div>
       <button type="submit" class="btn-primary">Accéder au dossier →</button>
     </form>
-    <p class="gating-disclaimer">Vos informations restent confidentielles. Clément vous contactera sous 24h.</p>
+    <p class="gating-disclaimer">Vos informations restent confidentielles. Clément vous contacte sous 24h.</p>
   </div>
 </div>
 
@@ -314,25 +264,25 @@
 <nav id="main-nav">
   <div class="nav-brand">Sobha City · Abu Dhabi</div>
   <div class="nav-links">
-    <span class="nav-link" onclick="goTo('abu-dhabi')">Abu Dhabi</span>
-    <span class="nav-link" onclick="goTo('projet')">Le Projet</span>
+    <span class="nav-link" onclick="goTo('abu-dhabi')">Le marché</span>
     <span class="nav-link" onclick="goTo('localisation')">Localisation</span>
+    <span class="nav-link" onclick="goTo('disneyland')">Disneyland</span>
+    <span class="nav-link" onclick="goTo('promoteur')">Sobha</span>
+    <span class="nav-link" onclick="goTo('projet')">Le projet</span>
     <span class="nav-link" onclick="goTo('pricing')">Pricing</span>
-    <span class="nav-link" onclick="goTo('paiement')">Paiement</span>
-    <span class="nav-link" onclick="goTo('benchmark')">Benchmark</span>
+    <span class="nav-link" onclick="goTo('pour-qui')">Pour qui ?</span>
     <button class="nav-cta" onclick="goTo('contact')">Être contacté</button>
   </div>
 </nav>
-
-<!-- Mobile tabs (shown after gating) -->
 <div id="mobile-tabs">
   <div class="mob-tab" onclick="goTo('abu-dhabi')">Marché</div>
-  <div class="mob-tab" onclick="goTo('projet')">Projet</div>
   <div class="mob-tab" onclick="goTo('localisation')">Localisation</div>
+  <div class="mob-tab" onclick="goTo('disneyland')">Disney</div>
+  <div class="mob-tab" onclick="goTo('promoteur')">Sobha</div>
+  <div class="mob-tab" onclick="goTo('projet')">Projet</div>
   <div class="mob-tab" onclick="goTo('pricing')">Pricing</div>
-  <div class="mob-tab" onclick="goTo('paiement')">Paiement</div>
-  <div class="mob-tab" onclick="goTo('benchmark')">Benchmark</div>
-  <div class="mob-tab" onclick="goTo('contact')" style="color:var(--gold);">Contact</div>
+  <div class="mob-tab" onclick="goTo('pour-qui')">Pour qui ?</div>
+  <div class="mob-tab" style="color:var(--gold);" onclick="goTo('contact')">Contact</div>
 </div>
 
 <!-- ══════════ HERO ══════════ -->
@@ -341,8 +291,8 @@
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="hero-eyebrow">Abu Dhabi · Off-Plan · Sobha Realty</div>
-    <h1>Une ville dans la ville.<br>Au prix de Bordeaux.</h1>
-    <p class="hero-sub">38 millions de sq.ft de masterplan waterfront & nature-led. À 10 minutes de Yas Island. Ticket d'entrée dès 1,31 M AED.</p>
+    <h1>Une ville entière.<br>À 10 minutes de Disneyland.<br>Au prix de Bordeaux.</h1>
+    <p class="hero-sub">38 millions de sq.ft de masterplan waterfront & nature-led. Plus grand que Downtown Dubai. Ticket d'entrée dès 1,31 M AED — livraison Q4 2029.</p>
     <button class="btn-outline-white" onclick="goTo('contact')">Demander un entretien advisory</button>
   </div>
 </section>
@@ -350,109 +300,67 @@
 <!-- ══════════ KPI ══════════ -->
 <div class="kpi-strip">
   <div class="kpi-grid">
-    <div class="kpi-item"><span class="kpi-value">40 Md AED</span><span class="kpi-label">Valeur du projet</span></div>
-    <div class="kpi-item"><span class="kpi-value">38 M sq.ft</span><span class="kpi-label">Superficie totale</span></div>
-    <div class="kpi-item"><span class="kpi-value">60 %</span><span class="kpi-label">Espaces verts</span></div>
-    <div class="kpi-item"><span class="kpi-value">1,31 M AED</span><span class="kpi-label">Ticket d'entrée</span></div>
-    <div class="kpi-item"><span class="kpi-value">50 000+</span><span class="kpi-label">Arbres plantés</span></div>
-    <div class="kpi-item"><span class="kpi-value">20 km</span><span class="kpi-label">Wellness loop</span></div>
+    <div class="kpi-item"><span class="kpi-value">1,2 T AED</span><span class="kpi-label">PIB Abu Dhabi 2024</span></div>
+    <div class="kpi-item"><span class="kpi-value">+7,5 %</span><span class="kpi-label">Croissance population 2024</span></div>
+    <div class="kpi-item"><span class="kpi-value">1,7 T $</span><span class="kpi-label">Fonds souverains Abu Dhabi</span></div>
+    <div class="kpi-item"><span class="kpi-value">1,31 M AED</span><span class="kpi-label">Ticket d'entrée (dès)</span></div>
+    <div class="kpi-item"><span class="kpi-value">20×</span><span class="kpi-label">Moins d'off-plan qu'à Dubai</span></div>
+    <div class="kpi-item"><span class="kpi-value">38 M sq.ft</span><span class="kpi-label">Masterplan total</span></div>
     <div class="kpi-item"><span class="kpi-value">60 / 40</span><span class="kpi-label">Plan de paiement</span></div>
     <div class="kpi-item"><span class="kpi-value">Q4 2029</span><span class="kpi-label">Livraison estimée</span></div>
   </div>
 </div>
 
-<!-- ══════════ ABU DHABI ══════════ -->
+<!-- ══════════ ABU DHABI MARCHÉ ══════════ -->
 <section class="section" id="abu-dhabi">
   <div class="container">
-    <div class="two-col">
-      <div>
-        <span class="label">La destination</span>
-        <h2>Abu Dhabi : le marché institutionnel des Émirats</h2>
-        <div class="divider"></div>
-        <p>Abu Dhabi n'est pas Dubai. La capitale fédérale opère comme un marché hautement planifié, souverain et patrimonial. Sa stratégie s'articule autour de la qualité urbaine, de la stabilité et de la profondeur patrimoniale — pas de la spéculation de court terme.</p>
-        <p class="mt-24">Les transactions immobilières ont progressé de <strong style="color:var(--navy);">+47 %</strong> dans l'émirat, témoignant de la confiance croissante des capitaux internationaux. L'effet de pôles d'attractivité comme Yas Island, Saadiyat et le futur Disneyland Abu Dhabi agit comme catalyseur de valorisation pour les communautés avoisinantes.</p>
-        <div class="investor-box">
-          <strong>Message Investisseur</strong>
-          <p>Se positionner à Abu Dhabi aujourd'hui, c'est investir dans un marché où la croissance repose sur la création de valeur urbaine durable, adossée à une vision étatique puissante.</p>
+    <span class="label">Le marché</span>
+    <h2>Abu Dhabi : la capitale la mieux capitalisée du monde</h2>
+    <div class="divider"></div>
+
+    <div class="three-col mt-40">
+      <div class="stat-card">
+        <span class="big">1,7 T $</span>
+        <span class="lbl">Fonds souverains</span>
+        <p>Abu Dhabi gère <strong>1 700 milliards de dollars</strong> de fonds souverains — ADIA (1 057 Md$), Mubadala (385 Md$), ADQ. C'est 3 879$ de richesse souveraine par habitant, comparable à la Norvège.</p>
+      </div>
+      <div class="stat-card">
+        <span class="big">1,2 T AED</span>
+        <span class="lbl">PIB 2024 — record historique</span>
+        <p>Le PIB d'Abu Dhabi a atteint un <strong>record historique</strong> en 2024, avec une croissance de +3,8 %. Le secteur non-pétrolier a progressé de <strong>+6,2 %</strong>, représentant désormais 54,7 % de l'économie totale.</p>
+      </div>
+      <div class="stat-card">
+        <span class="big">+7,5 %</span>
+        <span class="lbl">Croissance population 2024</span>
+        <p>La population d'Abu Dhabi a bondi de <strong>+7,5 % en un an</strong> pour atteindre 4,14 millions de résidents. Sur 10 ans, c'est +51 % — de 2,7 M en 2014 à 4,1 M en 2024. L'émirat attire.</p>
+      </div>
+    </div>
+
+    <div class="mt-48">
+      <h3 style="margin-bottom:24px;">Un marché off-plan au démarrage : offre inférieure à la demande</h3>
+      <div class="two-col">
+        <div>
+          <p>En 2024, Dubai a enregistré <strong>109 527 transactions off-plan</strong> (+60,5 % sur un an), pour une valeur de 228 Mds AED — un record absolu. Abu Dhabi, de son côté, a compté environ <strong>5 385 transactions off-plan</strong> pour la même période.</p>
+          <p class="mt-24">Le paradoxe : Abu Dhabi attire autant de résidents que Dubai à l'échelle des Émirats, son économie croît plus vite (+5 % en 9 mois 2025), et pourtant son marché off-plan est <strong>20 fois plus petit</strong>. Ce déséquilibre offre/demande est exactement le signal que les investisseurs cherchent au démarrage d'un marché.</p>
+          <div class="investor-box">
+            <strong>Signal investisseur</strong>
+            <p>Dubai en 2015 avant le boom, c'est ce à quoi ressemble Abu Dhabi aujourd'hui. L'infrastructure est là, la population arrive, les capitaux institutionnels sont là — mais l'offre résidentielle de qualité n'a pas encore suivi. C'est la définition d'un point d'entrée.</p>
+          </div>
         </div>
-      </div>
-      <div class="img-ph" id="img-loc" style="height:440px; width:100%;">
-        <span>Photo · Localisation</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════ PROJET ══════════ -->
-<section class="section section-alt" id="projet">
-  <div class="container">
-    <span class="label">Le projet</span>
-    <h2>"Sobha City is not a community. It's a city."</h2>
-    <div class="divider"></div>
-    <p style="max-width:640px;">Un masterplan de 38 millions de sq.ft fondamentalement waterfront et nature-led. 60 % d'espaces verts, 50 000 arbres, une boucle bien-être de 20 km, une promenade marina de 2 km. Six points d'accès distincts.</p>
-    <div class="pg2 mt-40">
-      <div class="img-ph" id="img-amb1" style="height:300px;"><span>Waterfront</span></div>
-      <div class="img-ph" id="img-amb2" style="height:300px;"><span>Nature & Espace</span></div>
-    </div>
-    <div class="pg2 mt-16">
-      <div class="img-ph" id="img-amb3" style="height:260px;"><span>Lifestyle</span></div>
-      <div class="img-ph" id="img-masterplan" style="height:260px;"><span>Masterplan</span></div>
-    </div>
-    <div class="investor-box mt-40">
-      <strong>Pourquoi la taille compte</strong>
-      <p>Un masterplan de 38 millions de sq.ft garantit une ville autonome capable d'absorber retail, écoles, sports — et de créer son propre microclimat. La communauté devient indépendante, pérenne, et liquide à la revente.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════ AMENITIES ══════════ -->
-<section class="section" id="amenities">
-  <div class="container">
-    <span class="label">Art de vivre</span>
-    <h2>Un cadre de vie complet, pensé pour durer</h2>
-    <div class="divider"></div>
-    <div class="amenities-grid mt-40">
-      <div class="amenity-card">
-        <h4>Nature & Bien-être</h4>
-        <ul>
-          <li>60 % d'espaces ouverts & verts</li>
-          <li>50 000+ arbres — green corridors</li>
-          <li>Wellness loop 20 km</li>
-          <li>Water features & zones aquatiques</li>
-        </ul>
-      </div>
-      <div class="amenity-card">
-        <h4>Waterfront & Lifestyle</h4>
-        <ul>
-          <li>Promenade waterfront / marina 2 km</li>
-          <li>Plages artificielles</li>
-          <li>Espaces de vie en plein air</li>
-        </ul>
-      </div>
-      <div class="amenity-card">
-        <h4>Sport & Activité</h4>
-        <ul>
-          <li>Parcours de golf Par-3</li>
-          <li>Padel & terrains multi-sports</li>
-          <li>Pistes jogging & cyclables</li>
-          <li>Piscines couvertes & plein air</li>
-        </ul>
-      </div>
-      <div class="amenity-card">
-        <h4>Communauté & Services</h4>
-        <ul>
-          <li>Amphithéâtre & salons communautaires</li>
-          <li>Cinéma en plein air</li>
-          <li>300 000 sq.ft de retail / mall</li>
-          <li>6 points d'entrée & sortie</li>
-        </ul>
-      </div>
-    </div>
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:28px;">
-      <div class="img-ph" id="img-golf" style="height:280px;"><span>Golf & Sport</span></div>
-      <div style="display:flex; flex-direction:column; gap:14px;">
-        <div class="img-ph" id="img-villa1" style="height:130px;"><span>Villas</span></div>
-        <div class="img-ph" id="img-villa2" style="height:130px;"><span>Family Life</span></div>
+        <div>
+          <h4 style="font-size:12px; text-transform:uppercase; letter-spacing:1.5px; color:var(--muted); margin-bottom:20px;">Transactions off-plan 2024</h4>
+          <div class="bench-grid">
+            <div class="bench-row" style="margin-bottom:8px;">
+              <div class="bench-label">Dubai</div>
+              <div class="bench-bar-wrap"><div class="bench-bar" style="width:100%; background:var(--navy-light);"><span>109 527</span></div></div>
+            </div>
+            <div class="bench-row sobha">
+              <div class="bench-label"><strong>Abu Dhabi</strong></div>
+              <div class="bench-bar-wrap"><div class="bench-bar" style="width:5%; background:var(--sage); min-width:60px;"><span>5 385</span></div></div>
+            </div>
+          </div>
+          <p class="mt-24" style="font-size:13px;">Abu Dhabi attire les mêmes profils d'investisseurs et de résidents que Dubai, avec un marché 20× moins développé. L'écart se réduit — et c'est maintenant que se prennent les meilleures positions.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -462,57 +370,219 @@
 <section class="section section-alt" id="localisation">
   <div class="container">
     <span class="label">Localisation</span>
-    <h2>Au cœur du corridor Yas – Aéroport – Abu Dhabi</h2>
+    <h2>Une accessibilité exceptionnelle à la totalité des infrastructures loisirs d'Abu Dhabi</h2>
     <div class="divider"></div>
+    <p style="max-width:680px;">Al Bahyah — au cœur du corridor Yas Island / Aéroport. Sobha City est littéralement encerclée par les meilleures infrastructures de loisirs du Moyen-Orient. Et reste à seulement <strong>1 heure de Dubai</strong> via les axes E10/E12.</p>
+
     <div class="two-col mt-40">
       <div>
-        <p style="margin-bottom:24px;">Al Bahyah — aux portes de Yas Island et du futur Disneyland Abu Dhabi. Accès direct via les axes E10 / E12 vers Dubai et le centre d'Abu Dhabi.</p>
         <ul class="dist-list">
-          <li class="dist-item"><span class="place">Yas Island</span><span class="time">~10 min</span></li>
-          <li class="dist-item"><span class="place">Ferrari World</span><span class="time">~10 min</span></li>
-          <li class="dist-item"><span class="place">Futur Disneyland Abu Dhabi</span><span class="time">~10 min</span></li>
-          <li class="dist-item"><span class="place">Yas Mall</span><span class="time">~13 min</span></li>
-          <li class="dist-item"><span class="place">Aéroport International Zayed</span><span class="time">~12 min</span></li>
-          <li class="dist-item"><span class="place">Centre Abu Dhabi</span><span class="time">~20 min</span></li>
-          <li class="dist-item"><span class="place">Dubai (E10 / E12)</span><span class="time">Accès direct</span></li>
+          <li class="dist-item"><span class="place">🎢 Yas Island (Ferrari, Warner, SeaWorld)</span><span class="time">~10 min</span></li>
+          <li class="dist-item"><span class="place">🏰 Futur Disneyland Abu Dhabi</span><span class="time">~10 min</span></li>
+          <li class="dist-item"><span class="place">🛍️ Yas Mall</span><span class="time">~13 min</span></li>
+          <li class="dist-item"><span class="place">✈️ Aéroport International Zayed</span><span class="time">~12 min</span></li>
+          <li class="dist-item"><span class="place">🏙️ Centre Abu Dhabi</span><span class="time">~20 min</span></li>
+          <li class="dist-item"><span class="place">🌆 Saadiyat Island (Louvre, NYU)</span><span class="time">~25 min</span></li>
+          <li class="dist-item"><span class="place">🏙️ Dubai (E10 / E12)</span><span class="time">~60 min</span></li>
         </ul>
+        <div class="investor-box mt-24">
+          <strong>Pourquoi c'est clé</strong>
+          <p>Yas Island génère déjà <strong>38 millions de visites par an</strong>. L'ouverture de Disneyland va doubler ce flux. Sobha City sera la communauté résidentielle la plus accessible à cet écosystème, à 10 minutes à pied ou en voiture.</p>
+        </div>
       </div>
-      <div class="img-ph" id="img-loc2" style="height:400px; width:100%;"><span>Carte · Localisation</span></div>
+      <div class="img-ph" id="img-loc" style="height:440px; width:100%;"><span>Carte localisation</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ DISNEYLAND ══════════ -->
+<section class="section" id="disneyland">
+  <div class="container">
+    <span class="label">Le catalyseur</span>
+    <h2>Disneyland Abu Dhabi : ce que la proximité d'un parc mondial fait aux prix de l'immobilier</h2>
+    <div class="divider"></div>
+
+    <div class="two-col">
+      <div>
+        <p>Le premier Disneyland du Moyen-Orient ouvrira sur Yas Island, à <strong>10 minutes de Sobha City</strong>. Ce n'est pas anecdotique pour un investisseur — c'est un catalyseur de valorisation documenté.</p>
+        <p class="mt-24">Les études sur les parcs Disney dans le monde montrent un pattern systématique : <strong>les prix des propriétés dans un rayon de 10-15 minutes progressent de 25 à 35 %</strong> dans les 5 ans suivant l'annonce, et continuent d'augmenter après l'ouverture. La demande locative explose avec le flux de touristes, d'employés du parc et de familles qui s'installent à proximité.</p>
+        <p class="mt-24">Le précédent le plus récent : <strong>Waters Edge sur Yas Island</strong>. Les acheteurs qui sont entrés à ~800 000 AED pour un 1BR revendent aujourd'hui à <strong>1,6 M AED</strong> — soit +100 % — en partie grâce à l'annonce de Disneyland.</p>
+        <div class="hl-box">
+          <div class="quote">"Disney's park will be built on Abu Dhabi's man-made Yas Island and anyone who owns real estate there could be laughing all the way to the bank."</div>
+          <div class="source">Forbes — Août 2025 : +35 % de valorisation attendue</div>
+        </div>
+      </div>
+      <div>
+        <div class="stat-card" style="margin-bottom:16px;">
+          <span class="big">38 M</span>
+          <span class="lbl">visites/an sur Yas Island déjà aujourd'hui</span>
+          <p>Ferrari World, Warner Bros., SeaWorld, Yas Waterworld, Formula 1. Le parc de loisirs le plus visité du Moyen-Orient.</p>
+        </div>
+        <div class="stat-card" style="margin-bottom:16px;">
+          <span class="big">+100 %</span>
+          <span class="lbl">Waters Edge — 800K → 1,6 M AED</span>
+          <p>Cas réel documenté : les acheteurs early sur Yas Island ont doublé leur mise depuis l'annonce de Disneyland.</p>
+        </div>
+        <div class="stat-card">
+          <span class="big">+35 %</span>
+          <span class="lbl">Valorisation attendue — Forbes 2025</span>
+          <p>Estimation basse du potentiel d'appréciation pour les biens dans le corridor Yas, selon les analystes cités dans Forbes.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="investor-box mt-40">
+      <strong>Ce que cela signifie pour Sobha City</strong>
+      <ul>
+        <li>Sobha City est à 10 minutes de Disneyland — dans la zone d'influence directe</li>
+        <li>Livraison Q4 2029 : les résidents seront là quand Disneyland ouvrira (début 2030s)</li>
+        <li>La demande locative de courte durée (Airbnb) va exploser sur ce corridor</li>
+        <li>Le flux de 38M visiteurs/an existants = demande locative immédiate dès la livraison</li>
+      </ul>
     </div>
   </div>
 </section>
 
 <!-- ══════════ SOBHA REALTY ══════════ -->
-<section class="section" id="promoteur">
+<section class="section section-alt" id="promoteur">
   <div class="container">
-    <div class="two-col">
-      <div>
-        <span class="label">L'exécuteur</span>
-        <h2>Sobha Realty : l'intégration verticale comme garantie</h2>
-        <div class="divider"></div>
-        <p>Sobha contrôle l'intégralité de la chaîne de valeur — architecture, matériaux, design intérieur. Ce modèle d'intégration verticale garantit des finitions premium qui font figure de benchmark régional depuis 20 ans aux Émirats.</p>
-        <div class="pillars">
-          <div class="pillar">
-            <h4>Exécution fiable</h4>
-            <p>Respect des délais. Track record solide sur 20 ans aux Émirats.</p>
+    <span class="label">Le promoteur</span>
+    <h2>Sobha Realty : 4 raisons pour lesquelles ce promoteur est différent</h2>
+    <div class="divider"></div>
+
+    <div class="diff-grid">
+      <div class="diff-card">
+        <div class="num">01</div>
+        <h4>Track record béton — des communautés livrées</h4>
+        <p>Sobha Hartland à Dubai (8 millions de sq.ft, livraison en cours), Sobha Siniya Island en UAQ (5 Mds $), Creek Waters, Creek Vistas Reservé. Sobha ne promet pas — Sobha livre. C'est documenté, vérifiable, visitable.</p>
+      </div>
+      <div class="diff-card">
+        <div class="num">02</div>
+        <h4>Intégration verticale totale — de la pierre à la clé</h4>
+        <p>Sobha contrôle l'intégralité de la chaîne : architecture, ingénierie, fabrication des matériaux, construction, finition. Aucun sous-traitant sur les éléments critiques. Résultat : des délais tenus et une qualité homogène sur chaque projet.</p>
+      </div>
+      <div class="diff-card">
+        <div class="num">03</div>
+        <h4>Ses propres matières premières — une qualité qui tient dans le temps</h4>
+        <p>Sobha fabrique lui-même ses carrelages, ses menuiseries, ses éléments de structure. Là où d'autres achètent au moins-disant, Sobha contrôle. C'est la garantie d'un bien qui ne prend pas de valeur seulement à la livraison, mais qui la conserve sur 10-15 ans.</p>
+      </div>
+      <div class="diff-card">
+        <div class="num">04</div>
+        <h4>Sobha City = leur premier projet à Abu Dhabi</h4>
+        <p>Quand un promoteur de cette stature entre sur un nouveau marché avec son projet phare, il a tout à prouver. Sobha City sera leur vitrine à Abu Dhabi. Ce sont ces projets-là — les "premières fois" de grands promoteurs — qui génèrent les meilleures plus-values pour les early buyers.</p>
+      </div>
+    </div>
+
+    <div class="section-dark mt-48" style="margin: 48px -24px 0; padding: 40px 24px;">
+      <div class="container">
+        <h3 style="color:var(--white); margin-bottom:8px;">Communautés Sobha déjà réalisées ou en cours</h3>
+        <p style="color:rgba(255,255,255,0.55); margin-bottom:0; font-size:13px;">Un track record sur 3 émirats</p>
+        <div class="track-grid mt-32">
+          <div class="track-card">
+            <div class="tc-name">Sobha Hartland</div>
+            <div class="tc-loc">Dubai — MBR City</div>
+            <div class="tc-desc">8 millions de sq.ft. Masterplan complet avec école Hartland International, Crystal Lagoon, 2 parcours de golf. Livraisons en cours depuis 2022.</div>
           </div>
-          <div class="pillar">
-            <h4>Finitions premium</h4>
-            <p>Contrôle total des matériaux. Qualité identique sur chaque projet.</p>
+          <div class="track-card">
+            <div class="tc-name">Sobha Hartland II</div>
+            <div class="tc-loc">Dubai — Extension</div>
+            <div class="tc-desc">Extension du masterplan original. Appartements, villas et townhouses. Forte demande à la revente dès lancement.</div>
           </div>
-          <div class="pillar">
-            <h4>Premier projet AD</h4>
-            <p>Sobha City = leur entrée historique à Abu Dhabi. La marque a tout à prouver.</p>
+          <div class="track-card">
+            <div class="tc-name">Sobha Siniya Island</div>
+            <div class="tc-loc">Umm Al Quwain</div>
+            <div class="tc-desc">Projet 5 Mds $ sur une île naturelle. Villas de plage, marina résidentielle, 25 000 résidents attendus. Ambition maximale.</div>
           </div>
-        </div>
-        <div class="investor-box">
-          <strong>Pourquoi cela rassure</strong>
-          <p>Dans l'off-plan, le risque principal est le défaut d'exécution. La maîtrise totale de la chaîne par Sobha désamorce directement ce frein.</p>
+          <div class="track-card">
+            <div class="tc-name">Creek Vistas Reservé</div>
+            <div class="tc-loc">Dubai — Sobha Hartland</div>
+            <div class="tc-desc">Tours résidentielles premium avec vues sur le Creek. Livraisons effectuées dans les délais — référence citée par les analystes.</div>
+          </div>
+          <div class="track-card">
+            <div class="tc-name">Waves Waterfront</div>
+            <div class="tc-loc">Dubai — Sobha Hartland</div>
+            <div class="tc-desc">Projet waterfront livré en 2024. Sobha Realty a annoncé la complétion officielle — exemple concret d'exécution.</div>
+          </div>
+          <div class="track-card" style="background: rgba(201,169,110,0.15); border: 1px solid var(--gold);">
+            <div class="tc-name" style="color:var(--gold);">Sobha City Abu Dhabi</div>
+            <div class="tc-loc" style="color:rgba(255,255,255,0.5);">Abu Dhabi — 1er projet</div>
+            <div class="tc-desc" style="color:rgba(255,255,255,0.7);">38 M sq.ft. Premier masterplan de Sobha à Abu Dhabi. La marque a tout à prouver ici — c'est exactement pour ça que ce sera leur meilleure exécution.</div>
+          </div>
         </div>
       </div>
-      <div style="display:flex; flex-direction:column; gap:14px;">
-        <div class="img-ph" id="img-sobha1" style="height:250px;"><span>Sobha · Track Record</span></div>
-        <div class="img-ph" id="img-sobha2" style="height:190px;"><span>Sobha · Finitions</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ LE PROJET ══════════ -->
+<section class="section" id="projet">
+  <div class="container">
+    <span class="label">Le projet</span>
+    <h2>Ce n'est pas une communauté. C'est une ville.</h2>
+    <div class="divider"></div>
+    <p style="max-width:700px;">Sobha City Abu Dhabi est plus grand que Downtown Dubai. C'est un fait. 38 millions de sq.ft, contre 27 millions pour Downtown. Un masterplan complet avec nature, canaux, golf, retail, écoles — tout intégré. Le mix entre <strong>Dubai Creek Harbour</strong> (canaux + waterfront) et <strong>Dubai Hills</strong> (nature + communauté complète), mais à Abu Dhabi, à 10 minutes de Disneyland, et pour moins cher.</p>
+
+    <div class="pg2 mt-40">
+      <div class="img-ph" id="img-amb1" style="height:320px;"><span>Waterfront</span></div>
+      <div class="img-ph" id="img-masterplan" style="height:320px;"><span>Masterplan</span></div>
+    </div>
+    <div class="pg2 mt-16">
+      <div class="img-ph" id="img-amb3" style="height:260px;"><span>Promenade</span></div>
+      <div class="img-ph" id="img-amb2" style="height:260px;"><span>Chiffres clés</span></div>
+    </div>
+
+    <div class="amenities-grid mt-48">
+      <div class="amenity-card">
+        <h4>Nature & Front Canal</h4>
+        <ul>
+          <li>60 % d'espaces ouverts & verts — record dans les Émirats</li>
+          <li>50 000+ arbres — green corridors au cœur du projet</li>
+          <li>Wellness loop 20 km — jogging, vélo, marche</li>
+          <li>Front canaux et waterfront sur plusieurs km (comme Creek Harbour)</li>
+          <li>Water features & zones aquatiques intégrées</li>
+        </ul>
+      </div>
+      <div class="amenity-card">
+        <h4>Communauté complète & autonome</h4>
+        <ul>
+          <li>300 000 sq.ft de retail — un mall intégré</li>
+          <li>Écoles internationales accessibles depuis la communauté</li>
+          <li>6 points d'entrée / sortie — fluidité de circulation</li>
+          <li>Amphithéâtre & salons communautaires</li>
+          <li>Cinéma en plein air</li>
+        </ul>
+      </div>
+      <div class="amenity-card">
+        <h4>Sport & Active Lifestyle</h4>
+        <ul>
+          <li>Parcours de golf Par-3 intégré</li>
+          <li>Padel & terrains multi-sports</li>
+          <li>Piscines couvertes & en plein air</li>
+          <li>Marina promenade 2 km</li>
+          <li>Plages artificielles & accès eau</li>
+        </ul>
+      </div>
+      <div class="amenity-card">
+        <h4>Pourquoi c'est ce que les gens veulent</h4>
+        <ul>
+          <li>Communauté verte + front canal = les 2 critères n°1 post-Covid</li>
+          <li>Plus grand que Downtown Dubai — la masse critique crée la liquidité</li>
+          <li>Tout est là : pas besoin de sortir de la communauté au quotidien</li>
+          <li>Comparable au succès de Masdar City (forêts) + le waterfront en plus</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="hl-box mt-40">
+      <div class="quote">"Un mix Dubai Creek Harbour × Dubai Hills — mais à Abu Dhabi, 10 min de Disneyland, avec un ticket d'entrée 40 % plus bas que Dubai."</div>
+      <div class="source">Analyse Clément Talmo · Advisory</div>
+    </div>
+
+    <div class="mt-40" style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+      <div class="img-ph" id="img-golf" style="height:280px;"><span>Golf</span></div>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div class="img-ph" id="img-villa1" style="height:130px;"><span>Villas</span></div>
+        <div class="img-ph" id="img-villa2" style="height:130px;"><span>Jardins</span></div>
       </div>
     </div>
   </div>
@@ -521,117 +591,96 @@
 <!-- ══════════ PRICING ══════════ -->
 <section class="section section-alt" id="pricing">
   <div class="container">
-    <span class="label">Typologies & Prix</span>
-    <h2>Du 1 BR à l'Estate Villa : une gamme complète en freehold</h2>
+    <span class="label">Rapport qualité-prix</span>
+    <h2>Le meilleur ticket d'entrée du corridor Yas</h2>
     <div class="divider"></div>
-    <div class="tbl-wrap">
+    <p style="max-width:680px;">Sobha City propose un positionnement tarifaire unique : moins cher que tous ses concurrents directs sur Yas Island, tout en étant livré par un promoteur premium avec une qualité d'exécution supérieure. C'est rare.</p>
+
+    <div class="tbl-wrap mt-40">
       <table class="pricing-table">
         <thead>
-          <tr>
-            <th>Type</th><th>Prix départ (AED)</th><th>Surface (sq.ft)</th><th>Prix / sq.ft (AED)</th><th>EOI (AED)</th>
-          </tr>
+          <tr><th>Type</th><th>Prix départ (AED)</th><th>Surface (sq.ft)</th><th>Prix / sq.ft</th><th>EOI (AED)</th></tr>
         </thead>
         <tbody>
-          <tr class="hl"><td><strong>Appartement 1 BR</strong></td><td>1 310 000</td><td>566 – 608</td><td>2 153 – 2 313</td><td>35 000</td></tr>
+          <tr class="hl"><td><strong>Appartement 1 BR</strong></td><td><strong>1 310 000</strong></td><td>566 – 608</td><td>2 153 – 2 313</td><td>35 000</td></tr>
           <tr><td><strong>Appartement 2 BR</strong></td><td>2 400 000</td><td>1 012 – 1 212</td><td>1 980 – 2 369</td><td>70 000</td></tr>
           <tr><td><strong>Garden Villa 3 BR</strong></td><td>4 960 000</td><td>2 577 – 3 453</td><td>1 436 – 1 924</td><td>150 000</td></tr>
           <tr><td><strong>Garden Villa 4 BR</strong></td><td>8 070 000</td><td>4 194 – 4 524</td><td>1 784 – 1 924</td><td>200 000</td></tr>
-          <tr><td><strong>Estate Villa 4 BR</strong></td><td>9 050 000</td><td>4 309 – 4 515</td><td>2 004 – 2 100</td><td>225 000</td></tr>
           <tr><td><strong>Estate Villa 5 BR</strong></td><td>11 160 000</td><td>5 317 – 5 418</td><td>2 060 – 2 099</td><td>250 000</td></tr>
           <tr><td><strong>Estate Villa 6 BR</strong></td><td>13 400 000</td><td>6 383</td><td>2 099</td><td>300 000</td></tr>
         </tbody>
       </table>
     </div>
-    <div class="investor-box">
-      <strong>Lecture Investisseur</strong>
-      <p>Les Garden Villas offrent le meilleur arbitrage : dès ~1 436 AED/sq.ft. Les appartements 1 BR = ticket d'entrée le plus bas du corridor Yas. Les Estate Villas maintiennent un pricing premium homogène (~2 100 AED/sq.ft).</p>
+
+    <div class="mt-40">
+      <h3 style="margin-bottom:8px; font-size:15px;">Benchmark 1 BR — Corridor Yas Island / Abu Dhabi</h3>
+      <p style="font-size:13px; margin-bottom:4px;">Sobha City : ticket le plus bas, qualité la plus haute.</p>
+      <div class="bench-grid mt-24">
+        <div class="bench-row"><div class="bench-label">Fahid Island</div><div class="bench-bar-wrap"><div class="bench-bar" style="width:100%;"><span>3 680 AED/sqft</span></div></div></div>
+        <div class="bench-row"><div class="bench-label">Sama Yas</div><div class="bench-bar-wrap"><div class="bench-bar" style="width:80%;"><span>2 940 AED/sqft</span></div></div></div>
+        <div class="bench-row"><div class="bench-label">Yas Riva</div><div class="bench-bar-wrap"><div class="bench-bar" style="width:72%;"><span>2 660 AED/sqft</span></div></div></div>
+        <div class="bench-row sobha"><div class="bench-label"><strong>Sobha City ✓</strong></div><div class="bench-bar-wrap"><div class="bench-bar" style="width:61%;"><span>~2 230 AED/sqft</span></div></div></div>
+      </div>
+    </div>
+
+    <div class="mt-40">
+      <h3 style="margin-bottom:24px; font-size:15px;">Plan de paiement 60/40 — trésorerie favorable</h3>
+      <div class="timeline">
+        <div class="tl-step"><span class="tl-pct">20 %</span><div class="tl-lbl">Réservation</div><div class="tl-sub">À la signature</div></div>
+        <div class="tl-step hl"><span class="tl-pct">40 %</span><div class="tl-lbl">Construction</div><div class="tl-sub">8 × 5 % / 3 mois<br>sur 36 mois</div></div>
+        <div class="tl-step"><span class="tl-pct">40 %</span><div class="tl-lbl">Livraison</div><div class="tl-sub">Q4 2029 – Q2 2030</div></div>
+      </div>
+      <div class="investor-box">
+        <strong>Lecture</strong>
+        <p>5 % tous les 3 mois pendant 3 ans — des mensualités douces pendant la construction. Les 40 % à la livraison nécessitent une préparation (liquidités ou financement bancaire). Mais c'est aussi le moment où la plus-value est déjà réalisée.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════ PAIEMENT ══════════ -->
-<section class="section" id="paiement">
+<!-- ══════════ POUR QUI ══════════ -->
+<section class="section" id="pour-qui">
   <div class="container">
-    <span class="label">Plan de paiement</span>
-    <h2>60 / 40 : l'effort financier étalé sur 36 mois</h2>
+    <span class="label">Adéquation investisseur</span>
+    <h2>Pour qui est cet investissement — et pour qui il n'est pas fait</h2>
     <div class="divider"></div>
-    <p style="max-width:600px;">Un plan asymétrique très favorable à la trésorerie pendant la construction — 5 % tous les 3 mois — avec 40 % seulement à la livraison des clés.</p>
-    <div class="timeline mt-40">
-      <div class="tl-step">
-        <span class="tl-pct">20 %</span>
-        <div class="tl-lbl">Réservation</div>
-        <div class="tl-sub">À la signature</div>
-      </div>
-      <div class="tl-step hl">
-        <span class="tl-pct">40 %</span>
-        <div class="tl-lbl">Construction</div>
-        <div class="tl-sub">8 × 5 % / 3 mois<br>36 mois</div>
-      </div>
-      <div class="tl-step">
-        <span class="tl-pct">40 %</span>
-        <div class="tl-lbl">Livraison</div>
-        <div class="tl-sub">Q4 2029 – Q2 2030</div>
-      </div>
-    </div>
-    <div class="investor-box">
-      <strong>Note de trésorerie</strong>
-      <p>Plan favorable pendant la construction (5 % tous les 3 mois), mais nécessitant un financement solide — liquidités ou hypothèque — pour solder les 40 % à la livraison.</p>
-    </div>
-  </div>
-</section>
 
-<!-- ══════════ BENCHMARK ══════════ -->
-<section class="section section-alt" id="benchmark">
-  <div class="container">
-    <span class="label">Benchmark</span>
-    <h2>Prix / sq.ft : Sobha City face à ses concurrents</h2>
-    <div class="divider"></div>
-    <p style="max-width:600px; margin-bottom:8px;">Appartements 1 BR — corridor Yas Island / Abu Dhabi. Sobha City : ticket d'entrée le plus compétitif du secteur.</p>
-    <div class="tbl-wrap">
-      <table class="pricing-table">
-        <thead>
-          <tr><th>Projet</th><th>Prix (AED)</th><th>Surface (sq.ft)</th><th>Prix / sq.ft</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Fahid Island</td><td>3 500 000</td><td>950</td><td>~3 680</td></tr>
-          <tr><td>Sama Yas</td><td>2 500 000</td><td>850</td><td>~2 940</td></tr>
-          <tr><td>Yas Riva</td><td>2 100 000</td><td>790</td><td>~2 660</td></tr>
-          <tr class="hl"><td><strong>Sobha City ✓</strong></td><td><strong>1 310 000</strong></td><td><strong>566 – 608</strong></td><td><strong>~2 230</strong></td></tr>
-        </tbody>
-      </table>
+    <div class="profil-grid">
+      <div class="profil-card green">
+        <h4>✓ Ce profil est fait pour Sobha City</h4>
+        <ul>
+          <li>Vous voulez de la qualité sans prendre de risques d'exécution</li>
+          <li>Vous cherchez un promoteur premium qui livre dans les temps</li>
+          <li>Vous voulez entrer sur un marché en déséquilibre offre/demande (Abu Dhabi, off-plan 20× sous Dubai)</li>
+          <li>Vous avez un horizon de sortie à 5-7 ans et vous voulez être sûr de gagner de l'argent</li>
+          <li>Vous cherchez un achat lifestyle de qualité — villa ou townhouse dans une communauté complète</li>
+          <li>Vous voulez de la rentabilité locative : tickets d'entrée bas, loyers attendus aussi hauts que sur Dubai (flux Yas Island, Disneyland)</li>
+          <li>Vous voulez un actif patrimonial qui tient dans le temps grâce à la qualité Sobha</li>
+        </ul>
+      </div>
+      <div class="profil-card amber">
+        <h4>✕ Ce profil n'est pas adapté</h4>
+        <ul>
+          <li>Vous voulez faire de la spéculation et revendre dans les 12-24 mois</li>
+          <li>Vous cherchez un flip rapide — la volumétrie d'unités dilue les retournements courts</li>
+          <li>Vous avez besoin d'un actif liquide immédiatement (off-plan = capital immobilisé 3-4 ans)</li>
+          <li>Vous n'avez pas préparé le financement des 40 % à la livraison</li>
+        </ul>
+      </div>
     </div>
-    <h3 style="margin:28px 0 0; font-size:14px; text-transform:uppercase; letter-spacing:1px; color:var(--text-light);">Prix / sq.ft comparatif (AED)</h3>
-    <div class="bench-grid">
-      <div class="bench-row"><div class="bench-label">Fahid Island</div><div class="bench-bar-wrap"><div class="bench-bar" style="width:100%;"><span>3 680</span></div></div></div>
-      <div class="bench-row"><div class="bench-label">Sama Yas</div><div class="bench-bar-wrap"><div class="bench-bar" style="width:80%;"><span>2 940</span></div></div></div>
-      <div class="bench-row"><div class="bench-label">Yas Riva</div><div class="bench-bar-wrap"><div class="bench-bar" style="width:72%;"><span>2 660</span></div></div></div>
-      <div class="bench-row sobha"><div class="bench-label"><strong>Sobha City ✓</strong></div><div class="bench-bar-wrap"><div class="bench-bar" style="width:61%;"><span>~2 230</span></div></div></div>
-    </div>
-    <div class="investor-box">
-      <strong>Lecture Investisseur</strong>
-      <p>Sobha City propose le ticket d'entrée le plus bas du corridor Yas, à un prix/sq.ft inférieur à tous ses concurrents directs. Positionnement idéal pour pénétrer le marché premium Abu Dhabi en minimisant le capital immobilisé.</p>
-    </div>
-  </div>
-</section>
 
-<!-- ══════════ RISQUES ══════════ -->
-<section class="section" id="risques">
-  <div class="container">
-    <span class="label">Transparence</span>
-    <h2>Ce que vous devez savoir avant d'investir</h2>
-    <div class="divider"></div>
-    <div class="risk-box"><strong>Risque off-plan</strong><p>Tout investissement sur plan comporte un risque de retard de livraison. Les délais (Q4 2029 – Q2 2030) sont des estimations promoteur sujettes à variation.</p></div>
-    <div class="risk-box"><strong>Risque de marché</strong><p>Les projections de valorisation reposent sur des tendances de marché, pas sur des garanties contractuelles. Aucun rendement locatif n'est garanti.</p></div>
-    <div class="risk-box"><strong>Effort financier à la livraison</strong><p>40 % du prix total est dû à la livraison. Vérifiez votre capacité de financement avant engagement.</p></div>
-    <div class="risk-box"><strong>Données comparatives</strong><p>Les données macro (+47 % transactions) sont issues de plateformes de courtage tierces. À valider auprès de sources officielles (Knight Frank, CBRE, ADM) avant décision.</p></div>
+    <div class="hl-box mt-40">
+      <div class="quote">"Un marché où l'offre est 20× inférieure à la demande, un promoteur qui maîtrise toute sa chaîne, une communauté plus grande que Downtown Dubai, à 10 minutes de Disneyland — et un prix d'entrée inférieur à tous ses concurrents directs. C'est la proposition de valeur la plus mathématiquement solide du corridor Abu Dhabi en 2025."</div>
+      <div class="source">Clément Talmo · Advisory Immobilier Dubai & Abu Dhabi</div>
+    </div>
   </div>
 </section>
 
 <!-- ══════════ CTA ══════════ -->
 <section id="contact">
-  <div class="container" style="padding-top:80px; padding-bottom:80px;">
+  <div class="cta-inner">
     <span class="label" style="display:block; margin-bottom:16px;">Advisory · Clément Talmo</span>
-    <h2 style="color:var(--white); margin-bottom:12px;">Vous souhaitez aller plus loin ?</h2>
+    <h2>Vous souhaitez aller plus loin ?</h2>
     <p>Partagez vos coordonnées — je vous contacte personnellement sous 24h pour étudier si ce projet correspond à votre situation.</p>
     <form class="cta-form" id="cta-form" onsubmit="handleCTA(event)" novalidate>
       <div class="form-field">
@@ -642,7 +691,7 @@
       <div class="form-field">
         <label for="cta-tel">Numéro de téléphone</label>
         <input type="tel" id="cta-tel" placeholder="+33 6 12 34 56 78">
-        <span class="field-error" id="cta-err-tel">Numéro invalide. Format attendu : +33612345678 ou 0612345678.</span>
+        <span class="field-error" id="cta-err-tel">Numéro invalide — ex : +33612345678</span>
       </div>
       <button type="submit" class="btn-gold">Être rappelé par Clément →</button>
     </form>
@@ -652,150 +701,79 @@
 
 <footer>
   <p>© 2026 Clément Talmo · Advisory Immobilier Dubai & Abu Dhabi<br>
-  Ce document est un outil d'information et ne constitue pas un conseil en investissement. Les prix et données sont indicatifs et sujets à modification.</p>
+  Ce document est un outil d'information et ne constitue pas un conseil en investissement. Les prix et données sont indicatifs et sujets à modification selon les phases de commercialisation.</p>
 </footer>
 
 <script>
   const WA = '33624835980';
-
-  // ─── Phone validation ───
   function isValidPhone(v) {
-    const cleaned = v.replace(/[\s\-\.\(\)]/g, '');
-    // Accept: +336..., +971..., 06..., 07..., 05..., +33..., etc.
-    return /^(\+?\d{7,15})$/.test(cleaned);
+    return /^(\+?\d[\d\s\-\.\(\)]{5,18}\d)$/.test(v.trim());
   }
-
-  // ─── Gating ───
   function handleGating(e) {
     e.preventDefault();
-    const prenomEl = document.getElementById('gate-prenom');
-    const telEl = document.getElementById('gate-tel');
-    const errPrenom = document.getElementById('err-prenom');
-    const errTel = document.getElementById('err-tel');
+    const p = document.getElementById('gate-prenom'), t = document.getElementById('gate-tel');
     let ok = true;
-
-    if (!prenomEl.value.trim()) {
-      prenomEl.classList.add('error');
-      errPrenom.classList.add('visible');
-      ok = false;
-    } else {
-      prenomEl.classList.remove('error');
-      errPrenom.classList.remove('visible');
-    }
-
-    if (!isValidPhone(telEl.value.trim())) {
-      telEl.classList.add('error');
-      errTel.classList.add('visible');
-      ok = false;
-    } else {
-      telEl.classList.remove('error');
-      errTel.classList.remove('visible');
-    }
-
+    if (!p.value.trim()) { p.classList.add('error'); document.getElementById('err-prenom').classList.add('visible'); ok=false; }
+    else { p.classList.remove('error'); document.getElementById('err-prenom').classList.remove('visible'); }
+    if (!isValidPhone(t.value)) { t.classList.add('error'); document.getElementById('err-tel').classList.add('visible'); ok=false; }
+    else { t.classList.remove('error'); document.getElementById('err-tel').classList.remove('visible'); }
     if (!ok) return;
-
-    // Store for later use in CTA
-    sessionStorage.setItem('sobha_prenom', prenomEl.value.trim());
-    sessionStorage.setItem('sobha_tel', telEl.value.trim());
-
-    // Close overlay — give access
-    const overlay = document.getElementById('gating-overlay');
-    overlay.classList.add('hidden');
-    setTimeout(() => { overlay.style.display = 'none'; }, 600);
-
-    // Show nav + mobile tabs
+    sessionStorage.setItem('sp', p.value.trim());
+    sessionStorage.setItem('st', t.value.trim());
+    const o = document.getElementById('gating-overlay');
+    o.classList.add('hidden');
+    setTimeout(() => o.style.display='none', 600);
     document.getElementById('main-nav').classList.add('visible');
     document.getElementById('mobile-tabs').classList.add('visible');
   }
-
-  // ─── CTA bottom ───
   function handleCTA(e) {
     e.preventDefault();
-    const prenomEl = document.getElementById('cta-prenom');
-    const telEl = document.getElementById('cta-tel');
-    const errPrenom = document.getElementById('cta-err-prenom');
-    const errTel = document.getElementById('cta-err-tel');
+    const p = document.getElementById('cta-prenom'), t = document.getElementById('cta-tel');
     let ok = true;
-
-    if (!prenomEl.value.trim()) {
-      prenomEl.classList.add('error'); errPrenom.classList.add('visible'); ok = false;
-    } else {
-      prenomEl.classList.remove('error'); errPrenom.classList.remove('visible');
-    }
-    if (!isValidPhone(telEl.value.trim())) {
-      telEl.classList.add('error'); errTel.classList.add('visible'); ok = false;
-    } else {
-      telEl.classList.remove('error'); errTel.classList.remove('visible');
-    }
+    if (!p.value.trim()) { p.classList.add('error'); document.getElementById('cta-err-prenom').classList.add('visible'); ok=false; }
+    else { p.classList.remove('error'); document.getElementById('cta-err-prenom').classList.remove('visible'); }
+    if (!isValidPhone(t.value)) { t.classList.add('error'); document.getElementById('cta-err-tel').classList.add('visible'); ok=false; }
+    else { t.classList.remove('error'); document.getElementById('cta-err-tel').classList.remove('visible'); }
     if (!ok) return;
-
-    const prenom = prenomEl.value.trim();
-    const tel = telEl.value.trim();
-    const msg = encodeURIComponent(
-      `Bonjour Clément,\n\nJe viens de consulter le dossier Sobha City Abu Dhabi et je souhaite en savoir plus.\n\nPrénom : ${prenom}\nTéléphone : ${tel}\n\nMerci de me recontacter.`
-    );
+    const msg = encodeURIComponent(`Bonjour Clément,\n\nJe viens de consulter le dossier Sobha City Abu Dhabi et je souhaite en savoir plus.\n\nPrénom : ${p.value.trim()}\nTéléphone : ${t.value.trim()}\n\nMerci de me recontacter.`);
     window.open(`https://wa.me/${WA}?text=${msg}`, '_blank');
   }
-
-  function goTo(id) {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  }
-
-  // ─── Nav show on scroll ───
+  function goTo(id) { const el=document.getElementById(id); if(el) el.scrollIntoView({behavior:'smooth'}); }
   window.addEventListener('scroll', () => {
     const nav = document.getElementById('main-nav');
-    if (window.scrollY > 80) nav.classList.add('visible');
-    else nav.classList.remove('visible');
-
-    // Active nav link highlight
-    const sections = ['abu-dhabi','projet','localisation','pricing','paiement','benchmark','contact'];
-    let current = '';
-    sections.forEach(id => {
-      const el = document.getElementById(id);
-      if (el && window.scrollY >= el.offsetTop - 100) current = id;
-    });
+    if (window.scrollY > 80) nav.classList.add('visible'); else nav.classList.remove('visible');
+    const ids = ['abu-dhabi','localisation','disneyland','promoteur','projet','pricing','pour-qui','contact'];
+    let cur = '';
+    ids.forEach(id => { const el=document.getElementById(id); if(el && window.scrollY >= el.offsetTop-100) cur=id; });
     document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-    const activeLink = document.querySelector(`.nav-link[onclick*="${current}"]`);
-    if (activeLink) activeLink.classList.add('active');
+    const al = document.querySelector(`.nav-link[onclick*="${cur}"]`);
+    if (al) al.classList.add('active');
   });
-
-  // ─── Load images via fetch (works around CORS referer restriction) ───
-  // Note: images from genspark.ai/api/files/s/ require auth — placeholders shown
-  // Replace img-ph divs with real <img> tags when image files are hosted in /sobhacity/img/
-  function tryLoadImg(elId, src) {
-    const el = document.getElementById(elId);
-    if (!el) return;
-    const img = new Image();
-    img.onload = function() {
-      el.style.backgroundImage = `url('${src}')`;
-      el.style.backgroundSize = 'cover';
-      el.style.backgroundPosition = 'center';
-      el.innerHTML = '';
-      el.classList.remove('img-ph');
-    };
-    img.onerror = function() { /* keep placeholder */ };
-    img.src = src;
-  }
-
-  // Try loading images from local /img/ folder (populated when available)
   const imgMap = {
-    'hero-bg':        'img/hero.jpg',          // Marina nocturne aérienne
-    'img-loc':        'img/localisation.jpg',  // Carte Yas/Disneyland/Aéroport
-    'img-loc2':       'img/localisation.jpg',
-    'img-amb1':       'img/lifestyle_yacht.jpg',    // Lifestyle yacht/waterfront
-    'img-amb2':       'img/masterplan_chiffres.jpg',// Masterplan + chiffres clés
-    'img-amb3':       'img/promenade.jpg',          // Promenade Sobha City
-    'img-masterplan': 'img/masterplan_aerial.jpg',  // Masterplan aérien détaillé
-    'img-golf':       'img/golf.jpg',               // Golf coucher de soleil
-    'img-villa1':     'img/villa_terrasse.jpg',     // Couple terrasse villa
-    'img-villa2':     'img/nature1.jpg',            // Jardins/passerelle
-    'img-sobha1':     'img/nature2.jpg',            // Verdure/villas
-    'img-sobha2':     'img/promenade.jpg',          // Promenade waterfront
+    'hero-bg':       'img/hero.jpg',
+    'img-loc':       'img/localisation.jpg',
+    'img-amb1':      'img/lifestyle_yacht.jpg',
+    'img-masterplan':'img/masterplan_aerial.jpg',
+    'img-amb2':      'img/masterplan_chiffres.jpg',
+    'img-amb3':      'img/promenade.jpg',
+    'img-golf':      'img/golf.jpg',
+    'img-villa1':    'img/villa_terrasse.jpg',
+    'img-villa2':    'img/nature1.jpg',
   };
-
   window.addEventListener('DOMContentLoaded', () => {
-    Object.entries(imgMap).forEach(([id, src]) => tryLoadImg(id, src));
+    Object.entries(imgMap).forEach(([id, src]) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const img = new Image();
+      img.onload = () => {
+        el.style.backgroundImage = `url('${src}')`;
+        el.style.backgroundSize = 'cover';
+        el.style.backgroundPosition = 'center';
+        el.innerHTML = '';
+        el.classList.remove('img-ph');
+      };
+      img.src = src;
+    });
   });
 </script>
 </body>
