@@ -330,30 +330,42 @@
   </div>
 </section>
 
+<!-- ══ BARRE PDF ══ -->
+<div style="background:var(--navy-light); padding:14px 24px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+  <span style="font-size:12px; color:rgba(255,255,255,0.6); font-family:'Arial',sans-serif;">Sobha City Abu Dhabi — Dossier investisseur complet</span>
+  <a id="pdf-btn" href="#" download style="background:var(--gold); color:var(--navy); font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; padding:10px 20px; text-decoration:none; display:flex; align-items:center; gap:8px;">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    Télécharger le dossier PDF
+  </a>
+</div>
+
 <!-- ══ 4 SELLING POINTS ══ -->
+<div style="background:var(--grey); padding:20px 24px 8px; text-align:center;">
+  <span style="font-size:10px; text-transform:uppercase; letter-spacing:2.5px; color:var(--gold); font-weight:700;">Arguments de vente majeurs du projet</span>
+</div>
 <div class="sp-grid">
-  <div class="sp-item">
+  <div class="sp-item" onclick="goTo('marche')" style="cursor:pointer;">
     <div class="sp-icon">📈</div>
     <div>
       <div class="sp-num">01 — Le marché</div>
       <div class="sp-title">Un marché stable, en forte croissance, où l'offre est inférieure à la demande</div>
     </div>
   </div>
-  <div class="sp-item">
+  <div class="sp-item" onclick="goTo('promoteur')" style="cursor:pointer;">
     <div class="sp-icon">🏗️</div>
     <div>
       <div class="sp-num">02 — Le promoteur</div>
       <div class="sp-title">Un promoteur de qualité, au démarrage de son premier projet à Abu Dhabi</div>
     </div>
   </div>
-  <div class="sp-item">
+  <div class="sp-item" onclick="goTo('projet')" style="cursor:pointer;">
     <div class="sp-icon">🌆</div>
     <div>
       <div class="sp-num">03 — Le projet</div>
       <div class="sp-title">Une ville complète — plus grande que Downtown Dubai, à 10 min de Disneyland</div>
     </div>
   </div>
-  <div class="sp-item dark">
+  <div class="sp-item dark" onclick="goTo('pricing')" style="cursor:pointer;">
     <div class="sp-icon">💰</div>
     <div>
       <div class="sp-num">04 — Le prix</div>
