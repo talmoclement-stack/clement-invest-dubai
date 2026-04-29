@@ -113,24 +113,28 @@
     .sp-item.dark .sp-title { color: var(--white); }
 
     /* ─── ACCORDÉON ─── */
-    .ac-section { border-bottom: 1px solid var(--border); }
-    .ac-section:first-child { border-top: 1px solid var(--border); }
+    .ac-section { margin-bottom: 10px; }
     .ac-head {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 28px 0; cursor: pointer; gap: 16px; user-select: none;
+      display: flex; flex-direction: column; align-items: flex-start;
+      padding: 24px 28px; cursor: pointer; user-select: none;
+      background: var(--grey); border-left: 4px solid var(--gold);
+      transition: background 0.2s;
+      position: relative;
     }
-    .ac-head:hover .ac-title { color: var(--gold); }
-    .ac-left { display: flex; align-items: center; gap: 20px; }
-    .ac-kpi { text-align: center; flex-shrink: 0; min-width: 72px; }
-    .ac-kpi-val { font-size: 22px; font-weight: 700; color: var(--navy); display: block; line-height: 1; }
-    .ac-kpi-sub { font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-top: 3px; }
-    .ac-label { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--gold); font-weight: 700; margin-bottom: 5px; }
-    .ac-title { font-size: 17px; font-weight: 700; color: var(--navy); line-height: 1.3; transition: color 0.2s; }
-    .ac-arrow { flex-shrink: 0; width: 28px; height: 28px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; transition: transform 0.3s, background 0.2s; }
-    .ac-arrow svg { width: 12px; height: 12px; fill: none; stroke: var(--muted); stroke-width: 2; }
-    .ac-section.open .ac-arrow { transform: rotate(180deg); background: var(--navy); }
-    .ac-section.open .ac-arrow svg { stroke: var(--white); }
-    .ac-body { display: none; padding-bottom: 32px; }
+    .ac-head:hover { background: #efefeb; }
+    .ac-section.open .ac-head { background: var(--navy); border-left-color: var(--gold); }
+    .ac-kpi-val { font-size: 13px; font-weight: 700; color: var(--gold); display: inline; }
+    .ac-label { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--gold); font-weight: 700; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+    .ac-title { font-size: 18px; font-weight: 700; color: var(--navy); line-height: 1.3; transition: color 0.2s; margin-bottom: 12px; }
+    .ac-section.open .ac-title { color: var(--white); }
+    .ac-cta-hint {
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--gold); display: flex; align-items: center; gap: 6px;
+    }
+    .ac-cta-hint svg { transition: transform 0.3s; }
+    .ac-section.open .ac-cta-hint svg { transform: rotate(180deg); }
+    .ac-section.open .ac-cta-hint { color: rgba(255,255,255,0.5); }
+    .ac-body { display: none; padding: 28px; background: var(--white); border-left: 4px solid var(--gold); border-top: none; margin-top: 0; }
     .ac-section.open .ac-body { display: block; }
 
     /* ─── CONTENU ACCORDÉON ─── */
@@ -380,14 +384,9 @@
   <!-- 1. MARCHÉ -->
   <div class="ac-section" id="marche">
     <div class="ac-head" onclick="toggle(this)">
-      <div class="ac-left">
-        <div class="ac-kpi"><span class="ac-kpi-val">20×</span><span class="ac-kpi-sub">Moins d'off-plan qu'à Dubai</span></div>
-        <div>
-          <div class="ac-label">Le marché</div>
-          <div class="ac-title">Abu Dhabi : la capitale la mieux capitalisée du monde, avec un marché off-plan encore sous-développé</div>
-        </div>
-      </div>
-      <div class="ac-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      <div class="ac-label"><span class="ac-kpi-val">20× moins d'off-plan qu'à Dubai</span></div>
+      <div class="ac-title">Le marché — Abu Dhabi : la capitale la mieux capitalisée du monde</div>
+      <div class="ac-cta-hint">Voir le détail <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
     </div>
     <div class="ac-body">
       <div class="kpi-row">
@@ -408,14 +407,9 @@
   <!-- 2. LOCALISATION -->
   <div class="ac-section" id="localisation">
     <div class="ac-head" onclick="toggle(this)">
-      <div class="ac-left">
-        <div class="ac-kpi"><span class="ac-kpi-val">10 min</span><span class="ac-kpi-sub">De Disneyland & Yas</span></div>
-        <div>
-          <div class="ac-label">Localisation</div>
-          <div class="ac-title">Au cœur du corridor Yas Island — la zone de loisirs la plus dense du Moyen-Orient</div>
-        </div>
-      </div>
-      <div class="ac-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      <div class="ac-label"><span class="ac-kpi-val">10 min de Disneyland & Yas Island</span></div>
+      <div class="ac-title">Localisation — Au cœur du corridor de loisirs le plus dense du Moyen-Orient</div>
+      <div class="ac-cta-hint">Voir le détail <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
     </div>
     <div class="ac-body">
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:start;">
@@ -439,14 +433,9 @@
   <!-- 3. DISNEYLAND -->
   <div class="ac-section" id="disneyland">
     <div class="ac-head" onclick="toggle(this)">
-      <div class="ac-left">
-        <div class="ac-kpi"><span class="ac-kpi-val">+35 %</span><span class="ac-kpi-sub">Valorisation attendue Forbes</span></div>
-        <div>
-          <div class="ac-label">Disneyland — No Bullshit</div>
-          <div class="ac-title">Impact réel sur les prix immobiliers : France, Californie, Floride — les chiffres</div>
-        </div>
-      </div>
-      <div class="ac-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      <div class="ac-label"><span class="ac-kpi-val">+35 % de valorisation attendue — Forbes 2025</span></div>
+      <div class="ac-title">Disneyland Abu Dhabi — Impact réel sur les prix immobiliers : les chiffres</div>
+      <div class="ac-cta-hint">Voir le détail <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
     </div>
     <div class="ac-body">
       <p style="margin-bottom:20px;">Pas de promesses. Des faits documentés sur ce que l'ouverture d'un parc Disney a concrètement fait aux prix de l'immobilier.</p>
@@ -495,14 +484,9 @@
   <!-- 4. SOBHA -->
   <div class="ac-section" id="promoteur">
     <div class="ac-head" onclick="toggle(this)">
-      <div class="ac-left">
-        <div class="ac-kpi"><span class="ac-kpi-val">100 %</span><span class="ac-kpi-sub">Intégration verticale</span></div>
-        <div>
-          <div class="ac-label">Le promoteur</div>
-          <div class="ac-title">Sobha Realty : track record béton, intégration verticale totale, 1er projet à Abu Dhabi</div>
-        </div>
-      </div>
-      <div class="ac-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      <div class="ac-label"><span class="ac-kpi-val">Intégration verticale 100 % — 5 communautés livrées</span></div>
+      <div class="ac-title">Le promoteur — Sobha Realty : track record béton, 1er projet à Abu Dhabi</div>
+      <div class="ac-cta-hint">Voir le détail <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
     </div>
     <div class="ac-body">
       <div class="diff-grid" style="margin-bottom:24px;">
@@ -546,14 +530,9 @@
   <!-- 5. LE PROJET -->
   <div class="ac-section" id="projet">
     <div class="ac-head" onclick="toggle(this)">
-      <div class="ac-left">
-        <div class="ac-kpi"><span class="ac-kpi-val">38 M</span><span class="ac-kpi-sub">sq.ft masterplan</span></div>
-        <div>
-          <div class="ac-label">Le projet</div>
-          <div class="ac-title">Ce n'est pas une résidence. C'est une ville — plus grande que Downtown Dubai</div>
-        </div>
-      </div>
-      <div class="ac-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      <div class="ac-label"><span class="ac-kpi-val">38 millions de sq.ft — Plus grand que Downtown Dubai</span></div>
+      <div class="ac-title">Le projet — Ce n'est pas une résidence. C'est une ville.</div>
+      <div class="ac-cta-hint">Voir le détail <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
     </div>
     <div class="ac-body">
       <p style="margin-bottom:20px;">38 millions de sq.ft, contre 27 millions pour Downtown Dubai. Front canaux, golf, 50 000+ arbres, retail, écoles internationales — tout intégré. Le mix <strong>Dubai Creek Harbour × Dubai Hills</strong>, à Abu Dhabi, à 10 minutes de Disneyland, pour moins cher.</p>
@@ -609,14 +588,9 @@
   <!-- 6. PRICING -->
   <div class="ac-section" id="pricing">
     <div class="ac-head" onclick="toggle(this)">
-      <div class="ac-left">
-        <div class="ac-kpi"><span class="ac-kpi-val">1,31 M</span><span class="ac-kpi-sub">AED dès le 1BR</span></div>
-        <div>
-          <div class="ac-label">Rapport qualité-prix</div>
-          <div class="ac-title">Le ticket d'entrée le plus bas du corridor Yas — plan 60/40 sur 36 mois</div>
-        </div>
-      </div>
-      <div class="ac-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      <div class="ac-label"><span class="ac-kpi-val">Dès 1,31 M AED — Prix/sq.ft le plus bas du corridor Yas</span></div>
+      <div class="ac-title">Rapport qualité-prix — Plan de paiement 60/40 sur 36 mois</div>
+      <div class="ac-cta-hint">Voir le détail <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
     </div>
     <div class="ac-body">
       <div class="tbl-wrap" style="margin-bottom:24px;">
@@ -653,14 +627,9 @@
   <!-- 7. POUR QUI -->
   <div class="ac-section" id="pour-qui">
     <div class="ac-head" onclick="toggle(this)">
-      <div class="ac-left">
-        <div class="ac-kpi"><span class="ac-kpi-val">5–7 ans</span><span class="ac-kpi-sub">Horizon idéal</span></div>
-        <div>
-          <div class="ac-label">Adéquation investisseur</div>
-          <div class="ac-title">Ce projet est fait pour vous — ou pas. Sans ambiguïté.</div>
-        </div>
-      </div>
-      <div class="ac-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      <div class="ac-label"><span class="ac-kpi-val">Horizon idéal : 5–7 ans</span></div>
+      <div class="ac-title">Pour qui ? — Ce projet est fait pour vous, ou pas. Sans ambiguïté.</div>
+      <div class="ac-cta-hint">Voir le détail <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
     </div>
     <div class="ac-body">
       <div class="profil-grid">
