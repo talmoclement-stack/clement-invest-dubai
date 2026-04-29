@@ -113,28 +113,24 @@
     .sp-item.dark .sp-title { color: var(--white); }
 
     /* ─── ACCORDÉON ─── */
-    .ac-section { margin-bottom: 10px; }
+    .ac-section { border-bottom: 1px solid var(--border); }
+    .ac-section:first-child { border-top: 1px solid var(--border); }
     .ac-head {
-      display: flex; flex-direction: column; align-items: flex-start;
-      padding: 24px 28px; cursor: pointer; user-select: none;
-      background: var(--grey); border-left: 4px solid var(--gold);
-      transition: background 0.2s;
-      position: relative;
+      padding: 26px 0; cursor: pointer; user-select: none;
+      transition: opacity 0.15s;
     }
-    .ac-head:hover { background: #efefeb; }
-    .ac-section.open .ac-head { background: var(--navy); border-left-color: var(--gold); }
-    .ac-kpi-val { font-size: 13px; font-weight: 700; color: var(--gold); display: inline; }
-    .ac-label { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--gold); font-weight: 700; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
-    .ac-title { font-size: 18px; font-weight: 700; color: var(--navy); line-height: 1.3; transition: color 0.2s; margin-bottom: 12px; }
-    .ac-section.open .ac-title { color: var(--white); }
+    .ac-head:hover { opacity: 0.82; }
+    .ac-label { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--gold); font-weight: 700; margin-bottom: 8px; }
+    .ac-title { font-size: clamp(16px,2vw,20px); font-weight: 700; color: var(--navy); line-height: 1.35; margin-bottom: 14px; }
     .ac-cta-hint {
+      display: inline-flex; align-items: center; gap: 7px;
       font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
-      color: var(--gold); display: flex; align-items: center; gap: 6px;
+      color: var(--gold); border-bottom: 1px solid var(--gold); padding-bottom: 1px;
     }
-    .ac-cta-hint svg { transition: transform 0.3s; }
+    .ac-cta-hint svg { transition: transform 0.3s; flex-shrink:0; }
     .ac-section.open .ac-cta-hint svg { transform: rotate(180deg); }
-    .ac-section.open .ac-cta-hint { color: rgba(255,255,255,0.5); }
-    .ac-body { display: none; padding: 28px; background: var(--white); border-left: 4px solid var(--gold); border-top: none; margin-top: 0; }
+    .ac-section.open .ac-cta-hint { color: var(--navy); border-bottom-color: var(--navy); }
+    .ac-body { display: none; padding-bottom: 36px; }
     .ac-section.open .ac-body { display: block; }
 
     /* ─── CONTENU ACCORDÉON ─── */
@@ -384,9 +380,9 @@
   <!-- 1. MARCHÉ -->
   <div class="ac-section" id="marche">
     <div class="ac-head" onclick="toggle(this)">
-      <div class="ac-label"><span class="ac-kpi-val">20× moins d'off-plan qu'à Dubai</span></div>
-      <div class="ac-title">Le marché — Abu Dhabi : la capitale la mieux capitalisée du monde</div>
-      <div class="ac-cta-hint">Voir le détail <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
+      <div class="ac-label">Le marché</div>
+      <div class="ac-title">Abu Dhabi attire autant de résidents que Dubai — avec 20× moins d'offre off-plan. C'est un point d'entrée.</div>
+      <div class="ac-cta-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg> Voir le détail</div>
     </div>
     <div class="ac-body">
       <div class="kpi-row">
@@ -407,9 +403,9 @@
   <!-- 2. LOCALISATION -->
   <div class="ac-section" id="localisation">
     <div class="ac-head" onclick="toggle(this)">
-      <div class="ac-label"><span class="ac-kpi-val">10 min de Disneyland & Yas Island</span></div>
-      <div class="ac-title">Localisation — Au cœur du corridor de loisirs le plus dense du Moyen-Orient</div>
-      <div class="ac-cta-hint">Voir le détail <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
+      <div class="ac-label">Localisation</div>
+      <div class="ac-title">À 10 minutes de Disneyland, Yas Island et l'aéroport international — à 1h de Dubai.</div>
+      <div class="ac-cta-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg> Voir le détail</div>
     </div>
     <div class="ac-body">
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:start;">
@@ -433,9 +429,9 @@
   <!-- 3. DISNEYLAND -->
   <div class="ac-section" id="disneyland">
     <div class="ac-head" onclick="toggle(this)">
-      <div class="ac-label"><span class="ac-kpi-val">+35 % de valorisation attendue — Forbes 2025</span></div>
-      <div class="ac-title">Disneyland Abu Dhabi — Impact réel sur les prix immobiliers : les chiffres</div>
-      <div class="ac-cta-hint">Voir le détail <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
+      <div class="ac-label">Disneyland — No Bullshit</div>
+      <div class="ac-title">Ce que Disney fait aux prix immobiliers : +45 % en Californie, +30 % en France, ×∞ en Floride. Abu Dhabi est le prochain.</div>
+      <div class="ac-cta-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg> Voir le détail</div>
     </div>
     <div class="ac-body">
       <p style="margin-bottom:20px;">Pas de promesses. Des faits documentés sur ce que l'ouverture d'un parc Disney a concrètement fait aux prix de l'immobilier.</p>
@@ -484,9 +480,9 @@
   <!-- 4. SOBHA -->
   <div class="ac-section" id="promoteur">
     <div class="ac-head" onclick="toggle(this)">
-      <div class="ac-label"><span class="ac-kpi-val">Intégration verticale 100 % — 5 communautés livrées</span></div>
-      <div class="ac-title">Le promoteur — Sobha Realty : track record béton, 1er projet à Abu Dhabi</div>
-      <div class="ac-cta-hint">Voir le détail <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
+      <div class="ac-label">Le promoteur</div>
+      <div class="ac-title">Sobha contrôle 100 % de sa chaîne — de la matière première à la clé. 5 communautés livrées. Et Sobha City est leur premier projet à Abu Dhabi.</div>
+      <div class="ac-cta-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg> Voir le détail</div>
     </div>
     <div class="ac-body">
       <div class="diff-grid" style="margin-bottom:24px;">
@@ -530,9 +526,9 @@
   <!-- 5. LE PROJET -->
   <div class="ac-section" id="projet">
     <div class="ac-head" onclick="toggle(this)">
-      <div class="ac-label"><span class="ac-kpi-val">38 millions de sq.ft — Plus grand que Downtown Dubai</span></div>
-      <div class="ac-title">Le projet — Ce n'est pas une résidence. C'est une ville.</div>
-      <div class="ac-cta-hint">Voir le détail <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
+      <div class="ac-label">Le projet</div>
+      <div class="ac-title">38 millions de sq.ft. Plus grand que Downtown Dubai. Nature, canaux, golf, écoles — tout intégré. Ce n'est pas une résidence, c'est une ville.</div>
+      <div class="ac-cta-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg> Voir le détail</div>
     </div>
     <div class="ac-body">
       <p style="margin-bottom:20px;">38 millions de sq.ft, contre 27 millions pour Downtown Dubai. Front canaux, golf, 50 000+ arbres, retail, écoles internationales — tout intégré. Le mix <strong>Dubai Creek Harbour × Dubai Hills</strong>, à Abu Dhabi, à 10 minutes de Disneyland, pour moins cher.</p>
@@ -588,9 +584,9 @@
   <!-- 6. PRICING -->
   <div class="ac-section" id="pricing">
     <div class="ac-head" onclick="toggle(this)">
-      <div class="ac-label"><span class="ac-kpi-val">Dès 1,31 M AED — Prix/sq.ft le plus bas du corridor Yas</span></div>
-      <div class="ac-title">Rapport qualité-prix — Plan de paiement 60/40 sur 36 mois</div>
-      <div class="ac-cta-hint">Voir le détail <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
+      <div class="ac-label">Pricing</div>
+      <div class="ac-title">Dès 1,31 M AED — le prix/sq.ft le plus bas du corridor Yas. Plan de paiement étalé sur 36 mois : 20 % à la réservation, 40 % à la livraison.</div>
+      <div class="ac-cta-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg> Voir le détail</div>
     </div>
     <div class="ac-body">
       <div class="tbl-wrap" style="margin-bottom:24px;">
@@ -627,9 +623,9 @@
   <!-- 7. POUR QUI -->
   <div class="ac-section" id="pour-qui">
     <div class="ac-head" onclick="toggle(this)">
-      <div class="ac-label"><span class="ac-kpi-val">Horizon idéal : 5–7 ans</span></div>
-      <div class="ac-title">Pour qui ? — Ce projet est fait pour vous, ou pas. Sans ambiguïté.</div>
-      <div class="ac-cta-hint">Voir le détail <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
+      <div class="ac-label">Pour qui ?</div>
+      <div class="ac-title">Ce projet est fait pour les investisseurs qui cherchent de la qualité, un horizon 5–7 ans et un marché en déséquilibre. Pas pour les spéculateurs court terme.</div>
+      <div class="ac-cta-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg> Voir le détail</div>
     </div>
     <div class="ac-body">
       <div class="profil-grid">
