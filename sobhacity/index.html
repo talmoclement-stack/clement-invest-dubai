@@ -18,27 +18,38 @@
       --text-light: #666;
       --border: #e0e0dc;
       --white: #ffffff;
+      --nav-h: 60px;
     }
     html { scroll-behavior: smooth; }
     body { font-family: 'Georgia', serif; color: var(--text); background: var(--white); overflow-x: hidden; }
-    img { max-width: 100%; display: block; }
+    img { max-width: 100%; display: block; object-fit: cover; }
     a { color: inherit; text-decoration: none; }
 
-    /* ─── Typography ─── */
     h1, h2, h3, h4 { font-family: 'Arial', 'Helvetica Neue', sans-serif; color: var(--navy); font-weight: 700; }
-    h1 { font-size: clamp(28px, 5vw, 52px); line-height: 1.1; }
-    h2 { font-size: clamp(22px, 3.5vw, 36px); line-height: 1.2; }
-    h3 { font-size: clamp(16px, 2.5vw, 22px); }
-    h4 { font-size: 14px; text-transform: uppercase; letter-spacing: 1.5px; }
-    p { font-size: 15px; line-height: 1.75; color: var(--text-light); }
+    h1 { font-size: clamp(26px, 4.5vw, 50px); line-height: 1.1; }
+    h2 { font-size: clamp(20px, 3vw, 34px); line-height: 1.2; }
+    h3 { font-size: clamp(15px, 2vw, 21px); }
+    h4 { font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; }
+    p { font-size: 15px; line-height: 1.8; color: var(--text-light); }
 
-    /* ─── Layout ─── */
     .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
     .section { padding: 80px 0; }
     .section-alt { background: var(--grey); }
-    .section-dark { background: var(--navy); }
     .label { font-family: 'Arial', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--gold); font-weight: 700; margin-bottom: 12px; display: block; }
-    .divider { width: 48px; height: 3px; background: var(--gold); margin: 20px 0 32px; }
+    .divider { width: 48px; height: 3px; background: var(--gold); margin: 18px 0 30px; }
+    .mt-16 { margin-top: 16px; }
+    .mt-24 { margin-top: 24px; }
+    .mt-40 { margin-top: 40px; }
+    @media (max-width: 768px) { .section { padding: 52px 0; } }
+
+    /* ─── IMAGE PLACEHOLDERS ─── */
+    .img-ph {
+      background: linear-gradient(135deg, #1a2c42 0%, #0f1f3d 100%);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(201,169,110,0.5);
+      font-family: 'Arial', sans-serif; font-size: 11px;
+      letter-spacing: 2px; text-transform: uppercase;
+    }
 
     /* ─── GATING OVERLAY ─── */
     #gating-overlay {
@@ -46,7 +57,7 @@
       background: linear-gradient(135deg, var(--navy) 0%, #0a1628 100%);
       display: flex; align-items: center; justify-content: center;
       padding: 24px;
-      transition: opacity 0.6s ease;
+      transition: opacity 0.5s ease;
     }
     #gating-overlay.hidden { opacity: 0; pointer-events: none; }
     .gating-box {
@@ -54,46 +65,92 @@
       max-width: 460px; width: 100%;
       padding: 48px 40px;
       text-align: center;
-      position: relative;
     }
-    @media (max-width: 480px) { .gating-box { padding: 32px 24px; } }
-    .gating-logo {
-      font-family: 'Arial', sans-serif;
-      font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
-      color: var(--gold); font-weight: 700; margin-bottom: 28px;
-    }
-    .gating-box h2 { font-size: 22px; margin-bottom: 8px; color: var(--navy); }
+    @media (max-width: 480px) { .gating-box { padding: 32px 20px; } }
+    .gating-logo { font-family: 'Arial', sans-serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 28px; }
+    .gating-box h2 { font-size: 22px; margin-bottom: 8px; }
     .gating-box p { font-size: 14px; color: var(--text-light); margin-bottom: 28px; line-height: 1.6; }
-    .gating-form { display: flex; flex-direction: column; gap: 14px; }
-    .gating-form input {
-      border: 1px solid var(--border);
-      padding: 14px 16px;
-      font-size: 15px;
-      font-family: 'Georgia', serif;
-      outline: none;
-      transition: border-color 0.2s;
-      width: 100%;
+    .gating-form { display: flex; flex-direction: column; gap: 14px; text-align: left; }
+    .form-field { display: flex; flex-direction: column; gap: 5px; }
+    .form-field label { font-family: 'Arial', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-light); font-weight: 700; }
+    .form-field input {
+      border: 1.5px solid var(--border);
+      padding: 13px 16px; font-size: 15px;
+      font-family: 'Georgia', serif; outline: none;
+      transition: border-color 0.2s; width: 100%;
     }
-    .gating-form input:focus { border-color: var(--navy); }
-    .gating-form input::placeholder { color: #aaa; }
+    .form-field input:focus { border-color: var(--navy); }
+    .form-field input.error { border-color: #c0392b; }
+    .field-error { font-family: 'Arial', sans-serif; font-size: 11px; color: #c0392b; display: none; margin-top: 2px; }
+    .field-error.visible { display: block; }
     .btn-primary {
-      background: var(--navy);
-      color: var(--white);
+      background: var(--navy); color: var(--white);
       border: none; cursor: pointer;
       padding: 16px 24px;
-      font-family: 'Arial', sans-serif;
-      font-size: 13px; font-weight: 700;
-      letter-spacing: 1.5px; text-transform: uppercase;
-      transition: background 0.2s;
-      width: 100%;
+      font-family: 'Arial', sans-serif; font-size: 13px;
+      font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+      transition: background 0.2s; width: 100%; margin-top: 4px;
     }
     .btn-primary:hover { background: #162d52; }
-    .gating-disclaimer {
-      font-size: 11px; color: #aaa; margin-top: 16px; line-height: 1.5;
+    .gating-disclaimer { font-size: 11px; color: #aaa; margin-top: 16px; line-height: 1.5; text-align: center; }
+
+    /* ─── STICKY NAV ─── */
+    #main-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+      background: rgba(10,22,40,0.97); backdrop-filter: blur(8px);
+      height: var(--nav-h);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 24px;
+      transform: translateY(-100%);
+      transition: transform 0.3s ease;
+    }
+    #main-nav.visible { transform: translateY(0); }
+    .nav-brand { font-family: 'Arial', sans-serif; font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); font-weight: 700; white-space: nowrap; }
+    .nav-links { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+    .nav-link {
+      font-family: 'Arial', sans-serif; font-size: 10px;
+      text-transform: uppercase; letter-spacing: 1px;
+      color: rgba(255,255,255,0.6); padding: 6px 10px;
+      border: 1px solid transparent;
+      cursor: pointer; transition: all 0.2s; white-space: nowrap;
+    }
+    .nav-link:hover, .nav-link.active { color: var(--white); border-color: rgba(255,255,255,0.2); }
+    .nav-cta {
+      background: var(--gold); color: var(--navy); border: none;
+      cursor: pointer; padding: 9px 18px;
+      font-family: 'Arial', sans-serif; font-size: 10px;
+      font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      white-space: nowrap; margin-left: 8px;
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-brand { font-size: 10px; }
     }
 
+    /* ─── MOBILE TAB BAR ─── */
+    #mobile-tabs {
+      display: none;
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 400;
+      background: var(--navy);
+      overflow-x: auto; -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+    #mobile-tabs::-webkit-scrollbar { display: none; }
+    #mobile-tabs.visible { display: flex; }
+    .mob-tab {
+      flex: 0 0 auto; padding: 12px 16px;
+      font-family: 'Arial', sans-serif; font-size: 10px;
+      text-transform: uppercase; letter-spacing: 1px;
+      color: rgba(255,255,255,0.55); white-space: nowrap;
+      cursor: pointer; border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+    }
+    .mob-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+    @media (max-width: 768px) { #mobile-tabs.visible { display: flex; } }
+
     /* ─── HERO ─── */
-    .hero {
+    #hero {
       min-height: 100vh;
       background: var(--navy);
       position: relative;
@@ -102,354 +159,257 @@
     }
     .hero-bg {
       position: absolute; inset: 0;
-      background-image: url('https://www.genspark.ai/api/files/s/x610b1vA');
+      background-color: var(--navy-light);
+      /* Image replaced via JS after load */
       background-size: cover; background-position: center;
-      opacity: 0.45;
+      opacity: 0.5;
     }
     .hero-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(10,22,40,0.95) 0%, rgba(10,22,40,0.3) 60%, transparent 100%);
+      background: linear-gradient(to top, rgba(10,22,40,0.95) 0%, rgba(10,22,40,0.25) 65%, transparent 100%);
     }
-    .hero-content {
-      position: relative; z-index: 2;
-      padding: 60px 24px;
-      max-width: 1100px; margin: 0 auto; width: 100%;
-    }
-    .hero-eyebrow {
-      font-family: 'Arial', sans-serif;
-      font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
-      color: var(--gold); font-weight: 700; margin-bottom: 20px;
-    }
+    .hero-content { position: relative; z-index: 2; padding: 60px 24px; max-width: 1100px; margin: 0 auto; width: 100%; }
+    .hero-eyebrow { font-family: 'Arial', sans-serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 20px; }
     .hero h1 { color: var(--white); margin-bottom: 20px; max-width: 700px; }
     .hero-sub { font-size: 17px; color: rgba(255,255,255,0.75); max-width: 560px; margin-bottom: 36px; line-height: 1.7; }
     .btn-outline-white {
-      display: inline-block;
-      border: 1px solid rgba(255,255,255,0.5);
-      color: var(--white);
-      padding: 14px 28px;
-      font-family: 'Arial', sans-serif;
-      font-size: 12px; font-weight: 700;
+      display: inline-block; border: 1px solid rgba(255,255,255,0.5);
+      color: var(--white); padding: 14px 28px;
+      font-family: 'Arial', sans-serif; font-size: 12px; font-weight: 700;
       letter-spacing: 1.5px; text-transform: uppercase;
-      transition: all 0.2s; cursor: pointer;
+      transition: all 0.2s; cursor: pointer; background: transparent;
     }
     .btn-outline-white:hover { background: rgba(255,255,255,0.1); border-color: var(--white); }
 
-    /* ─── KPI GRID ─── */
-    .kpi-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0;
-    }
-    @media (max-width: 768px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 400px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
-    .kpi-item {
-      padding: 32px 24px;
-      border: 1px solid var(--border);
-      background: var(--white);
-      text-align: center;
-      margin: -1px -1px 0 0;
-    }
-    .kpi-value { font-family: 'Arial', sans-serif; font-size: clamp(22px, 3vw, 32px); font-weight: 700; color: var(--navy); display: block; margin-bottom: 6px; }
-    .kpi-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-light); font-family: 'Arial', sans-serif; }
+    /* ─── KPI ─── */
+    .kpi-strip { background: var(--navy); }
+    .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+    @media (max-width: 700px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
+    .kpi-item { padding: 28px 20px; border: 1px solid rgba(255,255,255,0.08); text-align: center; }
+    .kpi-value { font-family: 'Arial', sans-serif; font-size: clamp(20px, 2.5vw, 30px); font-weight: 700; color: var(--gold); display: block; margin-bottom: 5px; }
+    .kpi-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,0.45); font-family: 'Arial', sans-serif; }
 
     /* ─── TWO COL ─── */
-    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
-    .two-col.reverse { direction: rtl; }
-    .two-col.reverse > * { direction: ltr; }
-    @media (max-width: 768px) { .two-col, .two-col.reverse { grid-template-columns: 1fr; gap: 40px; direction: ltr; } }
-    .two-col img { width: 100%; height: 420px; object-fit: cover; }
-    @media (max-width: 768px) { .two-col img { height: 280px; } }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+    .two-col.rev { }
+    @media (max-width: 768px) { .two-col { grid-template-columns: 1fr; gap: 36px; } }
 
     /* ─── INVESTOR BOX ─── */
-    .investor-box {
-      background: var(--sage-light);
-      border-left: 3px solid var(--sage);
-      padding: 20px 24px;
-      margin-top: 24px;
-    }
-    .investor-box p { color: var(--text); font-size: 14px; }
+    .investor-box { background: var(--sage-light); border-left: 3px solid var(--sage); padding: 20px 24px; margin-top: 24px; }
     .investor-box strong { display: block; font-family: 'Arial', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--sage); margin-bottom: 8px; }
+    .investor-box p { color: var(--text); font-size: 14px; }
 
-    /* ─── AMENITIES GRID ─── */
-    .amenities-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-    @media (max-width: 600px) { .amenities-grid { grid-template-columns: 1fr; } }
-    .amenity-card { border: 1px solid var(--border); padding: 24px; background: var(--white); }
-    .amenity-card h4 { color: var(--navy); margin-bottom: 14px; font-size: 12px; letter-spacing: 1.5px; }
+    /* ─── AMENITIES ─── */
+    .amenities-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    @media (max-width: 580px) { .amenities-grid { grid-template-columns: 1fr; } }
+    .amenity-card { border: 1px solid var(--border); padding: 22px; background: var(--white); }
+    .amenity-card h4 { color: var(--navy); margin-bottom: 14px; }
     .amenity-card ul { list-style: none; }
-    .amenity-card ul li { font-size: 13px; color: var(--text-light); padding: 5px 0; border-bottom: 1px solid var(--grey); display: flex; align-items: flex-start; gap: 8px; }
-    .amenity-card ul li::before { content: '—'; color: var(--gold); flex-shrink: 0; font-family: 'Arial', sans-serif; }
-    .amenity-card ul li:last-child { border-bottom: none; }
+    .amenity-card li { font-size: 13px; color: var(--text-light); padding: 5px 0; border-bottom: 1px solid var(--grey); display: flex; gap: 8px; }
+    .amenity-card li::before { content: '—'; color: var(--gold); flex-shrink: 0; font-family: 'Arial', sans-serif; }
+    .amenity-card li:last-child { border-bottom: none; }
 
-    /* ─── TIMELINE PAYMENT ─── */
-    .timeline { display: flex; gap: 0; margin-top: 32px; }
-    @media (max-width: 640px) { .timeline { flex-direction: column; } }
-    .tl-step {
-      flex: 1; padding: 24px 20px;
-      border: 1px solid var(--border);
-      background: var(--white);
-      text-align: center;
-      position: relative;
-      margin-right: -1px;
-    }
-    .tl-step.highlight { background: var(--navy); border-color: var(--navy); }
-    .tl-step.highlight .tl-pct, .tl-step.highlight .tl-label { color: var(--white); }
-    .tl-step.highlight .tl-sub { color: rgba(255,255,255,0.6); }
-    .tl-pct { font-family: 'Arial', sans-serif; font-size: 32px; font-weight: 700; color: var(--navy); display: block; margin-bottom: 4px; }
-    .tl-label { font-family: 'Arial', sans-serif; font-size: 12px; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 1px; }
-    .tl-sub { font-size: 12px; color: var(--text-light); margin-top: 6px; }
+    /* ─── PAYMENT TIMELINE ─── */
+    .timeline { display: flex; gap: 0; }
+    @media (max-width: 580px) { .timeline { flex-direction: column; } }
+    .tl-step { flex: 1; padding: 24px 18px; border: 1px solid var(--border); text-align: center; margin-right: -1px; }
+    .tl-step.hl { background: var(--navy); border-color: var(--navy); }
+    .tl-pct { font-family: 'Arial', sans-serif; font-size: 30px; font-weight: 700; color: var(--navy); display: block; margin-bottom: 4px; }
+    .tl-step.hl .tl-pct, .tl-step.hl .tl-lbl { color: var(--white); }
+    .tl-step.hl .tl-sub { color: rgba(255,255,255,0.55); }
+    .tl-lbl { font-family: 'Arial', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--navy); }
+    .tl-sub { font-size: 12px; color: var(--text-light); margin-top: 6px; line-height: 1.5; }
 
-    /* ─── PRICING TABLE ─── */
-    .pricing-table { width: 100%; border-collapse: collapse; font-family: 'Arial', sans-serif; font-size: 13px; margin-top: 24px; }
-    .pricing-table th { background: var(--navy); color: var(--white); padding: 12px 14px; text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
-    .pricing-table td { padding: 12px 14px; border-bottom: 1px solid var(--border); color: var(--text); vertical-align: middle; }
+    /* ─── TABLES ─── */
+    .tbl-wrap { overflow-x: auto; }
+    .pricing-table { width: 100%; border-collapse: collapse; font-family: 'Arial', sans-serif; font-size: 13px; margin-top: 20px; min-width: 500px; }
+    .pricing-table th { background: var(--navy); color: var(--white); padding: 11px 13px; text-align: left; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; }
+    .pricing-table td { padding: 11px 13px; border-bottom: 1px solid var(--border); color: var(--text); }
     .pricing-table tr:last-child td { border-bottom: none; }
-    .pricing-table tr.highlight-row td { background: var(--sage-light); font-weight: 700; color: var(--navy); }
+    .pricing-table tr.hl td { background: var(--sage-light); font-weight: 700; color: var(--navy); }
     .pricing-table tr:hover td { background: #f9f9f7; }
-    @media (max-width: 640px) {
-      .pricing-table { font-size: 12px; }
-      .pricing-table th, .pricing-table td { padding: 10px 10px; }
-    }
 
     /* ─── BENCHMARK BARS ─── */
-    .bench-grid { display: flex; flex-direction: column; gap: 14px; margin-top: 24px; }
-    .bench-row { display: flex; align-items: center; gap: 14px; }
-    .bench-label { font-family: 'Arial', sans-serif; font-size: 12px; color: var(--text-light); width: 180px; flex-shrink: 0; text-align: right; }
-    @media (max-width: 640px) { .bench-label { width: 100px; font-size: 11px; } }
-    .bench-bar-wrap { flex: 1; height: 32px; background: #eee; position: relative; }
+    .bench-grid { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
+    .bench-row { display: flex; align-items: center; gap: 12px; }
+    .bench-label { font-family: 'Arial', sans-serif; font-size: 12px; color: var(--text-light); width: 160px; flex-shrink: 0; text-align: right; }
+    @media (max-width: 500px) { .bench-label { width: 90px; font-size: 10px; } }
+    .bench-bar-wrap { flex: 1; height: 30px; background: #eee; }
     .bench-bar { height: 100%; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; }
-    .bench-bar span { font-family: 'Arial', sans-serif; font-size: 12px; font-weight: 700; color: var(--white); }
-    .bench-row.is-sobha .bench-bar { background: var(--sage); }
-    .bench-row:not(.is-sobha) .bench-bar { background: var(--navy-light); }
+    .bench-bar span { font-family: 'Arial', sans-serif; font-size: 11px; font-weight: 700; color: var(--white); }
+    .bench-row.sobha .bench-bar { background: var(--sage); }
+    .bench-row:not(.sobha) .bench-bar { background: var(--navy-light); }
 
     /* ─── LOCATION ─── */
-    .location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
-    @media (max-width: 768px) { .location-grid { grid-template-columns: 1fr; } }
-    .distance-list { list-style: none; }
-    .distance-item { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--border); font-family: 'Arial', sans-serif; font-size: 14px; }
-    .distance-item:last-child { border-bottom: none; }
-    .distance-item .place { color: var(--text); }
-    .distance-item .time { color: var(--sage); font-weight: 700; font-size: 13px; }
+    .dist-list { list-style: none; }
+    .dist-item { display: flex; justify-content: space-between; align-items: center; padding: 13px 0; border-bottom: 1px solid var(--border); font-family: 'Arial', sans-serif; font-size: 14px; }
+    .dist-item:last-child { border-bottom: none; }
+    .dist-item .place { color: var(--text); }
+    .dist-item .time { color: var(--sage); font-weight: 700; font-size: 13px; }
 
-    /* ─── SOBHA REALTY ─── */
-    .sobha-pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
-    @media (max-width: 640px) { .sobha-pillars { grid-template-columns: 1fr; } }
-    .pillar { padding: 28px 24px; border-top: 3px solid var(--gold); }
-    .pillar h4 { font-size: 12px; letter-spacing: 1.5px; color: var(--navy); margin-bottom: 10px; }
+    /* ─── SOBHA PILLARS ─── */
+    .pillars { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 36px; }
+    @media (max-width: 580px) { .pillars { grid-template-columns: 1fr; } }
+    .pillar { padding: 24px 20px; border-top: 3px solid var(--gold); }
+    .pillar h4 { margin-bottom: 8px; color: var(--navy); }
     .pillar p { font-size: 13px; line-height: 1.65; }
 
-    /* ─── PHOTO GRID ─── */
-    .photo-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    @media (max-width: 500px) { .photo-grid-2 { grid-template-columns: 1fr; } }
-    .photo-grid-2 img { width: 100%; height: 260px; object-fit: cover; }
+    /* ─── PHOTO GRIDS ─── */
+    .pg2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media (max-width: 480px) { .pg2 { grid-template-columns: 1fr; } }
 
-    /* ─── RISK BOX ─── */
-    .risk-box { background: #fffbf0; border-left: 3px solid #c9a96e; padding: 20px 24px; margin-bottom: 16px; }
-    .risk-box strong { font-family: 'Arial', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--gold); display: block; margin-bottom: 6px; }
+    /* ─── RISK BOXES ─── */
+    .risk-box { background: #fffbf0; border-left: 3px solid var(--gold); padding: 18px 22px; margin-bottom: 14px; }
+    .risk-box strong { font-family: 'Arial', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--gold); display: block; margin-bottom: 5px; }
     .risk-box p { font-size: 13px; color: var(--text); }
 
     /* ─── CTA SECTION ─── */
-    .cta-section {
-      background: var(--navy);
-      padding: 80px 24px;
-      text-align: center;
-    }
-    .cta-section h2 { color: var(--white); margin-bottom: 16px; }
-    .cta-section p { color: rgba(255,255,255,0.7); max-width: 500px; margin: 0 auto 40px; font-size: 16px; }
-    .cta-form { max-width: 420px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
-    .cta-form input {
-      border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.07);
-      color: var(--white); padding: 15px 18px; font-size: 15px;
-      font-family: 'Georgia', serif; outline: none; transition: border-color 0.2s; width: 100%;
-    }
+    #contact { background: var(--navy); padding: 80px 24px; text-align: center; }
+    #contact h2 { color: var(--white); margin-bottom: 12px; }
+    #contact > p { color: rgba(255,255,255,0.7); max-width: 500px; margin: 0 auto 40px; font-size: 16px; }
+    .cta-form { max-width: 420px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; text-align: left; }
+    .cta-form .form-field label { color: rgba(255,255,255,0.5); }
+    .cta-form input { border: 1.5px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.07); color: var(--white); padding: 14px 16px; font-size: 15px; font-family: 'Georgia', serif; outline: none; transition: border-color 0.2s; width: 100%; }
+    .cta-form input::placeholder { color: rgba(255,255,255,0.3); }
     .cta-form input:focus { border-color: var(--gold); }
-    .cta-form input::placeholder { color: rgba(255,255,255,0.4); }
-    .btn-gold {
-      background: var(--gold); color: var(--navy); border: none; cursor: pointer;
-      padding: 16px 24px; font-family: 'Arial', sans-serif; font-size: 13px;
-      font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
-      transition: opacity 0.2s; width: 100%;
-    }
+    .cta-form input.error { border-color: #e74c3c; }
+    .btn-gold { background: var(--gold); color: var(--navy); border: none; cursor: pointer; padding: 16px 24px; font-family: 'Arial', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; transition: opacity 0.2s; width: 100%; }
     .btn-gold:hover { opacity: 0.9; }
-    .cta-disclaimer { font-size: 11px; color: rgba(255,255,255,0.35); margin-top: 14px; }
+    .cta-disclaimer { font-size: 11px; color: rgba(255,255,255,0.3); margin-top: 12px; text-align: center; }
 
     /* ─── FOOTER ─── */
-    footer { background: #080e1c; padding: 32px 24px; text-align: center; }
-    footer p { font-family: 'Arial', sans-serif; font-size: 11px; color: rgba(255,255,255,0.3); line-height: 1.8; }
+    footer { background: #070d1a; padding: 28px 24px; text-align: center; }
+    footer p { font-family: 'Arial', sans-serif; font-size: 10px; color: rgba(255,255,255,0.25); line-height: 1.9; }
 
-    /* ─── STICKY CTA MOBILE ─── */
-    .sticky-cta {
-      display: none;
-      position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
-      background: var(--gold); padding: 16px 24px;
-      text-align: center;
-    }
-    @media (max-width: 768px) { .sticky-cta { display: block; } }
-    .sticky-cta a {
-      font-family: 'Arial', sans-serif; font-size: 13px; font-weight: 700;
-      letter-spacing: 1px; text-transform: uppercase; color: var(--navy);
-    }
-
-    /* ─── NAV ─── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 500;
-      background: rgba(10,22,40,0.95); backdrop-filter: blur(8px);
-      padding: 16px 24px;
-      display: flex; justify-content: space-between; align-items: center;
-      transform: translateY(-100%);
-      transition: transform 0.3s ease;
-    }
-    nav.visible { transform: translateY(0); }
-    .nav-brand { font-family: 'Arial', sans-serif; font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); font-weight: 700; }
-    .nav-cta {
-      background: var(--gold); color: var(--navy); border: none; cursor: pointer;
-      padding: 10px 20px; font-family: 'Arial', sans-serif; font-size: 11px;
-      font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
-    }
-
-    /* ─── Misc ─── */
-    .text-gold { color: var(--gold); }
-    .mt-24 { margin-top: 24px; }
-    .mt-40 { margin-top: 40px; }
-    .mb-8 { margin-bottom: 8px; }
-    @media (max-width: 768px) { .section { padding: 56px 0; } }
+    /* ─── SECTION SCROLL PADDING ─── */
+    section[id] { scroll-margin-top: calc(var(--nav-h) + 8px); }
   </style>
 </head>
 <body>
 
-<!-- ══════════════════════════════════════════
-     GATING OVERLAY
-═══════════════════════════════════════════ -->
+<!-- ══════════ GATING ══════════ -->
 <div id="gating-overlay">
   <div class="gating-box">
     <div class="gating-logo">Clément Talmo · Advisory Dubai & Abu Dhabi</div>
-    <h2>Accéder à l'analyse complète</h2>
-    <p>Sobha City Abu Dhabi — Dossier investisseur complet avec pricing, plan de paiement et benchmark concurrentiel.</p>
-    <form class="gating-form" id="gating-form" onsubmit="handleGating(event)">
-      <input type="text" id="gate-prenom" placeholder="Votre prénom" required autocomplete="given-name">
-      <input type="tel" id="gate-tel" placeholder="Votre numéro de téléphone" required autocomplete="tel">
+    <h2>Accéder au dossier investisseur</h2>
+    <p>Sobha City Abu Dhabi — Analyse complète : pricing, plan de paiement, benchmark concurrentiel.</p>
+    <form class="gating-form" id="gating-form" onsubmit="handleGating(event)" novalidate>
+      <div class="form-field">
+        <label for="gate-prenom">Prénom</label>
+        <input type="text" id="gate-prenom" placeholder="Votre prénom" autocomplete="given-name">
+        <span class="field-error" id="err-prenom">Merci d'indiquer votre prénom.</span>
+      </div>
+      <div class="form-field">
+        <label for="gate-tel">Numéro de téléphone</label>
+        <input type="tel" id="gate-tel" placeholder="+33 6 12 34 56 78" autocomplete="tel">
+        <span class="field-error" id="err-tel">Numéro invalide. Format attendu : +33612345678 ou 0612345678.</span>
+      </div>
       <button type="submit" class="btn-primary">Accéder au dossier →</button>
     </form>
     <p class="gating-disclaimer">Vos informations restent confidentielles. Clément vous contactera sous 24h.</p>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════
-     NAV
-═══════════════════════════════════════════ -->
+<!-- ══════════ NAV ══════════ -->
 <nav id="main-nav">
   <div class="nav-brand">Sobha City · Abu Dhabi</div>
-  <button class="nav-cta" onclick="scrollToContact()">Être contacté</button>
+  <div class="nav-links">
+    <span class="nav-link" onclick="goTo('abu-dhabi')">Abu Dhabi</span>
+    <span class="nav-link" onclick="goTo('projet')">Le Projet</span>
+    <span class="nav-link" onclick="goTo('localisation')">Localisation</span>
+    <span class="nav-link" onclick="goTo('pricing')">Pricing</span>
+    <span class="nav-link" onclick="goTo('paiement')">Paiement</span>
+    <span class="nav-link" onclick="goTo('benchmark')">Benchmark</span>
+    <button class="nav-cta" onclick="goTo('contact')">Être contacté</button>
+  </div>
 </nav>
 
-<!-- ══════════════════════════════════════════
-     HERO
-═══════════════════════════════════════════ -->
-<section class="hero" id="top">
-  <div class="hero-bg"></div>
+<!-- Mobile tabs (shown after gating) -->
+<div id="mobile-tabs">
+  <div class="mob-tab" onclick="goTo('abu-dhabi')">Marché</div>
+  <div class="mob-tab" onclick="goTo('projet')">Projet</div>
+  <div class="mob-tab" onclick="goTo('localisation')">Localisation</div>
+  <div class="mob-tab" onclick="goTo('pricing')">Pricing</div>
+  <div class="mob-tab" onclick="goTo('paiement')">Paiement</div>
+  <div class="mob-tab" onclick="goTo('benchmark')">Benchmark</div>
+  <div class="mob-tab" onclick="goTo('contact')" style="color:var(--gold);">Contact</div>
+</div>
+
+<!-- ══════════ HERO ══════════ -->
+<section id="hero">
+  <div class="hero-bg" id="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="hero-eyebrow">Abu Dhabi · Off-Plan · Sobha Realty</div>
     <h1>Une ville dans la ville.<br>Au prix de Bordeaux.</h1>
     <p class="hero-sub">38 millions de sq.ft de masterplan waterfront & nature-led. À 10 minutes de Yas Island. Ticket d'entrée dès 1,31 M AED.</p>
-    <button class="btn-outline-white" onclick="scrollToContact()">Demander un entretien advisory</button>
+    <button class="btn-outline-white" onclick="goTo('contact')">Demander un entretien advisory</button>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     KPI STRIP
-═══════════════════════════════════════════ -->
-<section style="background: var(--navy); padding: 0;">
-  <div class="container">
-    <div class="kpi-grid">
-      <div class="kpi-item" style="background:var(--navy); border-color:rgba(255,255,255,0.1);">
-        <span class="kpi-value" style="color:var(--gold);">40 Md AED</span>
-        <span class="kpi-label" style="color:rgba(255,255,255,0.5);">Valeur du projet</span>
-      </div>
-      <div class="kpi-item" style="background:var(--navy); border-color:rgba(255,255,255,0.1);">
-        <span class="kpi-value" style="color:var(--gold);">38 M sq.ft</span>
-        <span class="kpi-label" style="color:rgba(255,255,255,0.5);">Superficie totale</span>
-      </div>
-      <div class="kpi-item" style="background:var(--navy); border-color:rgba(255,255,255,0.1);">
-        <span class="kpi-value" style="color:var(--gold);">60 %</span>
-        <span class="kpi-label" style="color:rgba(255,255,255,0.5);">Espaces verts & ouverts</span>
-      </div>
-      <div class="kpi-item" style="background:var(--navy); border-color:rgba(255,255,255,0.1);">
-        <span class="kpi-value" style="color:var(--gold);">1,31 M AED</span>
-        <span class="kpi-label" style="color:rgba(255,255,255,0.5);">Ticket d'entrée (dès)</span>
-      </div>
-      <div class="kpi-item" style="background:var(--navy); border-color:rgba(255,255,255,0.1);">
-        <span class="kpi-value" style="color:var(--gold);">50 000+</span>
-        <span class="kpi-label" style="color:rgba(255,255,255,0.5);">Arbres plantés</span>
-      </div>
-      <div class="kpi-item" style="background:var(--navy); border-color:rgba(255,255,255,0.1);">
-        <span class="kpi-value" style="color:var(--gold);">20 km</span>
-        <span class="kpi-label" style="color:rgba(255,255,255,0.5);">Wellness loop</span>
-      </div>
-      <div class="kpi-item" style="background:var(--navy); border-color:rgba(255,255,255,0.1);">
-        <span class="kpi-value" style="color:var(--gold);">60 / 40</span>
-        <span class="kpi-label" style="color:rgba(255,255,255,0.5);">Plan de paiement</span>
-      </div>
-      <div class="kpi-item" style="background:var(--navy); border-color:rgba(255,255,255,0.1);">
-        <span class="kpi-value" style="color:var(--gold);">Q4 2029</span>
-        <span class="kpi-label" style="color:rgba(255,255,255,0.5);">Livraison estimée</span>
-      </div>
-    </div>
+<!-- ══════════ KPI ══════════ -->
+<div class="kpi-strip">
+  <div class="kpi-grid">
+    <div class="kpi-item"><span class="kpi-value">40 Md AED</span><span class="kpi-label">Valeur du projet</span></div>
+    <div class="kpi-item"><span class="kpi-value">38 M sq.ft</span><span class="kpi-label">Superficie totale</span></div>
+    <div class="kpi-item"><span class="kpi-value">60 %</span><span class="kpi-label">Espaces verts</span></div>
+    <div class="kpi-item"><span class="kpi-value">1,31 M AED</span><span class="kpi-label">Ticket d'entrée</span></div>
+    <div class="kpi-item"><span class="kpi-value">50 000+</span><span class="kpi-label">Arbres plantés</span></div>
+    <div class="kpi-item"><span class="kpi-value">20 km</span><span class="kpi-label">Wellness loop</span></div>
+    <div class="kpi-item"><span class="kpi-value">60 / 40</span><span class="kpi-label">Plan de paiement</span></div>
+    <div class="kpi-item"><span class="kpi-value">Q4 2029</span><span class="kpi-label">Livraison estimée</span></div>
   </div>
-</section>
+</div>
 
-<!-- ══════════════════════════════════════════
-     ABU DHABI — MARCHÉ
-═══════════════════════════════════════════ -->
-<section class="section">
+<!-- ══════════ ABU DHABI ══════════ -->
+<section class="section" id="abu-dhabi">
   <div class="container">
     <div class="two-col">
       <div>
         <span class="label">La destination</span>
-        <h2>Abu Dhabi :<br>le marché institutionnel des Émirats</h2>
+        <h2>Abu Dhabi : le marché institutionnel des Émirats</h2>
         <div class="divider"></div>
         <p>Abu Dhabi n'est pas Dubai. La capitale fédérale opère comme un marché hautement planifié, souverain et patrimonial. Sa stratégie s'articule autour de la qualité urbaine, de la stabilité et de la profondeur patrimoniale — pas de la spéculation de court terme.</p>
         <p class="mt-24">Les transactions immobilières ont progressé de <strong style="color:var(--navy);">+47 %</strong> dans l'émirat, témoignant de la confiance croissante des capitaux internationaux. L'effet de pôles d'attractivité comme Yas Island, Saadiyat et le futur Disneyland Abu Dhabi agit comme catalyseur de valorisation pour les communautés avoisinantes.</p>
-        <div class="investor-box mt-24">
+        <div class="investor-box">
           <strong>Message Investisseur</strong>
           <p>Se positionner à Abu Dhabi aujourd'hui, c'est investir dans un marché où la croissance repose sur la création de valeur urbaine durable, adossée à une vision étatique puissante.</p>
         </div>
       </div>
-      <img src="https://www.genspark.ai/api/files/s/hc8uBf7n" alt="Abu Dhabi skyline" loading="lazy">
+      <div class="img-ph" id="img-loc" style="height:440px; width:100%;">
+        <span>Photo · Localisation</span>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     SOBHA CITY — L'AMBITION
-═══════════════════════════════════════════ -->
-<section class="section section-alt">
+<!-- ══════════ PROJET ══════════ -->
+<section class="section section-alt" id="projet">
   <div class="container">
     <span class="label">Le projet</span>
-    <h2>"Sobha City is not a community.<br>It's a city."</h2>
+    <h2>"Sobha City is not a community. It's a city."</h2>
     <div class="divider"></div>
-    <p style="max-width:640px;">Un masterplan de 38 millions de sq.ft fondamentalement waterfront et nature-led. 60 % d'espaces verts, 50 000 arbres, une boucle bien-être de 20 km, une promenade marina de 2 km. Six points d'accès distincts. Une ville autonome et intégrée.</p>
-    <div class="photo-grid-2 mt-40">
-      <img src="https://www.genspark.ai/api/files/s/SYZfnZzb" alt="Sobha City Abu Dhabi" loading="lazy">
-      <img src="https://www.genspark.ai/api/files/s/KuUE3SL7" alt="Sobha City waterfront" loading="lazy">
+    <p style="max-width:640px;">Un masterplan de 38 millions de sq.ft fondamentalement waterfront et nature-led. 60 % d'espaces verts, 50 000 arbres, une boucle bien-être de 20 km, une promenade marina de 2 km. Six points d'accès distincts.</p>
+    <div class="pg2 mt-40">
+      <div class="img-ph" id="img-amb1" style="height:300px;"><span>Waterfront</span></div>
+      <div class="img-ph" id="img-amb2" style="height:300px;"><span>Nature & Espace</span></div>
     </div>
-    <div class="photo-grid-2" style="margin-top:16px;">
-      <img src="https://www.genspark.ai/api/files/s/VVNoNAcB" alt="Sobha City nature" loading="lazy">
-      <img src="https://www.genspark.ai/api/files/s/DVhq60ej" alt="Sobha City masterplan" loading="lazy">
+    <div class="pg2 mt-16">
+      <div class="img-ph" id="img-amb3" style="height:260px;"><span>Lifestyle</span></div>
+      <div class="img-ph" id="img-masterplan" style="height:260px;"><span>Masterplan</span></div>
     </div>
     <div class="investor-box mt-40">
       <strong>Pourquoi la taille compte</strong>
-      <p>Un masterplan de 38 millions de sq.ft, c'est la garantie d'une "ville dans la ville", capable d'absorber une hiérarchie d'usages complexe — retail, écoles, sports — et de créer son propre microclimat. La communauté devient indépendante, pérenne, et liquide.</p>
+      <p>Un masterplan de 38 millions de sq.ft garantit une ville autonome capable d'absorber retail, écoles, sports — et de créer son propre microclimat. La communauté devient indépendante, pérenne, et liquide à la revente.</p>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     AMENITIES
-═══════════════════════════════════════════ -->
-<section class="section">
+<!-- ══════════ AMENITIES ══════════ -->
+<section class="section" id="amenities">
   <div class="container">
     <span class="label">Art de vivre</span>
-    <h2>Un cadre de vie complet,<br>pensé pour durer</h2>
+    <h2>Un cadre de vie complet, pensé pour durer</h2>
     <div class="divider"></div>
     <div class="amenities-grid mt-40">
       <div class="amenity-card">
@@ -458,8 +418,7 @@
           <li>60 % d'espaces ouverts & verts</li>
           <li>50 000+ arbres — green corridors</li>
           <li>Wellness loop 20 km</li>
-          <li>Espaces de méditation</li>
-          <li>Water features & aménagements aquatiques</li>
+          <li>Water features & zones aquatiques</li>
         </ul>
       </div>
       <div class="amenity-card">
@@ -467,7 +426,6 @@
         <ul>
           <li>Promenade waterfront / marina 2 km</li>
           <li>Plages artificielles</li>
-          <li>Zones de loisirs en bord d'eau</li>
           <li>Espaces de vie en plein air</li>
         </ul>
       </div>
@@ -477,7 +435,7 @@
           <li>Parcours de golf Par-3</li>
           <li>Padel & terrains multi-sports</li>
           <li>Pistes jogging & cyclables</li>
-          <li>Piscines & fitness couvert / plein air</li>
+          <li>Piscines couvertes & plein air</li>
         </ul>
       </div>
       <div class="amenity-card">
@@ -485,63 +443,58 @@
         <ul>
           <li>Amphithéâtre & salons communautaires</li>
           <li>Cinéma en plein air</li>
-          <li>Restauration & cafés</li>
           <li>300 000 sq.ft de retail / mall</li>
           <li>6 points d'entrée & sortie</li>
         </ul>
       </div>
     </div>
-    <div style="margin-top:40px; display:grid; grid-template-columns: 1fr 1fr; gap:16px;">
-      <img src="https://www.genspark.ai/api/files/s/bVFBqvqj" alt="Golf Sobha City" loading="lazy" style="width:100%; height:300px; object-fit:cover;">
-      <div style="display:flex; flex-direction:column; gap:16px;">
-        <img src="https://www.genspark.ai/api/files/s/E8yvbsfB" alt="Villas Sobha City" loading="lazy" style="width:100%; height:140px; object-fit:cover;">
-        <img src="https://www.genspark.ai/api/files/s/TXKrwyD5" alt="Family life Sobha" loading="lazy" style="width:100%; height:140px; object-fit:cover;">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:28px;">
+      <div class="img-ph" id="img-golf" style="height:280px;"><span>Golf & Sport</span></div>
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <div class="img-ph" id="img-villa1" style="height:130px;"><span>Villas</span></div>
+        <div class="img-ph" id="img-villa2" style="height:130px;"><span>Family Life</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     LOCALISATION
-═══════════════════════════════════════════ -->
-<section class="section section-alt">
+<!-- ══════════ LOCALISATION ══════════ -->
+<section class="section section-alt" id="localisation">
   <div class="container">
     <span class="label">Localisation</span>
-    <h2>Au cœur du corridor<br>Yas – Aéroport – Abu Dhabi</h2>
+    <h2>Au cœur du corridor Yas – Aéroport – Abu Dhabi</h2>
     <div class="divider"></div>
-    <div class="location-grid mt-40">
+    <div class="two-col mt-40">
       <div>
-        <p style="margin-bottom:24px;">Al Bahyah, un positionnement stratégique aux portes de Yas Island et du futur Disneyland Abu Dhabi. Accès direct via les axes E10 / E12 vers Dubai et le centre d'Abu Dhabi.</p>
-        <ul class="distance-list">
-          <li class="distance-item"><span class="place">Yas Island</span><span class="time">~10 min</span></li>
-          <li class="distance-item"><span class="place">Ferrari World</span><span class="time">~10 min</span></li>
-          <li class="distance-item"><span class="place">Futur Disneyland Abu Dhabi</span><span class="time">~10 min</span></li>
-          <li class="distance-item"><span class="place">Yas Mall</span><span class="time">~13 min</span></li>
-          <li class="distance-item"><span class="place">Aéroport International Zayed</span><span class="time">~10–14 min</span></li>
-          <li class="distance-item"><span class="place">Centre Abu Dhabi</span><span class="time">~20 min</span></li>
-          <li class="distance-item"><span class="place">Dubai (E10 / E12)</span><span class="time">Accès direct</span></li>
+        <p style="margin-bottom:24px;">Al Bahyah — aux portes de Yas Island et du futur Disneyland Abu Dhabi. Accès direct via les axes E10 / E12 vers Dubai et le centre d'Abu Dhabi.</p>
+        <ul class="dist-list">
+          <li class="dist-item"><span class="place">Yas Island</span><span class="time">~10 min</span></li>
+          <li class="dist-item"><span class="place">Ferrari World</span><span class="time">~10 min</span></li>
+          <li class="dist-item"><span class="place">Futur Disneyland Abu Dhabi</span><span class="time">~10 min</span></li>
+          <li class="dist-item"><span class="place">Yas Mall</span><span class="time">~13 min</span></li>
+          <li class="dist-item"><span class="place">Aéroport International Zayed</span><span class="time">~12 min</span></li>
+          <li class="dist-item"><span class="place">Centre Abu Dhabi</span><span class="time">~20 min</span></li>
+          <li class="dist-item"><span class="place">Dubai (E10 / E12)</span><span class="time">Accès direct</span></li>
         </ul>
       </div>
-      <img src="https://www.genspark.ai/api/files/s/hc8uBf7n" alt="Localisation Sobha City Abu Dhabi" loading="lazy" style="width:100%; height:420px; object-fit:cover;">
+      <div class="img-ph" id="img-loc2" style="height:400px; width:100%;"><span>Carte · Localisation</span></div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     SOBHA REALTY
-═══════════════════════════════════════════ -->
-<section class="section">
+<!-- ══════════ SOBHA REALTY ══════════ -->
+<section class="section" id="promoteur">
   <div class="container">
     <div class="two-col">
       <div>
         <span class="label">L'exécuteur</span>
-        <h2>Sobha Realty :<br>l'intégration verticale comme garantie</h2>
+        <h2>Sobha Realty : l'intégration verticale comme garantie</h2>
         <div class="divider"></div>
-        <p>Sobha contrôle l'intégralité de la chaîne de valeur — architecture, matériaux, design intérieur. Ce modèle d'intégration verticale (<em>backward integration</em>) garantit des finitions premium qui font figure de benchmark régional.</p>
-        <div class="sobha-pillars">
+        <p>Sobha contrôle l'intégralité de la chaîne de valeur — architecture, matériaux, design intérieur. Ce modèle d'intégration verticale garantit des finitions premium qui font figure de benchmark régional depuis 20 ans aux Émirats.</p>
+        <div class="pillars">
           <div class="pillar">
             <h4>Exécution fiable</h4>
-            <p>Respect des délais, track record reconnu sur 20 ans aux Émirats.</p>
+            <p>Respect des délais. Track record solide sur 20 ans aux Émirats.</p>
           </div>
           <div class="pillar">
             <h4>Finitions premium</h4>
@@ -549,294 +502,301 @@
           </div>
           <div class="pillar">
             <h4>Premier projet AD</h4>
-            <p>Sobha City = leur entrée à Abu Dhabi. La marque a tout à prouver ici.</p>
+            <p>Sobha City = leur entrée historique à Abu Dhabi. La marque a tout à prouver.</p>
           </div>
         </div>
-        <div class="investor-box mt-24">
-          <strong>Pourquoi cela rassure l'investisseur</strong>
+        <div class="investor-box">
+          <strong>Pourquoi cela rassure</strong>
           <p>Dans l'off-plan, le risque principal est le défaut d'exécution. La maîtrise totale de la chaîne par Sobha désamorce directement ce frein.</p>
         </div>
       </div>
-      <div style="display:flex; flex-direction:column; gap:16px;">
-        <img src="https://www.genspark.ai/api/files/s/Qv19IczZ" alt="Sobha Realty track record" loading="lazy" style="width:100%; height:260px; object-fit:cover;">
-        <img src="https://www.genspark.ai/api/files/s/TXG0Dcep" alt="Sobha Realty finitions" loading="lazy" style="width:100%; height:200px; object-fit:cover;">
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <div class="img-ph" id="img-sobha1" style="height:250px;"><span>Sobha · Track Record</span></div>
+        <div class="img-ph" id="img-sobha2" style="height:190px;"><span>Sobha · Finitions</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     PRICING
-═══════════════════════════════════════════ -->
-<section class="section section-alt">
+<!-- ══════════ PRICING ══════════ -->
+<section class="section section-alt" id="pricing">
   <div class="container">
     <span class="label">Typologies & Prix</span>
-    <h2>Du 1 BR à l'Estate Villa :<br>une gamme complète en freehold</h2>
+    <h2>Du 1 BR à l'Estate Villa : une gamme complète en freehold</h2>
     <div class="divider"></div>
-    <div style="overflow-x:auto;">
+    <div class="tbl-wrap">
       <table class="pricing-table">
         <thead>
           <tr>
-            <th>Type</th>
-            <th>Prix de départ (AED)</th>
-            <th>Surface (sq.ft)</th>
-            <th>Prix / sq.ft (AED)</th>
-            <th>EOI (AED)</th>
+            <th>Type</th><th>Prix départ (AED)</th><th>Surface (sq.ft)</th><th>Prix / sq.ft (AED)</th><th>EOI (AED)</th>
           </tr>
         </thead>
         <tbody>
-          <tr class="highlight-row">
-            <td><strong>Appartement 1 BR</strong></td>
-            <td>1 310 000</td>
-            <td>566 – 608</td>
-            <td>2 153 – 2 313</td>
-            <td>35 000</td>
-          </tr>
-          <tr>
-            <td><strong>Appartement 2 BR</strong></td>
-            <td>2 400 000</td>
-            <td>1 012 – 1 212</td>
-            <td>1 980 – 2 369</td>
-            <td>70 000</td>
-          </tr>
-          <tr>
-            <td><strong>Garden Villa 3 BR</strong></td>
-            <td>4 960 000</td>
-            <td>2 577 – 3 453</td>
-            <td>1 436 – 1 924</td>
-            <td>150 000</td>
-          </tr>
-          <tr>
-            <td><strong>Garden Villa 4 BR</strong></td>
-            <td>8 070 000</td>
-            <td>4 194 – 4 524</td>
-            <td>1 784 – 1 924</td>
-            <td>200 000</td>
-          </tr>
-          <tr>
-            <td><strong>Estate Villa 4 BR</strong></td>
-            <td>9 050 000</td>
-            <td>4 309 – 4 515</td>
-            <td>2 004 – 2 100</td>
-            <td>225 000</td>
-          </tr>
-          <tr>
-            <td><strong>Estate Villa 5 BR</strong></td>
-            <td>11 160 000</td>
-            <td>5 317 – 5 418</td>
-            <td>2 060 – 2 099</td>
-            <td>250 000</td>
-          </tr>
-          <tr>
-            <td><strong>Estate Villa 6 BR</strong></td>
-            <td>13 400 000</td>
-            <td>6 383</td>
-            <td>2 099</td>
-            <td>300 000</td>
-          </tr>
+          <tr class="hl"><td><strong>Appartement 1 BR</strong></td><td>1 310 000</td><td>566 – 608</td><td>2 153 – 2 313</td><td>35 000</td></tr>
+          <tr><td><strong>Appartement 2 BR</strong></td><td>2 400 000</td><td>1 012 – 1 212</td><td>1 980 – 2 369</td><td>70 000</td></tr>
+          <tr><td><strong>Garden Villa 3 BR</strong></td><td>4 960 000</td><td>2 577 – 3 453</td><td>1 436 – 1 924</td><td>150 000</td></tr>
+          <tr><td><strong>Garden Villa 4 BR</strong></td><td>8 070 000</td><td>4 194 – 4 524</td><td>1 784 – 1 924</td><td>200 000</td></tr>
+          <tr><td><strong>Estate Villa 4 BR</strong></td><td>9 050 000</td><td>4 309 – 4 515</td><td>2 004 – 2 100</td><td>225 000</td></tr>
+          <tr><td><strong>Estate Villa 5 BR</strong></td><td>11 160 000</td><td>5 317 – 5 418</td><td>2 060 – 2 099</td><td>250 000</td></tr>
+          <tr><td><strong>Estate Villa 6 BR</strong></td><td>13 400 000</td><td>6 383</td><td>2 099</td><td>300 000</td></tr>
         </tbody>
       </table>
     </div>
-    <div class="investor-box mt-24">
+    <div class="investor-box">
       <strong>Lecture Investisseur</strong>
-      <p>Les Garden Villas offrent le meilleur arbitrage du projet : rapport espace/prix le plus attractif (dès ~1 436 AED/sq.ft). Les appartements 1 BR proposent le ticket d'entrée le plus bas du corridor Yas — idéal pour un premier positionnement. Les Estate Villas maintiennent un pricing premium homogène (~2 100 AED/sq.ft).</p>
+      <p>Les Garden Villas offrent le meilleur arbitrage : dès ~1 436 AED/sq.ft. Les appartements 1 BR = ticket d'entrée le plus bas du corridor Yas. Les Estate Villas maintiennent un pricing premium homogène (~2 100 AED/sq.ft).</p>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     PAYMENT PLAN
-═══════════════════════════════════════════ -->
-<section class="section">
+<!-- ══════════ PAIEMENT ══════════ -->
+<section class="section" id="paiement">
   <div class="container">
     <span class="label">Plan de paiement</span>
-    <h2>60 / 40 : l'effort financier<br>étalé sur 36 mois</h2>
+    <h2>60 / 40 : l'effort financier étalé sur 36 mois</h2>
     <div class="divider"></div>
-    <p style="max-width:600px;">Un plan asymétrique très favorable à la trésorerie pendant la construction — des échéances douces de 5 % tous les 3 mois — avec 40 % seulement à la livraison des clés.</p>
+    <p style="max-width:600px;">Un plan asymétrique très favorable à la trésorerie pendant la construction — 5 % tous les 3 mois — avec 40 % seulement à la livraison des clés.</p>
     <div class="timeline mt-40">
       <div class="tl-step">
         <span class="tl-pct">20 %</span>
-        <div class="tl-label">Réservation</div>
+        <div class="tl-lbl">Réservation</div>
         <div class="tl-sub">À la signature</div>
       </div>
-      <div class="tl-step highlight">
+      <div class="tl-step hl">
         <span class="tl-pct">40 %</span>
-        <div class="tl-label">Construction</div>
-        <div class="tl-sub">8 × 5 % / 3 mois<br>sur 36 mois</div>
+        <div class="tl-lbl">Construction</div>
+        <div class="tl-sub">8 × 5 % / 3 mois<br>36 mois</div>
       </div>
       <div class="tl-step">
         <span class="tl-pct">40 %</span>
-        <div class="tl-label">Livraison</div>
+        <div class="tl-lbl">Livraison</div>
         <div class="tl-sub">Q4 2029 – Q2 2030</div>
       </div>
     </div>
-    <div class="investor-box mt-24">
+    <div class="investor-box">
       <strong>Note de trésorerie</strong>
-      <p>Plan favorable pendant la construction (5 % tous les 3 mois), mais nécessitant la préparation d'un financement solide — liquidités ou hypothèque — pour solder les 40 % à la livraison.</p>
+      <p>Plan favorable pendant la construction (5 % tous les 3 mois), mais nécessitant un financement solide — liquidités ou hypothèque — pour solder les 40 % à la livraison.</p>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     BENCHMARK
-═══════════════════════════════════════════ -->
-<section class="section section-alt">
+<!-- ══════════ BENCHMARK ══════════ -->
+<section class="section section-alt" id="benchmark">
   <div class="container">
     <span class="label">Benchmark</span>
-    <h2>Prix / sq.ft : Sobha City<br>face à ses concurrents directs</h2>
+    <h2>Prix / sq.ft : Sobha City face à ses concurrents</h2>
     <div class="divider"></div>
-    <p style="max-width:600px; margin-bottom:16px;">Appartements 1 BR — Corridor Yas Island / Abu Dhabi. Sobha City propose le ticket d'entrée le plus compétitif du secteur, à un prix/sq.ft inférieur à tous ses concurrents listés.</p>
-
-    <div style="overflow-x:auto; margin-bottom:32px;">
+    <p style="max-width:600px; margin-bottom:8px;">Appartements 1 BR — corridor Yas Island / Abu Dhabi. Sobha City : ticket d'entrée le plus compétitif du secteur.</p>
+    <div class="tbl-wrap">
       <table class="pricing-table">
         <thead>
-          <tr><th>Projet</th><th>Type</th><th>Prix (AED)</th><th>Surface (sq.ft)</th><th>Prix / sq.ft</th></tr>
+          <tr><th>Projet</th><th>Prix (AED)</th><th>Surface (sq.ft)</th><th>Prix / sq.ft</th></tr>
         </thead>
         <tbody>
-          <tr><td>Fahid Island</td><td>1 BR</td><td>3 500 000</td><td>950</td><td>~3 680</td></tr>
-          <tr><td>Sama Yas</td><td>1 BR</td><td>2 500 000</td><td>850</td><td>~2 940</td></tr>
-          <tr><td>Yas Riva</td><td>1 BR</td><td>2 100 000</td><td>790</td><td>~2 660</td></tr>
-          <tr class="highlight-row"><td><strong>Sobha City ✓</strong></td><td><strong>1 BR</strong></td><td><strong>1 310 000</strong></td><td><strong>566 – 608</strong></td><td><strong>~2 153 – 2 313</strong></td></tr>
+          <tr><td>Fahid Island</td><td>3 500 000</td><td>950</td><td>~3 680</td></tr>
+          <tr><td>Sama Yas</td><td>2 500 000</td><td>850</td><td>~2 940</td></tr>
+          <tr><td>Yas Riva</td><td>2 100 000</td><td>790</td><td>~2 660</td></tr>
+          <tr class="hl"><td><strong>Sobha City ✓</strong></td><td><strong>1 310 000</strong></td><td><strong>566 – 608</strong></td><td><strong>~2 230</strong></td></tr>
         </tbody>
       </table>
     </div>
-
-    <h3 style="margin-bottom:16px; font-size:15px;">Prix / sq.ft comparatif (AED)</h3>
+    <h3 style="margin:28px 0 0; font-size:14px; text-transform:uppercase; letter-spacing:1px; color:var(--text-light);">Prix / sq.ft comparatif (AED)</h3>
     <div class="bench-grid">
-      <div class="bench-row">
-        <div class="bench-label">Fahid Island</div>
-        <div class="bench-bar-wrap"><div class="bench-bar" style="width:100%;"><span>3 680</span></div></div>
-      </div>
-      <div class="bench-row">
-        <div class="bench-label">Sama Yas</div>
-        <div class="bench-bar-wrap"><div class="bench-bar" style="width:80%;"><span>2 940</span></div></div>
-      </div>
-      <div class="bench-row">
-        <div class="bench-label">Yas Riva</div>
-        <div class="bench-bar-wrap"><div class="bench-bar" style="width:72%;"><span>2 660</span></div></div>
-      </div>
-      <div class="bench-row is-sobha">
-        <div class="bench-label"><strong>Sobha City ✓</strong></div>
-        <div class="bench-bar-wrap"><div class="bench-bar" style="width:63%;"><span>~2 230</span></div></div>
-      </div>
+      <div class="bench-row"><div class="bench-label">Fahid Island</div><div class="bench-bar-wrap"><div class="bench-bar" style="width:100%;"><span>3 680</span></div></div></div>
+      <div class="bench-row"><div class="bench-label">Sama Yas</div><div class="bench-bar-wrap"><div class="bench-bar" style="width:80%;"><span>2 940</span></div></div></div>
+      <div class="bench-row"><div class="bench-label">Yas Riva</div><div class="bench-bar-wrap"><div class="bench-bar" style="width:72%;"><span>2 660</span></div></div></div>
+      <div class="bench-row sobha"><div class="bench-label"><strong>Sobha City ✓</strong></div><div class="bench-bar-wrap"><div class="bench-bar" style="width:61%;"><span>~2 230</span></div></div></div>
     </div>
-    <div class="investor-box mt-24">
+    <div class="investor-box">
       <strong>Lecture Investisseur</strong>
-      <p>Sobha City propose le ticket d'entrée le plus bas du corridor Yas, avec un prix/sq.ft inférieur à l'ensemble de ses concurrents directs. Positionnement idéal pour un investisseur cherchant à pénétrer le marché premium Abu Dhabi en minimisant son capital immobilisé.</p>
+      <p>Sobha City propose le ticket d'entrée le plus bas du corridor Yas, à un prix/sq.ft inférieur à tous ses concurrents directs. Positionnement idéal pour pénétrer le marché premium Abu Dhabi en minimisant le capital immobilisé.</p>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     RISQUES & TRANSPARENCE
-═══════════════════════════════════════════ -->
-<section class="section">
+<!-- ══════════ RISQUES ══════════ -->
+<section class="section" id="risques">
   <div class="container">
     <span class="label">Transparence</span>
-    <h2>Ce que vous devez savoir<br>avant d'investir</h2>
+    <h2>Ce que vous devez savoir avant d'investir</h2>
     <div class="divider"></div>
-    <div class="risk-box">
-      <strong>Risque off-plan</strong>
-      <p>Tout investissement sur plan comporte un risque de retard de livraison ou de modification du projet. Les délais indiqués (Q4 2029 – Q2 2030) sont des estimations promoteur sujettes à variation selon les phases.</p>
-    </div>
-    <div class="risk-box">
-      <strong>Risque de marché</strong>
-      <p>Les projections de valorisation reposent sur des tendances de marché et non sur des garanties contractuelles. Aucun rendement locatif n'est garanti.</p>
-    </div>
-    <div class="risk-box">
-      <strong>Données comparatives</strong>
-      <p>Les données macro Abu Dhabi vs Dubai (+47 % de transactions) sont issues de plateformes de courtage tierces et doivent être validées auprès de sources officielles (Knight Frank, CBRE, ADM) avant toute décision d'investissement.</p>
-    </div>
-    <div class="risk-box">
-      <strong>Effort financier à la livraison</strong>
-      <p>40 % du prix total est dû à la livraison. Vérifiez votre capacité de financement (liquidités disponibles ou hypothèque bancaire) avant engagement.</p>
-    </div>
+    <div class="risk-box"><strong>Risque off-plan</strong><p>Tout investissement sur plan comporte un risque de retard de livraison. Les délais (Q4 2029 – Q2 2030) sont des estimations promoteur sujettes à variation.</p></div>
+    <div class="risk-box"><strong>Risque de marché</strong><p>Les projections de valorisation reposent sur des tendances de marché, pas sur des garanties contractuelles. Aucun rendement locatif n'est garanti.</p></div>
+    <div class="risk-box"><strong>Effort financier à la livraison</strong><p>40 % du prix total est dû à la livraison. Vérifiez votre capacité de financement avant engagement.</p></div>
+    <div class="risk-box"><strong>Données comparatives</strong><p>Les données macro (+47 % transactions) sont issues de plateformes de courtage tierces. À valider auprès de sources officielles (Knight Frank, CBRE, ADM) avant décision.</p></div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     CTA FINAL
-═══════════════════════════════════════════ -->
-<section class="cta-section" id="contact">
-  <div class="container">
-    <span class="label" style="color:var(--gold); display:block; margin-bottom:16px;">Advisory · Clément Talmo</span>
-    <h2>Vous souhaitez aller plus loin ?</h2>
+<!-- ══════════ CTA ══════════ -->
+<section id="contact">
+  <div class="container" style="padding-top:80px; padding-bottom:80px;">
+    <span class="label" style="display:block; margin-bottom:16px;">Advisory · Clément Talmo</span>
+    <h2 style="color:var(--white); margin-bottom:12px;">Vous souhaitez aller plus loin ?</h2>
     <p>Partagez vos coordonnées — je vous contacte personnellement sous 24h pour étudier si ce projet correspond à votre situation.</p>
-    <form class="cta-form" id="cta-form" onsubmit="handleCTA(event)">
-      <input type="text" id="cta-prenom" placeholder="Votre prénom" required autocomplete="given-name">
-      <input type="tel" id="cta-tel" placeholder="Votre numéro de téléphone" required autocomplete="tel">
+    <form class="cta-form" id="cta-form" onsubmit="handleCTA(event)" novalidate>
+      <div class="form-field">
+        <label for="cta-prenom">Prénom</label>
+        <input type="text" id="cta-prenom" placeholder="Votre prénom">
+        <span class="field-error" id="cta-err-prenom">Merci d'indiquer votre prénom.</span>
+      </div>
+      <div class="form-field">
+        <label for="cta-tel">Numéro de téléphone</label>
+        <input type="tel" id="cta-tel" placeholder="+33 6 12 34 56 78">
+        <span class="field-error" id="cta-err-tel">Numéro invalide. Format attendu : +33612345678 ou 0612345678.</span>
+      </div>
       <button type="submit" class="btn-gold">Être rappelé par Clément →</button>
     </form>
-    <p class="cta-disclaimer">Vos informations restent strictement confidentielles. Entretien sans engagement.</p>
+    <p class="cta-disclaimer">Entretien sans engagement. Vos données restent strictement confidentielles.</p>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     FOOTER
-═══════════════════════════════════════════ -->
 <footer>
   <p>© 2026 Clément Talmo · Advisory Immobilier Dubai & Abu Dhabi<br>
   Ce document est un outil d'information et ne constitue pas un conseil en investissement. Les prix et données sont indicatifs et sujets à modification.</p>
 </footer>
 
-<!-- ══════════════════════════════════════════
-     STICKY CTA MOBILE
-═══════════════════════════════════════════ -->
-<div class="sticky-cta" style="padding-bottom: max(16px, env(safe-area-inset-bottom));">
-  <a href="#contact" onclick="scrollToContact()">📞 Être rappelé par Clément</a>
-</div>
-
-<!-- ══════════════════════════════════════════
-     SCRIPTS
-═══════════════════════════════════════════ -->
 <script>
-  const WA_NUMBER = '33624835980';
+  const WA = '33624835980';
 
-  function buildWAMessage(prenom, tel) {
-    return encodeURIComponent(
-      `Bonjour Clément,\n\nJe viens de consulter le dossier Sobha City Abu Dhabi et je souhaite en savoir plus.\n\nPrénom : ${prenom}\nTéléphone : ${tel}\n\nMerci de me recontacter.`
-    );
+  // ─── Phone validation ───
+  function isValidPhone(v) {
+    const cleaned = v.replace(/[\s\-\.\(\)]/g, '');
+    // Accept: +336..., +971..., 06..., 07..., 05..., +33..., etc.
+    return /^(\+?\d{7,15})$/.test(cleaned);
   }
 
+  // ─── Gating ───
   function handleGating(e) {
     e.preventDefault();
-    const prenom = document.getElementById('gate-prenom').value.trim();
-    const tel = document.getElementById('gate-tel').value.trim();
-    if (!prenom || !tel) return;
+    const prenomEl = document.getElementById('gate-prenom');
+    const telEl = document.getElementById('gate-tel');
+    const errPrenom = document.getElementById('err-prenom');
+    const errTel = document.getElementById('err-tel');
+    let ok = true;
 
-    // Fermer le gating
+    if (!prenomEl.value.trim()) {
+      prenomEl.classList.add('error');
+      errPrenom.classList.add('visible');
+      ok = false;
+    } else {
+      prenomEl.classList.remove('error');
+      errPrenom.classList.remove('visible');
+    }
+
+    if (!isValidPhone(telEl.value.trim())) {
+      telEl.classList.add('error');
+      errTel.classList.add('visible');
+      ok = false;
+    } else {
+      telEl.classList.remove('error');
+      errTel.classList.remove('visible');
+    }
+
+    if (!ok) return;
+
+    // Store for later use in CTA
+    sessionStorage.setItem('sobha_prenom', prenomEl.value.trim());
+    sessionStorage.setItem('sobha_tel', telEl.value.trim());
+
+    // Close overlay — give access
     const overlay = document.getElementById('gating-overlay');
     overlay.classList.add('hidden');
-    setTimeout(() => overlay.style.display = 'none', 700);
+    setTimeout(() => { overlay.style.display = 'none'; }, 600);
 
-    // Ouvrir WhatsApp
-    const msg = buildWAMessage(prenom, tel);
-    window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`, '_blank');
-
-    // Afficher la nav
+    // Show nav + mobile tabs
     document.getElementById('main-nav').classList.add('visible');
+    document.getElementById('mobile-tabs').classList.add('visible');
   }
 
+  // ─── CTA bottom ───
   function handleCTA(e) {
     e.preventDefault();
-    const prenom = document.getElementById('cta-prenom').value.trim();
-    const tel = document.getElementById('cta-tel').value.trim();
-    if (!prenom || !tel) return;
-    const msg = buildWAMessage(prenom, tel);
-    window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`, '_blank');
+    const prenomEl = document.getElementById('cta-prenom');
+    const telEl = document.getElementById('cta-tel');
+    const errPrenom = document.getElementById('cta-err-prenom');
+    const errTel = document.getElementById('cta-err-tel');
+    let ok = true;
+
+    if (!prenomEl.value.trim()) {
+      prenomEl.classList.add('error'); errPrenom.classList.add('visible'); ok = false;
+    } else {
+      prenomEl.classList.remove('error'); errPrenom.classList.remove('visible');
+    }
+    if (!isValidPhone(telEl.value.trim())) {
+      telEl.classList.add('error'); errTel.classList.add('visible'); ok = false;
+    } else {
+      telEl.classList.remove('error'); errTel.classList.remove('visible');
+    }
+    if (!ok) return;
+
+    const prenom = prenomEl.value.trim();
+    const tel = telEl.value.trim();
+    const msg = encodeURIComponent(
+      `Bonjour Clément,\n\nJe viens de consulter le dossier Sobha City Abu Dhabi et je souhaite en savoir plus.\n\nPrénom : ${prenom}\nTéléphone : ${tel}\n\nMerci de me recontacter.`
+    );
+    window.open(`https://wa.me/${WA}?text=${msg}`, '_blank');
   }
 
-  function scrollToContact() {
-    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+  function goTo(id) {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
   }
 
-  // Afficher la nav au scroll
+  // ─── Nav show on scroll ───
   window.addEventListener('scroll', () => {
     const nav = document.getElementById('main-nav');
-    if (window.scrollY > 100) nav.classList.add('visible');
+    if (window.scrollY > 80) nav.classList.add('visible');
     else nav.classList.remove('visible');
+
+    // Active nav link highlight
+    const sections = ['abu-dhabi','projet','localisation','pricing','paiement','benchmark','contact'];
+    let current = '';
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && window.scrollY >= el.offsetTop - 100) current = id;
+    });
+    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+    const activeLink = document.querySelector(`.nav-link[onclick*="${current}"]`);
+    if (activeLink) activeLink.classList.add('active');
+  });
+
+  // ─── Load images via fetch (works around CORS referer restriction) ───
+  // Note: images from genspark.ai/api/files/s/ require auth — placeholders shown
+  // Replace img-ph divs with real <img> tags when image files are hosted in /sobhacity/img/
+  function tryLoadImg(elId, src) {
+    const el = document.getElementById(elId);
+    if (!el) return;
+    const img = new Image();
+    img.onload = function() {
+      el.style.backgroundImage = `url('${src}')`;
+      el.style.backgroundSize = 'cover';
+      el.style.backgroundPosition = 'center';
+      el.innerHTML = '';
+      el.classList.remove('img-ph');
+    };
+    img.onerror = function() { /* keep placeholder */ };
+    img.src = src;
+  }
+
+  // Try loading images from local /img/ folder (populated when available)
+  const imgMap = {
+    'hero-bg':      'img/hero.jpg',
+    'img-loc':      'img/loc.jpg',
+    'img-loc2':     'img/loc.jpg',
+    'img-amb1':     'img/amb1.jpg',
+    'img-amb2':     'img/amb2.jpg',
+    'img-amb3':     'img/amb3.jpg',
+    'img-masterplan':'img/masterplan.jpg',
+    'img-golf':     'img/golf.jpg',
+    'img-villa1':   'img/villa1.jpg',
+    'img-villa2':   'img/villa2.jpg',
+    'img-sobha1':   'img/sobha1.jpg',
+    'img-sobha2':   'img/sobha2.jpg',
+  };
+
+  window.addEventListener('DOMContentLoaded', () => {
+    Object.entries(imgMap).forEach(([id, src]) => tryLoadImg(id, src));
   });
 </script>
-
 </body>
 </html>
