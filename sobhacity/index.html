@@ -260,6 +260,42 @@
 
     section[id] { scroll-margin-top: calc(var(--nav-h) + 8px); }
     @media (max-width: 640px) { .sp-grid { grid-template-columns: 1fr !important; } }
+
+    /* ─── SIDEBAR NAV ─── */
+    #side-nav {
+      display: none;
+      position: fixed; top: 50%; right: 0; transform: translateY(-50%);
+      z-index: 450; flex-direction: column; gap: 2px;
+    }
+    #side-nav.visible { display: flex; }
+    .side-link {
+      background: var(--navy); color: rgba(255,255,255,0.6);
+      font-family: 'Arial', sans-serif; font-size: 10px;
+      text-transform: uppercase; letter-spacing: 1px;
+      padding: 10px 14px; cursor: pointer;
+      border-left: 3px solid transparent;
+      transition: all 0.2s; white-space: nowrap;
+      text-align: right;
+    }
+    .side-link:hover, .side-link.active { color: var(--white); border-left-color: var(--gold); }
+    .side-link.cta { background: var(--gold); color: var(--navy); font-weight: 700; border-left-color: transparent; }
+    .side-link.cta:hover { background: #b8925a; }
+    @media (max-width: 900px) { #side-nav { display: none !important; } }
+
+    /* ─── FLOATING CONTACT BTN (mobile) ─── */
+    #float-cta {
+      display: none;
+      position: fixed; bottom: 70px; right: 16px; z-index: 450;
+      background: var(--gold); color: var(--navy);
+      font-family: 'Arial', sans-serif; font-size: 12px; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      padding: 13px 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      border: none; cursor: pointer;
+      border-radius: 2px;
+    }
+    #float-cta.visible { display: block; }
+    @media (min-width: 901px) { #float-cta { display: none !important; } }
   </style>
 </head>
 <body>
@@ -270,15 +306,24 @@
     <div class="gating-logo">Clément Talmo · Advisory Dubai & Abu Dhabi</div>
     <h2>Accéder au dossier investisseur</h2>
     <p>Sobha City Abu Dhabi — Analyse complète : marché, localisation, promoteur, pricing, plan de paiement.</p>
-    <form class="gating-form" id="gating-form" onsubmit="handleGating(event)" novalidate>
+    <!-- iframe cachée : reçoit la réponse FormSpree sans quitter la page -->
+    <iframe name="fs-gate" style="display:none;"></iframe>
+    <form class="gating-form" id="gating-form"
+          action="https://formspree.io/f/mbdqzvkv"
+          method="POST"
+          target="fs-gate"
+          onsubmit="handleGating(event)"
+          novalidate>
+      <input type="hidden" name="_subject" value="🏙️ Nouveau lead Sobha City Abu Dhabi">
+      <input type="hidden" name="source" value="Sobha City — Gating accès">
       <div class="form-field">
         <label for="gate-prenom">Prénom</label>
-        <input type="text" id="gate-prenom" placeholder="Votre prénom" autocomplete="given-name">
+        <input type="text" id="gate-prenom" name="prenom" placeholder="Votre prénom" autocomplete="given-name">
         <span class="field-error" id="err-prenom">Merci d'indiquer votre prénom.</span>
       </div>
       <div class="form-field">
         <label for="gate-tel">Numéro de téléphone</label>
-        <input type="tel" id="gate-tel" placeholder="+33 6 12 34 56 78" autocomplete="tel">
+        <input type="tel" id="gate-tel" name="telephone" placeholder="+33 6 12 34 56 78" autocomplete="tel">
         <span class="field-error" id="err-tel">Numéro invalide — ex : +33612345678 ou 0612345678</span>
       </div>
       <button type="submit" class="btn-primary">Accéder au dossier →</button>
@@ -286,6 +331,21 @@
     <p class="gating-disclaimer">Vos informations restent confidentielles. Clément vous contacte sous 24h.</p>
   </div>
 </div>
+
+<!-- ══════════ SIDEBAR (desktop) ══════════ -->
+<div id="side-nav">
+  <div class="side-link" onclick="goTo('abu-dhabi')">Le marché</div>
+  <div class="side-link" onclick="goTo('localisation')">Localisation</div>
+  <div class="side-link" onclick="goTo('disney-data')">Disneyland</div>
+  <div class="side-link" onclick="goTo('promoteur')">Sobha</div>
+  <div class="side-link" onclick="goTo('projet')">Le projet</div>
+  <div class="side-link" onclick="goTo('pricing')">Pricing</div>
+  <div class="side-link" onclick="goTo('pour-qui')">Pour qui ?</div>
+  <div class="side-link cta" onclick="goTo('contact')">📞 Contact</div>
+</div>
+
+<!-- ══════════ FLOATING BTN (mobile) ══════════ -->
+<button id="float-cta" onclick="goTo('contact')">📞 Être contacté</button>
 
 <!-- ══════════ NAV ══════════ -->
 <nav id="main-nav">
@@ -816,15 +876,23 @@
     <span class="label" style="display:block; margin-bottom:16px;">Advisory · Clément Talmo</span>
     <h2>Vous souhaitez aller plus loin ?</h2>
     <p>Partagez vos coordonnées — je vous contacte personnellement sous 24h pour étudier si ce projet correspond à votre situation.</p>
-    <form class="cta-form" id="cta-form" onsubmit="handleCTA(event)" novalidate>
+    <iframe name="fs-cta" style="display:none;"></iframe>
+    <form class="cta-form" id="cta-form"
+          action="https://formspree.io/f/mbdqzvkv"
+          method="POST"
+          target="fs-cta"
+          onsubmit="handleCTA(event)"
+          novalidate>
+      <input type="hidden" name="_subject" value="🏙️ Nouveau lead Sobha City Abu Dhabi">
+      <input type="hidden" name="source" value="Sobha City — CTA bas de page">
       <div class="form-field">
         <label for="cta-prenom">Prénom</label>
-        <input type="text" id="cta-prenom" placeholder="Votre prénom">
+        <input type="text" id="cta-prenom" name="prenom" placeholder="Votre prénom">
         <span class="field-error" id="cta-err-prenom">Merci d'indiquer votre prénom.</span>
       </div>
       <div class="form-field">
         <label for="cta-tel">Numéro de téléphone</label>
-        <input type="tel" id="cta-tel" placeholder="+33 6 12 34 56 78">
+        <input type="tel" id="cta-tel" name="telephone" placeholder="+33 6 12 34 56 78">
         <span class="field-error" id="cta-err-tel">Numéro invalide — ex : +33612345678</span>
       </div>
       <button type="submit" class="btn-gold">Être rappelé par Clément →</button>
@@ -844,78 +912,65 @@
     return /^(\+?\d[\d\s\-\.\(\)]{5,18}\d)$/.test(v.trim());
   }
   function handleGating(e) {
-    e.preventDefault();
+    // Validation d'abord — si invalide on bloque la soumission native aussi
     const p = document.getElementById('gate-prenom'), t = document.getElementById('gate-tel');
     let ok = true;
     if (!p.value.trim()) { p.classList.add('error'); document.getElementById('err-prenom').classList.add('visible'); ok=false; }
     else { p.classList.remove('error'); document.getElementById('err-prenom').classList.remove('visible'); }
     if (!isValidPhone(t.value)) { t.classList.add('error'); document.getElementById('err-tel').classList.add('visible'); ok=false; }
     else { t.classList.remove('error'); document.getElementById('err-tel').classList.remove('visible'); }
-    if (!ok) return;
+    if (!ok) { e.preventDefault(); return; }
 
-    const prenom = p.value.trim();
-    const tel = t.value.trim();
-    sessionStorage.setItem('sp', prenom);
-    sessionStorage.setItem('st', tel);
-
-    // 1. Envoyer à FormSpree (notification email à talmo.clement@gmail.com)
-    fetch('https://formspree.io/f/mbdqzvkv', {
-      method: 'POST',
-      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        prenom: prenom,
-        telephone: tel,
-        source: 'Sobha City Abu Dhabi — Gating',
-        _subject: '🏙️ Nouveau lead Sobha City — ' + prenom
-      })
-    }).catch(() => {}); // silencieux si erreur réseau
-
-    // 2. Ouvrir la page (fermer le gating)
-    const o = document.getElementById('gating-overlay');
-    o.classList.add('hidden');
-    setTimeout(() => o.style.display='none', 600);
-    document.getElementById('main-nav').classList.add('visible');
-    document.getElementById('mobile-tabs').classList.add('visible');
+    // Valide → le formulaire natif s'envoie à FormSpree via iframe (email auto)
+    // On ferme le gating après un court délai
+    setTimeout(() => {
+      const o = document.getElementById('gating-overlay');
+      o.classList.add('hidden');
+      setTimeout(() => o.style.display='none', 600);
+      document.getElementById('main-nav').classList.add('visible');
+      document.getElementById('mobile-tabs').classList.add('visible');
+      document.getElementById('side-nav').classList.add('visible');
+      document.getElementById('float-cta').classList.add('visible');
+    }, 300);
   }
   function handleCTA(e) {
-    e.preventDefault();
     const p = document.getElementById('cta-prenom'), t = document.getElementById('cta-tel');
     let ok = true;
     if (!p.value.trim()) { p.classList.add('error'); document.getElementById('cta-err-prenom').classList.add('visible'); ok=false; }
     else { p.classList.remove('error'); document.getElementById('cta-err-prenom').classList.remove('visible'); }
     if (!isValidPhone(t.value)) { t.classList.add('error'); document.getElementById('cta-err-tel').classList.add('visible'); ok=false; }
     else { t.classList.remove('error'); document.getElementById('cta-err-tel').classList.remove('visible'); }
-    if (!ok) return;
+    if (!ok) { e.preventDefault(); return; }
 
-    const prenom = p.value.trim();
-    const tel = t.value.trim();
-
-    // 1. Notification email FormSpree
-    fetch('https://formspree.io/f/mbdqzvkv', {
-      method: 'POST',
-      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        prenom: prenom,
-        telephone: tel,
-        source: 'Sobha City Abu Dhabi — CTA bas de page',
-        _subject: '🏙️ Nouveau lead Sobha City — ' + prenom
-      })
-    }).catch(() => {});
-
-    // 2. Ouvrir WhatsApp avec message pré-rempli
+    // Formulaire natif envoie à FormSpree via iframe → email auto
+    // En plus, on ouvre WhatsApp
+    const prenom = p.value.trim(), tel = t.value.trim();
     const msg = encodeURIComponent(`Bonjour Clément,\n\nJe viens de consulter le dossier Sobha City Abu Dhabi et je souhaite en savoir plus.\n\nPrénom : ${prenom}\nTéléphone : ${tel}\n\nMerci de me recontacter.`);
-    window.open(`https://wa.me/${WA}?text=${msg}`, '_blank');
+    setTimeout(() => window.open(`https://wa.me/${WA}?text=${msg}`, '_blank'), 400);
   }
   function goTo(id) { const el=document.getElementById(id); if(el) el.scrollIntoView({behavior:'smooth'}); }
   window.addEventListener('scroll', () => {
     const nav = document.getElementById('main-nav');
     if (window.scrollY > 80) nav.classList.add('visible'); else nav.classList.remove('visible');
+
     const ids = ['abu-dhabi','localisation','disney-data','disneyland','promoteur','projet','pricing','pour-qui','contact'];
     let cur = '';
     ids.forEach(id => { const el=document.getElementById(id); if(el && window.scrollY >= el.offsetTop-100) cur=id; });
+
+    // Nav top
     document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
     const al = document.querySelector(`.nav-link[onclick*="${cur}"]`);
     if (al) al.classList.add('active');
+
+    // Sidebar
+    document.querySelectorAll('.side-link:not(.cta)').forEach(l => l.classList.remove('active'));
+    const sl = document.querySelector(`.side-link[onclick*="${cur}"]`);
+    if (sl) sl.classList.add('active');
+
+    // Mobile tabs
+    document.querySelectorAll('.mob-tab').forEach(l => l.classList.remove('active'));
+    const ml = document.querySelector(`.mob-tab[onclick*="${cur}"]`);
+    if (ml) ml.classList.add('active');
   });
   const imgMap = {
     'hero-bg':       'img/hero.jpg',
