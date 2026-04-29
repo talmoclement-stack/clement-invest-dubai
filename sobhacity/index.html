@@ -820,8 +820,25 @@
     if (!isValidPhone(t.value)) { t.classList.add('error'); document.getElementById('err-tel').classList.add('visible'); ok=false; }
     else { t.classList.remove('error'); document.getElementById('err-tel').classList.remove('visible'); }
     if (!ok) return;
-    sessionStorage.setItem('sp', p.value.trim());
-    sessionStorage.setItem('st', t.value.trim());
+
+    const prenom = p.value.trim();
+    const tel = t.value.trim();
+    sessionStorage.setItem('sp', prenom);
+    sessionStorage.setItem('st', tel);
+
+    // 1. Envoyer à FormSpree (notification email à talmo.clement@gmail.com)
+    fetch('https://formspree.io/f/mbdqzvkv', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        prenom: prenom,
+        telephone: tel,
+        source: 'Sobha City Abu Dhabi — Gating',
+        _subject: '🏙️ Nouveau lead Sobha City — ' + prenom
+      })
+    }).catch(() => {}); // silencieux si erreur réseau
+
+    // 2. Ouvrir la page (fermer le gating)
     const o = document.getElementById('gating-overlay');
     o.classList.add('hidden');
     setTimeout(() => o.style.display='none', 600);
@@ -837,7 +854,24 @@
     if (!isValidPhone(t.value)) { t.classList.add('error'); document.getElementById('cta-err-tel').classList.add('visible'); ok=false; }
     else { t.classList.remove('error'); document.getElementById('cta-err-tel').classList.remove('visible'); }
     if (!ok) return;
-    const msg = encodeURIComponent(`Bonjour Clément,\n\nJe viens de consulter le dossier Sobha City Abu Dhabi et je souhaite en savoir plus.\n\nPrénom : ${p.value.trim()}\nTéléphone : ${t.value.trim()}\n\nMerci de me recontacter.`);
+
+    const prenom = p.value.trim();
+    const tel = t.value.trim();
+
+    // 1. Notification email FormSpree
+    fetch('https://formspree.io/f/mbdqzvkv', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        prenom: prenom,
+        telephone: tel,
+        source: 'Sobha City Abu Dhabi — CTA bas de page',
+        _subject: '🏙️ Nouveau lead Sobha City — ' + prenom
+      })
+    }).catch(() => {});
+
+    // 2. Ouvrir WhatsApp avec message pré-rempli
+    const msg = encodeURIComponent(`Bonjour Clément,\n\nJe viens de consulter le dossier Sobha City Abu Dhabi et je souhaite en savoir plus.\n\nPrénom : ${prenom}\nTéléphone : ${tel}\n\nMerci de me recontacter.`);
     window.open(`https://wa.me/${WA}?text=${msg}`, '_blank');
   }
   function goTo(id) { const el=document.getElementById(id); if(el) el.scrollIntoView({behavior:'smooth'}); }
