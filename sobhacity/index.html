@@ -192,6 +192,32 @@
     .tl-lbl { font-family: 'Arial', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--navy); }
     .tl-sub { font-size: 12px; color: var(--muted); margin-top: 6px; line-height: 1.5; }
 
+    /* ─── DISNEY CASES ─── */
+    .disney-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 36px; }
+    @media (max-width: 700px) { .disney-grid { grid-template-columns: 1fr; } }
+    .disney-card { border: 1px solid var(--border); background: var(--white); overflow: hidden; }
+    .disney-card-header { padding: 20px 20px 14px; border-bottom: 1px solid var(--border); }
+    .disney-card-flag { font-size: 22px; margin-bottom: 6px; }
+    .disney-card-country { font-family: 'Arial', sans-serif; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--navy); margin-bottom: 2px; }
+    .disney-card-park { font-family: 'Arial', sans-serif; font-size: 11px; color: var(--muted); }
+    .disney-card-stat { background: var(--navy); padding: 16px 20px; text-align: center; }
+    .disney-card-stat .big-pct { font-family: 'Arial', sans-serif; font-size: 30px; font-weight: 700; color: var(--gold); display: block; line-height: 1; }
+    .disney-card-stat .pct-label { font-family: 'Arial', sans-serif; font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,0.5); margin-top: 4px; display: block; }
+    .disney-card-body { padding: 16px 20px; }
+    .disney-card-body ul { list-style: none; }
+    .disney-card-body ul li { font-size: 12px; color: var(--muted); padding: 5px 0; border-bottom: 1px solid var(--grey); display: flex; gap: 7px; line-height: 1.55; }
+    .disney-card-body ul li::before { content: '→'; color: var(--gold); font-family: 'Arial', sans-serif; flex-shrink: 0; font-weight: 700; }
+    .disney-card-body ul li:last-child { border-bottom: none; }
+
+    /* ─── TRACK PHOTO GRID ─── */
+    .track-photo-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 28px; }
+    @media (max-width: 600px) { .track-photo-grid { grid-template-columns: repeat(2,1fr); } }
+    .track-photo-item { position: relative; overflow: hidden; }
+    .track-photo-item img { width: 100%; height: 180px; object-fit: cover; display: block; }
+    .track-photo-caption { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(10,22,40,0.82); padding: 8px 12px; }
+    .track-photo-caption .tc-n { font-family: 'Arial', sans-serif; font-size: 11px; font-weight: 700; color: var(--white); }
+    .track-photo-caption .tc-l { font-family: 'Arial', sans-serif; font-size: 10px; color: var(--gold); letter-spacing: 1px; }
+
     /* ─── PROFIL INVESTISSEUR ─── */
     .profil-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 32px; }
     @media (max-width: 640px) { .profil-grid { grid-template-columns: 1fr; } }
@@ -266,7 +292,7 @@
   <div class="nav-links">
     <span class="nav-link" onclick="goTo('abu-dhabi')">Le marché</span>
     <span class="nav-link" onclick="goTo('localisation')">Localisation</span>
-    <span class="nav-link" onclick="goTo('disneyland')">Disneyland</span>
+    <span class="nav-link" onclick="goTo('disney-data')">Disneyland</span>
     <span class="nav-link" onclick="goTo('promoteur')">Sobha</span>
     <span class="nav-link" onclick="goTo('projet')">Le projet</span>
     <span class="nav-link" onclick="goTo('pricing')">Pricing</span>
@@ -277,7 +303,7 @@
 <div id="mobile-tabs">
   <div class="mob-tab" onclick="goTo('abu-dhabi')">Marché</div>
   <div class="mob-tab" onclick="goTo('localisation')">Localisation</div>
-  <div class="mob-tab" onclick="goTo('disneyland')">Disney</div>
+  <div class="mob-tab" onclick="goTo('disney-data')">Disney</div>
   <div class="mob-tab" onclick="goTo('promoteur')">Sobha</div>
   <div class="mob-tab" onclick="goTo('projet')">Projet</div>
   <div class="mob-tab" onclick="goTo('pricing')">Pricing</div>
@@ -395,6 +421,86 @@
   </div>
 </section>
 
+<!-- ══════════ FOCUS DISNEYLAND DATA ══════════ -->
+<section class="section section-alt" id="disney-data">
+  <div class="container">
+    <span class="label">No Bullshit</span>
+    <h2>Focus Disneyland — Impact réel sur le prix de l'immobilier</h2>
+    <div class="divider"></div>
+    <p style="max-width:680px;">Pas de promesses. Des faits. Voici ce que l'ouverture d'un parc Disney a concrètement fait aux prix de l'immobilier dans les trois cas documentés — France, États-Unis (Californie), États-Unis (Floride).</p>
+
+    <div class="disney-grid">
+      <!-- France -->
+      <div class="disney-card">
+        <div class="disney-card-header">
+          <div class="disney-card-flag">🇫🇷</div>
+          <div class="disney-card-country">France</div>
+          <div class="disney-card-park">Disneyland Paris · Marne-la-Vallée · 1992</div>
+        </div>
+        <div class="disney-card-stat">
+          <span class="big-pct">+20–30 %</span>
+          <span class="pct-label">prix/m² communes limitrophes vs reste du 77</span>
+        </div>
+        <div class="disney-card-body">
+          <ul>
+            <li>Serris, Chessy, Coupvray : terres agricoles transformées en pôle économique européen en 30 ans</li>
+            <li>Valeur refuge même pendant les crises nationales — demande locative constante (salariés Disney + court séjour)</li>
+            <li>TGV + RER A étendus spécifiquement pour le projet → infrastructure = accélérateur de valeur</li>
+            <li>Effets encore actifs : Disney continue d'étendre ses parcs, chaque annonce relance les prix</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- USA Californie -->
+      <div class="disney-card">
+        <div class="disney-card-header">
+          <div class="disney-card-flag">🌴</div>
+          <div class="disney-card-country">États-Unis — Californie</div>
+          <div class="disney-card-park">Disneyland Resort · Anaheim · 1955</div>
+        </div>
+        <div class="disney-card-stat">
+          <span class="big-pct">+45 %</span>
+          <span class="pct-label">hausse prix médian Anaheim sur 6 ans (912 000 $ en 2026)</span>
+        </div>
+        <div class="disney-card-body">
+          <ul>
+            <li>Surperformance locale : +45 % à Anaheim vs +27 % moyenne Californie sur la même période</li>
+            <li>DisneylandForward (extension en cours) : chaque nouvelle annonce relance les anticipations</li>
+            <li>Explosion de la demande Airbnb : rendements courts séjours parmi les plus élevés de Californie</li>
+            <li>Emploi direct Disney = pression locative permanente sur le marché résidentiel proche</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- USA Floride -->
+      <div class="disney-card">
+        <div class="disney-card-header">
+          <div class="disney-card-flag">🍊</div>
+          <div class="disney-card-country">États-Unis — Floride</div>
+          <div class="disney-card-park">Walt Disney World · Orlando · 1971</div>
+        </div>
+        <div class="disney-card-stat">
+          <span class="big-pct">× ∞</span>
+          <span class="pct-label">terrain : 200 $/acre avant → milliers après l'annonce</span>
+        </div>
+        <div class="disney-card-body">
+          <ul>
+            <li>Avant 1971 : marécage sans valeur à ~200 $/acre. Après l'annonce : plusieurs milliers de $/acre immédiatement</li>
+            <li>1 emploi sur 32 en Floride est aujourd'hui lié à Disney → pression logement permanente</li>
+            <li>Celebration, Kissimmee : villes entières créées ex nihilo grâce à l'écosystème Disney</li>
+            <li>Effet infrastructure massif : routes, hôtels, centres commerciaux ont valorisé toute la région Orlando</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="hl-box mt-40">
+      <div class="quote">Les 3 leviers universels : l'emploi (des milliers de salariés à loger), le tourisme (rendements court séjour explosifs), l'infrastructure (routes, transports financés autour du parc). Abu Dhabi coche les 3 — avec Yas Island déjà opérationnel et Disneyland qui s'y greffe.</div>
+      <div class="source">Analyse comparative — France · Californie · Floride</div>
+    </div>
+  </div>
+</section>
+
 <!-- ══════════ DISNEYLAND ══════════ -->
 <section class="section" id="disneyland">
   <div class="container">
@@ -477,36 +583,32 @@
       <div class="container">
         <h3 style="color:var(--white); margin-bottom:8px;">Communautés Sobha déjà réalisées ou en cours</h3>
         <p style="color:rgba(255,255,255,0.55); margin-bottom:0; font-size:13px;">Un track record sur 3 émirats</p>
-        <div class="track-grid mt-32">
-          <div class="track-card">
-            <div class="tc-name">Sobha Hartland</div>
-            <div class="tc-loc">Dubai — MBR City</div>
-            <div class="tc-desc">8 millions de sq.ft. Masterplan complet avec école Hartland International, Crystal Lagoon, 2 parcours de golf. Livraisons en cours depuis 2022.</div>
+        <div class="track-photo-grid mt-32">
+          <div class="track-photo-item">
+            <img src="img/track_hartland.jpg" alt="Sobha Hartland Dubai" loading="lazy">
+            <div class="track-photo-caption"><div class="tc-n">Sobha Hartland</div><div class="tc-l">Dubai · 8M sq.ft livré</div></div>
           </div>
-          <div class="track-card">
-            <div class="tc-name">Sobha Hartland II</div>
-            <div class="tc-loc">Dubai — Extension</div>
-            <div class="tc-desc">Extension du masterplan original. Appartements, villas et townhouses. Forte demande à la revente dès lancement.</div>
+          <div class="track-photo-item">
+            <img src="img/track_hartland2.jpg" alt="Sobha Hartland II" loading="lazy">
+            <div class="track-photo-caption"><div class="tc-n">Sobha Hartland II</div><div class="tc-l">Dubai · Extension masterplan</div></div>
           </div>
-          <div class="track-card">
-            <div class="tc-name">Sobha Siniya Island</div>
-            <div class="tc-loc">Umm Al Quwain</div>
-            <div class="tc-desc">Projet 5 Mds $ sur une île naturelle. Villas de plage, marina résidentielle, 25 000 résidents attendus. Ambition maximale.</div>
+          <div class="track-photo-item">
+            <img src="img/track_creekvistas.jpg" alt="Creek Vistas Sobha" loading="lazy">
+            <div class="track-photo-caption"><div class="tc-n">Creek Vistas Reservé</div><div class="tc-l">Dubai · Livré dans les délais</div></div>
           </div>
-          <div class="track-card">
-            <div class="tc-name">Creek Vistas Reservé</div>
-            <div class="tc-loc">Dubai — Sobha Hartland</div>
-            <div class="tc-desc">Tours résidentielles premium avec vues sur le Creek. Livraisons effectuées dans les délais — référence citée par les analystes.</div>
+          <div class="track-photo-item">
+            <img src="img/track_siniya.jpg" alt="Sobha Siniya Island" loading="lazy">
+            <div class="track-photo-caption"><div class="tc-n">Siniya Island</div><div class="tc-l">Umm Al Quwain · 5 Mds $</div></div>
           </div>
-          <div class="track-card">
-            <div class="tc-name">Waves Waterfront</div>
-            <div class="tc-loc">Dubai — Sobha Hartland</div>
-            <div class="tc-desc">Projet waterfront livré en 2024. Sobha Realty a annoncé la complétion officielle — exemple concret d'exécution.</div>
+          <div class="track-photo-item">
+            <img src="img/track_quality.jpg" alt="Sobha qualité construction" loading="lazy">
+            <div class="track-photo-caption"><div class="tc-n">Qualité d'exécution</div><div class="tc-l">Intégration verticale totale</div></div>
           </div>
-          <div class="track-card" style="background: rgba(201,169,110,0.15); border: 1px solid var(--gold);">
-            <div class="tc-name" style="color:var(--gold);">Sobha City Abu Dhabi</div>
-            <div class="tc-loc" style="color:rgba(255,255,255,0.5);">Abu Dhabi — 1er projet</div>
-            <div class="tc-desc" style="color:rgba(255,255,255,0.7);">38 M sq.ft. Premier masterplan de Sobha à Abu Dhabi. La marque a tout à prouver ici — c'est exactement pour ça que ce sera leur meilleure exécution.</div>
+          <div class="track-photo-item" style="background:rgba(201,169,110,0.12); border:1px solid var(--gold); display:flex; flex-direction:column; align-items:center; justify-content:center; height:180px; text-align:center; padding:20px;">
+            <div style="font-family:'Arial',sans-serif; font-size:28px; color:var(--gold); font-weight:700; line-height:1;">→</div>
+            <div class="tc-n" style="color:var(--gold); margin-top:8px;">Sobha City Abu Dhabi</div>
+            <div class="tc-l" style="color:rgba(255,255,255,0.5); margin-top:4px;">Leur 1er projet à Abu Dhabi</div>
+            <div style="font-size:11px; color:rgba(255,255,255,0.4); margin-top:6px; font-family:'Arial',sans-serif;">La vitrine de leur ambition</div>
           </div>
         </div>
       </div>
@@ -742,7 +844,7 @@
   window.addEventListener('scroll', () => {
     const nav = document.getElementById('main-nav');
     if (window.scrollY > 80) nav.classList.add('visible'); else nav.classList.remove('visible');
-    const ids = ['abu-dhabi','localisation','disneyland','promoteur','projet','pricing','pour-qui','contact'];
+    const ids = ['abu-dhabi','localisation','disney-data','disneyland','promoteur','projet','pricing','pour-qui','contact'];
     let cur = '';
     ids.forEach(id => { const el=document.getElementById(id); if(el && window.scrollY >= el.offsetTop-100) cur=id; });
     document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
