@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IMTIAZ Downtown Jebel Ali — Dossier Investisseur</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #11263c; --navy-light: #1c3b5a; --gold: #d8b26a;
+      --gold-light: #fdf6ea; --sage: #4a7c59; --sage-light: #eaf1ed;
+      --grey: #f7f7f5; --text: #2d2d2d; --muted: #666;
+      --border: #e0e0dc; --white: #fff; --nav-h: 60px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Arial','Helvetica Neue',sans-serif; color: var(--text); background: var(--white); overflow-x: hidden; }
+    img { max-width: 100%; display: block; object-fit: cover; }
+    h1 { font-size: clamp(24px,4vw,50px); line-height: 1.1; }
+    h2 { font-size: clamp(17px,2.2vw,26px); line-height: 1.25; }
+    p { font-size: 14px; line-height: 1.8; color: var(--muted); }
+    strong { color: var(--text); }
+    .container { max-width: 1060px; margin: 0 auto; padding: 0 24px; }
+    .label { font-size: 10px; text-transform: uppercase; letter-spacing: 2.5px; color: var(--gold); font-weight: 700; display: block; }
+
+    /* ─── GATING ─── */
+    #gating-overlay {
+      position: fixed; inset: 0; z-index: 9999;
+      background: linear-gradient(135deg, var(--navy) 0%, #060f1e 100%);
+      display: flex; align-items: center; justify-content: center; padding: 24px;
+      transition: opacity 0.5s ease;
+    }
+    #gating-overlay.hidden { opacity: 0; pointer-events: none; }
+    .gating-box { background: var(--white); max-width: 440px; width: 100%; padding: 44px 36px; text-align: center; }
+    @media(max-width:480px){ .gating-box { padding: 28px 18px; } }
+    .g-logo { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 24px; }
+    .gating-box h2 { font-size: 20px; margin-bottom: 8px; color: var(--navy); }
+    .gating-box > p { font-size: 13px; color: var(--muted); margin-bottom: 26px; line-height: 1.6; }
+    .gf { display: flex; flex-direction: column; gap: 12px; text-align: left; }
+    .ff { display: flex; flex-direction: column; gap: 4px; }
+    .ff label { font-size: 10px; text-transform: uppercase; letter-spacing: 1.2px; color: var(--muted); font-weight: 700; }
+    .ff input { border: 1.5px solid var(--border); padding: 12px 14px; font-size: 14px; outline: none; transition: border-color 0.2s; width: 100%; }
+    .ff input:focus { border-color: var(--navy); }
+    .ff input.err { border-color: #c0392b; }
+    .ferr { font-size: 11px; color: #c0392b; display: none; }
+    .ferr.v { display: block; }
+    .btn-p { background: var(--navy); color: var(--white); border: none; cursor: pointer; padding: 14px; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; transition: background 0.2s; width: 100%; margin-top: 4px; }
+    .btn-p:hover { background: var(--navy-light); }
+    .g-disc { font-size: 11px; color: #bbb; margin-top: 14px; }
+
+    /* ─── NAV ─── */
+    #main-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+      background: rgba(17,38,60,0.97); backdrop-filter: blur(8px);
+      height: var(--nav-h); display: flex; align-items: center; justify-content: space-between; padding: 0 24px;
+      transform: translateY(-100%); transition: transform 0.3s ease;
+    }
+    #main-nav.v { transform: translateY(0); }
+    .nav-brand { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); font-weight: 700; white-space: nowrap; }
+    .nav-links { display: flex; gap: 2px; align-items: center; }
+    .nl { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.5); padding: 6px 8px; border: 1px solid transparent; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+    .nl:hover,.nl.active { color: var(--white); border-color: rgba(255,255,255,0.2); }
+    .nav-cta { background: var(--gold); color: var(--navy); border: none; cursor: pointer; padding: 8px 14px; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; white-space: nowrap; margin-left: 8px; }
+    @media(max-width:900px){ .nav-links { display: none; } }
+
+    /* ─── SIDEBAR ─── */
+    #side-nav { display: none; position: fixed; top: 50%; right: 0; transform: translateY(-50%); z-index: 450; flex-direction: column; gap: 1px; }
+    #side-nav.v { display: flex; }
+    .sl { background: rgba(17,38,60,0.92); color: rgba(255,255,255,0.5); font-size: 10px; text-transform: uppercase; letter-spacing: 1px; padding: 9px 13px; cursor: pointer; border-left: 2px solid transparent; transition: all 0.2s; white-space: nowrap; text-align: right; }
+    .sl:hover,.sl.active { color: var(--white); border-left-color: var(--gold); }
+    .sl.cta-sl { background: var(--gold); color: var(--navy); font-weight: 700; border-left-color: transparent; }
+    .sl.cta-sl:hover { background: #c49a50; }
+    @media(max-width:900px){ #side-nav { display: none !important; } }
+
+    /* ─── MOBILE TAB ─── */
+    #mob-tabs { display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 400; background: var(--navy); overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: env(safe-area-inset-bottom,0px); }
+    #mob-tabs::-webkit-scrollbar { display: none; }
+    #mob-tabs.v { display: flex; }
+    .mt { flex: 0 0 auto; padding: 12px 14px; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.45); white-space: nowrap; cursor: pointer; border-top: 2px solid transparent; transition: all 0.2s; }
+    .mt.active { color: var(--gold); border-top-color: var(--gold); }
+
+    /* ─── FLOAT CTA ─── */
+    #float-cta { display: none; position: fixed; bottom: 68px; right: 16px; z-index: 450; background: var(--gold); color: var(--navy); font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 12px 18px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); border: none; cursor: pointer; }
+    #float-cta.v { display: block; }
+    @media(min-width:901px){ #float-cta { display: none !important; } }
+
+    /* ─── HERO ─── */
+    #hero { min-height: 100vh; background: var(--navy); position: relative; display: flex; align-items: flex-end; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0.38; }
+    .hero-ov { position: absolute; inset: 0; background: linear-gradient(to top,rgba(17,38,60,0.97) 0%,rgba(17,38,60,0.15) 60%,transparent 100%); }
+    .hero-c { position: relative; z-index: 2; padding: 60px 24px; max-width: 1060px; margin: 0 auto; width: 100%; }
+    .hero-ey { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 20px; }
+    .hero-c h1 { color: var(--white); margin-bottom: 18px; max-width: 720px; }
+    .hero-sub { font-size: 16px; color: rgba(255,255,255,0.68); max-width: 560px; margin-bottom: 32px; line-height: 1.75; }
+    .btn-ow { display: inline-block; border: 1px solid rgba(255,255,255,0.4); color: var(--white); padding: 12px 24px; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; background: transparent; transition: all 0.2s; }
+    .btn-ow:hover { background: rgba(255,255,255,0.1); }
+
+    /* ─── PDF BAR ─── */
+    .pdf-bar { background: var(--navy-light); padding: 13px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .pdf-bar span { font-size: 12px; color: rgba(255,255,255,0.55); }
+    .pdf-bar a { background: var(--gold); color: var(--navy); font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 9px 18px; text-decoration: none; display: flex; align-items: center; gap: 7px; }
+
+    /* ─── SELLING POINTS ─── */
+    .sp-label-bar { background: var(--grey); padding: 18px 24px 6px; text-align: center; }
+    .sp-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 2px; background: var(--border); }
+    @media(max-width:580px){ .sp-grid { grid-template-columns: 1fr; } }
+    .sp-item { background: var(--white); padding: 26px 22px; display: flex; gap: 14px; align-items: flex-start; cursor: pointer; transition: background 0.15s; }
+    .sp-item:hover { background: #f2f2ef; }
+    .sp-item.dark { background: var(--navy); }
+    .sp-item.dark:hover { background: var(--navy-light); }
+    .sp-icon { font-size: 24px; flex-shrink: 0; line-height: 1; margin-top: 2px; }
+    .sp-num { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--gold); font-weight: 700; margin-bottom: 6px; }
+    .sp-title { font-size: 14px; font-weight: 700; color: var(--navy); line-height: 1.4; }
+    .sp-item.dark .sp-title { color: var(--white); }
+
+    /* ─── ACCORDÉON ─── */
+    .ac-section { border-bottom: 1px solid var(--border); }
+    .ac-section:first-child { border-top: 1px solid var(--border); }
+    .ac-head { padding: 24px 0; cursor: pointer; user-select: none; transition: opacity 0.15s; }
+    .ac-head:hover { opacity: 0.8; }
+    .ac-label { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--gold); font-weight: 700; margin-bottom: 7px; }
+    .ac-title { font-size: clamp(15px,1.8vw,19px); font-weight: 700; color: var(--navy); line-height: 1.35; margin-bottom: 13px; }
+    .ac-cta-hint { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); border-bottom: 1px solid var(--gold); padding-bottom: 1px; }
+    .ac-cta-hint svg { transition: transform 0.3s; }
+    .ac-section.open .ac-cta-hint svg { transform: rotate(180deg); }
+    .ac-section.open .ac-cta-hint { color: var(--navy); border-bottom-color: var(--navy); }
+    .ac-body { display: none; padding-bottom: 36px; }
+    .ac-section.open .ac-body { display: block; }
+
+    /* ─── CONTENU ─── */
+    .kpi-row { display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; }
+    .kpi-chip { background: var(--navy); padding: 14px 16px; text-align: center; flex: 1; min-width: 90px; }
+    .kpi-chip .val { font-size: 19px; font-weight: 700; color: var(--gold); display: block; }
+    .kpi-chip .lbl { font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.45); margin-top: 3px; }
+
+    .dist-list { list-style: none; }
+    .dist-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+    .dist-row:last-child { border-bottom: none; }
+    .dist-t { color: var(--sage); font-weight: 700; font-size: 12px; }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+    @media(max-width:640px){ .two-col { grid-template-columns: 1fr; } }
+
+    .diff-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 14px; }
+    @media(max-width:580px){ .diff-grid { grid-template-columns: 1fr; } }
+    .diff-card { padding: 18px; border: 1px solid var(--border); }
+    .diff-num { font-size: 26px; font-weight: 700; color: var(--gold); line-height: 1; margin-bottom: 7px; }
+    .diff-card h4 { font-size: 12px; color: var(--navy); margin-bottom: 7px; }
+    .diff-card p { font-size: 13px; line-height: 1.7; }
+
+    .track-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-top: 16px; }
+    @media(max-width:540px){ .track-grid { grid-template-columns: repeat(2,1fr); } }
+    .tr-item { position: relative; overflow: hidden; }
+    .tr-item img { width: 100%; height: 160px; object-fit: cover; display: block; }
+    .tr-cap { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(17,38,60,0.85); padding: 7px 10px; }
+    .tr-cap .tc-n { font-size: 11px; font-weight: 700; color: var(--white); }
+    .tr-cap .tc-l { font-size: 10px; color: var(--gold); }
+
+    .warn-box { background: #fff8e7; border-left: 3px solid #d5aa32; padding: 14px 18px; margin-top: 16px; }
+    .warn-box p { font-size: 13px; color: var(--text); }
+    .warn-box strong { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: #b8922a; display: block; margin-bottom: 6px; }
+
+    .inv-box { background: var(--sage-light); border-left: 3px solid var(--sage); padding: 14px 18px; margin-top: 16px; }
+    .inv-box strong { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--sage); display: block; margin-bottom: 6px; }
+    .inv-box p { font-size: 13px; color: var(--text); }
+
+    .note-box { background: var(--navy); padding: 22px 24px; margin-top: 20px; }
+    .note-box .q { font-size: 15px; line-height: 1.65; color: rgba(255,255,255,0.85); font-style: italic; margin-bottom: 10px; }
+    .note-box .s { font-size: 10px; color: var(--gold); letter-spacing: 1px; text-transform: uppercase; }
+
+    .tbl-wrap { overflow-x: auto; }
+    .ptable { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 400px; }
+    .ptable th { background: var(--navy); color: var(--white); padding: 9px 11px; text-align: left; font-size: 9px; text-transform: uppercase; letter-spacing: 1px; }
+    .ptable td { padding: 9px 11px; border-bottom: 1px solid var(--border); color: var(--text); }
+    .ptable tr.hl td { background: var(--gold-light); font-weight: 700; color: var(--navy); }
+    .ptable tr:hover td { background: #f9f9f7; }
+
+    .bench-wrap { display: flex; flex-direction: column; gap: 10px; margin: 16px 0; }
+    .br { display: flex; align-items: center; gap: 10px; }
+    .br-lbl { font-size: 12px; color: var(--muted); width: 140px; flex-shrink: 0; text-align: right; }
+    @media(max-width:460px){ .br-lbl { width: 70px; font-size: 10px; } }
+    .br-bar { flex: 1; height: 26px; background: #eee; }
+    .br-fill { height: 100%; display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; }
+    .br-fill span { font-size: 11px; font-weight: 700; color: var(--white); }
+    .br-fill.hi { background: var(--sage); }
+    .br-fill.lo { background: var(--navy-light); }
+
+    .timeline { display: flex; gap: 2px; }
+    @media(max-width:500px){ .timeline { flex-direction: column; } }
+    .tl { flex: 1; padding: 18px 12px; border: 1px solid var(--border); text-align: center; }
+    .tl.hl { background: var(--navy); border-color: var(--navy); }
+    .tl-pct { font-size: 26px; font-weight: 700; color: var(--navy); display: block; }
+    .tl.hl .tl-pct,.tl.hl .tl-lbl { color: var(--white); }
+    .tl.hl .tl-sub { color: rgba(255,255,255,0.5); }
+    .tl-lbl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--navy); }
+    .tl-sub { font-size: 11px; color: var(--muted); margin-top: 4px; line-height: 1.5; }
+
+    .profil-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media(max-width:560px){ .profil-grid { grid-template-columns: 1fr; } }
+    .pc { padding: 18px; }
+    .pc.green { background: var(--sage-light); border-left: 3px solid var(--sage); }
+    .pc.amber { background: var(--gold-light); border-left: 3px solid var(--gold); }
+    .pc h4 { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 11px; }
+    .pc.green h4 { color: var(--sage); }
+    .pc.amber h4 { color: #9a7530; }
+    .pc li { font-size: 13px; color: var(--text); line-height: 1.75; padding: 3px 0; list-style: none; display: flex; gap: 7px; }
+    .pc.green li::before { content: '✓'; color: var(--sage); font-weight: 700; flex-shrink: 0; }
+    .pc.amber li::before { content: '✕'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+
+    .img-ph { background: linear-gradient(135deg,#1c3b5a 0%,#11263c 100%); display: flex; align-items: center; justify-content: center; color: rgba(216,178,106,0.35); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; }
+
+    /* ─── CTA ─── */
+    #contact { background: var(--navy); padding: 80px 0; }
+    .cta-inner { max-width: 1060px; margin: 0 auto; padding: 0 24px; text-align: center; }
+    .cta-inner h2 { color: var(--white); margin-bottom: 10px; }
+    .cta-inner > p { color: rgba(255,255,255,0.6); max-width: 480px; margin: 0 auto 36px; font-size: 15px; }
+    .cta-form { max-width: 400px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; text-align: left; }
+    .cta-form .ff label { color: rgba(255,255,255,0.4); }
+    .cta-form input { border: 1.5px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.06); color: var(--white); padding: 13px 14px; font-size: 14px; outline: none; transition: border-color 0.2s; width: 100%; }
+    .cta-form input::placeholder { color: rgba(255,255,255,0.25); }
+    .cta-form input:focus { border-color: var(--gold); }
+    .cta-form input.err { border-color: #e74c3c; }
+    .btn-g { background: var(--gold); color: var(--navy); border: none; cursor: pointer; padding: 14px; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; transition: opacity 0.2s; width: 100%; }
+    .btn-g:hover { opacity: 0.88; }
+    .cta-disc { font-size: 11px; color: rgba(255,255,255,0.25); margin-top: 10px; }
+
+    footer { background: #070d1a; padding: 24px; text-align: center; }
+    footer p { font-size: 10px; color: rgba(255,255,255,0.2); line-height: 1.9; }
+
+    section[id] { scroll-margin-top: calc(var(--nav-h) + 8px); }
+  </style>
+</head>
+<body>
+
+<!-- ══ GATING ══ -->
+<div id="gating-overlay">
+  <div class="gating-box">
+    <div class="g-logo">Clément Talmo · Advisory Dubai</div>
+    <h2>Accéder au dossier investisseur</h2>
+    <p>IMTIAZ — Downtown Jebel Ali · Sheikh Zayed Road<br>Analyse complète : marché, promoteur, pricing, rentabilité.</p>
+    <iframe name="fs-gate" style="display:none;"></iframe>
+    <form class="gf" action="https://formspree.io/f/mbdqzvkv" method="POST" target="fs-gate" onsubmit="handleGating(event)" novalidate>
+      <input type="hidden" name="_subject" value="🏙️ Nouveau lead IMTIAZ Downtown Jebel Ali">
+      <input type="hidden" name="source" value="IMTIAZ — Gating">
+      <div class="ff">
+        <label for="g-p">Prénom</label>
+        <input type="text" id="g-p" name="prenom" placeholder="Votre prénom" autocomplete="given-name">
+        <span class="ferr" id="e-p">Merci d'indiquer votre prénom.</span>
+      </div>
+      <div class="ff">
+        <label for="g-t">Téléphone</label>
+        <input type="tel" id="g-t" name="telephone" placeholder="+33 6 12 34 56 78" autocomplete="tel">
+        <span class="ferr" id="e-t">Numéro invalide.</span>
+      </div>
+      <button type="submit" class="btn-p">Accéder au dossier →</button>
+    </form>
+    <p class="g-disc">Vos informations restent confidentielles. Clément vous contacte sous 24h.</p>
+  </div>
+</div>
+
+<!-- ══ SIDEBAR ══ -->
+<div id="side-nav">
+  <div class="sl" onclick="goTo('marche')">Le marché</div>
+  <div class="sl" onclick="goTo('localisation')">Localisation</div>
+  <div class="sl" onclick="goTo('promoteur')">IMTIAZ</div>
+  <div class="sl" onclick="goTo('projet')">Le projet</div>
+  <div class="sl" onclick="goTo('pricing')">Pricing</div>
+  <div class="sl" onclick="goTo('rentabilite')">Rentabilité</div>
+  <div class="sl" onclick="goTo('pour-qui')">Pour qui ?</div>
+  <div class="sl cta-sl" onclick="goTo('contact')">📞 Contact</div>
+</div>
+
+<!-- ══ FLOAT CTA ══ -->
+<button id="float-cta" onclick="goTo('contact')">📞 Contact</button>
+
+<!-- ══ NAV ══ -->
+<nav id="main-nav">
+  <div class="nav-brand">IMTIAZ · Downtown Jebel Ali</div>
+  <div class="nav-links">
+    <span class="nl" onclick="goTo('marche')">Marché</span>
+    <span class="nl" onclick="goTo('localisation')">Localisation</span>
+    <span class="nl" onclick="goTo('promoteur')">IMTIAZ</span>
+    <span class="nl" onclick="goTo('projet')">Le projet</span>
+    <span class="nl" onclick="goTo('pricing')">Pricing</span>
+    <span class="nl" onclick="goTo('rentabilite')">Rentabilité</span>
+    <span class="nl" onclick="goTo('pour-qui')">Pour qui ?</span>
+    <button class="nav-cta" onclick="goTo('contact')">Être contacté</button>
+  </div>
+</nav>
+
+<!-- ══ MOBILE TABS ══ -->
+<div id="mob-tabs">
+  <div class="mt" onclick="goTo('marche')">Marché</div>
+  <div class="mt" onclick="goTo('localisation')">Localisation</div>
+  <div class="mt" onclick="goTo('promoteur')">IMTIAZ</div>
+  <div class="mt" onclick="goTo('projet')">Projet</div>
+  <div class="mt" onclick="goTo('pricing')">Pricing</div>
+  <div class="mt" onclick="goTo('rentabilite')">Rendement</div>
+  <div class="mt" onclick="goTo('pour-qui')">Pour qui ?</div>
+  <div class="mt" style="color:var(--gold);" onclick="goTo('contact')">Contact</div>
+</div>
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="hero-bg" id="hero-bg" style="background-image:url('img/hero.jpg');"></div>
+  <div class="hero-ov"></div>
+  <div class="hero-c">
+    <div class="hero-ey">Dubai · Off-Plan · IMTIAZ Developments · Sheikh Zayed Road</div>
+    <h1>Acheter IMTIAZ à −27%.<br>Avant que le marché<br>s'en rende compte.</h1>
+    <p class="hero-sub">Studio dès 650 000 AED · 1BR sous le million · 18 min de Marina · Métro au pied · Sheikh Zayed Road directe</p>
+    <button class="btn-ow" onclick="goTo('contact')">Demander l'étude de rentabilité →</button>
+  </div>
+</section>
+
+<!-- ══ PDF BAR ══ -->
+<div class="pdf-bar">
+  <span>IMTIAZ Downtown Jebel Ali — Dossier investisseur complet</span>
+  <a id="pdf-btn" href="#" download>
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    Télécharger le dossier PDF
+  </a>
+</div>
+
+<!-- ══ SELLING POINTS ══ -->
+<div class="sp-label-bar">
+  <span class="label">Arguments de vente majeurs du projet</span>
+</div>
+<div class="sp-grid">
+  <div class="sp-item" onclick="goTo('marche')">
+    <div class="sp-icon">📍</div>
+    <div>
+      <div class="sp-num">01 — La zone</div>
+      <div class="sp-title">Un corridor en pleine transformation — Sheikh Zayed Road, Expo City, Palm Jebel Ali, métro</div>
+    </div>
+  </div>
+  <div class="sp-item" onclick="goTo('promoteur')">
+    <div class="sp-icon">🏗️</div>
+    <div>
+      <div class="sp-num">02 — Le promoteur</div>
+      <div class="sp-title">IMTIAZ : 30+ ans d'expérience, 40+ projets, 2 000+ unités livrées — à un ticket encore bas</div>
+    </div>
+  </div>
+  <div class="sp-item" onclick="goTo('pricing')">
+    <div class="sp-icon">💰</div>
+    <div>
+      <div class="sp-num">03 — Le prix</div>
+      <div class="sp-title">−27% vs les références IMTIAZ à JVC et DLRC. Studio dès 650K AED, 1BR sous le million.</div>
+    </div>
+  </div>
+  <div class="sp-item dark" onclick="goTo('rentabilite')">
+    <div class="sp-icon">📈</div>
+    <div>
+      <div class="sp-num">04 — La rentabilité</div>
+      <div class="sp-title" style="color:var(--white);">7,7% à 9,2% de rendement brut estimé. Métro au pied = sécurité locative maximale.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ACCORDÉON ══ -->
+<div class="container" style="padding-top:48px; padding-bottom:64px;">
+
+  <!-- 1. MARCHÉ -->
+  <div class="ac-section" id="marche">
+    <div class="ac-head" onclick="toggle(this)">
+      <div class="ac-label">Le marché</div>
+      <div class="ac-title">Dubai enregistre 109 527 transactions off-plan en 2024 — un record. Le corridor sud est la prochaine frontière de cette croissance.</div>
+      <div class="ac-cta-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg> Voir le détail</div>
+    </div>
+    <div class="ac-body">
+      <div class="kpi-row">
+        <div class="kpi-chip"><span class="val">+60,5 %</span><span class="lbl">Transactions off-plan 2024</span></div>
+        <div class="kpi-chip"><span class="val">228 Mds</span><span class="lbl">AED — valeur record</span></div>
+        <div class="kpi-chip"><span class="val">109 527</span><span class="lbl">Transactions en 2024</span></div>
+        <div class="kpi-chip"><span class="val">2 Mds AED</span><span class="lbl">Investissement IMTIAZ</span></div>
+      </div>
+      <p style="margin-bottom:16px;">Le marché immobilier off-plan de Dubai a atteint un <strong>record historique en 2024</strong> avec 109 527 transactions (+60,5%), pour une valeur totale de 228 milliards AED. Cette dynamique est structurelle : afflux de résidents internationaux, diversification économique active, fiscalité attractive.</p>
+      <p style="margin-bottom:16px;">Le corridor sud — Downtown Jebel Ali, Expo City, Jebel Ali Port, Palm Jebel Ali — est précisément la <strong>prochaine zone à se revaloriser</strong>. IMTIAZ a d'ailleurs acquis ce terrain stratégique pour 2 milliards AED, signal fort de leur conviction sur cette zone.</p>
+      <div class="inv-box">
+        <strong>Signal investisseur</strong>
+        <p>Investir sur ce corridor aujourd'hui, c'est ce qu'étaient JVC ou Dubai South il y a 5 ans — avant leur revalorisation. La zone part bas, mais avec des ancrages concrets : métro, Sheikh Zayed Road, Expo, Port de Jebel Ali.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. LOCALISATION -->
+  <div class="ac-section" id="localisation">
+    <div class="ac-head" onclick="toggle(this)">
+      <div class="ac-label">Localisation</div>
+      <div class="ac-title">Ce n'est pas loin. C'est rapide. 18 minutes de Marina, 9 minutes d'Expo City, métro au pied du projet.</div>
+      <div class="ac-cta-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg> Voir le détail</div>
+    </div>
+    <div class="ac-body">
+      <div class="two-col">
+        <div>
+          <ul class="dist-list">
+            <li class="dist-row"><span>🏖️ Dubai Marina</span><span class="dist-t">~18 min</span></li>
+            <li class="dist-row"><span>🌆 Downtown Dubai</span><span class="dist-t">~30 min</span></li>
+            <li class="dist-row"><span>🌍 Expo City Dubai</span><span class="dist-t">~9 min</span></li>
+            <li class="dist-row"><span>🚇 Station métro</span><span class="dist-t">Au pied du projet</span></li>
+            <li class="dist-row"><span>✈️ Al Maktoum Airport</span><span class="dist-t">~15 min</span></li>
+            <li class="dist-row"><span>🌴 Palm Jebel Ali</span><span class="dist-t">~10 min</span></li>
+            <li class="dist-row"><span>🛳️ Port de Jebel Ali</span><span class="dist-t">~12 min</span></li>
+          </ul>
+        </div>
+        <div>
+          <div id="img-loc" class="img-ph" style="height:280px; width:100%;"><span>Carte</span></div>
+        </div>
+      </div>
+      <p style="margin-top:16px; margin-bottom:12px;">La vraie narration n'est pas "loin" — c'est <strong>"très accessible aujourd'hui, bien plus puissante demain"</strong>. Sheikh Zayed Road garantit une connexion directe à toute la ville. La station de métro au pied du projet est le facteur de sécurité locative le plus fort de tout le corridor.</p>
+      <div class="diff-grid">
+        <div class="diff-card">
+          <div class="diff-num">↑</div>
+          <h4>Forces de la localisation</h4>
+          <p>Sheikh Zayed Road directe. Métro annoncé. Expo City à 9 min. Exposition future Palm Jebel Ali. Zone encore peu pricée par rapport à son potentiel.</p>
+        </div>
+        <div class="diff-card">
+          <div class="diff-num">→</div>
+          <h4>Points à comprendre</h4>
+          <p>La zone est encore en développement. Le discours doit rester analytique — c'est un pari sur la trajectoire, pas sur le présent. Les ancrages de sécurité (métro, SZR) compensent.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. IMTIAZ -->
+  <div class="ac-section" id="promoteur">
+    <div class="ac-head" onclick="toggle(this)">
+      <div class="ac-label">Le promoteur</div>
+      <div class="ac-title">IMTIAZ depuis 1993 : 40+ projets, 10 Mds AED de portefeuille, 2 000+ unités livrées. Acheter leur signature avant que les prix rattrapent leur réputation.</div>
+      <div class="ac-cta-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg> Voir le détail</div>
+    </div>
+    <div class="ac-body">
+      <div class="kpi-row">
+        <div class="kpi-chip"><span class="val">1993</span><span class="lbl">Fondation</span></div>
+        <div class="kpi-chip"><span class="val">40+</span><span class="lbl">Projets</span></div>
+        <div class="kpi-chip"><span class="val">10 Mds AED</span><span class="lbl">Portefeuille</span></div>
+        <div class="kpi-chip"><span class="val">2 000+</span><span class="lbl">Unités livrées</span></div>
+      </div>
+      <p style="margin-bottom:20px;">IMTIAZ est né d'une activité de construction en 1993 avant de devenir un acteur majeur du développement immobilier aux EAU. Le groupe cumule <strong>plus de 40 projets</strong>, un portefeuille valorisé à ~10 Mds AED, plus de 2 000 unités résidentielles livrées, 4 millions de sq.ft de bureaux et 2 millions de sq.ft de retail. Plusieurs handovers ont été réalisés à l'heure ou en avance.</p>
+      <p style="margin-bottom:20px; font-size:13px; font-weight:700; color:var(--navy);">Projets de référence IMTIAZ :</p>
+      <div class="track-grid">
+        <div class="tr-item">
+          <img src="img/imtiaz_apts.jpg" alt="IMTIAZ apartments" loading="lazy">
+          <div class="tr-cap"><div class="tc-n">IMTIAZ Residences</div><div class="tc-l">Dubai · Style premium</div></div>
+        </div>
+        <div class="tr-item">
+          <img src="img/imtiaz_wynwood.jpg" alt="Wynwood by IMTIAZ" loading="lazy">
+          <div class="tr-cap"><div class="tc-n">Wynwood</div><div class="tc-l">Dubai Islands · Livré</div></div>
+        </div>
+        <div class="tr-item">
+          <img src="img/imtiaz_beach.jpg" alt="Beach Walk IMTIAZ" loading="lazy">
+          <div class="tr-cap"><div class="tc-n">Beach Walk 4</div><div class="tc-l">Dubai Islands</div></div>
+        </div>
+        <div class="tr-item" style="background:rgba(216,178,106,0.1); border:1px solid var(--gold); height:160px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:16px;">
+          <div style="font-size:22px; color:var(--gold); font-weight:700;">→</div>
+          <div class="tc-n" style="color:var(--gold); margin-top:6px;">Downtown Jebel Ali</div>
+          <div class="tc-l" style="color:var(--muted); margin-top:3px;">Leur nouveau projet flagship</div>
+        </div>
+      </div>
+      <div class="inv-box" style="margin-top:20px;">
+        <strong>Message clé</strong>
+        <p>La vraie promesse n'est pas "acheter un studio pas cher". C'est <strong>acheter un ticket d'entrée rare chez un promoteur dont la réputation, l'exécution et la qualité rassurent davantage que l'environnement immédiat du quartier</strong>. Les tickets IMTIAZ à JVC et DLRC sont déjà 20-27% plus chers. Downtown Jebel Ali, c'est la fenêtre d'entrée.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. LE PROJET -->
+  <div class="ac-section" id="projet">
+    <div class="ac-head" onclick="toggle(this)">
+      <div class="ac-label">Le projet</div>
+      <div class="ac-title">Plusieurs bâtiments, large podium d'amenities, résidences meublées possibles — une proposition différenciante dans un environnement encore peu mature.</div>
+      <div class="ac-cta-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg> Voir le détail</div>
+    </div>
+    <div class="ac-body">
+      <p style="margin-bottom:20px;">Le projet IMTIAZ Downtown Jebel Ali est positionné comme une <strong>proposition de valeur plus forte qu'un simple building</strong> : potentiellement 3 à 4 bâtiments avec un large podium d'amenities, pensé pour dominer le micro-marché local en termes de désirabilité locative et de lisibilité commerciale.</p>
+      <div class="diff-grid" style="margin-bottom:20px;">
+        <div class="diff-card">
+          <div class="diff-num">🏊</div>
+          <h4>Amenities premium</h4>
+          <p>Large podium d'amenities prévu : piscine, fitness, espaces communs — supérieur à l'environnement immédiat. Résidences meublées envisagées sur certaines unités.</p>
+        </div>
+        <div class="diff-card">
+          <div class="diff-num">🚇</div>
+          <h4>Métro au pied</h4>
+          <p>Station de métro annoncée au pied du projet. C'est le facteur de sécurité locative n°1 — le locataire sans voiture peut habiter ici. Profil locatif maximal.</p>
+        </div>
+        <div class="diff-card">
+          <div class="diff-num">🏗️</div>
+          <h4>Effet différenciant</h4>
+          <p>Ce type de produit n'existe pas vraiment aujourd'hui dans l'environnement immédiat. IMTIAZ arrive en leader sur un micro-marché sans concurrence premium établie.</p>
+        </div>
+        <div class="diff-card">
+          <div class="diff-num">📋</div>
+          <h4>Statut projet</h4>
+          <p>Projet en phase de lancement. Certains détails (nombre final de bâtiments, surfaces exactes, liste amenities, date de livraison) seront confirmés lors des échanges commerciaux.</p>
+        </div>
+      </div>
+      <div class="warn-box">
+        <strong>À confirmer avant engagement</strong>
+        <p>Nom commercial final, nombre exact de bâtiments, surfaces détaillées, date de livraison, liste amenities complète, plan masse final. Ces éléments seront précisés lors de votre entretien advisory.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. PRICING -->
+  <div class="ac-section" id="pricing">
+    <div class="ac-head" onclick="toggle(this)">
+      <div class="ac-label">Pricing</div>
+      <div class="ac-title">Studio dès 650 000 AED, 1BR sous le million. Entre −19% et −27% vs les références IMTIAZ sur d'autres zones. C'est la décote d'early entry.</div>
+      <div class="ac-cta-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg> Voir le détail</div>
+    </div>
+    <div class="ac-body">
+      <div class="tbl-wrap" style="margin-bottom:20px;">
+        <table class="ptable">
+          <thead><tr><th>Typo</th><th>Prix appel</th><th>Réf. IMTIAZ (DLRC)</th><th>Écart</th><th>Signal</th></tr></thead>
+          <tbody>
+            <tr class="hl"><td><strong>Studio</strong></td><td><strong>650 000 AED</strong></td><td>~800 000 AED</td><td><strong>−18,8 %</strong></td><td>Fort levier d'entrée sur la marque</td></tr>
+            <tr><td><strong>1 BR</strong></td><td>950 000 – 990 000 AED</td><td>~1 300 000 AED</td><td><strong>−27 % à −24 %</strong></td><td>Décote significative avant revalorisation</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-bottom:16px; font-size:13px; font-weight:700; color:var(--navy);">Benchmark prix/sq.ft vs zones IMTIAZ établies :</p>
+      <div class="bench-wrap">
+        <div class="br"><div class="br-lbl">IMTIAZ DLRC</div><div class="br-bar"><div class="br-fill lo" style="width:100%;"><span>~800K AED studio</span></div></div></div>
+        <div class="br"><div class="br-lbl">IMTIAZ JVC</div><div class="br-bar"><div class="br-fill lo" style="width:88%;"><span>~1 300K AED 1BR</span></div></div></div>
+        <div class="br"><div class="br-lbl"><strong>Downtown JA ✓</strong></div><div class="br-bar"><div class="br-fill hi" style="width:72%;"><span>650K / 950K AED</span></div></div></div>
+      </div>
+      <div style="margin-top:24px;">
+        <p style="font-size:11px; text-transform:uppercase; letter-spacing:1.5px; color:var(--muted); margin-bottom:12px;">Plan de paiement</p>
+        <div class="timeline">
+          <div class="tl hl"><span class="tl-pct">50 %</span><div class="tl-lbl">Construction</div><div class="tl-sub">Versements progressifs</div></div>
+          <div class="tl"><span class="tl-pct">50 %</span><div class="tl-lbl">Livraison</div><div class="tl-sub">À la remise des clés</div></div>
+        </div>
+        <div class="warn-box" style="margin-top:12px;">
+          <strong>Plan 70/30 post-handover</strong>
+          <p>Option à confirmer avec l'équipe commerciale. Si validée : 70 % pendant construction, 30 % post-livraison — trésorerie encore plus favorable.</p>
+        </div>
+      </div>
+      <div class="note-box">
+        <div class="q">"La vraie histoire n'est pas simplement 'c'est moins cher'. C'est : le marché vous laisse encore acheter IMTIAZ avec un ticket d'entrée de pré-revalorisation."</div>
+        <div class="s">Clément Talmo · Advisory Immobilier Dubai</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. RENTABILITÉ -->
+  <div class="ac-section" id="rentabilite">
+    <div class="ac-head" onclick="toggle(this)">
+      <div class="ac-label">Rentabilité</div>
+      <div class="ac-title">7,7% à 9,2% de rendement brut estimé sur le studio. Jusqu'à 8,9% sur le 1BR. Le métro au pied garantit une demande locative permanente.</div>
+      <div class="ac-cta-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg> Voir le détail</div>
+    </div>
+    <div class="ac-body">
+      <div class="tbl-wrap" style="margin-bottom:16px;">
+        <table class="ptable">
+          <thead><tr><th>Produit</th><th>Prix</th><th>Loyer annuel</th><th>Rendement brut</th></tr></thead>
+          <tbody>
+            <tr class="hl"><td>Studio</td><td>650 000 AED</td><td>50 000 AED</td><td><strong>7,7 %</strong></td></tr>
+            <tr class="hl"><td>Studio</td><td>650 000 AED</td><td>60 000 AED</td><td><strong>9,2 %</strong></td></tr>
+            <tr><td>1 BR</td><td>950 000 AED</td><td>65 000 AED</td><td>6,8 %</td></tr>
+            <tr><td>1 BR</td><td>950 000 AED</td><td>80 000 AED</td><td>8,4 %</td></tr>
+            <tr><td>1 BR</td><td>950 000 AED</td><td>85 000 AED</td><td><strong>8,9 %</strong></td></tr>
+            <tr><td>1 BR</td><td>990 000 AED</td><td>65 000 AED</td><td>6,6 %</td></tr>
+            <tr><td>1 BR</td><td>990 000 AED</td><td>80 000 AED</td><td>8,1 %</td></tr>
+            <tr><td>1 BR</td><td>990 000 AED</td><td>85 000 AED</td><td>8,6 %</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="warn-box">
+        <strong>Ces chiffres sont des ordres de grandeur bruts</strong>
+        <p>Hors charges, hors vacance locative, hors agency fees, hors frais de service. Ne constituent pas une promesse de rendement. Une étude personnalisée est disponible sur demande.</p>
+      </div>
+      <div class="inv-box" style="margin-top:12px;">
+        <strong>Pourquoi le métro change tout</strong>
+        <p>Un locataire sans voiture peut habiter ici grâce à la station de métro au pied. Ça élargit massivement le bassin locatif — salariés d'Expo City, travailleurs du Port de Jebel Ali, jeunes actifs. Le risque de vacance locative est structurellement réduit.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. POUR QUI -->
+  <div class="ac-section" id="pour-qui">
+    <div class="ac-head" onclick="toggle(this)">
+      <div class="ac-label">Pour qui ?</div>
+      <div class="ac-title">Ce projet est fait pour les investisseurs qui veulent la sécurité d'une marque forte à un prix d'entrée encore bas — et qui comprennent la logique d'une zone en développement.</div>
+      <div class="ac-cta-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg> Voir le détail</div>
+    </div>
+    <div class="ac-body">
+      <div class="profil-grid">
+        <div class="pc green">
+          <h4>✓ Ce profil est adapté</h4>
+          <ul>
+            <li>Vous avez un budget limité mais voulez un promoteur reconnu</li>
+            <li>Vous cherchez du rendement locatif — 7 à 9% brut est votre cible</li>
+            <li>Vous comprenez qu'une zone en développement = potentiel de capitalisation</li>
+            <li>Horizon 5–7 ans, vous voulez bénéficier de la revalorisation du corridor</li>
+            <li>Vous cherchez à diversifier sans mettre plus d'un million AED</li>
+            <li>Vous voulez la sécurité métro pour sécuriser la demande locative</li>
+          </ul>
+        </div>
+        <div class="pc amber">
+          <h4>✕ Ce profil n'est pas adapté</h4>
+          <ul>
+            <li>Vous voulez un quartier mature et premium immédiatement (Marina, Downtown)</li>
+            <li>Vous cherchez un flip rapide en 12-18 mois</li>
+            <li>Vous avez besoin de louer dès la livraison au prix maximal garanti</li>
+            <li>Vous n'êtes pas à l'aise avec une zone encore en construction narrative</li>
+          </ul>
+        </div>
+      </div>
+      <div class="note-box">
+        <div class="q">"La page ne doit pas seulement vendre un projet. Elle doit rendre évident un arbitrage : entrer sur IMTIAZ quand le ticket est encore bas, dans un corridor crédible, avec suffisamment de sécurité locative pour que le risque reste maîtrisé."</div>
+        <div class="s">Clément Talmo · Advisory Immobilier Dubai</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══ CONTACT ══ -->
+<section id="contact">
+  <div class="cta-inner">
+    <span class="label" style="display:block; margin-bottom:14px;">Advisory · Clément Talmo</span>
+    <h2 style="color:var(--white);">Recevoir l'étude de rentabilité complète</h2>
+    <p>Je vous contacte personnellement sous 24h avec la grille de prix complète et l'étude de rentabilité détaillée pour votre situation.</p>
+    <iframe name="fs-cta" style="display:none;"></iframe>
+    <form class="cta-form" action="https://formspree.io/f/mbdqzvkv" method="POST" target="fs-cta" onsubmit="handleCTA(event)" novalidate>
+      <input type="hidden" name="_subject" value="🏙️ Nouveau lead IMTIAZ Downtown Jebel Ali">
+      <input type="hidden" name="source" value="IMTIAZ — CTA">
+      <div class="ff">
+        <label for="c-p">Prénom</label>
+        <input type="text" id="c-p" name="prenom" placeholder="Votre prénom">
+        <span class="ferr" id="ce-p">Merci d'indiquer votre prénom.</span>
+      </div>
+      <div class="ff">
+        <label for="c-t">Téléphone</label>
+        <input type="tel" id="c-t" name="telephone" placeholder="+33 6 12 34 56 78">
+        <span class="ferr" id="ce-t">Numéro invalide.</span>
+      </div>
+      <button type="submit" class="btn-g">Recevoir l'étude de rentabilité →</button>
+    </form>
+    <p class="cta-disc">Entretien sans engagement. Données strictement confidentielles.</p>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Clément Talmo · Advisory Immobilier Dubai<br>
+  Document d'information investisseur. Ne constitue pas un conseil en investissement réglementé. Prix et rendements indicatifs, sujets à modification. Plusieurs éléments du projet (nom commercial, surfaces, date de livraison, amenities) restent à confirmer par IMTIAZ Developments.</p>
+</footer>
+
+<script>
+  const WA = '33624835980';
+  function isPhone(v){ return /^(\+?\d[\d\s\-\.\(\)]{5,18}\d)$/.test(v.trim()); }
+
+  function toggle(head){
+    const sec = head.parentElement;
+    const wasOpen = sec.classList.contains('open');
+    document.querySelectorAll('.ac-section.open').forEach(s => s.classList.remove('open'));
+    if(!wasOpen) sec.classList.add('open');
+  }
+
+  function goTo(id){ const el=document.getElementById(id); if(el) el.scrollIntoView({behavior:'smooth'}); }
+
+  function showUI(){
+    document.getElementById('main-nav').classList.add('v');
+    document.getElementById('side-nav').classList.add('v');
+    document.getElementById('mob-tabs').classList.add('v');
+    document.getElementById('float-cta').classList.add('v');
+  }
+
+  function handleGating(e){
+    const p=document.getElementById('g-p'), t=document.getElementById('g-t');
+    let ok=true;
+    if(!p.value.trim()){ p.classList.add('err'); document.getElementById('e-p').classList.add('v'); ok=false; }
+    else { p.classList.remove('err'); document.getElementById('e-p').classList.remove('v'); }
+    if(!isPhone(t.value)){ t.classList.add('err'); document.getElementById('e-t').classList.add('v'); ok=false; }
+    else { t.classList.remove('err'); document.getElementById('e-t').classList.remove('v'); }
+    if(!ok){ e.preventDefault(); return; }
+    setTimeout(()=>{
+      const o=document.getElementById('gating-overlay');
+      o.classList.add('hidden');
+      setTimeout(()=>o.style.display='none',600);
+      showUI();
+    },300);
+  }
+
+  function handleCTA(e){
+    const p=document.getElementById('c-p'), t=document.getElementById('c-t');
+    let ok=true;
+    if(!p.value.trim()){ p.classList.add('err'); document.getElementById('ce-p').classList.add('v'); ok=false; }
+    else { p.classList.remove('err'); document.getElementById('ce-p').classList.remove('v'); }
+    if(!isPhone(t.value)){ t.classList.add('err'); document.getElementById('ce-t').classList.add('v'); ok=false; }
+    else { t.classList.remove('err'); document.getElementById('ce-t').classList.remove('v'); }
+    if(!ok){ e.preventDefault(); return; }
+    const msg=encodeURIComponent(`Bonjour Clément,\n\nJe viens de consulter le dossier IMTIAZ Downtown Jebel Ali et je souhaite recevoir l'étude de rentabilité complète.\n\nPrénom : ${p.value.trim()}\nTéléphone : ${t.value.trim()}\n\nMerci.`);
+    setTimeout(()=>window.open(`https://wa.me/${WA}?text=${msg}`,'_blank'),400);
+  }
+
+  window.addEventListener('scroll',()=>{
+    if(window.scrollY>80) document.getElementById('main-nav').classList.add('v');
+    const ids=['marche','localisation','promoteur','projet','pricing','rentabilite','pour-qui','contact'];
+    let cur='';
+    ids.forEach(id=>{ const el=document.getElementById(id); if(el&&window.scrollY>=el.offsetTop-120) cur=id; });
+    ['nl','sl','mt'].forEach(cls=>{
+      document.querySelectorAll('.'+cls).forEach(l=>l.classList.remove('active'));
+      const el=document.querySelector(`.${cls}[onclick*="${cur}"]`);
+      if(el) el.classList.add('active');
+    });
+  });
+
+  // Localisation image
+  window.addEventListener('DOMContentLoaded',()=>{
+    const loc=document.getElementById('img-loc');
+    if(loc){
+      const img=new Image();
+      img.onload=()=>{ loc.style.backgroundImage="url('img/localisation.webp')"; loc.style.backgroundSize='cover'; loc.style.backgroundPosition='center'; loc.innerHTML=''; loc.classList.remove('img-ph'); };
+      img.src='img/localisation.webp';
+    }
+  });
+</script>
+</body>
+</html>
