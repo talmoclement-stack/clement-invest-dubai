@@ -124,26 +124,27 @@
     .sp-arrow { position: absolute; bottom: 28px; right: 32px; font-size: 20px; color: var(--gold); opacity: 0.5; transition: opacity 0.2s, transform 0.2s; }
     .sp-item:hover .sp-arrow { opacity: 1; transform: translateX(4px); }
 
-    /* ─── ACCORDÉON ─── */
-    .ac-section { border-bottom: 1px solid var(--border); }
-    .ac-section:first-child { border-top: 1px solid var(--border); }
-    .ac-head { padding: 32px 0; cursor: pointer; user-select: none; transition: opacity 0.15s; }
-    .ac-head:hover { opacity: 0.82; }
-    .ac-label { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--gold); font-weight: 700; margin-bottom: 10px; }
-    .ac-title { font-size: clamp(18px,2.2vw,26px); font-weight: 800; color: var(--navy); line-height: 1.2; margin-bottom: 16px; }
-    .ac-cta-hint { display: inline-flex; align-items: center; gap: 7px; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); border-bottom: 1px solid var(--gold); padding-bottom: 1px; }
-    .ac-cta-hint svg { transition: transform 0.3s; flex-shrink:0; }
-    .ac-section.open .ac-cta-hint svg { transform: rotate(180deg); }
-    .ac-section.open .ac-cta-hint { color: var(--navy); border-bottom-color: var(--navy); }
-    .ac-body { display: none; padding-bottom: 40px; }
-    .ac-section.open .ac-body { display: block; }
+    /* ─── VIDEO FRAME ─── */
+    .video-frame { position: relative; width: 100%; padding-bottom: 56.25%; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); overflow: hidden; }
+    .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+    .video-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
 
-    /* ─── BULLETS accordéon ─── */
-    .ac-bullets { list-style: none; display: flex; flex-direction: column; gap: 0; margin-bottom: 28px; }
-    .ac-bullets li { font-size: 15px; font-weight: 600; color: var(--navy); padding: 13px 0; border-bottom: 1px solid var(--border); display: flex; gap: 12px; line-height: 1.3; align-items: flex-start; }
-    .ac-bullets li:last-child { border-bottom: none; }
-    .ac-bullets li::before { content: '→'; color: var(--gold); font-weight: 800; font-size: 14px; flex-shrink: 0; margin-top: 1px; }
-    .ac-bullets li span.sub { display: block; font-size: 12px; font-weight: 400; color: var(--muted); margin-top: 3px; }
+    /* ─── SECTIONS PLATES ─── */
+    .sections-wrap { background: var(--white); }
+    .det-section { border-bottom: 1px solid var(--border); }
+    .det-section.alt { background: var(--grey); }
+    .det-inner { max-width: 1060px; margin: 0 auto; padding: 64px 24px; }
+    .det-head { margin-bottom: 40px; }
+    .det-label { font-size: 10px; text-transform: uppercase; letter-spacing: 3px; color: var(--gold); font-weight: 700; display: block; margin-bottom: 14px; }
+    .det-title { font-size: clamp(22px, 2.8vw, 36px); font-weight: 800; color: var(--navy); line-height: 1.15; max-width: 820px; }
+    .det-photo { position: relative; margin-bottom: 36px; overflow: hidden; }
+
+    /* ─── BULLETS sections plates ─── */
+    .det-bullets { list-style: none; display: flex; flex-direction: column; gap: 0; margin-bottom: 28px; }
+    .det-bullets li { font-size: 15px; font-weight: 600; color: var(--navy); padding: 16px 0; border-bottom: 1px solid var(--border); display: flex; gap: 14px; line-height: 1.3; align-items: flex-start; }
+    .det-bullets li:last-child { border-bottom: none; }
+    .det-bullets li::before { content: '→'; color: var(--gold); font-weight: 800; font-size: 14px; flex-shrink: 0; margin-top: 2px; }
+    .det-bullets li span.sub { display: block; font-size: 12px; font-weight: 400; color: var(--muted); margin-top: 4px; }
 
     /* ─── SIGNAL INVESTISSEUR ─── */
     .si-box { background: var(--sage-light); border-left: 4px solid var(--sage); padding: 20px 22px; margin-top: 8px; }
@@ -418,240 +419,261 @@
 
 </div>
 
-<!-- ══ ACCORDÉON PRINCIPAL ══ -->
-<div class="container" style="padding-top:48px; padding-bottom:64px;">
+<!-- ══ VIDEO EMBED ══ -->
+<div id="video-section" style="background:var(--navy); padding:60px 24px;">
+  <div style="max-width:900px; margin:0 auto;">
+    <span style="font-size:10px; text-transform:uppercase; letter-spacing:3px; color:var(--gold); font-weight:700; display:block; margin-bottom:16px; text-align:center;">Présentation vidéo</span>
+    <h2 style="color:var(--white); text-align:center; margin-bottom:36px; font-size:clamp(20px,2.5vw,32px);">Regardez la présentation complète</h2>
+    <div class="video-frame">
+      <div class="video-placeholder">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--gold); opacity:0.6;"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
+        <p style="color:rgba(255,255,255,0.45); font-size:13px; margin-top:16px; text-align:center;">Votre vidéo YouTube ici<br><span style="font-size:11px; color:rgba(255,255,255,0.28);">Remplacez cet espace par l'embed YouTube</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SECTIONS DÉTAIL ══ -->
+<div class="sections-wrap">
 
   <!-- 1. MARCHÉ -->
-  <div class="ac-section" id="marche">
-    <div class="ac-head" onclick="toggle(this)">
-      <div class="ac-label">Le marché</div>
-      <div class="ac-title">Abu Dhabi : même puissance que Dubai. 20× moins d'offre off-plan.</div>
-      <div class="ac-cta-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg> Voir le détail</div>
-    </div>
-    <div class="ac-body">
-      <div style="margin-bottom:28px; overflow:hidden; position:relative;">
-        <img src="img/abu_dhabi.jpg" alt="Abu Dhabi skyline" style="width:100%; height:360px; object-fit:cover; display:block;">
-        <div style="position:absolute; bottom:0; left:0; right:0; background:linear-gradient(to top,rgba(10,22,40,0.85) 0%,transparent 100%); padding:16px 20px;">
-          <span style="font-size:10px; text-transform:uppercase; letter-spacing:2px; color:var(--gold); font-weight:700;">Abu Dhabi · Capital des Émirats Arabes Unis</span>
-        </div>
+  <div class="det-section" id="marche">
+    <div class="det-inner">
+      <div class="det-head">
+        <span class="det-label">Le marché</span>
+        <h2 class="det-title">Abu Dhabi : même puissance que Dubai. 20× moins d'offre off-plan.</h2>
       </div>
-      <ul class="ac-bullets">
-        <li>PIB record 1,2 T AED en 2024<span class="sub">Secteur non-pétrolier = 54,7 % — économie structurellement diversifiée</span></li>
-        <li>1 700 Mds $ de fonds souverains<span class="sub">ADIA, Mubadala, ADQ — les capitaux institutionnels les plus puissants au monde</span></li>
-        <li>Population +7,5 % en un an — +51 % sur 10 ans<span class="sub">La demande résidentielle croît structurellement, pas cycliquement</span></li>
-        <li>109 527 transactions off-plan à Dubai en 2024 — vs 5 385 à Abu Dhabi<span class="sub">Même dynamique économique, 20× moins de concurrence sur le marché immobilier</span></li>
-        <li>Visa doré, fiscalité zéro, golden ticket OCDE<span class="sub">Les conditions réglementaires qui attirent les investisseurs internationaux sont en place</span></li>
-      </ul>
-      <div class="si-box">
-        <div class="si-label">Signal investisseur</div>
-        <div class="si-text">Abu Dhabi en 2025 = Dubai en 2015 avant le boom. L'infrastructure est là, la population arrive, les capitaux sont là — l'offre de qualité n'a pas suivi. C'est la définition d'un point d'entrée.</div>
+      <div class="det-body">
+        <div class="det-photo">
+          <img src="img/abu_dhabi.jpg" alt="Abu Dhabi skyline" style="width:100%; height:420px; object-fit:cover; display:block;">
+          <div style="position:absolute; bottom:0; left:0; right:0; background:linear-gradient(to top,rgba(10,22,40,0.85) 0%,transparent 100%); padding:16px 20px;">
+            <span style="font-size:10px; text-transform:uppercase; letter-spacing:2px; color:var(--gold); font-weight:700;">Abu Dhabi · Capital des Émirats Arabes Unis</span>
+          </div>
+        </div>
+        <ul class="det-bullets">
+          <li>PIB record 1,2 T AED en 2024<span class="sub">Secteur non-pétrolier = 54,7 % — économie structurellement diversifiée</span></li>
+          <li>1 700 Mds $ de fonds souverains<span class="sub">ADIA, Mubadala, ADQ — les capitaux institutionnels les plus puissants au monde</span></li>
+          <li>Population +7,5 % en un an — +51 % sur 10 ans<span class="sub">La demande résidentielle croît structurellement, pas cycliquement</span></li>
+          <li>109 527 transactions off-plan à Dubai en 2024 — vs 5 385 à Abu Dhabi<span class="sub">Même dynamique économique, 20× moins de concurrence sur le marché immobilier</span></li>
+          <li>Visa doré, fiscalité zéro, golden ticket OCDE<span class="sub">Les conditions réglementaires qui attirent les investisseurs internationaux sont en place</span></li>
+        </ul>
+        <div class="si-box">
+          <div class="si-label">Signal investisseur</div>
+          <div class="si-text">Abu Dhabi en 2025 = Dubai en 2015 avant le boom. L'infrastructure est là, la population arrive, les capitaux sont là — l'offre de qualité n'a pas suivi. C'est la définition d'un point d'entrée.</div>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- 2. LOCALISATION -->
-  <div class="ac-section" id="localisation">
-    <div class="ac-head" onclick="toggle(this)">
-      <div class="ac-label">Localisation</div>
-      <div class="ac-title">10 min de Disneyland. 10 min de Yas Island. 12 min de l'aéroport.</div>
-      <div class="ac-cta-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg> Voir le détail</div>
-    </div>
-    <div class="ac-body">
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:start; margin-bottom:28px;">
-        <ul class="dist-list">
-          <li class="dist-row"><span>🏰 Futur Disneyland Abu Dhabi</span><span class="dist-t">~10 min</span></li>
-          <li class="dist-row"><span>🎢 Yas Island (Ferrari, Warner, SeaWorld)</span><span class="dist-t">~10 min</span></li>
-          <li class="dist-row"><span>✈️ Aéroport International Zayed</span><span class="dist-t">~12 min</span></li>
-          <li class="dist-row"><span>🛍️ Yas Mall</span><span class="dist-t">~13 min</span></li>
-          <li class="dist-row"><span>🏙️ Centre Abu Dhabi</span><span class="dist-t">~20 min</span></li>
-          <li class="dist-row"><span>🌆 Saadiyat Island (Louvre, NYU)</span><span class="dist-t">~25 min</span></li>
-          <li class="dist-row"><span>🏙️ Dubai</span><span class="dist-t">~60 min</span></li>
-        </ul>
-        <div class="img-ph" id="img-loc" style="height:280px;"><span>Carte</span></div>
+  <div class="det-section alt" id="localisation">
+    <div class="det-inner">
+      <div class="det-head">
+        <span class="det-label">Localisation</span>
+        <h2 class="det-title">10 min de Disneyland. 10 min de Yas Island. 12 min de l'aéroport.</h2>
       </div>
-      <ul class="ac-bullets">
-        <li>Yas Island : 38 millions de visites/an déjà<span class="sub">Disneyland va doubler ce flux — Sobha City sera la résidence la plus proche</span></li>
-        <li>Aéroport international à 12 min<span class="sub">Hub intercontinental — 50+ M passagers/an, en expansion</span></li>
-        <li>Saadiyat Island à 25 min<span class="sub">Louvre Abu Dhabi, NYU, Guggenheim prévu — quartier culturel de rang mondial</span></li>
-      </ul>
-      <div class="si-box">
-        <div class="si-label">Signal investisseur</div>
-        <div class="si-text">Un appartement ou une villa à 10 min de Disneyland + 10 min de Yas Island + 12 min de l'aéroport = profil locatif court séjour parmi les plus forts des Émirats. Waters Edge sur Yas Island a doublé depuis l'annonce de Disneyland.</div>
+      <div class="det-body">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:start; margin-bottom:28px;">
+          <ul class="dist-list">
+            <li class="dist-row"><span>🏰 Futur Disneyland Abu Dhabi</span><span class="dist-t">~10 min</span></li>
+            <li class="dist-row"><span>🎢 Yas Island (Ferrari, Warner, SeaWorld)</span><span class="dist-t">~10 min</span></li>
+            <li class="dist-row"><span>✈️ Aéroport International Zayed</span><span class="dist-t">~12 min</span></li>
+            <li class="dist-row"><span>🛍️ Yas Mall</span><span class="dist-t">~13 min</span></li>
+            <li class="dist-row"><span>🏙️ Centre Abu Dhabi</span><span class="dist-t">~20 min</span></li>
+            <li class="dist-row"><span>🌆 Saadiyat Island (Louvre, NYU)</span><span class="dist-t">~25 min</span></li>
+            <li class="dist-row"><span>🏙️ Dubai</span><span class="dist-t">~60 min</span></li>
+          </ul>
+          <div class="img-ph" id="img-loc" style="height:280px;"><span>Carte</span></div>
+        </div>
+        <ul class="det-bullets">
+          <li>Yas Island : 38 millions de visites/an déjà<span class="sub">Disneyland va doubler ce flux — Sobha City sera la résidence la plus proche</span></li>
+          <li>Aéroport international à 12 min<span class="sub">Hub intercontinental — 50+ M passagers/an, en expansion</span></li>
+          <li>Saadiyat Island à 25 min<span class="sub">Louvre Abu Dhabi, NYU, Guggenheim prévu — quartier culturel de rang mondial</span></li>
+        </ul>
+        <div class="si-box">
+          <div class="si-label">Signal investisseur</div>
+          <div class="si-text">Un appartement ou une villa à 10 min de Disneyland + 10 min de Yas Island + 12 min de l'aéroport = profil locatif court séjour parmi les plus forts des Émirats. Waters Edge sur Yas Island a doublé depuis l'annonce de Disneyland.</div>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- 3. DISNEYLAND -->
-  <div class="ac-section" id="disneyland">
-    <div class="ac-head" onclick="toggle(this)">
-      <div class="ac-label">Disneyland — No Bullshit</div>
-      <div class="ac-title">+45 % en Californie. +30 % en France. ×∞ en Floride. Les faits, pas les promesses.</div>
-      <div class="ac-cta-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg> Voir le détail</div>
-    </div>
-    <div class="ac-body">
-      <div style="margin-bottom:28px; overflow:hidden; position:relative;">
-        <img src="img/disneyland_abudhabi.jpg" alt="Disneyland Abu Dhabi rendering" style="width:100%; height:360px; object-fit:cover; object-position:center top; display:block;">
-        <div style="position:absolute; bottom:0; left:0; right:0; background:linear-gradient(to top,rgba(10,22,40,0.85) 0%,transparent 100%); padding:16px 20px;">
-          <span style="font-size:10px; text-transform:uppercase; letter-spacing:2px; color:var(--gold); font-weight:700;">Disneyland Abu Dhabi · Yas Island · Rendering officiel</span>
-        </div>
+  <div class="det-section" id="disneyland">
+    <div class="det-inner">
+      <div class="det-head">
+        <span class="det-label">Disneyland — No Bullshit</span>
+        <h2 class="det-title">+45 % en Californie. +30 % en France. ×∞ en Floride. Les faits, pas les promesses.</h2>
       </div>
-      <ul class="ac-bullets">
-        <li>🇫🇷 France — Disneyland Paris 1992 : +20 à +30 %<span class="sub">Prix/m² communes limitrophes vs reste du 77 — valeur refuge même pendant les crises</span></li>
-        <li>🌴 Californie — Anaheim : +45 % en 6 ans<span class="sub">vs +27 % moyenne Californie sur la même période · Airbnb parmi les plus rentables de Californie</span></li>
-        <li>🍊 Floride — Orlando 1971 : terrain 200 $/acre → plusieurs milliers en quelques mois<span class="sub">1 emploi sur 32 en Floride lié à Disney — pression locative permanente, villes entières créées ex nihilo</span></li>
-        <li>Waters Edge, Yas Island : 800K AED → 1,6 M AED<span class="sub">+100 % depuis la seule annonce de Disneyland Abu Dhabi — le parc n'est pas encore ouvert</span></li>
-        <li>Les 3 leviers universels : emploi, tourisme, infrastructure<span class="sub">Abu Dhabi coche les 3 — avec Yas Island déjà opérationnel à 38M visites/an</span></li>
-      </ul>
-      <div class="si-box">
-        <div class="si-label">Signal investisseur</div>
-        <div class="si-text">Waters Edge a doublé sur la seule annonce. Sobha City est à 10 min du parc, avec un ticket 40 % moins cher que Yas Island. C'est l'opportunité que Waters Edge représentait il y a 3 ans.</div>
+      <div class="det-body">
+        <div class="det-photo">
+          <img src="img/disneyland_abudhabi.jpg" alt="Disneyland Abu Dhabi rendering" style="width:100%; height:420px; object-fit:cover; object-position:center top; display:block;">
+          <div style="position:absolute; bottom:0; left:0; right:0; background:linear-gradient(to top,rgba(10,22,40,0.85) 0%,transparent 100%); padding:16px 20px;">
+            <span style="font-size:10px; text-transform:uppercase; letter-spacing:2px; color:var(--gold); font-weight:700;">Disneyland Abu Dhabi · Yas Island · Rendering officiel</span>
+          </div>
+        </div>
+        <ul class="det-bullets">
+          <li>🇫🇷 France — Disneyland Paris 1992 : +20 à +30 %<span class="sub">Prix/m² communes limitrophes vs reste du 77 — valeur refuge même pendant les crises</span></li>
+          <li>🌴 Californie — Anaheim : +45 % en 6 ans<span class="sub">vs +27 % moyenne Californie sur la même période · Airbnb parmi les plus rentables de Californie</span></li>
+          <li>🍊 Floride — Orlando 1971 : terrain 200 $/acre → plusieurs milliers en quelques mois<span class="sub">1 emploi sur 32 en Floride lié à Disney — pression locative permanente, villes entières créées ex nihilo</span></li>
+          <li>Waters Edge, Yas Island : 800K AED → 1,6 M AED<span class="sub">+100 % depuis la seule annonce de Disneyland Abu Dhabi — le parc n'est pas encore ouvert</span></li>
+          <li>Les 3 leviers universels : emploi, tourisme, infrastructure<span class="sub">Abu Dhabi coche les 3 — avec Yas Island déjà opérationnel à 38M visites/an</span></li>
+        </ul>
+        <div class="si-box">
+          <div class="si-label">Signal investisseur</div>
+          <div class="si-text">Waters Edge a doublé sur la seule annonce. Sobha City est à 10 min du parc, avec un ticket 40 % moins cher que Yas Island. C'est l'opportunité que Waters Edge représentait il y a 3 ans.</div>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- 4. SOBHA -->
-  <div class="ac-section" id="promoteur">
-    <div class="ac-head" onclick="toggle(this)">
-      <div class="ac-label">Le promoteur</div>
-      <div class="ac-title">Sobha : 100 % intégré, 5 communautés livrées. Premier projet à Abu Dhabi — ils ont tout à prouver.</div>
-      <div class="ac-cta-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg> Voir le détail</div>
-    </div>
-    <div class="ac-body">
-      <ul class="ac-bullets">
-        <li>Intégration verticale totale — zéro sous-traitant critique<span class="sub">Architecture, ingénierie, matériaux, construction, finition : tout en interne</span></li>
-        <li>Sobha Hartland livré — 8 millions de sq.ft<span class="sub">Communauté complète à Dubai, livrée dans les délais. Ce n'est pas un promoteur qui promet.</span></li>
-        <li>Siniya Island — 5 milliards de dollars<span class="sub">Projet de référence aux Émirats — échelle nationale</span></li>
-        <li>Creek Vistas Reservé — livré à l'heure<span class="sub">Qualité homogène, finitions qui tiennent 10-15 ans, pas seulement à la remise des clés</span></li>
-        <li>Premier projet Sobha à Abu Dhabi<span class="sub">Un promoteur de cette stature sur un nouveau marché : il a tout à prouver — c'est là que se font les meilleures plus-values</span></li>
-      </ul>
-      <p style="font-size:10px; text-transform:uppercase; letter-spacing:1.5px; color:var(--muted); margin-bottom:12px;">Communautés réalisées</p>
-      <div class="track-grid" style="margin-bottom:28px;">
-        <div class="tr-item"><img src="img/track_hartland.jpg" alt="Sobha Hartland" loading="lazy"><div class="tr-cap"><div class="tc-n">Sobha Hartland</div><div class="tc-l">Dubai · 8M sq.ft</div></div></div>
-        <div class="tr-item"><img src="img/track_hartland2.jpg" alt="Sobha Hartland II" loading="lazy"><div class="tr-cap"><div class="tc-n">Hartland II</div><div class="tc-l">Dubai · Extension</div></div></div>
-        <div class="tr-item"><img src="img/track_creekvistas.jpg" alt="Creek Vistas" loading="lazy"><div class="tr-cap"><div class="tc-n">Creek Vistas Reservé</div><div class="tc-l">Dubai · Livré</div></div></div>
-        <div class="tr-item"><img src="img/track_siniya.jpg" alt="Siniya Island" loading="lazy"><div class="tr-cap"><div class="tc-n">Siniya Island</div><div class="tc-l">UAQ · 5 Mds $</div></div></div>
-        <div class="tr-item"><img src="img/track_quality.jpg" alt="Qualité" loading="lazy"><div class="tr-cap"><div class="tc-n">Qualité d'exécution</div><div class="tc-l">Intégration verticale</div></div></div>
-        <div class="tr-item" style="background:rgba(201,169,110,0.1); border:1px solid var(--gold); height:160px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:16px;">
-          <div style="font-size:22px; color:var(--gold); font-weight:700;">→</div>
-          <div class="tc-n" style="color:var(--gold); margin-top:6px;">Sobha City Abu Dhabi</div>
-          <div class="tc-l" style="color:var(--muted); margin-top:3px;">Leur 1er projet à Abu Dhabi</div>
-        </div>
+  <div class="det-section alt" id="promoteur">
+    <div class="det-inner">
+      <div class="det-head">
+        <span class="det-label">Le promoteur</span>
+        <h2 class="det-title">Sobha : 100 % intégré, 5 communautés livrées. Premier projet à Abu Dhabi — ils ont tout à prouver.</h2>
       </div>
-      <div class="si-box">
-        <div class="si-label">Signal investisseur</div>
-        <div class="si-text">Quand un promoteur qui maîtrise toute sa chaîne entre sur un nouveau marché, il livre un produit de référence. Sobha City sera la vitrine d'Abu Dhabi. Les acheteurs de la première heure en bénéficieront le plus.</div>
+      <div class="det-body">
+        <ul class="det-bullets">
+          <li>Intégration verticale totale — zéro sous-traitant critique<span class="sub">Architecture, ingénierie, matériaux, construction, finition : tout en interne</span></li>
+          <li>Sobha Hartland livré — 8 millions de sq.ft<span class="sub">Communauté complète à Dubai, livrée dans les délais. Ce n'est pas un promoteur qui promet.</span></li>
+          <li>Siniya Island — 5 milliards de dollars<span class="sub">Projet de référence aux Émirats — échelle nationale</span></li>
+          <li>Creek Vistas Reservé — livré à l'heure<span class="sub">Qualité homogène, finitions qui tiennent 10-15 ans, pas seulement à la remise des clés</span></li>
+          <li>Premier projet Sobha à Abu Dhabi<span class="sub">Un promoteur de cette stature sur un nouveau marché : il a tout à prouver — c'est là que se font les meilleures plus-values</span></li>
+        </ul>
+        <p style="font-size:10px; text-transform:uppercase; letter-spacing:1.5px; color:var(--muted); margin:24px 0 12px;">Communautés réalisées</p>
+        <div class="track-grid" style="margin-bottom:28px;">
+          <div class="tr-item"><img src="img/track_hartland.jpg" alt="Sobha Hartland" loading="lazy"><div class="tr-cap"><div class="tc-n">Sobha Hartland</div><div class="tc-l">Dubai · 8M sq.ft</div></div></div>
+          <div class="tr-item"><img src="img/track_hartland2.jpg" alt="Sobha Hartland II" loading="lazy"><div class="tr-cap"><div class="tc-n">Hartland II</div><div class="tc-l">Dubai · Extension</div></div></div>
+          <div class="tr-item"><img src="img/track_creekvistas.jpg" alt="Creek Vistas" loading="lazy"><div class="tr-cap"><div class="tc-n">Creek Vistas Reservé</div><div class="tc-l">Dubai · Livré</div></div></div>
+          <div class="tr-item"><img src="img/track_siniya.jpg" alt="Siniya Island" loading="lazy"><div class="tr-cap"><div class="tc-n">Siniya Island</div><div class="tc-l">UAQ · 5 Mds $</div></div></div>
+          <div class="tr-item"><img src="img/track_quality.jpg" alt="Qualité" loading="lazy"><div class="tr-cap"><div class="tc-n">Qualité d'exécution</div><div class="tc-l">Intégration verticale</div></div></div>
+          <div class="tr-item" style="background:rgba(201,169,110,0.1); border:1px solid var(--gold); height:160px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:16px;">
+            <div style="font-size:22px; color:var(--gold); font-weight:700;">→</div>
+            <div class="tc-n" style="color:var(--gold); margin-top:6px;">Sobha City Abu Dhabi</div>
+            <div class="tc-l" style="color:var(--muted); margin-top:3px;">Leur 1er projet à Abu Dhabi</div>
+          </div>
+        </div>
+        <div class="si-box">
+          <div class="si-label">Signal investisseur</div>
+          <div class="si-text">Quand un promoteur qui maîtrise toute sa chaîne entre sur un nouveau marché, il livre un produit de référence. Sobha City sera la vitrine d'Abu Dhabi. Les acheteurs de la première heure en bénéficieront le plus.</div>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- 5. LE PROJET -->
-  <div class="ac-section" id="projet">
-    <div class="ac-head" onclick="toggle(this)">
-      <div class="ac-label">Le projet</div>
-      <div class="ac-title">38 millions de sq.ft. Plus grand que Downtown Dubai. Nature, canaux, golf, écoles — tout intégré.</div>
-      <div class="ac-cta-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg> Voir le détail</div>
-    </div>
-    <div class="ac-body">
-      <div class="pg2" style="margin-bottom:10px;">
-        <div class="img-ph" id="img-amb1" style="height:260px;"><span>Waterfront</span></div>
-        <div class="img-ph" id="img-masterplan" style="height:260px;"><span>Masterplan</span></div>
+  <div class="det-section" id="projet">
+    <div class="det-inner">
+      <div class="det-head">
+        <span class="det-label">Le projet</span>
+        <h2 class="det-title">38 millions de sq.ft. Plus grand que Downtown Dubai. Nature, canaux, golf, écoles — tout intégré.</h2>
       </div>
-      <div class="pg2" style="margin-bottom:28px;">
-        <div class="img-ph" id="img-amb3" style="height:200px;"><span>Promenade</span></div>
-        <div class="img-ph" id="img-amb2" style="height:200px;"><span>Chiffres</span></div>
-      </div>
-      <ul class="ac-bullets">
-        <li>38M sq.ft — plus grand que Downtown Dubai (27M)<span class="sub">Ce n'est pas un immeuble. C'est une ville autonome.</span></li>
-        <li>60 % d'espaces verts · 50 000+ arbres · front canaux<span class="sub">Record Émirats — wellness loop 20 km, plages artificielles, marina promenade</span></li>
-        <li>Golf Par-3 · padel · multi-sports intégrés<span class="sub">Tout sur place — critères de liquidité locative maximaux</span></li>
-        <li>300 000 sq.ft de retail · écoles internationales<span class="sub">Amphithéâtre, cinéma en plein air, 6 points d'accès — communauté 100 % autonome</span></li>
-        <li>Le mix Dubai Creek Harbour × Dubai Hills, à Abu Dhabi<span class="sub">Pour 40 % moins cher que les références équivalentes à Dubai</span></li>
-      </ul>
-      <div class="si-box">
-        <div class="si-label">Signal investisseur</div>
-        <div class="si-text">Une communauté avec tout intégré = liquidité locative garantie. Sobha City est auto-suffisante — pas besoin d'un quartier établi quand tout ce dont un résident a besoin est à l'intérieur du projet.</div>
-      </div>
-    </div>
-  </div>
-
-    <!-- 6. PRICING -->
-  <div class="ac-section" id="pricing">
-    <div class="ac-head" onclick="toggle(this)">
-      <div class="ac-label">Pricing</div>
-      <div class="ac-title">~2 230 AED/sq.ft — le plus bas du corridor Yas. Ticket dès 1,31 M AED. Plan 60/40 sur 36 mois.</div>
-      <div class="ac-cta-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg> Voir le détail</div>
-    </div>
-    <div class="ac-body">
-      <div class="tbl-wrap" style="margin-bottom:24px;">
-        <table class="ptable">
-          <thead><tr><th>Type</th><th>Prix départ (AED)</th><th>Surface (sq.ft)</th><th>Prix/sq.ft</th><th>EOI (AED)</th></tr></thead>
-          <tbody>
-            <tr class="hl"><td><strong>1 BR</strong></td><td><strong>1 310 000</strong></td><td>566–608</td><td>2 153–2 313</td><td>35 000</td></tr>
-            <tr><td>2 BR</td><td>2 400 000</td><td>1 012–1 212</td><td>1 980–2 369</td><td>70 000</td></tr>
-            <tr><td>Villa 3 BR</td><td>4 960 000</td><td>2 577–3 453</td><td>1 436–1 924</td><td>150 000</td></tr>
-            <tr><td>Villa 4 BR</td><td>8 070 000</td><td>4 194–4 524</td><td>1 784–1 924</td><td>200 000</td></tr>
-            <tr><td>Villa 5 BR</td><td>11 160 000</td><td>5 317–5 418</td><td>2 060–2 099</td><td>250 000</td></tr>
-            <tr><td>Villa 6 BR</td><td>13 400 000</td><td>6 383</td><td>2 099</td><td>300 000</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <ul class="ac-bullets">
-        <li>−40 % vs Fahid Island · −24 % vs Sama Yas · −16 % vs Yas Riva<span class="sub">Le prix/sq.ft le plus bas du corridor — même promoteur de niveau supérieur</span></li>
-        <li>Plan 60/40 : 20 % réservation · 40 % construction · 40 % livraison<span class="sub">8 versements trimestriels pendant la construction — cash-flow maîtrisé</span></li>
-        <li>EOI 1BR dès 35 000 AED pour réserver<span class="sub">Engagement initial minimal pour sécuriser son prix avant la hausse</span></li>
-        <li>Livraison Q4 2029<span class="sub">3 ans de construction — temps de valorisation avant mise en location</span></li>
-      </ul>
-      <div class="bench-wrap" style="margin:20px 0;">
-        <div class="br"><div class="br-lbl">Fahid Island</div><div class="br-bar"><div class="br-fill other" style="width:100%;"><span>3 680</span></div></div></div>
-        <div class="br"><div class="br-lbl">Sama Yas</div><div class="br-bar"><div class="br-fill other" style="width:80%;"><span>2 940</span></div></div></div>
-        <div class="br"><div class="br-lbl">Yas Riva</div><div class="br-bar"><div class="br-fill other" style="width:72%;"><span>2 660</span></div></div></div>
-        <div class="br"><div class="br-lbl"><strong>Sobha City ✓</strong></div><div class="br-bar"><div class="br-fill sobha" style="width:61%;"><span>~2 230</span></div></div></div>
-      </div>
-      <div class="si-box">
-        <div class="si-label">Signal investisseur</div>
-        <div class="si-text">Le prix d'entrée le plus bas du corridor Yas pour le promoteur le plus solide. Cette décote est temporaire — elle disparaîtra quand Abu Dhabi sera aussi connu que Dubai pour son off-plan premium.</div>
-      </div>
-    </div>
-  </div>
-
-    <!-- 7. POUR QUI -->
-  <div class="ac-section" id="pour-qui">
-    <div class="ac-head" onclick="toggle(this)">
-      <div class="ac-label">Pour qui ?</div>
-      <div class="ac-title">Pour les investisseurs qui veulent de la qualité, un horizon 5–7 ans et un marché en déséquilibre offre/demande.</div>
-      <div class="ac-cta-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg> Voir le détail</div>
-    </div>
-    <div class="ac-body">
-      <div class="profil-grid" style="margin-bottom:28px;">
-        <div class="pc green">
-          <h4>✓ Ce profil est adapté</h4>
-          <ul>
-            <li>Vous voulez de la qualité sans risque d'exécution</li>
-            <li>Horizon 5–7 ans — vous voulez sécuriser la plus-value</li>
-            <li>Achat lifestyle premium — villa ou appartement waterfront</li>
-            <li>Rentabilité locative sur un flux touristique existant</li>
-            <li>Actif patrimonial qui tient dans le temps</li>
-            <li>Marché en déséquilibre offre/demande</li>
-          </ul>
+      <div class="det-body">
+        <div class="pg2" style="margin-bottom:10px;">
+          <div class="img-ph" id="img-amb1" style="height:260px;"><span>Waterfront</span></div>
+          <div class="img-ph" id="img-masterplan" style="height:260px;"><span>Masterplan</span></div>
         </div>
-        <div class="pc amber">
-          <h4>✕ Ce profil n'est pas adapté</h4>
-          <ul>
-            <li>Vous voulez spéculer et revendre dans 12–24 mois</li>
-            <li>Vous cherchez un flip rapide</li>
-            <li>Vous avez besoin de liquidité immédiate</li>
-            <li>Vous n'avez pas préparé les 40 % à la livraison</li>
-          </ul>
+        <div class="pg2" style="margin-bottom:28px;">
+          <div class="img-ph" id="img-amb3" style="height:200px;"><span>Promenade</span></div>
+          <div class="img-ph" id="img-amb2" style="height:200px;"><span>Chiffres</span></div>
+        </div>
+        <ul class="det-bullets">
+          <li>38M sq.ft — plus grand que Downtown Dubai (27M)<span class="sub">Ce n'est pas un immeuble. C'est une ville autonome.</span></li>
+          <li>60 % d'espaces verts · 50 000+ arbres · front canaux<span class="sub">Record Émirats — wellness loop 20 km, plages artificielles, marina promenade</span></li>
+          <li>Golf Par-3 · padel · multi-sports intégrés<span class="sub">Tout sur place — critères de liquidité locative maximaux</span></li>
+          <li>300 000 sq.ft de retail · écoles internationales<span class="sub">Amphithéâtre, cinéma en plein air, 6 points d'accès — communauté 100 % autonome</span></li>
+          <li>Le mix Dubai Creek Harbour × Dubai Hills, à Abu Dhabi<span class="sub">Pour 40 % moins cher que les références équivalentes à Dubai</span></li>
+        </ul>
+        <div class="si-box">
+          <div class="si-label">Signal investisseur</div>
+          <div class="si-text">Une communauté avec tout intégré = liquidité locative garantie. Sobha City est auto-suffisante — pas besoin d'un quartier établi quand tout ce dont un résident a besoin est à l'intérieur du projet.</div>
         </div>
       </div>
-      <div class="si-box">
-        <div class="si-label">Signal investisseur</div>
-        <div class="si-text">Marché 20× sous-développé vs Dubai · Promoteur qui maîtrise toute sa chaîne · Ville plus grande que Downtown Dubai · 10 min de Disneyland · Prix le plus bas du corridor Yas. La proposition la plus mathématiquement solide d'Abu Dhabi en 2025.</div>
+    </div>
+  </div>
+
+  <!-- 6. PRICING -->
+  <div class="det-section alt" id="pricing">
+    <div class="det-inner">
+      <div class="det-head">
+        <span class="det-label">Pricing</span>
+        <h2 class="det-title">~2 230 AED/sq.ft — le plus bas du corridor Yas. Ticket dès 1,31 M AED. Plan 60/40 sur 36 mois.</h2>
+      </div>
+      <div class="det-body">
+        <div class="tbl-wrap" style="margin-bottom:24px;">
+          <table class="ptable">
+            <thead><tr><th>Type</th><th>Prix départ (AED)</th><th>Surface (sq.ft)</th><th>Prix/sq.ft</th><th>EOI (AED)</th></tr></thead>
+            <tbody>
+              <tr class="hl"><td><strong>1 BR</strong></td><td><strong>1 310 000</strong></td><td>566–608</td><td>2 153–2 313</td><td>35 000</td></tr>
+              <tr><td>2 BR</td><td>2 400 000</td><td>1 012–1 212</td><td>1 980–2 369</td><td>70 000</td></tr>
+              <tr><td>Villa 3 BR</td><td>4 960 000</td><td>2 577–3 453</td><td>1 436–1 924</td><td>150 000</td></tr>
+              <tr><td>Villa 4 BR</td><td>8 070 000</td><td>4 194–4 524</td><td>1 784–1 924</td><td>200 000</td></tr>
+              <tr><td>Villa 5 BR</td><td>11 160 000</td><td>5 317–5 418</td><td>2 060–2 099</td><td>250 000</td></tr>
+              <tr><td>Villa 6 BR</td><td>13 400 000</td><td>6 383</td><td>2 099</td><td>300 000</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ul class="det-bullets">
+          <li>−40 % vs Fahid Island · −24 % vs Sama Yas · −16 % vs Yas Riva<span class="sub">Le prix/sq.ft le plus bas du corridor — même promoteur de niveau supérieur</span></li>
+          <li>Plan 60/40 : 20 % réservation · 40 % construction · 40 % livraison<span class="sub">8 versements trimestriels pendant la construction — cash-flow maîtrisé</span></li>
+          <li>EOI 1BR dès 35 000 AED pour réserver<span class="sub">Engagement initial minimal pour sécuriser son prix avant la hausse</span></li>
+          <li>Livraison Q4 2029<span class="sub">3 ans de construction — temps de valorisation avant mise en location</span></li>
+        </ul>
+        <div class="bench-wrap" style="margin:20px 0;">
+          <div class="br"><div class="br-lbl">Fahid Island</div><div class="br-bar"><div class="br-fill other" style="width:100%;"><span>3 680</span></div></div></div>
+          <div class="br"><div class="br-lbl">Sama Yas</div><div class="br-bar"><div class="br-fill other" style="width:80%;"><span>2 940</span></div></div></div>
+          <div class="br"><div class="br-lbl">Yas Riva</div><div class="br-bar"><div class="br-fill other" style="width:72%;"><span>2 660</span></div></div></div>
+          <div class="br"><div class="br-lbl"><strong>Sobha City ✓</strong></div><div class="br-bar"><div class="br-fill sobha" style="width:61%;"><span>~2 230</span></div></div></div>
+        </div>
+        <div class="si-box">
+          <div class="si-label">Signal investisseur</div>
+          <div class="si-text">Le prix d'entrée le plus bas du corridor Yas pour le promoteur le plus solide. Cette décote est temporaire — elle disparaîtra quand Abu Dhabi sera aussi connu que Dubai pour son off-plan premium.</div>
+        </div>
       </div>
     </div>
   </div>
 
-</div><!-- /container accordéon -->
+  <!-- 7. POUR QUI -->
+  <div class="det-section" id="pour-qui">
+    <div class="det-inner">
+      <div class="det-head">
+        <span class="det-label">Pour qui ?</span>
+        <h2 class="det-title">Pour les investisseurs qui veulent de la qualité, un horizon 5–7 ans et un marché en déséquilibre offre/demande.</h2>
+      </div>
+      <div class="det-body">
+        <div class="profil-grid" style="margin-bottom:28px;">
+          <div class="pc green">
+            <h4>✓ Ce profil est adapté</h4>
+            <ul>
+              <li>Vous voulez de la qualité sans risque d'exécution</li>
+              <li>Horizon 5–7 ans — vous voulez sécuriser la plus-value</li>
+              <li>Achat lifestyle premium — villa ou appartement waterfront</li>
+              <li>Rentabilité locative sur un flux touristique existant</li>
+              <li>Actif patrimonial qui tient dans le temps</li>
+              <li>Marché en déséquilibre offre/demande</li>
+            </ul>
+          </div>
+          <div class="pc amber">
+            <h4>✕ Ce profil n'est pas adapté</h4>
+            <ul>
+              <li>Vous voulez spéculer et revendre dans 12–24 mois</li>
+              <li>Vous cherchez un flip rapide</li>
+              <li>Vous avez besoin de liquidité immédiate</li>
+              <li>Vous n'avez pas préparé les 40 % à la livraison</li>
+            </ul>
+          </div>
+        </div>
+        <div class="si-box">
+          <div class="si-label">Signal investisseur</div>
+          <div class="si-text">Marché 20× sous-développé vs Dubai · Promoteur qui maîtrise toute sa chaîne · Ville plus grande que Downtown Dubai · 10 min de Disneyland · Prix le plus bas du corridor Yas. La proposition la plus mathématiquement solide d'Abu Dhabi en 2025.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /sections-wrap -->
 
 <!-- ══ CONTACT ══ -->
 <section id="contact">
@@ -688,14 +710,6 @@
   const WA = '33624835980';
 
   function isPhone(v){ return /^(\+?\d[\d\s\-\.\(\)]{5,18}\d)$/.test(v.trim()); }
-
-  function toggle(head){
-    const sec = head.parentElement;
-    const wasOpen = sec.classList.contains('open');
-    // fermer tous
-    document.querySelectorAll('.ac-section.open').forEach(s => s.classList.remove('open'));
-    if(!wasOpen) sec.classList.add('open');
-  }
 
   function goTo(id){ const el=document.getElementById(id); if(el) el.scrollIntoView({behavior:'smooth'}); }
 
