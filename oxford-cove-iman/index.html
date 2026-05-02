@@ -265,6 +265,21 @@
     footer p { font-size: 10px; color: rgba(255,255,255,0.2); line-height: 1.9; }
 
     section[id] { scroll-margin-top: calc(var(--nav-h) + 8px); }
+  
+    /* ── MOBILE FIX ── */
+    html { overflow-x: hidden; }
+    .hero-ey { word-break: break-word; white-space: normal; overflow-wrap: break-word; }
+    @media(max-width:640px){
+      .hero-c { padding: 40px 20px 40px 20px; }
+      .hero-ey { font-size: 9px; letter-spacing: 1.5px; }
+      .hero-c h1 { font-size: clamp(26px, 8vw, 40px); }
+      .hero-sub { font-size: 14px; }
+      .det-inner { padding: 32px 16px; }
+      .det-body { flex-direction: column; }
+      .det-grid { grid-template-columns: 1fr; }
+      .sp-item { padding: 28px 20px; }
+      .sp-big { font-size: clamp(44px, 14vw, 72px); }
+    }
   </style>
 </head>
 <body>
@@ -288,6 +303,10 @@
         <label for="g-t">Téléphone</label>
         <input type="tel" id="g-t" name="telephone" placeholder="+33 6 12 34 56 78" autocomplete="tel">
         <span class="ferr" id="e-t">Numéro invalide — ex : +33612345678</span>
+      </div>
+      <div class="ff">
+        <label for="g-e">Email <span style="color:var(--muted); font-size:11px; font-weight:400;">(optionnel)</span></label>
+        <input type="email" id="g-e" name="email" placeholder="votre@email.com" autocomplete="email">
       </div>
       <button type="submit" class="btn-p">Accéder au dossier →</button>
     </form>
