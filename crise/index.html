@@ -4,139 +4,102 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rapport Gratuit — Les Crises Immobilières à Dubai : 20 Ans de Données</title>
-  <meta name="description" content="Analyse complète des cycles immobiliers à Dubai de 2008 à 2026. Prix, supply, yields, population — les données que personne ne compile.">
-
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --navy:   #0F2240;
-      --blue:   #1565C0;
-      --gold:   #C9A84C;
-      --red:    #D32F2F;
-      --green:  #2E7D32;
-      --light:  #F4F7FB;
-      --white:  #FFFFFF;
-      --text:   #1A2535;
-      --muted:  #6B7A92;
+      --navy: #0F2240;
+      --blue: #1565C0;
+      --gold: #C9A84C;
+      --light: #F4F7FB;
+      --white: #FFFFFF;
+      --text: #1A2535;
+      --muted: #6B7A92;
       --border: #DDE3EE;
     }
+    body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--text); }
 
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--white);
-      color: var(--text);
-      line-height: 1.6;
-    }
-
-    /* ─── HERO ─── */
-    .hero {
+    /* ── GATE (formulaire) ── */
+    #gate {
+      min-height: 100vh;
       background: linear-gradient(135deg, #0F2240 0%, #1a3a6b 60%, #0d1f3c 100%);
-      color: white;
-      padding: 80px 24px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+    .gate-inner {
+      max-width: 440px;
+      width: 100%;
       text-align: center;
-      position: relative;
-      overflow: hidden;
     }
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(ellipse at center, rgba(197,168,76,0.08) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    .hero-badge {
+    .gate-badge {
       display: inline-block;
-      background: rgba(197,168,76,0.15);
-      border: 1px solid rgba(197,168,76,0.4);
+      background: rgba(201,168,76,0.15);
+      border: 1px solid rgba(201,168,76,0.4);
       color: #C9A84C;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
       letter-spacing: 2px;
       text-transform: uppercase;
-      padding: 6px 18px;
+      padding: 5px 16px;
       border-radius: 100px;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
-    .hero h1 {
-      font-size: clamp(28px, 5vw, 52px);
+    .gate-title {
+      font-size: clamp(26px, 5vw, 42px);
       font-weight: 900;
+      color: white;
       line-height: 1.15;
-      max-width: 760px;
-      margin: 0 auto 20px;
+      margin-bottom: 14px;
       letter-spacing: -0.5px;
     }
-    .hero h1 span { color: #C9A84C; }
-    .hero-sub {
-      font-size: clamp(15px, 2.5vw, 19px);
-      color: rgba(255,255,255,0.75);
-      max-width: 580px;
-      margin: 0 auto 40px;
-      font-weight: 400;
-    }
-    .hero-stats {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      flex-wrap: wrap;
-      margin-bottom: 50px;
-    }
-    .hero-stat {
-      text-align: center;
-    }
-    .hero-stat .num {
-      font-size: 32px;
-      font-weight: 900;
-      color: #C9A84C;
-      display: block;
-    }
-    .hero-stat .label {
-      font-size: 12px;
-      color: rgba(255,255,255,0.6);
-      text-transform: uppercase;
-      letter-spacing: 1px;
+    .gate-title span { color: #C9A84C; }
+    .gate-sub {
+      font-size: 16px;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 36px;
+      line-height: 1.6;
     }
 
-    /* ─── CTA BOX ─── */
-    .cta-box {
+    .gate-stats {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+    .gate-stat .num { font-size: 26px; font-weight: 900; color: #C9A84C; display: block; }
+    .gate-stat .lbl { font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px; }
+
+    .gate-card {
       background: white;
       border-radius: 16px;
-      padding: 36px 32px;
-      max-width: 480px;
-      margin: 0 auto;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      padding: 32px 28px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
     }
-    .cta-box h2 {
-      font-size: 20px;
+    .gate-card h2 {
+      font-size: 18px;
       font-weight: 800;
       color: var(--navy);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
-    .cta-box p {
-      font-size: 14px;
+    .gate-card .sub {
+      font-size: 13px;
       color: var(--muted);
-      margin-bottom: 20px;
+      margin-bottom: 22px;
     }
-    .form-group {
-      margin-bottom: 14px;
-    }
+
+    .form-group { margin-bottom: 14px; text-align: left; }
     .form-group label {
       display: block;
-      font-size: 12px;
-      font-weight: 600;
+      font-size: 11px;
+      font-weight: 700;
       color: var(--text);
-      margin-bottom: 6px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      margin-bottom: 6px;
     }
     .form-group input {
       width: 100%;
@@ -147,19 +110,19 @@
       font-family: 'Inter', sans-serif;
       color: var(--text);
       background: var(--light);
-      transition: border-color 0.2s, box-shadow 0.2s;
       outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
     .form-group input:focus {
       border-color: var(--blue);
       box-shadow: 0 0 0 3px rgba(21,101,192,0.1);
       background: white;
     }
-    .form-group input::placeholder { color: #9AAABB; }
+    .form-group input::placeholder { color: #AAB4C2; }
 
-    .btn-primary {
+    .btn-submit {
       width: 100%;
-      padding: 16px;
+      padding: 15px;
       background: linear-gradient(135deg, #1565C0, #0d47a1);
       color: white;
       border: none;
@@ -168,536 +131,132 @@
       font-weight: 700;
       font-family: 'Inter', sans-serif;
       cursor: pointer;
-      transition: transform 0.15s, box-shadow 0.15s;
       margin-top: 4px;
-    }
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(21,101,192,0.35);
-    }
-    .btn-primary:active { transform: translateY(0); }
-
-    .divider-or {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin: 18px 0;
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    .divider-or::before, .divider-or::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-
-    .btn-whatsapp {
-      width: 100%;
-      padding: 15px;
-      background: linear-gradient(135deg, #25D366, #1DA851);
-      color: white;
-      border: none;
-      border-radius: 10px;
-      font-size: 15px;
-      font-weight: 700;
-      font-family: 'Inter', sans-serif;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      text-decoration: none;
       transition: transform 0.15s, box-shadow 0.15s;
     }
-    .btn-whatsapp:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(37,211,102,0.35);
-    }
-    .btn-whatsapp svg { width: 22px; height: 22px; }
+    .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(21,101,192,0.35); }
+    .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
     .form-note {
       font-size: 11px;
       color: var(--muted);
       text-align: center;
-      margin-top: 14px;
-    }
-    .form-note a { color: var(--blue); }
-
-    /* ─── WHAT'S INSIDE ─── */
-    .section {
-      padding: 72px 24px;
-    }
-    .section-inner {
-      max-width: 860px;
-      margin: 0 auto;
-    }
-    .section-tag {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 12px;
-    }
-    .section-title {
-      font-size: clamp(22px, 4vw, 36px);
-      font-weight: 800;
-      color: var(--navy);
-      margin-bottom: 16px;
-      line-height: 1.2;
-    }
-    .section-lead {
-      font-size: 17px;
-      color: var(--muted);
-      max-width: 600px;
-      margin-bottom: 40px;
+      margin-top: 12px;
     }
 
-    .contents-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 16px;
-    }
-    .content-card {
-      background: var(--light);
-      border-radius: 12px;
-      padding: 20px;
-      border-left: 3px solid var(--blue);
-    }
-    .content-card .icon {
-      font-size: 22px;
-      margin-bottom: 10px;
-      display: block;
-    }
-    .content-card h3 {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 6px;
-    }
-    .content-card p {
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
-    /* ─── SOCIAL PROOF ─── */
-    .proof-section {
-      background: var(--light);
-      padding: 64px 24px;
-    }
-    .author-card {
-      max-width: 620px;
-      margin: 0 auto;
-      display: flex;
-      gap: 24px;
-      align-items: flex-start;
-      background: white;
-      border-radius: 16px;
-      padding: 28px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
-    }
-    .author-avatar {
-      width: 72px;
-      height: 72px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--navy), var(--blue));
+    /* ── RAPPORT ── */
+    #rapport { display: none; }
+    .rapport-header {
+      background: var(--navy);
+      color: white;
+      padding: 20px 28px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 28px;
-      flex-shrink: 0;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
     }
-    .author-info h3 {
-      font-size: 17px;
+    .rapport-header .logo {
+      font-size: 15px;
       font-weight: 800;
-      color: var(--navy);
-      margin-bottom: 4px;
+      color: #C9A84C;
     }
-    .author-info .role {
+    .rapport-header .info {
       font-size: 13px;
-      color: var(--gold);
-      font-weight: 600;
-      margin-bottom: 10px;
+      color: rgba(255,255,255,0.6);
     }
-    .author-info p {
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    /* ─── PREVIEW ─── */
-    .preview-section {
-      padding: 72px 24px;
-      background: white;
-    }
-    .preview-wrapper {
-      max-width: 860px;
-      margin: 0 auto;
-    }
-    .preview-teaser {
-      position: relative;
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      box-shadow: 0 8px 40px rgba(0,0,0,0.1);
-    }
-    .preview-content {
-      background: var(--light);
-      padding: 40px 36px;
-      font-size: 15px;
-      color: var(--text);
-      line-height: 1.7;
-      max-height: 380px;
-      overflow: hidden;
-      position: relative;
-    }
-    .preview-content h3 {
-      font-size: 18px;
-      font-weight: 800;
-      color: var(--navy);
-      margin-bottom: 16px;
-    }
-    .preview-content ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .preview-content ul li::before {
-      content: '→ ';
-      color: var(--blue);
-      font-weight: 700;
-    }
-    .preview-blur {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 180px;
-      background: linear-gradient(to bottom, transparent, white);
-    }
-    .preview-cta {
-      text-align: center;
-      padding: 32px;
-      background: white;
-    }
-    .preview-cta p {
-      font-size: 15px;
-      color: var(--muted);
-      margin-bottom: 16px;
-    }
-    .btn-unlock {
-      display: inline-block;
-      padding: 14px 36px;
-      background: linear-gradient(135deg, var(--navy), #1a3a6b);
-      color: white;
-      border-radius: 10px;
-      font-size: 15px;
-      font-weight: 700;
-      text-decoration: none;
-      transition: transform 0.15s, box-shadow 0.15s;
-    }
-    .btn-unlock:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(15,34,64,0.3);
-    }
-
-    /* ─── FINAL CTA ─── */
-    .final-cta {
-      background: linear-gradient(135deg, #0F2240 0%, #1a3a6b 100%);
-      padding: 80px 24px;
-      text-align: center;
-      color: white;
-    }
-    .final-cta h2 {
-      font-size: clamp(24px, 4vw, 40px);
-      font-weight: 900;
-      margin-bottom: 16px;
-    }
-    .final-cta h2 span { color: #C9A84C; }
-    .final-cta p {
-      font-size: 17px;
-      color: rgba(255,255,255,0.7);
-      max-width: 500px;
-      margin: 0 auto 40px;
-    }
-    .final-cta .cta-box {
-      text-align: left;
-    }
-
-    /* ─── SUCCESS STATE ─── */
-    .success-msg {
-      display: none;
-      text-align: center;
-      padding: 20px 0;
-    }
-    .success-msg .check {
-      font-size: 48px;
-      margin-bottom: 12px;
+    #rapport-frame {
+      width: 100%;
+      border: none;
       display: block;
-    }
-    .success-msg h3 {
-      font-size: 20px;
-      font-weight: 800;
-      color: var(--navy);
-      margin-bottom: 8px;
-    }
-    .success-msg p {
-      font-size: 14px;
-      color: var(--muted);
-    }
-
-    /* ─── FOOTER ─── */
-    footer {
-      background: var(--navy);
-      color: rgba(255,255,255,0.5);
-      text-align: center;
-      padding: 28px 24px;
-      font-size: 13px;
-    }
-    footer a { color: rgba(255,255,255,0.7); }
-
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 600px) {
-      .hero-stats { gap: 24px; }
-      .author-card { flex-direction: column; }
-      .cta-box { padding: 28px 20px; }
     }
   </style>
 </head>
 <body>
 
-<!-- ═══ HERO ═══ -->
-<section class="hero">
-  <div class="hero-badge">📊 Rapport Gratuit — Accès Immédiat</div>
-  <h1>Les crises immobilières à Dubai :<br><span>20 ans de données réelles</span></h1>
-  <p class="hero-sub">Crash 2008, correction 2014–2020, explosion 2020–2025 — ce que les chiffres disent vraiment. Et ce que ça veut dire pour 2026.</p>
+<!-- ══ GATE ══ -->
+<div id="gate">
+  <div class="gate-inner">
+    <div class="gate-badge">📊 Rapport Gratuit — Accès Immédiat</div>
+    <h1 class="gate-title">Immobilier Dubai :<br><span>20 ans de crises décortiquées</span></h1>
+    <p class="gate-sub">Crash 2008, correction 2014–2020, explosion 2020–2025 — les données réelles que personne ne compile en français.</p>
 
-  <div class="hero-stats">
-    <div class="hero-stat">
-      <span class="num">20 ans</span>
-      <span class="label">de données</span>
+    <div class="gate-stats">
+      <div class="gate-stat"><span class="num">−65%</span><span class="lbl">Crash 2008</span></div>
+      <div class="gate-stat"><span class="num">5</span><span class="lbl">cycles analysés</span></div>
+      <div class="gate-stat"><span class="num">+130%</span><span class="lbl">2020–2025</span></div>
     </div>
-    <div class="hero-stat">
-      <span class="num">5 cycles</span>
-      <span class="label">analysés</span>
-    </div>
-    <div class="hero-stat">
-      <span class="num">−65%</span>
-      <span class="label">crash 2008</span>
-    </div>
-    <div class="hero-stat">
-      <span class="num">+130%</span>
-      <span class="label">hausse 2020–2025</span>
-    </div>
-  </div>
 
-  <!-- Formulaire hero -->
-  <div class="cta-box" id="form-hero">
-    <h2>Accéder au rapport complet</h2>
-    <p>Gratuit. Pas de bullshit. Juste les données.</p>
-    <form id="hero-form" onsubmit="submitForm(event, 'hero')">
-      <div class="form-group">
-        <label>Prénom</label>
-        <input type="text" name="name" placeholder="Ton prénom" required>
-      </div>
-      <div class="form-group">
-        <label>Email</label>
-        <input type="email" name="email" placeholder="ton@email.com" required>
-      </div>
-      <button type="submit" class="btn-primary">📥 Recevoir le rapport par email</button>
-    </form>
+    <div class="gate-card">
+      <h2>Accéder au rapport complet</h2>
+      <p class="sub">Gratuit · Accès immédiat · Pas de bullshit</p>
 
-    <div class="divider-or">ou</div>
+      <form id="gate-form" onsubmit="unlockReport(event)">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" name="email" placeholder="ton@email.com" required autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label>Téléphone / WhatsApp</label>
+          <input type="tel" name="phone" placeholder="+33 6 00 00 00 00" required autocomplete="tel">
+        </div>
+        <button type="submit" class="btn-submit" id="submit-btn">
+          🔓 Accéder au rapport →
+        </button>
+      </form>
 
-    <a href="https://wa.me/33624835980?text=Bonjour%20Cl%C3%A9ment%2C%20je%20veux%20le%20rapport%20sur%20les%20crises%20immobili%C3%A8res%20%C3%A0%20Dubai%20%F0%9F%93%8A" class="btn-whatsapp" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      Recevoir via WhatsApp
-    </a>
-
-    <p class="form-note">🔒 Aucun spam. Tu peux te désabonner à tout moment.</p>
-
-    <div class="success-msg" id="success-hero">
-      <span class="check">✅</span>
-      <h3>C'est envoyé !</h3>
-      <p>Vérifie ton email dans les prochaines minutes.<br>Si tu ne le trouves pas, regarde dans les spams.</p>
+      <p class="form-note">🔒 Aucun spam. Données utilisées uniquement par Clément Talmo.</p>
     </div>
   </div>
-</section>
+</div>
 
-<!-- ═══ CONTENU DU RAPPORT ═══ -->
-<section class="section">
-  <div class="section-inner">
-    <p class="section-tag">Ce que tu vas découvrir</p>
-    <h2 class="section-title">Un rapport que personne d'autre ne compile en français</h2>
-    <p class="section-lead">Prix, supply, yields, population, facteurs macro — toutes les variables qui déterminent si Dubai monte ou s'effondre.</p>
-
-    <div class="contents-grid">
-      <div class="content-card">
-        <span class="icon">📉</span>
-        <h3>Le crash 2008 décortiqué</h3>
-        <p>−65% en 12 mois. Qui a perdu, qui a gagné, et pourquoi ça n'arrivera (peut-être) pas de la même façon.</p>
-      </div>
-      <div class="content-card">
-        <span class="icon">📊</span>
-        <h3>5 cycles immobiliers analysés</h3>
-        <p>Les patterns récurrents : durée moyenne, amplitude, signaux avant-coureurs. La data depuis 2005.</p>
-      </div>
-      <div class="content-card">
-        <span class="icon">🏗️</span>
-        <h3>Supply vs Prix : la corrélation réelle</h3>
-        <p>Est-ce que la suroffre explique vraiment les krachs ? Les données répondent — et c'est plus nuancé que tu crois.</p>
-      </div>
-      <div class="content-card">
-        <span class="icon">👥</span>
-        <h3>Population × Immobilier</h3>
-        <p>Comment la croissance démographique de Dubai influence les prix — et pourquoi c'est le facteur le plus sous-estimé.</p>
-      </div>
-      <div class="content-card">
-        <span class="icon">🎯</span>
-        <h3>Matrice stratégique 2025-2026</h3>
-        <p>Les signaux à surveiller maintenant. Pas de l'astrologie — des indicateurs vérifiables, avec seuils d'alerte.</p>
-      </div>
-      <div class="content-card">
-        <span class="icon">🔑</span>
-        <h3>5 constantes historiques</h3>
-        <p>Ce qui s'est toujours vérifié dans les cycles Dubai. Les règles que tout investisseur devrait connaître.</p>
-      </div>
-    </div>
+<!-- ══ RAPPORT ══ -->
+<div id="rapport">
+  <div class="rapport-header">
+    <span class="logo">@ClementInvestDubai</span>
+    <span class="info">Immobilier Dubai 2008–2026 — Rapport Complet</span>
   </div>
-</section>
+  <iframe id="rapport-frame" src="" title="Rapport Crises Immobilières Dubai"></iframe>
+</div>
 
-<!-- ═══ APERÇU ═══ -->
-<section class="preview-section">
-  <div class="preview-wrapper">
-    <p class="section-tag" style="text-align:center">Aperçu du rapport</p>
-    <h2 class="section-title" style="text-align:center; margin-bottom:32px">Un extrait pour que tu voies le niveau</h2>
-
-    <div class="preview-teaser">
-      <div class="preview-content">
-        <h3>🔴 Crash 2008 — Ce que les données montrent vraiment</h3>
-        <ul>
-          <li>Peak atteint en septembre 2008 — exactement au moment de la faillite de Lehman Brothers</li>
-          <li>−65% en 12 mois dans certains quartiers (JLT, Discovery Gardens, International City)</li>
-          <li>Dubai Marina : −55%. Palm Jumeirah : −50%. Downtown : −45%</li>
-          <li>La supply a continué d'augmenter pendant la crise — les chantiers ne s'arrêtent pas du jour au lendemain</li>
-          <li>Yields ont monté à 9-11% pendant la crise (les prix baissent mais les loyers restent)</li>
-          <li>Récupération complète : 2013-2014 — soit 5-6 ans pour revenir au pic</li>
-          <li>Ce qui a sauvé Dubai : Expo 2020 annoncé en 2013 + pétrole à 100$ + afflux capitaux du Printemps Arabe</li>
-        </ul>
-        <br>
-        <h3>📊 Les 5 Constantes Historiques</h3>
-        <ul>
-          <li>Constante 1 : Chaque correction à Dubai a été suivie d'un rebond supérieur au pic précédent</li>
-          <li>Constante 2 : La suroffre seule ne suffit pas à provoquer un crash — il faut un choc externe</li>
-          <li>Constante 3 : Les yields montent quand les prix baissent — l'immobilier locatif se défend mieux</li>
-          <li>Constante 4 : Dubai ne suit pas le cycle mondial — il le précède ou le retarde d'environ 12 mois</li>
-          <li>Constante 5 : ...</li>
-        </ul>
-      </div>
-      <div class="preview-blur"></div>
-      <div class="preview-cta">
-        <p>La suite est dans le rapport complet — gratuit, accès immédiat.</p>
-        <a href="#form-hero" class="btn-unlock">🔓 Accéder au rapport complet</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ AUTEUR ═══ -->
-<section class="proof-section">
-  <div class="section-inner">
-    <div class="author-card">
-      <div class="author-avatar">🏙️</div>
-      <div class="author-info">
-        <h3>Clément Talmo</h3>
-        <p class="role">Agent immobilier Dubai · @ClementInvestDubai</p>
-        <p>J'ai compilé 20 ans de données sur les cycles immobiliers de Dubai parce que je n'ai pas trouvé une seule ressource en français qui le faisait sérieusement. Ce rapport, je l'aurais voulu quand j'ai commencé. Du coup je le donne gratuitement.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ FINAL CTA ═══ -->
-<section class="final-cta">
-  <h2>Tu investis à Dubai ?<br><span>Commence par comprendre les cycles.</span></h2>
-  <p>Le rapport est gratuit. Il te faut 30 secondes pour l'avoir.</p>
-
-  <div class="cta-box" id="form-final">
-    <h2>Recevoir le rapport</h2>
-    <p>Données 2005–2026 · Gratuit · Accès immédiat</p>
-    <form id="final-form" onsubmit="submitForm(event, 'final')">
-      <div class="form-group">
-        <label>Prénom</label>
-        <input type="text" name="name" placeholder="Ton prénom" required>
-      </div>
-      <div class="form-group">
-        <label>Email</label>
-        <input type="email" name="email" placeholder="ton@email.com" required>
-      </div>
-      <button type="submit" class="btn-primary">📥 Recevoir le rapport maintenant</button>
-    </form>
-
-    <div class="divider-or">ou</div>
-
-    <a href="https://wa.me/33624835980?text=Bonjour%20Cl%C3%A9ment%2C%20je%20veux%20le%20rapport%20sur%20les%20crises%20immobili%C3%A8res%20%C3%A0%20Dubai%20%F0%9F%93%8A" class="btn-whatsapp" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      Recevoir via WhatsApp
-    </a>
-
-    <p class="form-note">🔒 Aucun spam. Pas de newsletter non voulue.</p>
-
-    <div class="success-msg" id="success-final">
-      <span class="check">✅</span>
-      <h3>C'est envoyé !</h3>
-      <p>Vérifie ton email dans les prochaines minutes.</p>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <p>© 2026 Clément Talmo — Talmo Properties L.L.C · Dubai, UAE</p>
-  <p style="margin-top:6px"><a href="https://www.youtube.com/@ClementInvestDubai" target="_blank">@ClementInvestDubai</a></p>
-</footer>
-
-<!-- ─── FORMSPREE SUBMIT ─── -->
 <script>
-async function submitForm(e, id) {
-  e.preventDefault();
-  const form = e.target;
-  const data = new FormData(form);
-
-  try {
-    const res = await fetch('https://formspree.io/f/mbdqzvkv', {
-      method: 'POST',
-      body: data,
-      headers: { 'Accept': 'application/json' }
-    });
-
-    if (res.ok) {
-      form.style.display = 'none';
-      form.previousElementSibling && (form.previousElementSibling.style.display = 'none');
-      document.getElementById('success-' + id).style.display = 'block';
-      // Scroll to rapport (à implémenter si hébergement)
-    } else {
-      alert('Une erreur est survenue. Essaie via WhatsApp.');
-    }
-  } catch(err) {
-    alert('Une erreur est survenue. Essaie via WhatsApp.');
+  // Ajuster la hauteur de l'iframe dynamiquement
+  function setIframeHeight() {
+    const iframe = document.getElementById('rapport-frame');
+    iframe.style.height = window.innerHeight + 'px';
   }
-}
 
-// Smooth scroll pour le bouton unlock
-document.querySelector('.btn-unlock').addEventListener('click', function(e) {
-  e.preventDefault();
-  document.getElementById('form-hero').scrollIntoView({ behavior: 'smooth', block: 'center' });
-});
+  async function unlockReport(e) {
+    e.preventDefault();
+    const form = e.target;
+    const btn = document.getElementById('submit-btn');
+    const data = new FormData(form);
+
+    btn.disabled = true;
+    btn.textContent = 'Envoi en cours...';
+
+    // Envoi FormSpree
+    try {
+      await fetch('https://formspree.io/f/mbdqzvkv', {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+    } catch(err) {
+      // On débloque quand même si erreur réseau — le rapport reste accessible
+    }
+
+    // Afficher le rapport
+    document.getElementById('gate').style.display = 'none';
+    const rapport = document.getElementById('rapport');
+    rapport.style.display = 'block';
+
+    // Charger le rapport dans l'iframe
+    const iframe = document.getElementById('rapport-frame');
+    iframe.src = '/crise/rapport.html';
+    setIframeHeight();
+    window.addEventListener('resize', setIframeHeight);
+  }
 </script>
-
 </body>
 </html>
