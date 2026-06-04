@@ -844,5 +844,19 @@
     const ml=document.querySelector(`.mt[onclick*="${cur}"]`); if(ml) ml.classList.add('active');
   });
 </script>
+<script>
+// Accès direct — pas de gate
+(function(){
+  document.getElementById('gate').style.display = 'none';
+  document.getElementById('thankyou').style.display = 'none';
+  var d = document.getElementById('dossier');
+  d.style.display = 'block';
+  // Activer nav/sidebar/tabs
+  document.getElementById('main-nav').classList.add('v');
+  document.getElementById('side-nav').classList.add('v');
+  document.getElementById('mob-tabs').classList.add('v');
+  document.getElementById('float-cta').classList.add('v');
+})();
+</script>
 </body>
 </html>
