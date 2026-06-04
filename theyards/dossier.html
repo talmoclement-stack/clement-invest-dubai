@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dossier Investisseur — The Yards par Beyond | City of Arabia, Dubai</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #0F2240;
+      --blue: #1A2E4A;
+      --green: #3D6B5A;
+      --gold: #C9A84C;
+      --light: #F4F7FB;
+      --white: #FFFFFF;
+      --text: #1A2535;
+      --muted: #6B7A92;
+      --border: #DDE3EE;
+      --cream: #F2F0EB;
+    }
+    body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--text); }
+
+    /* ── GATE ── */
+    #gate {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0F2240 0%, #1a3a6b 60%, #0d1f3c 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+    .gate-inner { max-width: 460px; width: 100%; text-align: center; }
+    .gate-badge {
+      display: inline-block;
+      background: rgba(201,168,76,0.15);
+      border: 1px solid rgba(201,168,76,0.4);
+      color: #C9A84C;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 5px 16px;
+      border-radius: 100px;
+      margin-bottom: 24px;
+    }
+    .gate-title {
+      font-size: clamp(26px, 5vw, 38px);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .gate-title span { color: #C9A84C; }
+    .gate-sub {
+      font-size: 16px;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+
+    /* Highlights */
+    .gate-highlights {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 32px;
+      text-align: left;
+    }
+    .gate-highlight {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 12px 16px;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .gate-highlight .icon { font-size: 18px; flex-shrink: 0; }
+
+    /* Form */
+    .gate-form { display: flex; flex-direction: column; gap: 12px; }
+    .gate-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.85);
+      text-align: left;
+      margin-bottom: 4px;
+      display: block;
+    }
+    .gate-input {
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 10px;
+      border: 1.5px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      font-size: 16px;
+      outline: none;
+      transition: border-color .2s;
+    }
+    .gate-input::placeholder { color: rgba(255,255,255,0.4); }
+    .gate-input:focus { border-color: #C9A84C; }
+    .gate-btn {
+      width: 100%;
+      padding: 16px;
+      border-radius: 10px;
+      border: none;
+      background: #C9A84C;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      letter-spacing: 0.3px;
+      transition: background .2s, transform .1s;
+      margin-top: 4px;
+    }
+    .gate-btn:hover { background: #b8943c; }
+    .gate-btn:active { transform: scale(0.99); }
+    .gate-note {
+      font-size: 12px;
+      color: rgba(255,255,255,0.45);
+      margin-top: 10px;
+      line-height: 1.5;
+    }
+
+    /* ── THANK YOU ── */
+    #thankyou {
+      display: none;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0F2240 0%, #1a3a6b 60%, #0d1f3c 100%);
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .ty-inner { max-width: 460px; width: 100%; }
+    .ty-icon { font-size: 56px; margin-bottom: 20px; }
+    .ty-title { font-size: 30px; font-weight: 900; color: #fff; margin-bottom: 12px; }
+    .ty-title span { color: #C9A84C; }
+    .ty-text { font-size: 16px; color: rgba(255,255,255,0.75); line-height: 1.7; margin-bottom: 28px; }
+    .ty-wa-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #25D366;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 14px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: background .2s;
+    }
+    .ty-wa-btn:hover { background: #20bc5a; }
+    .ty-footer { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 20px; }
+
+    /* ── DOSSIER ── */
+    #dossier { display: none; }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, #0F2240 0%, #1a3a6b 70%, #0d1f3c 100%);
+      padding: 60px 24px 50px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(201,168,76,0.2);
+      border: 1px solid rgba(201,168,76,0.5);
+      color: #C9A84C;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 5px 16px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+    .hero h1 span { color: #C9A84C; }
+    .hero-sub {
+      font-size: 17px;
+      color: rgba(255,255,255,0.72);
+      max-width: 580px;
+      margin: 0 auto 28px;
+      line-height: 1.6;
+    }
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .stat-pill {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 50px;
+      padding: 8px 20px;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .stat-pill strong { color: #C9A84C; }
+
+    /* Content wrapper */
+    .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px; }
+
+    /* Section */
+    .section { padding: 48px 0 32px; border-bottom: 1px solid var(--border); }
+    .section:last-child { border-bottom: none; }
+    .section-tag {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 8px;
+    }
+    .section h2 {
+      font-size: clamp(22px, 3vw, 30px);
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+    .section p {
+      font-size: 16px;
+      color: var(--text);
+      line-height: 1.75;
+      margin-bottom: 14px;
+    }
+    .section p:last-child { margin-bottom: 0; }
+
+    /* Promoteur card */
+    .promo-card {
+      background: var(--cream);
+      border-radius: 16px;
+      padding: 28px;
+      margin-top: 24px;
+    }
+    .promo-card h3 { font-size: 18px; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
+    .promo-card .promo-sub { font-size: 13px; color: var(--green); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; }
+    .promo-card p { font-size: 15px; color: var(--text); line-height: 1.7; }
+
+    /* Prix table */
+    .price-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .price-card {
+      background: var(--navy);
+      border-radius: 14px;
+      padding: 24px 20px;
+      text-align: center;
+      color: #fff;
+    }
+    .price-card .type { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #C9A84C; margin-bottom: 6px; }
+    .price-card .price { font-size: 26px; font-weight: 900; margin-bottom: 4px; }
+    .price-card .price-eur { font-size: 15px; color: rgba(255,255,255,0.6); margin-bottom: 8px; }
+    .price-card .sqm { font-size: 13px; color: rgba(255,255,255,0.5); }
+
+    /* Plan de paiement */
+    .payment-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .payment-step {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--light);
+      border-radius: 12px;
+      padding: 16px 20px;
+    }
+    .step-pct {
+      font-size: 26px;
+      font-weight: 900;
+      color: var(--navy);
+      min-width: 64px;
+    }
+    .step-info { flex: 1; }
+    .step-info strong { display: block; font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
+    .step-info span { font-size: 13px; color: var(--muted); }
+
+    /* Points positifs / négatifs */
+    .pros-cons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 24px;
+    }
+    @media(max-width: 560px) { .pros-cons { grid-template-columns: 1fr; } }
+    .pros, .cons {
+      border-radius: 14px;
+      padding: 20px;
+    }
+    .pros { background: #EEF7F3; }
+    .cons { background: #FEF3EE; }
+    .pros h4 { color: #2A6649; font-size: 14px; font-weight: 800; margin-bottom: 12px; }
+    .cons h4 { color: #B34A20; font-size: 14px; font-weight: 800; margin-bottom: 12px; }
+    .pros ul, .cons ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .pros li, .cons li { font-size: 14px; line-height: 1.5; display: flex; gap: 8px; }
+    .pros li::before { content: '✓'; color: #2A6649; font-weight: 700; flex-shrink: 0; }
+    .cons li::before { content: '⚠'; flex-shrink: 0; }
+
+    /* Localisation distances */
+    .distances {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .dist-item {
+      background: var(--light);
+      border-radius: 10px;
+      padding: 14px 16px;
+      text-align: center;
+    }
+    .dist-item .mins { font-size: 22px; font-weight: 900; color: var(--navy); }
+    .dist-item .place { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+    /* Pour qui */
+    .profiles {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .profile-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      background: var(--cream);
+      border-radius: 12px;
+      padding: 16px 18px;
+    }
+    .profile-item .emoji { font-size: 22px; flex-shrink: 0; }
+    .profile-item div strong { display: block; font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 3px; }
+    .profile-item div span { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+    /* Stratégie */
+    .strategy-box {
+      background: linear-gradient(135deg, var(--navy) 0%, #1a3a6b 100%);
+      border-radius: 16px;
+      padding: 28px;
+      color: #fff;
+      margin-top: 24px;
+    }
+    .strategy-box h3 { font-size: 18px; font-weight: 800; margin-bottom: 14px; color: #C9A84C; }
+    .strategy-box p { font-size: 15px; line-height: 1.7; color: rgba(255,255,255,0.85); margin-bottom: 10px; }
+    .strategy-box p:last-child { margin-bottom: 0; }
+
+    /* CTA final */
+    .cta-block {
+      background: linear-gradient(135deg, var(--green) 0%, #2d5245 100%);
+      border-radius: 20px;
+      padding: 40px 28px;
+      text-align: center;
+      margin: 48px 0;
+      color: #fff;
+    }
+    .cta-block h2 { font-size: 24px; font-weight: 900; margin-bottom: 10px; }
+    .cta-block p { font-size: 15px; color: rgba(255,255,255,0.8); margin-bottom: 24px; line-height: 1.6; }
+    .cta-wa {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #25D366;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 800;
+      padding: 15px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: background .2s, transform .1s;
+    }
+    .cta-wa:hover { background: #20bc5a; }
+    .cta-wa:active { transform: scale(0.98); }
+    .cta-note { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 14px; }
+
+    /* Footer */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      font-size: 12px;
+      padding: 24px 20px;
+      line-height: 1.6;
+    }
+    footer a { color: #C9A84C; text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     GATE — Capture numéro de téléphone
+════════════════════════════════════════════ -->
+<div id="gate">
+  <div class="gate-inner">
+    <div class="gate-badge">📄 Dossier Investisseur Exclusif</div>
+    <h1 class="gate-title">
+      <span>The Yards</span> par Beyond<br>City of Arabia, Dubai
+    </h1>
+    <p class="gate-sub">
+      Analyse complète du projet : promoteur, quartier, prix, plan de paiement, points positifs, points négatifs et stratégie d'investissement.
+    </p>
+
+    <div class="gate-highlights">
+      <div class="gate-highlight">
+        <span class="icon">🏗️</span>
+        <span>Beyond by Omniyat — top promoteur Dubai</span>
+      </div>
+      <div class="gate-highlight">
+        <span class="icon">💰</span>
+        <span>1-bed à partir de 1,1M AED — ~257 000€</span>
+      </div>
+      <div class="gate-highlight">
+        <span class="icon">📅</span>
+        <span>Plan de paiement 40/60 — livraison Q2 2029</span>
+      </div>
+      <div class="gate-highlight">
+        <span class="icon">📊</span>
+        <span>Mon avis honnête : points forts ET points négatifs</span>
+      </div>
+    </div>
+
+    <form class="gate-form" onsubmit="submitGate(event)">
+      <div>
+        <label class="gate-label" for="phone">Votre numéro WhatsApp</label>
+        <input
+          class="gate-input"
+          type="tel"
+          id="phone"
+          name="phone"
+          placeholder="+33 6 12 34 56 78"
+          required
+          autocomplete="tel"
+        />
+      </div>
+      <button class="gate-btn" type="submit">
+        📲 Recevoir le dossier sur WhatsApp
+      </button>
+    </form>
+    <p class="gate-note">
+      Vous recevrez le dossier complet via WhatsApp sous 24h.<br>
+      Aucun email requis. Zéro spam.
+    </p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     THANK YOU
+════════════════════════════════════════════ -->
+<div id="thankyou">
+  <div class="ty-inner">
+    <div class="ty-icon">✅</div>
+    <h2 class="ty-title">C'est <span>enregistré</span> !</h2>
+    <p class="ty-text">
+      Votre numéro a bien été enregistré.<br>
+      Je vous envoie le dossier complet sur WhatsApp <strong>sous 24h</strong>.<br><br>
+      Si vous voulez être traité en priorité ou si vous avez des questions, envoyez-moi directement un message.
+    </p>
+    <a class="ty-wa-btn" href="https://wa.me/33624835980?text=Bonjour%20Clément%2C%20je%20viens%20de%20m%27inscrire%20pour%20le%20dossier%20The%20Yards%20Beyond.">
+      <svg width="22" height="22" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      M'envoyer un message maintenant
+    </a>
+    <p class="ty-footer">Clément Talmo — Agent immobilier Dubai · +33 6 24 83 59 80</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     DOSSIER COMPLET
+════════════════════════════════════════════ -->
+<div id="dossier">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-badge">Dossier Investisseur — Juin 2026</div>
+    <h1>The Yards par <span>Beyond</span><br>City of Arabia, Dubai</h1>
+    <p class="hero-sub">
+      Analyse complète : promoteur, quartier, prix, plan de paiement et mon avis honnête d'agent sur ce projet.
+    </p>
+    <div class="hero-stats">
+      <div class="stat-pill">🏗️ Promoteur : <strong>Beyond by Omniyat</strong></div>
+      <div class="stat-pill">📍 <strong>City of Arabia</strong>, Dubailand</div>
+      <div class="stat-pill">💰 À partir de <strong>1M AED</strong></div>
+      <div class="stat-pill">📅 Livraison <strong>Q2 2029</strong></div>
+      <div class="stat-pill">🔑 Plan <strong>40/60</strong></div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <!-- LE PROMOTEUR -->
+    <div class="section">
+      <div class="section-tag">Le Promoteur</div>
+      <h2>Beyond by Omniyat — Pourquoi ça compte</h2>
+      <p>
+        Beyond est la marque résidentielle premium d'<strong>Omniyat Group</strong>, l'un des promoteurs les plus reconnus de Dubai pour son exigence architecturale. Ce n'est pas un petit acteur — Omniyat a livré certaines des adresses les plus iconiques de la ville.
+      </p>
+      <p>
+        Ce qui est intéressant avec Beyond, c'est leur positionnement : des produits de qualité Ellington ou supérieure, à des prix parfois inférieurs. Ils ont construit leur réputation sur Dubai Maritime City (80% des plots), Dubai Islands (communauté avec accès plage, forêt privée, style japonisant) et Palm Jumeirah.
+      </p>
+      <div class="promo-card">
+        <h3>Beyond Developments</h3>
+        <div class="promo-sub">Groupe Omniyat · Dubai</div>
+        <p>Architecture signée par des cabinets reconnus mondialement. Partenariat avec <strong>Cooper Hills</strong> pour le design de la communauté et <strong>HBA</strong> (Hirsch Bedner Associates) pour les intérieurs — un des studios les plus primés au monde dans le secteur hospitalier et résidentiel haut de gamme.</p>
+      </div>
+    </div>
+
+    <!-- LE PROJET -->
+    <div class="section">
+      <div class="section-tag">Le Projet</div>
+      <h2>The Yards — Une master-communauté en 5 phases</h2>
+      <p>
+        The Yards représente l'intégralité d'un plot dans City of Arabia. Beyond a acheté la totalité de cette surface pour y construire une master-communauté de <strong>13 immeubles</strong> (dont 3 commerciaux) en 5 phases successives.
+      </p>
+      <p>
+        La première phase — <strong>Arancia</strong> — est actuellement en lancement. Elle comprend 3 immeubles résidentiels avec des appartements studio, 1, 2 et 3 chambres, ainsi que des townhouses 3 chambres.
+      </p>
+      <p><strong>Ce qui différencie ce projet :</strong></p>
+      <ul style="margin: 12px 0 0 20px; line-height: 2; font-size: 15px;">
+        <li><strong>70% de verdure</strong> sur l'ensemble de la communauté</li>
+        <li>Communauté entièrement <strong>piétonne</strong>, circulation en voiturette de golf</li>
+        <li>Accès partagé à toutes les amenities de toutes les phases (piscines, wellness center, etc.)</li>
+        <li>Architecture et intérieurs signés par des cabinets de standing mondial (Cooper Hills + HBA)</li>
+        <li>Communauté de villas Beyond prévue adjacente — effet quartier complet</li>
+      </ul>
+    </div>
+
+    <!-- LES PRIX -->
+    <div class="section">
+      <div class="section-tag">Les Prix</div>
+      <h2>Des prix qui changent la donne</h2>
+      <p>
+        C'est là où ça devient vraiment intéressant. Pour un promoteur du niveau de Beyond, ces prix sont inhabituels sur le marché actuel. À titre de comparaison : les derniers projets Ellington ou Imtiaz sur JVC étaient à 1,2-1,4M AED sur les 1-bed.
+      </p>
+      <div class="price-grid">
+        <div class="price-card">
+          <div class="type">Studio</div>
+          <div class="price">~700K AED</div>
+          <div class="price-eur">~163 000 €</div>
+          <div class="sqm">À partir de 430 sqft</div>
+        </div>
+        <div class="price-card">
+          <div class="type">1 Chambre</div>
+          <div class="price">~1,1M AED</div>
+          <div class="price-eur">~257 000 €</div>
+          <div class="sqm">~3 700 €/m²</div>
+        </div>
+        <div class="price-card">
+          <div class="type">2 Chambres</div>
+          <div class="price">~2,1M AED</div>
+          <div class="price-eur">~491 000 €</div>
+          <div class="sqm">~4 500 €/m²</div>
+        </div>
+        <div class="price-card">
+          <div class="type">3 Chambres</div>
+          <div class="price">~3,3M AED</div>
+          <div class="price-eur">~772 000 €</div>
+          <div class="sqm">~4 500 €/m²</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PLAN DE PAIEMENT -->
+    <div class="section">
+      <div class="section-tag">Plan de Paiement</div>
+      <h2>40/60 — Immobilisez peu, valorisez plus</h2>
+      <p>
+        Le plan de paiement est structuré de façon à minimiser le cash immobilisé pendant la construction. Avec 60% payable à la livraison, vous pouvez faire fructifier votre capital pendant 3 ans.
+      </p>
+      <div class="payment-steps">
+        <div class="payment-step">
+          <div class="step-pct">10%</div>
+          <div class="step-info">
+            <strong>Acompte de réservation</strong>
+            <span>À la signature du contrat</span>
+          </div>
+        </div>
+        <div class="payment-step">
+          <div class="step-pct">10%</div>
+          <div class="step-info">
+            <strong>2 mois après la réservation</strong>
+            <span>Première tranche de construction</span>
+          </div>
+        </div>
+        <div class="payment-step">
+          <div class="step-pct">20%</div>
+          <div class="step-info">
+            <strong>Pendant la construction</strong>
+            <span>En tranches progressives (jalons)</span>
+          </div>
+        </div>
+        <div class="payment-step">
+          <div class="step-pct" style="color: #C9A84C;">60%</div>
+          <div class="step-info">
+            <strong>À la livraison — Q2 2029</strong>
+            <span>Solde à la remise des clés</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LOCALISATION -->
+    <div class="section">
+      <div class="section-tag">Localisation</div>
+      <h2>City of Arabia — Ce qu'il faut vraiment savoir</h2>
+      <p>
+        City of Arabia est dans Dubailand, adjacent à <strong>Majan</strong> — un quartier qui a déjà ~3 000 transactions locatives annuelles en cours. Ce chiffre est important : il confirme que la demande locative existe déjà dans l'environnement immédiat.
+      </p>
+      <p>
+        La zone était longtemps dans l'ombre, mais elle revient dans le radar des investisseurs depuis 2024 : Ellington, Binghatti et d'autres top promoteurs ont commencé à y lancer des projets. Beyond est le plus récent — et le plus premium — à s'y positionner.
+      </p>
+      <div class="distances">
+        <div class="dist-item"><div class="mins">5'</div><div class="place">IMG Worlds of Adventure</div></div>
+        <div class="dist-item"><div class="mins">10'</div><div class="place">Global Village</div></div>
+        <div class="dist-item"><div class="mins">15'</div><div class="place">Dubai Outlet Mall</div></div>
+        <div class="dist-item"><div class="mins">20'</div><div class="place">Downtown Dubai</div></div>
+        <div class="dist-item"><div class="mins">22'</div><div class="place">Dubai Mall</div></div>
+        <div class="dist-item"><div class="mins">15'</div><div class="place">Al Maktoum Airport</div></div>
+      </div>
+      <p style="margin-top: 16px; font-size: 14px; color: var(--muted);">
+        ⚡ Nouvelles routes en projet pour connecter directement à Downtown. Nouvelle station de métro annoncée dans le secteur Majan.
+      </p>
+    </div>
+
+    <!-- POINTS POSITIFS / NÉGATIFS -->
+    <div class="section">
+      <div class="section-tag">Mon Analyse Honnête</div>
+      <h2>Les vrais points positifs — et les vraies limites</h2>
+      <p>
+        Je ne vends pas des projets. Je vous aide à acheter le bon. Voici donc les deux côtés du tableau, sans filtre.
+      </p>
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>✅ Points positifs</h4>
+          <ul>
+            <li>Top promoteur (Beyond/Omniyat) à prix inhabituel pour son standing</li>
+            <li>Communauté complète vs simple immeuble — plus de valeur perçue à la revente</li>
+            <li>70% verdure + tout piéton : vraie qualité de vie</li>
+            <li>Marché locatif voisin (Majan) déjà actif — preuve de demande</li>
+            <li>Plan 40/60 : peu de cash immobilisé pendant 3 ans</li>
+            <li>Routes + métro en projet : accessibilité améliorera la valeur</li>
+            <li>Phase 1 = meilleurs prix, les phases suivantes seront plus chères</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>⚠️ Points de vigilance</h4>
+          <ul>
+            <li>City of Arabia ≠ Majan — transactions locatives spécifiques à cette adresse encore quasi nulles</li>
+            <li>Projet en 5 phases : au moment de la livraison de la phase 1, la communauté ne sera pas finalisée</li>
+            <li>Stratégie locative à bien anticiper (voir section stratégie)</li>
+            <li>Livraison Q2 2029 — exposition aux risques de retard habituels de l'off-plan</li>
+            <li>Accessibilité actuelle : détour nécessaire pour rejoindre le centre-ville</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- POUR QUI -->
+    <div class="section">
+      <div class="section-tag">Pour Qui</div>
+      <h2>Ce projet est fait pour vous si…</h2>
+      <div class="profiles">
+        <div class="profile-item">
+          <div class="emoji">🏆</div>
+          <div>
+            <strong>Vous voulez du top promoteur sans surpayer</strong>
+            <span>Vous cherchiez du Ellington ou du Beyond, mais les prix sur JVC ou Dubai Islands vous semblaient trop élevés. Ici, vous avez le produit sans le prix premium de localisation.</span>
+          </div>
+        </div>
+        <div class="profile-item">
+          <div class="emoji">💼</div>
+          <div>
+            <strong>Vous n'avez pas envie d'immobiliser tout votre cash</strong>
+            <span>Le 40/60 vous permet de garder 60% de votre capital actif pendant 3 ans. Idéal si vous avez d'autres projets en cours ou si vous attendez une rentrée d'argent.</span>
+          </div>
+        </div>
+        <div class="profile-item">
+          <div class="emoji">📈</div>
+          <div>
+            <strong>Vous visez la plus-value plus que le rendement locatif immédiat</strong>
+            <span>Phase 1 = prix les plus bas. Les phases suivantes seront mécaniquement plus chères. C'est un pari sur la valorisation à mesure que la communauté se construit.</span>
+          </div>
+        </div>
+        <div class="profile-item">
+          <div class="emoji">🔄</div>
+          <div>
+            <strong>Vous avez un bien à revendre pendant la construction</strong>
+            <span>Le délai de 3 ans vous laisse le temps de vendre un actif existant pour financer les 60% à la livraison. Une vraie fenêtre de manœuvre.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STRATÉGIE -->
+    <div class="section">
+      <div class="section-tag">Stratégie</div>
+      <h2>Comment maximiser ce projet</h2>
+      <div class="strategy-box">
+        <h3>📋 Le conseil que je donne à mes clients</h3>
+        <p>
+          À la livraison, City of Arabia ne sera pas encore un quartier établi. Si vous mettez directement en location longue durée, vous vous exposez à deux risques : louer moins cher (marché naissant) et surtout ne pas pouvoir remonter les loyers ensuite (cap légal de +3-5%/an).
+        </p>
+        <p>
+          <strong>Ma recommandation :</strong> commencez par de l'Airbnb court séjour pendant 3 à 6 mois après la livraison. Ça vous permet d'attendre que la communauté se remplisse, que les prix locatifs montent naturellement. Une fois le marché établi, vous basculez en longue durée avec un loyer de référence élevé dès le départ.
+        </p>
+        <p>
+          Pour ceux qui visent la revente : la plus-value devrait être significative entre la phase 1 et la phase 4-5, à mesure que la communauté prend de la valeur. Les projections de ROI locatif tournent autour de <strong>6,5% à 9%</strong> selon la taille de l'unité.
+        </p>
+      </div>
+    </div>
+
+    <!-- CTA FINAL -->
+    <div class="cta-block">
+      <h2>Vous êtes intéressé ?</h2>
+      <p>
+        Contactez-moi directement sur WhatsApp. Je vous explique les unités disponibles, les derniers prix et je vous aide à évaluer si ce projet correspond à votre situation.
+      </p>
+      <a class="cta-wa" href="https://wa.me/33624835980?text=Bonjour%20Clément%2C%20j%27ai%20lu%20le%20dossier%20The%20Yards%20Beyond%20et%20je%20voudrais%20en%20savoir%20plus.">
+        <svg width="22" height="22" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Contacter Clément sur WhatsApp
+      </a>
+      <p class="cta-note">+33 6 24 83 59 80 · Réponse sous 24h</p>
+    </div>
+
+  </div><!-- /wrap -->
+
+  <footer>
+    <p>Clément Talmo — Agent immobilier Dubai · Dubai, côté acheteur.</p>
+    <p style="margin-top: 6px;"><a href="https://wa.me/33624835980">+33 6 24 83 59 80</a> · <a href="https://go.clementinvestdubai.com">go.clementinvestdubai.com</a></p>
+    <p style="margin-top: 10px; font-size: 11px;">Les prix et informations sont donnés à titre indicatif. Ils peuvent évoluer selon les phases de lancement. Ce document n'est pas un conseil en investissement.</p>
+  </footer>
+
+</div><!-- /dossier -->
+
+<script>
+// FormSpree endpoint — remplacer par votre ID si nécessaire
+const FORMSPREE_URL = 'https://formspree.io/f/mbdqzvkv';
+
+async function submitGate(e) {
+  e.preventDefault();
+  const phone = document.getElementById('phone').value.trim();
+  if (!phone) return;
+
+  const btn = e.target.querySelector('.gate-btn');
+  btn.textContent = 'Envoi en cours…';
+  btn.disabled = true;
+
+  try {
+    await fetch(FORMSPREE_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        phone: phone,
+        projet: 'The Yards — Beyond',
+        source: 'landing-theyards'
+      })
+    });
+  } catch(err) {
+    // Silently continue even if FormSpree fails
+  }
+
+  // Show thank you
+  document.getElementById('gate').style.display = 'none';
+  const ty = document.getElementById('thankyou');
+  ty.style.display = 'flex';
+}
+</script>
+
+<script>
+// Direct access — show dossier immediately
+document.getElementById('gate').style.display = 'none';
+document.getElementById('thankyou').style.display = 'none';
+document.getElementById('dossier').style.display = 'block';
+</script>
+</body>
+</html>
