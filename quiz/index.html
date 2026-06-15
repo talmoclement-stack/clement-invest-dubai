@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quel investisseur es-tu ? — Clément Invest Dubai</title>
+  <meta name="description" content="Réponds à 8 questions en 3 minutes. Découvre ton profil investisseur à Dubai — zones recommandées, promoteurs adaptés, stratégie personnalisée.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:       #0f1f3d;
+      --navy-2:     #162847;
+      --gold:       #c9a84c;
+      --gold-light: #dfc06e;
+      --gold-pale:  #f5edd8;
+      --white:      #ffffff;
+      --off-white:  #f8f9fc;
+      --gray-50:    #f4f5f7;
+      --gray-100:   #eceef2;
+      --gray-200:   #d8dbe3;
+      --gray-400:   #9198aa;
+      --gray-600:   #525a6e;
+      --text:       #0f1f3d;
+      --green-wa:   #25D366;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(15,31,61,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+      padding: 0 24px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+      color: var(--white);
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-back {
+      font-size: 0.8rem;
+      color: var(--gray-400);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--gold); }
+
+    /* MAIN WRAPPER */
+    .quiz-wrapper {
+      min-height: 100vh;
+      padding: 80px 24px 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* PROGRESS BAR */
+    .progress-container {
+      width: 100%;
+      max-width: 640px;
+      margin-bottom: 40px;
+    }
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .progress-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--gray-400);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .progress-step {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .progress-bar {
+      width: 100%;
+      height: 3px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      border-radius: 2px;
+      transition: width 0.5s ease;
+    }
+
+    /* CARD */
+    .quiz-card {
+      width: 100%;
+      max-width: 640px;
+      background: var(--navy-2);
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 20px;
+      padding: 40px;
+      animation: fadeUp 0.4s ease;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .question-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.2);
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    .question-text {
+      font-size: 1.35rem;
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .question-sub {
+      font-size: 0.875rem;
+      color: var(--gray-400);
+      margin-bottom: 28px;
+      line-height: 1.5;
+    }
+
+    /* OPTIONS */
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .option-btn {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1.5px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 16px 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      transition: all 0.2s;
+      text-align: left;
+      color: var(--white);
+      font-family: inherit;
+    }
+    .option-btn:hover {
+      border-color: rgba(201,168,76,0.4);
+      background: rgba(201,168,76,0.06);
+      transform: translateX(3px);
+    }
+    .option-btn.selected {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.1);
+    }
+    .option-emoji {
+      font-size: 1.2rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .option-content { flex: 1; }
+    .option-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 2px;
+    }
+    .option-desc {
+      font-size: 0.8rem;
+      color: var(--gray-400);
+      line-height: 1.4;
+    }
+
+    /* INPUT FIELDS */
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 8px;
+    }
+    .input-field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .input-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--gray-400);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .input-field input {
+      background: rgba(255,255,255,0.04);
+      border: 1.5px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: 0.95rem;
+      color: var(--white);
+      font-family: inherit;
+      transition: border-color 0.2s;
+      outline: none;
+      width: 100%;
+    }
+    .input-field input::placeholder { color: var(--gray-400); }
+    .input-field input:focus { border-color: var(--gold); }
+    .input-note {
+      font-size: 0.78rem;
+      color: var(--gray-400);
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+
+    /* BUTTONS */
+    .btn-primary {
+      width: 100%;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--navy);
+      border: none;
+      border-radius: 12px;
+      padding: 16px 24px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      margin-top: 28px;
+      transition: opacity 0.2s, transform 0.2s;
+      letter-spacing: -0.01em;
+    }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+    .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+    /* RESULT PAGE */
+    .result-card {
+      width: 100%;
+      max-width: 640px;
+      animation: fadeUp 0.5s ease;
+    }
+    .result-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 40px;
+      padding: 8px 18px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+    .result-emoji {
+      font-size: 3.5rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .result-title {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+      line-height: 1.1;
+    }
+    .result-title span { color: var(--gold); }
+    .result-tagline {
+      font-size: 1rem;
+      color: var(--gray-400);
+      line-height: 1.6;
+      margin-bottom: 36px;
+      font-style: italic;
+    }
+
+    .result-section {
+      background: var(--navy-2);
+      border: 1px solid rgba(201,168,76,0.12);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+    .result-section-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .result-points {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .result-points li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.5;
+    }
+    .result-points li::before {
+      content: '→';
+      color: var(--gold);
+      flex-shrink: 0;
+      font-weight: 700;
+      margin-top: 1px;
+    }
+    .result-risk {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.6;
+    }
+    .result-work {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.9);
+      line-height: 1.7;
+      font-style: italic;
+    }
+
+    .zones-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .zone-tag {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 5px 12px;
+      font-size: 0.8rem;
+      color: var(--white);
+      font-weight: 500;
+    }
+
+    .promoteurs-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .promoteur-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.85);
+    }
+    .promoteur-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    /* CTA */
+    .cta-section {
+      background: linear-gradient(135deg, rgba(201,168,76,0.12), rgba(201,168,76,0.04));
+      border: 1.5px solid rgba(201,168,76,0.25);
+      border-radius: 20px;
+      padding: 32px;
+      text-align: center;
+      margin-top: 24px;
+    }
+    .cta-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+    .cta-sub {
+      font-size: 0.875rem;
+      color: var(--gray-400);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+    .btn-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--green-wa);
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 12px;
+      padding: 16px 28px;
+      font-size: 1rem;
+      font-weight: 700;
+      font-family: inherit;
+      transition: opacity 0.2s, transform 0.2s;
+      margin-bottom: 16px;
+      width: 100%;
+      justify-content: center;
+    }
+    .btn-whatsapp:hover { opacity: 0.9; transform: translateY(-1px); }
+    .cta-phone {
+      font-size: 0.8rem;
+      color: var(--gray-400);
+      margin-top: 8px;
+    }
+
+    /* OTHER PROFILES */
+    .other-profiles {
+      margin-top: 40px;
+      width: 100%;
+      max-width: 640px;
+    }
+    .other-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    .profiles-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .profile-mini {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: 16px 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .profile-mini:hover {
+      border-color: rgba(201,168,76,0.3);
+      background: rgba(201,168,76,0.05);
+    }
+    .profile-mini-emoji { font-size: 1.5rem; margin-bottom: 6px; }
+    .profile-mini-name {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--gray-400);
+      line-height: 1.3;
+    }
+
+    /* HIDDEN */
+    .hidden { display: none !important; }
+
+    /* FOOTER */
+    .quiz-footer {
+      margin-top: 48px;
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--gray-400);
+    }
+    .quiz-footer a { color: var(--gold); text-decoration: none; }
+
+    /* RESPONSIVE */
+    @media (max-width: 480px) {
+      .quiz-card { padding: 28px 20px; }
+      .question-text { font-size: 1.15rem; }
+      .result-title { font-size: 1.6rem; }
+      .profiles-row { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+      .profile-mini { padding: 12px 8px; }
+      .profile-mini-name { font-size: 0.65rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <a href="https://go.clementinvestdubai.com" class="nav-logo">Clément<span>Invest</span>Dubai</a>
+    <a href="https://go.clementinvestdubai.com" class="nav-back">← Retour au site</a>
+  </nav>
+
+  <div class="quiz-wrapper">
+
+    <!-- INTRO -->
+    <div id="screen-intro" style="width:100%;max-width:640px;text-align:center;animation:fadeUp 0.4s ease;">
+      <div style="font-size:3rem;margin-bottom:20px;">🏙️</div>
+      <div style="display:inline-block;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.2);padding:4px 12px;border-radius:20px;margin-bottom:20px;">Quiz Investisseur · 3 minutes</div>
+      <h1 style="font-size:2rem;font-weight:900;letter-spacing:-0.03em;line-height:1.15;margin-bottom:16px;">Quel investisseur<br><span style="color:var(--gold)">es-tu à Dubai ?</span></h1>
+      <p style="font-size:0.95rem;color:var(--gray-400);line-height:1.7;margin-bottom:36px;max-width:480px;margin-left:auto;margin-right:auto;">Réponds à 8 questions. Tu reçois ton profil investisseur complet — zones recommandées, promoteurs adaptés, et ta stratégie personnalisée.</p>
+      <button class="btn-primary" onclick="startQuiz()" style="max-width:320px;margin:0 auto;">→ Commencer mon profil</button>
+      <p style="font-size:0.75rem;color:var(--gray-400);margin-top:16px;">Gratuit · Résultat immédiat · Aucun spam</p>
+    </div>
+
+    <!-- QUIZ -->
+    <div id="screen-quiz" class="hidden" style="width:100%;max-width:640px;">
+      <div class="progress-container">
+        <div class="progress-header">
+          <span class="progress-label">Ton profil investisseur</span>
+          <span class="progress-step" id="progress-text">1 / 9</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill" style="width:11%"></div>
+        </div>
+      </div>
+      <div class="quiz-card" id="question-card"></div>
+    </div>
+
+    <!-- RESULT -->
+    <div id="screen-result" class="hidden">
+      <div class="result-card" id="result-content"></div>
+      <div class="other-profiles" id="other-profiles-section"></div>
+      <div class="quiz-footer">
+        <p>© 2026 Clément Talmo · <a href="https://go.clementinvestdubai.com">clementinvestdubai.com</a></p>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // ─── DATA ────────────────────────────────────────────────────────────────
+
+    const QUESTIONS = [
+      {
+        id: 'contact',
+        tag: 'Avant de commencer',
+        text: 'Où t\'envoyer ton profil ?',
+        sub: 'Ton profil investisseur complet t\'est envoyé sur WhatsApp à la fin du quiz. Aucun spam.',
+        type: 'contact'
+      },
+      {
+        id: 'objectif',
+        tag: 'Question 1 / 8',
+        text: 'Qu\'est-ce que tu cherches en priorité ?',
+        sub: 'Ton objectif principal avec cet investissement.',
+        type: 'single',
+        options: [
+          { value: 'renta', emoji: '💰', title: 'Rentabilité', desc: 'Générer des revenus locatifs réguliers, maximiser le cash-flow.' },
+          { value: 'plusvalue', emoji: '📈', title: 'Plus-value', desc: 'Revendre avec une belle marge dans 3 à 5 ans.' },
+          { value: 'patrimonial', emoji: '🏛️', title: 'Patrimonial', desc: 'Construire un patrimoine solide sur le long terme.' },
+          { value: 'pdt', emoji: '🏖️', title: 'Pied-à-terre', desc: 'Avoir un bien à Dubai pour y vivre et louer quand absent.' }
+        ]
+      },
+      {
+        id: 'budget',
+        tag: 'Question 2 / 8',
+        text: 'Quel est ton apport disponible ?',
+        sub: 'La somme que tu peux mobiliser pour investir.',
+        type: 'single',
+        options: [
+          { value: 'lt50', emoji: '🟡', title: 'Moins de 50 000 €', desc: '' },
+          { value: '50to100', emoji: '🟠', title: 'Entre 50 000 € et 100 000 €', desc: '' },
+          { value: '100to200', emoji: '🔵', title: 'Entre 100 000 € et 200 000 €', desc: '' },
+          { value: '200to400', emoji: '🟢', title: 'Entre 200 000 € et 400 000 €', desc: '' },
+          { value: 'gt400', emoji: '⚪', title: 'Plus de 400 000 €', desc: '' }
+        ]
+      },
+      {
+        id: 'epargne',
+        tag: 'Question 3 / 8',
+        text: 'Ta capacité d\'épargne mensuelle ?',
+        sub: 'Ce que tu peux mettre de côté chaque mois pour les versements.',
+        type: 'single',
+        options: [
+          { value: 'lt500', emoji: '', title: 'Moins de 500 €/mois', desc: '' },
+          { value: '500to1500', emoji: '', title: 'Entre 500 € et 1 500 €/mois', desc: '' },
+          { value: '1500to3000', emoji: '', title: 'Entre 1 500 € et 3 000 €/mois', desc: '' },
+          { value: 'gt3000', emoji: '', title: 'Plus de 3 000 €/mois', desc: '' },
+          { value: 'cash', emoji: '', title: 'Je préfère payer en une fois', desc: '' }
+        ]
+      },
+      {
+        id: 'posthandover',
+        tag: 'Question 4 / 8',
+        text: 'Ton plan de paiement idéal ?',
+        sub: 'Comment tu préfères structurer tes versements.',
+        type: 'single',
+        options: [
+          { value: 'avant', emoji: '💰', title: 'Maximum pendant la construction', desc: 'Moins à payer à la livraison.' },
+          { value: 'equilibre', emoji: '⚖️', title: 'Plan équilibré', desc: 'Moitié pendant, moitié à la livraison.' },
+          { value: 'postho', emoji: '⏳', title: 'Le moins possible avant livraison', desc: 'J\'étale les paiements après réception du bien.' },
+          { value: 'cash', emoji: '💵', title: 'Je paie cash', desc: 'Pas de paiement échelonné.' }
+        ]
+      },
+      {
+        id: 'risque_quartier',
+        tag: 'Question 5 / 8',
+        text: 'Ta tolérance sur la maturité du quartier ?',
+        sub: 'Quel niveau de développement du quartier t\'es à l\'aise ?',
+        type: 'single',
+        options: [
+          { value: 'mur', emoji: '🏙️', title: 'Quartier établi', desc: 'Beaucoup de locataires, commerces ouverts, demande prouvée. Je préfère la sécurité.' },
+          { value: 'dev', emoji: '🌱', title: 'Quartier en développement', desc: 'Déjà un peu de vie, infrastructure en train de se mettre en place. J\'accepte d\'attendre.' },
+          { value: 'zero', emoji: '🚀', title: 'Zone qui démarre de zéro', desc: 'Je cherche le coup de 5 ans avant que ça décolle. J\'accepte le risque pour la récompense.' }
+        ]
+      },
+      {
+        id: 'risque_promoteur',
+        tag: 'Question 6 / 8',
+        text: 'Ta tolérance sur le promoteur ?',
+        sub: 'Quel niveau de sécurité tu veux sur le promoteur.',
+        type: 'single',
+        options: [
+          { value: 'livre', emoji: '🛡️', title: 'Promoteur qui a déjà livré', desc: 'Il a un historique prouvé. Je veux cette sécurité même si c\'est un peu plus cher.' },
+          { value: 'peimporte', emoji: '🔄', title: 'Peu importe', desc: 'Je regarde les fondamentaux. Livré ou pas, si le dossier est solide, ça me convient.' },
+          { value: 'nonlivre', emoji: '🎯', title: 'Pas encore livré OK', desc: 'Je peux accepter un promoteur plus jeune si le rapport qualité-prix est là.' }
+        ]
+      },
+      {
+        id: 'qualite',
+        tag: 'Question 7 / 8',
+        text: 'Ton niveau d\'exigence sur la qualité ?',
+        sub: 'Ce qui compte le plus pour toi dans les finitions et le standing.',
+        type: 'single',
+        options: [
+          { value: 'top', emoji: '⭐⭐⭐', title: 'Top qualité', desc: 'Finitions premium, se loue et se revend facilement au-dessus du marché.' },
+          { value: 'correct', emoji: '⭐⭐', title: 'Bonne qualité', desc: 'Correct, fiable, bon rapport qualité-prix. Pas besoin d\'être le meilleur.' },
+          { value: 'accessible', emoji: '⭐', title: 'Accessible', desc: 'Priorité au prix. Je veux le meilleur rendement possible sur mon budget.' }
+        ]
+      },
+      {
+        id: 'geo',
+        tag: 'Question 8 / 8',
+        text: 'Ta priorité géographique ?',
+        sub: 'Ce qui est le plus important pour toi côté localisation.',
+        type: 'single',
+        options: [
+          { value: 'mer', emoji: '🌊', title: 'Proche de la mer / plage', desc: '' },
+          { value: 'centre', emoji: '🏙️', title: 'Proche du centre / Downtown', desc: '' },
+          { value: 'marina', emoji: '⚓', title: 'Proche de la Marina', desc: '' },
+          { value: 'metro', emoji: '🚇', title: 'Proche du métro', desc: '' },
+          { value: 'calme', emoji: '🌿', title: 'Environnement calme / verdure', desc: '' },
+          { value: 'rpp', emoji: '💰', title: 'Peu importe — meilleur rapport qualité-prix', desc: '' }
+        ]
+      }
+    ];
+
+    // ─── PROFILES ─────────────────────────────────────────────────────────────
+
+    const PROFILES = {
+      cashflow: {
+        emoji: '🎯',
+        name: 'Le Chasseur de Cash-Flow',
+        tagline: '"T\'es obsédé par les chiffres. Rendement, loyer, taux d\'occupation — tu disséques tout avant de décider. Tu veux que ton argent travaille dur, et tu acceptes pas la médiocrité."',
+        forces: [
+          'Tu analyses les projets mieux que 90% des investisseurs',
+          'Tu vas chercher les meilleurs rapports qualité-prix sans te faire embobiner',
+          'Tu sais exactement ce que tu veux — et tu t\'en détournes pas facilement'
+        ],
+        risques: [
+          'À force de vouloir maximiser le rendement, tu peux aller vers des zones trop risquées ou des promoteurs trop jeunes',
+          'L\'avidité de rendement peut te coûter plus cher que le rendement que tu espères gagner'
+        ],
+        travail: 'Trouver le juste milieu entre rendement et sécurité. Il existe des opportunités qui offrent les deux — mais elles se construisent pas seul.',
+        zones: {
+          mur: ['JVC', 'DSO', 'Sport City', 'Motor City', 'Arjan'],
+          dev: ['Dubailand RC', 'Wasl Gate'],
+          zero: ['Wasl Gate', 'City of Arabia', 'Downtown Jebel Ali']
+        },
+        promoteurs: {
+          livre_top: ['IMAN', 'Ellington', 'Sobha', 'Binghatti', 'Emaar'],
+          livre_correct: ['Imtiaz', 'Prestige One', 'Leos', 'Prescott', 'Deyaar'],
+          livre_accessible: ['Tiger', 'Deyaar'],
+          livre_postho_top: ['Ellington', 'Binghatti'],
+          livre_postho_correct: ['Imtiaz', 'Leos', 'Mashreq Elite', 'Pantheon'],
+          livre_postho_accessible: ['Object 1'],
+          nonlivre_top: ['Beyond'],
+          nonlivre_correct: ['Wadan', 'Majid', 'Zoya'],
+          nonlivre_postho_correct: ['Wadan', 'Majid', 'Zoya'],
+          peimporte_top: ['IMAN', 'Ellington', 'Sobha', 'Binghatti', 'Emaar', 'Beyond'],
+          peimporte_correct: ['Imtiaz', 'Prestige One', 'Leos', 'Prescott', 'Deyaar', 'Wadan', 'Majid'],
+          peimporte_postho_top: ['Ellington', 'Binghatti', 'Beyond'],
+          peimporte_postho_correct: ['Imtiaz', 'Leos', 'Mashreq Elite', 'Pantheon', 'Wadan', 'Majid', 'Zoya'],
+          peimporte_postho_accessible: ['Object 1']
+        }
+      },
+      batisseur: {
+        emoji: '🏗️',
+        name: 'Le Bâtisseur',
+        tagline: '"T\'as compris quelque chose que beaucoup ratent : pour gagner sur le long terme, pas besoin de prendre des gros risques. Dubai en lui-même, c\'est déjà l\'opportunité. Ton but c\'est de te diversifier intelligemment."',
+        forces: [
+          'Tu joues long terme et tu t\'y tiens — pas de décision impulsive',
+          'Tu comprends que la sécurité de la revente et de la location, c\'est la vraie valeur d\'un bien',
+          'Tu te diversifies sans te mettre en danger — c\'est une vraie discipline'
+        ],
+        risques: [
+          'Tu peux passer à côté de quartiers en développement qui t\'auraient apporté plus de gains, sans forcément plus de risque',
+          'À force de vouloir la sécurité absolue, tu peux acheter 15-20% au-dessus des prix du marché chez un promoteur trop "hypé" — sans t\'en rendre compte'
+        ],
+        travail: 'Ouvrir les portes de quartiers en développement qui peuvent t\'apporter plus sans te faire prendre plus de risque. Et découvrir des promoteurs solides mais moins connus, sur des localisations sécuritaires.',
+        zones: {
+          mur: ['Downtown', 'Business Bay', 'Marina', 'Jumeirah Garden City', 'JVC'],
+          dev: ['Meydan', 'Dubai Creek Harbour', 'Al Jaddaf'],
+          zero: ['Meydan Horizon', 'Dubai South']
+        },
+        promoteurs: {
+          livre_top: ['IMAN', 'Ellington', 'Sobha', 'Binghatti', 'Emaar'],
+          livre_correct: ['Imtiaz', 'Prestige One', 'Leos', 'Prescott', 'Deyaar'],
+          livre_accessible: ['Tiger', 'Deyaar'],
+          livre_postho_top: ['Ellington', 'Binghatti'],
+          livre_postho_correct: ['Imtiaz', 'Leos', 'Mashreq Elite', 'Pantheon'],
+          livre_postho_accessible: ['Object 1'],
+          nonlivre_top: ['Beyond'],
+          nonlivre_correct: ['Wadan', 'Majid', 'Zoya'],
+          nonlivre_postho_correct: ['Wadan', 'Majid', 'Zoya'],
+          peimporte_top: ['IMAN', 'Ellington', 'Sobha', 'Binghatti', 'Emaar', 'Beyond'],
+          peimporte_correct: ['Imtiaz', 'Prestige One', 'Leos', 'Prescott', 'Deyaar', 'Wadan', 'Majid'],
+          peimporte_postho_top: ['Ellington', 'Binghatti', 'Beyond'],
+          peimporte_postho_correct: ['Imtiaz', 'Leos', 'Mashreq Elite', 'Pantheon', 'Wadan', 'Majid', 'Zoya'],
+          peimporte_postho_accessible: ['Object 1']
+        }
+      },
+      pionnier: {
+        emoji: '🚀',
+        name: 'Le Pionnier Stratège',
+        tagline: '"T\'as compris comment ça marche vraiment à Dubai : les vrais gains, ils se font en achetant avant que ça monte. Tu sais lire une carte, anticiper un quartier, et t\'as pas peur d\'aller là où les autres hésitent encore."',
+        forces: [
+          'Tu arrives à voir le potentiel d\'une zone avant qu\'elle soit sur toutes les lèvres',
+          'Tu comprends qu\'un endroit peut paraître cher aujourd\'hui et valoir le double demain — et ça ne te fait pas peur',
+          'T\'as une vision long terme que la majorité des investisseurs n\'ont pas'
+        ],
+        risques: [
+          'À trop chercher la plus-value maximale, tu peux aller vers des zones où tu n\'auras ni la plus-value ni la rentabilité — juste du risque',
+          'Le flair sans données, c\'est du pari. Pas de l\'investissement.'
+        ],
+        travail: 'Identifier les zones qui offrent beaucoup de gains avec peu de risque — et les distinguer de celles qui offrent beaucoup de gains avec beaucoup de risque. Trouver le bon couple rendement/risque selon ton profil et la somme que tu mets en jeu.',
+        zones: {
+          mur: ['Al Sufouh', 'Jumeirah Garden City'],
+          dev: ['Dubai Islands', 'Dubai Creek Harbour', 'Al Sufouh', 'Maritime City'],
+          zero: ['City of Arabia', 'Maritime City', 'Dubai Islands', 'Jebel Ali', 'Palm Jebel Ali']
+        },
+        promoteurs: {
+          livre_top: ['IMAN', 'Ellington', 'Sobha', 'Binghatti', 'Emaar'],
+          livre_correct: ['Imtiaz', 'Prestige One', 'Leos', 'Prescott', 'Deyaar'],
+          livre_accessible: ['Tiger', 'Deyaar'],
+          livre_postho_top: ['Ellington', 'Binghatti'],
+          livre_postho_correct: ['Imtiaz', 'Leos', 'Mashreq Elite', 'Pantheon'],
+          livre_postho_accessible: ['Object 1'],
+          nonlivre_top: ['Beyond'],
+          nonlivre_correct: ['Wadan', 'Majid', 'Zoya'],
+          nonlivre_postho_correct: ['Wadan', 'Majid', 'Zoya'],
+          peimporte_top: ['IMAN', 'Ellington', 'Sobha', 'Binghatti', 'Emaar', 'Beyond'],
+          peimporte_correct: ['Imtiaz', 'Prestige One', 'Leos', 'Prescott', 'Deyaar', 'Wadan', 'Majid'],
+          peimporte_postho_top: ['Ellington', 'Binghatti', 'Beyond'],
+          peimporte_postho_correct: ['Imtiaz', 'Leos', 'Mashreq Elite', 'Pantheon', 'Wadan', 'Majid', 'Zoya'],
+          peimporte_postho_accessible: ['Object 1']
+        }
+      },
+      resident: {
+        emoji: '🏖️',
+        name: 'Le Résident-Investisseur',
+        tagline: '"T\'es dans la position la plus puissante qui soit : t\'achètes un bien dans lequel tu peux vivre. Dans le meilleur des cas, ça crache de la renta. Dans le pire des cas, t\'as un endroit qui te plaît à Dubai. T\'as deux filets de sécurité là où les autres n\'en ont qu\'un."',
+        forces: [
+          'Tu vas t\'impliquer vraiment dans ton achat — et ça se voit dans la qualité des décisions',
+          'T\'as une double motivation : la tête et le cœur. C\'est ce qui fait que tu vas jusqu\'au bout',
+          'T\'es prêt à payer pour de la qualité — parce que c\'est aussi pour toi'
+        ],
+        risques: [
+          'Trop aller vers l\'investissement pur : tu achètes un truc rentable dans lequel tu ne te vois pas vivre — et tu rates l\'essence de ce que tu voulais',
+          'Trop aller vers l\'émotionnel : tu craques sur un coup de cœur et tu fais un mauvais investissement sans t\'en rendre compte'
+        ],
+        travail: 'Construire deux listes en parallèle : les critères de ton cerveau investisseur — rendement, zone, promoteur, liquidité — et les critères de ton cerveau émotionnel. Puis trouver les opportunités qui cochent les deux colonnes.',
+        zones: {
+          centre: ['Dubailand RC', 'Meydan Horizon', 'Sobha Hartland', 'Dubai Creek Harbour', 'Dubai Islands'],
+          marina: ['Wasl Gate', 'Jebel Ali', 'JVC', 'Arjan', 'Sport City', 'Motor City'],
+          default: ['JVC', 'Meydan', 'Wasl Gate', 'Dubai Creek Harbour', 'Al Sufouh']
+        },
+        promoteurs: {
+          livre_top: ['IMAN', 'Ellington', 'Sobha', 'Binghatti', 'Emaar'],
+          livre_correct: ['Imtiaz', 'Prestige One', 'Leos', 'Prescott'],
+          livre_postho_top: ['Ellington', 'Binghatti'],
+          livre_postho_correct: ['Imtiaz', 'Leos', 'Mashreq Elite', 'Pantheon'],
+          nonlivre_top: ['Beyond'],
+          nonlivre_correct: ['Wadan', 'Majid', 'Zoya'],
+          peimporte_top: ['IMAN', 'Ellington', 'Sobha', 'Binghatti', 'Emaar', 'Beyond'],
+          peimporte_correct: ['Imtiaz', 'Prestige One', 'Leos', 'Prescott', 'Wadan', 'Majid'],
+          peimporte_postho_top: ['Ellington', 'Binghatti', 'Beyond'],
+          peimporte_postho_correct: ['Imtiaz', 'Leos', 'Mashreq Elite', 'Pantheon', 'Wadan', 'Zoya']
+        }
+      }
+    };
+
+    // ─── STATE ────────────────────────────────────────────────────────────────
+
+    let currentQ = 0;
+    let answers = {};
+
+    // ─── QUIZ LOGIC ───────────────────────────────────────────────────────────
+
+    function startQuiz() {
+      document.getElementById('screen-intro').classList.add('hidden');
+      document.getElementById('screen-quiz').classList.remove('hidden');
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      const q = QUESTIONS[currentQ];
+      const card = document.getElementById('question-card');
+      const total = QUESTIONS.length;
+      const pct = Math.round((currentQ / total) * 100);
+
+      document.getElementById('progress-text').textContent = `${currentQ + 1} / ${total}`;
+      document.getElementById('progress-fill').style.width = pct + '%';
+
+      if (q.type === 'contact') {
+        card.innerHTML = `
+          <div class="question-tag">${q.tag}</div>
+          <div class="question-text">${q.text}</div>
+          <div class="question-sub">${q.sub}</div>
+          <div class="input-group">
+            <div class="input-field">
+              <label class="input-label">Ton prénom</label>
+              <input type="text" id="input-prenom" placeholder="Ex: Thomas" autocomplete="given-name">
+            </div>
+            <div class="input-field">
+              <label class="input-label">Ton numéro WhatsApp</label>
+              <input type="tel" id="input-whatsapp" placeholder="+33 6 12 34 56 78" autocomplete="tel">
+              <span class="input-note">Format international requis · Ex: +33612345678<br>Tu recevras ton profil complet directement sur WhatsApp.</span>
+            </div>
+          </div>
+          <button class="btn-primary" onclick="submitContact()">Commencer le quiz →</button>
+        `;
+      } else {
+        card.innerHTML = `
+          <div class="question-tag">${q.tag}</div>
+          <div class="question-text">${q.text}</div>
+          <div class="question-sub">${q.sub}</div>
+          <div class="options-grid" id="options-grid">
+            ${q.options.map((opt, i) => `
+              <button class="option-btn" onclick="selectOption('${opt.value}', this)" data-value="${opt.value}">
+                ${opt.emoji ? `<span class="option-emoji">${opt.emoji}</span>` : ''}
+                <div class="option-content">
+                  <div class="option-title">${opt.title}</div>
+                  ${opt.desc ? `<div class="option-desc">${opt.desc}</div>` : ''}
+                </div>
+              </button>
+            `).join('')}
+          </div>
+          <button class="btn-primary" id="btn-next" onclick="nextQuestion()" disabled>Continuer →</button>
+        `;
+
+        // Restore selection if navigating back
+        if (answers[q.id]) {
+          const btns = card.querySelectorAll('.option-btn');
+          btns.forEach(btn => {
+            if (btn.dataset.value === answers[q.id]) {
+              btn.classList.add('selected');
+            }
+          });
+          document.getElementById('btn-next').disabled = false;
+        }
+      }
+    }
+
+    function submitContact() {
+      const prenom = document.getElementById('input-prenom').value.trim();
+      const wa = document.getElementById('input-whatsapp').value.trim();
+      if (!prenom) { alert('Merci d\'entrer ton prénom.'); return; }
+      if (!wa) { alert('Merci d\'entrer ton numéro WhatsApp.'); return; }
+      answers['prenom'] = prenom;
+      answers['whatsapp'] = wa;
+      currentQ++;
+      renderQuestion();
+    }
+
+    function selectOption(value, btn) {
+      const grid = document.getElementById('options-grid');
+      grid.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      answers[QUESTIONS[currentQ].id] = value;
+      document.getElementById('btn-next').disabled = false;
+    }
+
+    function nextQuestion() {
+      currentQ++;
+      if (currentQ >= QUESTIONS.length) {
+        showResult();
+      } else {
+        document.getElementById('question-card').style.animation = 'none';
+        document.getElementById('question-card').offsetHeight;
+        document.getElementById('question-card').style.animation = 'fadeUp 0.4s ease';
+        renderQuestion();
+      }
+    }
+
+    // ─── PROFILE LOGIC ────────────────────────────────────────────────────────
+
+    function computeProfile() {
+      const obj = answers.objectif;
+      if (obj === 'renta') return 'cashflow';
+      if (obj === 'plusvalue') return 'pionnier';
+      if (obj === 'patrimonial') return 'batisseur';
+      if (obj === 'pdt') return 'resident';
+      return 'cashflow';
+    }
+
+    function computeZones(profile) {
+      const p = PROFILES[profile];
+      const maturite = answers.risque_quartier;
+
+      if (profile === 'resident') {
+        const geo = answers.geo;
+        if (geo === 'centre') return p.zones.centre;
+        if (geo === 'marina') return p.zones.marina;
+        return p.zones.default;
+      }
+
+      if (maturite === 'mur') return p.zones.mur || [];
+      if (maturite === 'dev') return p.zones.dev || [];
+      if (maturite === 'zero') return p.zones.zero || [];
+      return p.zones.mur || [];
+    }
+
+    function computePromoteurs(profile) {
+      const p = PROFILES[profile].promoteurs;
+      const risque = answers.risque_promoteur; // livre / peimporte / nonlivre
+      const postho = answers.posthandover === 'postho';
+      const qualite = answers.qualite; // top / correct / accessible
+
+      let key = '';
+
+      if (risque === 'livre') {
+        if (postho) {
+          key = `livre_postho_${qualite}`;
+        } else {
+          key = `livre_${qualite}`;
+        }
+      } else if (risque === 'nonlivre') {
+        if (postho) {
+          key = `nonlivre_postho_${qualite}`;
+        } else {
+          key = `nonlivre_${qualite}`;
+        }
+      } else { // peimporte
+        if (postho) {
+          key = `peimporte_postho_${qualite}`;
+        } else {
+          key = `peimporte_${qualite}`;
+        }
+      }
+
+      return p[key] || p['livre_correct'] || [];
+    }
+
+    // ─── RESULT RENDER ────────────────────────────────────────────────────────
+
+    function showResult() {
+      document.getElementById('screen-quiz').classList.add('hidden');
+      document.getElementById('screen-result').classList.remove('hidden');
+
+      const profileKey = computeProfile();
+      const profile = PROFILES[profileKey];
+      const zones = computeZones(profileKey);
+      const promoteurs = computePromoteurs(profileKey);
+      const prenom = answers.prenom || 'toi';
+
+      const waMsg = encodeURIComponent('Je veux une consultation');
+      const waLink = `https://wa.me/33624835980?text=${waMsg}`;
+
+      // Other profiles
+      const otherProfiles = Object.entries(PROFILES).filter(([k]) => k !== profileKey);
+
+      document.getElementById('result-content').innerHTML = `
+        <div style="margin-bottom:32px;">
+          <div class="result-badge">✦ Ton profil investisseur</div>
+          <span class="result-emoji">${profile.emoji}</span>
+          <div class="result-title">Tu es<br><span>${profile.name}</span></div>
+          <div class="result-tagline">${profile.tagline}</div>
+        </div>
+
+        <div class="result-section">
+          <div class="result-section-title">✦ Tes forces</div>
+          <ul class="result-points">
+            ${profile.forces.map(f => `<li>${f}</li>`).join('')}
+          </ul>
+        </div>
+
+        <div class="result-section">
+          <div class="result-section-title">⚠ Ton risque principal</div>
+          <div class="result-risk">
+            ${profile.risques.map(r => `<p style="margin-bottom:8px;">→ ${r}</p>`).join('')}
+          </div>
+        </div>
+
+        ${zones.length > 0 ? `
+        <div class="result-section">
+          <div class="result-section-title">📍 Zones recommandées pour toi</div>
+          <div class="zones-grid">
+            ${zones.map(z => `<span class="zone-tag">${z}</span>`).join('')}
+          </div>
+        </div>
+        ` : ''}
+
+        ${promoteurs.length > 0 ? `
+        <div class="result-section">
+          <div class="result-section-title">🏗️ Promoteurs adaptés à ton profil</div>
+          <div class="promoteurs-grid">
+            ${promoteurs.map(p => `<div class="promoteur-item"><span class="promoteur-dot"></span>${p}</div>`).join('')}
+          </div>
+        </div>
+        ` : ''}
+
+        <div class="result-section">
+          <div class="result-section-title">🎯 Ce sur quoi tu dois travailler</div>
+          <div class="result-work">${profile.travail}</div>
+        </div>
+
+        <div class="cta-section">
+          <div class="cta-title">On en parle, ${prenom} ?</div>
+          <div class="cta-sub">Ton profil est une première vision. Pour aller plus loin et trouver le projet qui correspond exactement à ta situation, parlons-en.</div>
+          <a href="${waLink}" target="_blank" class="btn-whatsapp">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Discuter avec Clément sur WhatsApp
+          </a>
+          <div class="cta-phone">+33 6 24 83 59 80</div>
+        </div>
+      `;
+
+      document.getElementById('other-profiles-section').innerHTML = `
+        <div class="other-title">Les autres profils investisseurs</div>
+        <div class="profiles-row">
+          ${otherProfiles.map(([k, p]) => `
+            <div class="profile-mini">
+              <div class="profile-mini-emoji">${p.emoji}</div>
+              <div class="profile-mini-name">${p.name}</div>
+            </div>
+          `).join('')}
+        </div>
+        <div style="text-align:center;margin-top:20px;">
+          <button onclick="restartQuiz()" style="background:transparent;border:1px solid rgba(255,255,255,0.15);color:var(--gray-400);padding:10px 20px;border-radius:8px;font-size:0.8rem;cursor:pointer;font-family:inherit;transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(201,168,76,0.4)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.15)';this.style.color='var(--gray-400)'">
+            ↺ Recommencer le quiz
+          </button>
+        </div>
+      `;
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function restartQuiz() {
+      currentQ = 0;
+      answers = {};
+      document.getElementById('screen-result').classList.add('hidden');
+      document.getElementById('screen-intro').classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+
+</body>
+</html>
