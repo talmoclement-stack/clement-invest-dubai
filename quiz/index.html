@@ -1010,12 +1010,35 @@
 
     // ─── RESULT RENDER ────────────────────────────────────────────────────────
 
+    function sendToMake(profileKey, profileName) {
+      const payload = {
+        prenom: answers.prenom || '',
+        whatsapp: answers.whatsapp || '',
+        profil_key: profileKey,
+        profil_nom: profileName,
+        objectif: answers.objectif || '',
+        budget: answers.budget || '',
+        posthandover: answers.posthandover || '',
+        risque_quartier: answers.risque_quartier || '',
+        risque_promoteur: answers.risque_promoteur || '',
+        qualite: answers.qualite || '',
+        geo: answers.geo || '',
+        source: 'quiz.clementinvestdubai.com'
+      };
+      fetch('https://hook.eu1.make.com/2druy645e9jwt2au52euhzqd45tm8bb7', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).catch(() => {}); // silencieux en cas d'erreur réseau
+    }
+
     function showResult() {
       document.getElementById('screen-quiz').classList.add('hidden');
       document.getElementById('screen-result').classList.remove('hidden');
 
       const profileKey = computeProfile();
       const profile = PROFILES[profileKey];
+      sendToMake(profileKey, profile.name);
       const zones = computeZones(profileKey);
       const promoteurs = computePromoteurs(profileKey);
       const prenom = answers.prenom || 'toi';
