@@ -318,6 +318,18 @@
       padding: 24px;
       margin-bottom: 16px;
     }
+    .result-section.section-forces {
+      background: rgba(34,197,94,0.06);
+      border-color: rgba(34,197,94,0.25);
+    }
+    .result-section.section-risques {
+      background: rgba(239,68,68,0.06);
+      border-color: rgba(239,68,68,0.25);
+    }
+    .result-section.section-travail {
+      background: rgba(201,168,76,0.08);
+      border: 2px solid rgba(201,168,76,0.4);
+    }
     .result-section-title {
       font-size: 0.7rem;
       font-weight: 700;
@@ -325,6 +337,12 @@
       text-transform: uppercase;
       color: var(--gold);
       margin-bottom: 14px;
+    }
+    .result-section.section-forces .result-section-title { color: #4ade80; }
+    .result-section.section-risques .result-section-title { color: #f87171; }
+    .result-section.section-travail .result-section-title {
+      color: var(--gold);
+      font-size: 0.75rem;
     }
     .result-points {
       list-style: none;
@@ -337,15 +355,31 @@
       align-items: flex-start;
       gap: 10px;
       font-size: 0.9rem;
-      color: rgba(255,255,255,0.85);
+      color: rgba(255,255,255,0.9);
       line-height: 1.5;
     }
-    .result-points li::before {
-      content: '→';
-      color: var(--gold);
+    .result-points.forces-list li::before {
+      content: '✓';
+      color: #4ade80;
       flex-shrink: 0;
-      font-weight: 700;
+      font-weight: 800;
       margin-top: 1px;
+    }
+    .result-points.risques-list li::before {
+      content: '!';
+      color: #f87171;
+      flex-shrink: 0;
+      font-weight: 800;
+      margin-top: 1px;
+      background: rgba(239,68,68,0.15);
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      min-width: 18px;
     }
     .result-risk {
       font-size: 0.9rem;
@@ -353,10 +387,10 @@
       line-height: 1.6;
     }
     .result-work {
-      font-size: 0.95rem;
-      color: rgba(255,255,255,0.9);
-      line-height: 1.7;
-      font-style: italic;
+      font-size: 1rem;
+      color: var(--white);
+      line-height: 1.8;
+      font-weight: 500;
     }
 
     .zones-grid {
@@ -1000,18 +1034,18 @@
           <div class="result-tagline">${profile.tagline}</div>
         </div>
 
-        <div class="result-section">
+        <div class="result-section section-forces">
           <div class="result-section-title">✦ Tes forces</div>
-          <ul class="result-points">
+          <ul class="result-points forces-list">
             ${profile.forces.map(f => `<li>${f}</li>`).join('')}
           </ul>
         </div>
 
-        <div class="result-section">
+        <div class="result-section section-risques">
           <div class="result-section-title">⚠ Ton risque principal</div>
-          <div class="result-risk">
-            ${profile.risques.map(r => `<p style="margin-bottom:8px;">→ ${r}</p>`).join('')}
-          </div>
+          <ul class="result-points risques-list">
+            ${profile.risques.map(r => `<li>${r}</li>`).join('')}
+          </ul>
         </div>
 
         ${zones.length > 0 ? `
@@ -1032,8 +1066,8 @@
         </div>
         ` : ''}
 
-        <div class="result-section">
-          <div class="result-section-title">🎯 Ce sur quoi tu dois travailler</div>
+        <div class="result-section section-travail">
+          <div class="result-section-title">🎯 Pourquoi parler à un agent maintenant</div>
           <div class="result-work">${profile.travail}</div>
         </div>
 
