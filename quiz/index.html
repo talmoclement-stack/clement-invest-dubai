@@ -33,8 +33,8 @@
 
     body {
       font-family: 'Inter', -apple-system, sans-serif;
-      background: var(--navy);
-      color: var(--white);
+      background: #f8f9fc;
+      color: var(--navy);
       min-height: 100vh;
     }
 
@@ -43,9 +43,9 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
-      background: rgba(15,31,61,0.95);
+      background: rgba(255,255,255,0.97);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(201,168,76,0.15);
+      border-bottom: 1px solid rgba(15,31,61,0.08);
       padding: 0 24px;
       height: 60px;
       display: flex;
@@ -57,7 +57,7 @@
       font-weight: 700;
       letter-spacing: -0.02em;
       text-decoration: none;
-      color: var(--white);
+      color: var(--navy);
     }
     .nav-logo span { color: var(--gold); }
     .nav-back {
@@ -69,7 +69,7 @@
       gap: 6px;
       transition: color 0.2s;
     }
-    .nav-back:hover { color: var(--gold); }
+    .nav-back:hover { color: var(--navy); }
 
     /* MAIN WRAPPER */
     .quiz-wrapper {
@@ -107,7 +107,7 @@
     .progress-bar {
       width: 100%;
       height: 3px;
-      background: rgba(255,255,255,0.08);
+      background: rgba(15,31,61,0.08);
       border-radius: 2px;
       overflow: hidden;
     }
@@ -122,11 +122,12 @@
     .quiz-card {
       width: 100%;
       max-width: 640px;
-      background: var(--navy-2);
-      border: 1px solid rgba(201,168,76,0.15);
+      background: #ffffff;
+      border: 1px solid rgba(15,31,61,0.08);
       border-radius: 20px;
       padding: 40px;
       animation: fadeUp 0.4s ease;
+      box-shadow: 0 2px 20px rgba(15,31,61,0.06);
     }
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(16px); }
@@ -151,12 +152,12 @@
       font-size: 1.35rem;
       font-weight: 700;
       line-height: 1.4;
-      color: var(--white);
+      color: var(--navy);
       margin-bottom: 8px;
     }
     .question-sub {
       font-size: 0.875rem;
-      color: var(--gray-400);
+      color: var(--gray-600);
       margin-bottom: 28px;
       line-height: 1.5;
     }
@@ -169,8 +170,8 @@
     }
     .option-btn {
       width: 100%;
-      background: rgba(255,255,255,0.04);
-      border: 1.5px solid rgba(255,255,255,0.08);
+      background: #f8f9fc;
+      border: 1.5px solid rgba(15,31,61,0.1);
       border-radius: 12px;
       padding: 16px 20px;
       cursor: pointer;
@@ -179,17 +180,17 @@
       gap: 14px;
       transition: all 0.2s;
       text-align: left;
-      color: var(--white);
+      color: var(--navy);
       font-family: inherit;
     }
     .option-btn:hover {
-      border-color: rgba(201,168,76,0.4);
-      background: rgba(201,168,76,0.06);
+      border-color: var(--gold);
+      background: var(--gold-pale);
       transform: translateX(3px);
     }
     .option-btn.selected {
       border-color: var(--gold);
-      background: rgba(201,168,76,0.1);
+      background: var(--gold-pale);
     }
     .option-emoji {
       font-size: 1.2rem;
@@ -200,12 +201,12 @@
     .option-title {
       font-size: 0.95rem;
       font-weight: 600;
-      color: var(--white);
+      color: var(--navy);
       margin-bottom: 2px;
     }
     .option-desc {
       font-size: 0.8rem;
-      color: var(--gray-400);
+      color: var(--gray-600);
       line-height: 1.4;
     }
 
@@ -224,24 +225,24 @@
     .input-label {
       font-size: 0.8rem;
       font-weight: 600;
-      color: var(--gray-400);
+      color: var(--gray-600);
       letter-spacing: 0.05em;
       text-transform: uppercase;
     }
     .input-field input {
-      background: rgba(255,255,255,0.04);
-      border: 1.5px solid rgba(255,255,255,0.1);
+      background: #f8f9fc;
+      border: 1.5px solid rgba(15,31,61,0.12);
       border-radius: 10px;
       padding: 14px 16px;
       font-size: 0.95rem;
-      color: var(--white);
+      color: var(--navy);
       font-family: inherit;
       transition: border-color 0.2s;
       outline: none;
       width: 100%;
     }
     .input-field input::placeholder { color: var(--gray-400); }
-    .input-field input:focus { border-color: var(--gold); }
+    .input-field input:focus { border-color: var(--gold); background: #fff; }
     .input-note {
       font-size: 0.78rem;
       color: var(--gray-400);
@@ -278,15 +279,15 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(201,168,76,0.1);
-      border: 1px solid rgba(201,168,76,0.3);
+      background: var(--gold-pale);
+      border: 1px solid rgba(201,168,76,0.4);
       border-radius: 40px;
       padding: 8px 18px;
       font-size: 0.75rem;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: #8a6820;
       margin-bottom: 24px;
     }
     .result-emoji {
@@ -297,7 +298,7 @@
     .result-title {
       font-size: 2rem;
       font-weight: 900;
-      color: var(--white);
+      color: var(--navy);
       letter-spacing: -0.03em;
       margin-bottom: 8px;
       line-height: 1.1;
@@ -305,45 +306,43 @@
     .result-title span { color: var(--gold); }
     .result-tagline {
       font-size: 1rem;
-      color: var(--gray-400);
+      color: var(--gray-600);
       line-height: 1.6;
       margin-bottom: 36px;
       font-style: italic;
     }
 
     .result-section {
-      background: var(--navy-2);
-      border: 1px solid rgba(201,168,76,0.12);
+      background: #ffffff;
+      border: 1px solid rgba(15,31,61,0.08);
       border-radius: 16px;
       padding: 24px;
       margin-bottom: 16px;
+      box-shadow: 0 1px 8px rgba(15,31,61,0.04);
     }
     .result-section.section-forces {
-      background: rgba(34,197,94,0.06);
+      background: #f0fdf4;
       border-color: rgba(34,197,94,0.25);
     }
     .result-section.section-risques {
-      background: rgba(239,68,68,0.06);
-      border-color: rgba(239,68,68,0.25);
+      background: #fff5f5;
+      border-color: rgba(239,68,68,0.2);
     }
     .result-section.section-travail {
-      background: rgba(201,168,76,0.08);
-      border: 2px solid rgba(201,168,76,0.4);
+      background: var(--gold-pale);
+      border: 2px solid rgba(201,168,76,0.5);
     }
     .result-section-title {
       font-size: 0.7rem;
       font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--gray-600);
       margin-bottom: 14px;
     }
-    .result-section.section-forces .result-section-title { color: #4ade80; }
-    .result-section.section-risques .result-section-title { color: #f87171; }
-    .result-section.section-travail .result-section-title {
-      color: var(--gold);
-      font-size: 0.75rem;
-    }
+    .result-section.section-forces .result-section-title { color: #16a34a; }
+    .result-section.section-risques .result-section-title { color: #dc2626; }
+    .result-section.section-travail .result-section-title { color: #8a6820; }
     .result-points {
       list-style: none;
       display: flex;
@@ -355,23 +354,23 @@
       align-items: flex-start;
       gap: 10px;
       font-size: 0.9rem;
-      color: rgba(255,255,255,0.9);
+      color: var(--navy);
       line-height: 1.5;
     }
     .result-points.forces-list li::before {
       content: '✓';
-      color: #4ade80;
+      color: #16a34a;
       flex-shrink: 0;
       font-weight: 800;
       margin-top: 1px;
     }
     .result-points.risques-list li::before {
       content: '!';
-      color: #f87171;
+      color: #dc2626;
       flex-shrink: 0;
       font-weight: 800;
       margin-top: 1px;
-      background: rgba(239,68,68,0.15);
+      background: rgba(239,68,68,0.1);
       border-radius: 50%;
       width: 18px;
       height: 18px;
@@ -383,12 +382,12 @@
     }
     .result-risk {
       font-size: 0.9rem;
-      color: rgba(255,255,255,0.85);
+      color: var(--navy);
       line-height: 1.6;
     }
     .result-work {
       font-size: 1rem;
-      color: var(--white);
+      color: var(--navy);
       line-height: 1.8;
       font-weight: 500;
     }
@@ -399,12 +398,12 @@
       gap: 8px;
     }
     .zone-tag {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
+      background: #f0f4ff;
+      border: 1px solid rgba(15,31,61,0.12);
       border-radius: 20px;
       padding: 5px 12px;
       font-size: 0.8rem;
-      color: var(--white);
+      color: var(--navy);
       font-weight: 500;
     }
 
@@ -418,7 +417,7 @@
       align-items: center;
       gap: 10px;
       font-size: 0.875rem;
-      color: rgba(255,255,255,0.85);
+      color: var(--navy);
     }
     .promoteur-dot {
       width: 6px;
@@ -430,8 +429,7 @@
 
     /* CTA */
     .cta-section {
-      background: linear-gradient(135deg, rgba(201,168,76,0.12), rgba(201,168,76,0.04));
-      border: 1.5px solid rgba(201,168,76,0.25);
+      background: var(--navy);
       border-radius: 20px;
       padding: 32px;
       text-align: center;
@@ -446,7 +444,7 @@
     }
     .cta-sub {
       font-size: 0.875rem;
-      color: var(--gray-400);
+      color: rgba(255,255,255,0.6);
       margin-bottom: 24px;
       line-height: 1.5;
     }
@@ -495,23 +493,24 @@
       gap: 10px;
     }
     .profile-mini {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.07);
+      background: #ffffff;
+      border: 1px solid rgba(15,31,61,0.08);
       border-radius: 12px;
       padding: 16px 12px;
       text-align: center;
       cursor: pointer;
       transition: all 0.2s;
+      box-shadow: 0 1px 4px rgba(15,31,61,0.04);
     }
     .profile-mini:hover {
-      border-color: rgba(201,168,76,0.3);
-      background: rgba(201,168,76,0.05);
+      border-color: var(--gold);
+      background: var(--gold-pale);
     }
     .profile-mini-emoji { font-size: 1.5rem; margin-bottom: 6px; }
     .profile-mini-name {
       font-size: 0.72rem;
       font-weight: 600;
-      color: var(--gray-400);
+      color: var(--gray-600);
       line-height: 1.3;
     }
 
@@ -525,7 +524,7 @@
       font-size: 0.75rem;
       color: var(--gray-400);
     }
-    .quiz-footer a { color: var(--gold); text-decoration: none; }
+    .quiz-footer a { color: var(--navy); text-decoration: none; font-weight: 600; }
 
     /* RESPONSIVE */
     @media (max-width: 480px) {
@@ -551,9 +550,9 @@
     <!-- INTRO -->
     <div id="screen-intro" style="width:100%;max-width:640px;text-align:center;animation:fadeUp 0.4s ease;">
       <div style="font-size:3rem;margin-bottom:20px;">🏙️</div>
-      <div style="display:inline-block;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.2);padding:4px 12px;border-radius:20px;margin-bottom:20px;">Quiz Investisseur · 3 minutes</div>
-      <h1 style="font-size:2rem;font-weight:900;letter-spacing:-0.03em;line-height:1.15;margin-bottom:16px;">Quel investisseur<br><span style="color:var(--gold)">es-tu à Dubai ?</span></h1>
-      <p style="font-size:0.95rem;color:var(--gray-400);line-height:1.7;margin-bottom:36px;max-width:480px;margin-left:auto;margin-right:auto;">Réponds à 8 questions. Tu reçois ton profil investisseur complet — zones recommandées, promoteurs adaptés, et ta stratégie personnalisée.</p>
+      <div style="display:inline-block;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#8a6820;background:var(--gold-pale);border:1px solid rgba(201,168,76,0.4);padding:4px 12px;border-radius:20px;margin-bottom:20px;">Quiz Investisseur · 3 minutes</div>
+      <h1 style="font-size:2rem;font-weight:900;letter-spacing:-0.03em;line-height:1.15;margin-bottom:16px;color:var(--navy);">Quel investisseur<br><span style="color:var(--gold)">es-tu à Dubai ?</span></h1>
+      <p style="font-size:0.95rem;color:var(--gray-600);line-height:1.7;margin-bottom:36px;max-width:480px;margin-left:auto;margin-right:auto;">Réponds à 8 questions. Tu reçois ton profil investisseur complet — zones recommandées, promoteurs adaptés, et ta stratégie personnalisée.</p>
       <button class="btn-primary" onclick="startQuiz()" style="max-width:320px;margin:0 auto;">→ Commencer mon profil</button>
       <p style="font-size:0.75rem;color:var(--gray-400);margin-top:16px;">Gratuit · Résultat immédiat · Aucun spam</p>
     </div>
