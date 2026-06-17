@@ -563,16 +563,30 @@
       <div class="progress-container">
         <div class="progress-header">
           <span class="progress-label">Ton profil investisseur</span>
-          <span class="progress-step" id="progress-text">1 / 9</span>
+          <span class="progress-step" id="progress-text">1 / 8</span>
         </div>
         <div class="progress-bar">
-          <div class="progress-fill" id="progress-fill" style="width:11%"></div>
+          <div class="progress-fill" id="progress-fill" style="width:12%"></div>
         </div>
       </div>
       <div class="quiz-card" id="question-card"></div>
     </div>
 
-    <!-- RESULT -->
+    <!-- RESULT PARTIEL -->
+    <div id="screen-result-partial" class="hidden" style="width:100%;max-width:640px;animation:fadeUp 0.5s ease;">
+      <div id="partial-content"></div>
+      <div class="other-profiles" id="other-profiles-partial"></div>
+      <div class="quiz-footer" style="margin-top:32px;">
+        <p>© 2026 Clément Talmo · <a href="https://go.clementinvestdubai.com">clementinvestdubai.com</a></p>
+      </div>
+    </div>
+
+    <!-- CONTACT GATE -->
+    <div id="screen-contact" class="hidden" style="width:100%;max-width:640px;animation:fadeUp 0.4s ease;">
+      <div class="quiz-card" id="contact-card"></div>
+    </div>
+
+    <!-- RESULT COMPLET -->
     <div id="screen-result" class="hidden">
       <div class="result-card" id="result-content"></div>
       <div class="other-profiles" id="other-profiles-section"></div>
@@ -587,13 +601,6 @@
     // ─── DATA ────────────────────────────────────────────────────────────────
 
     const QUESTIONS = [
-      {
-        id: 'contact',
-        tag: 'Avant de commencer',
-        text: 'Où t\'envoyer ton profil ?',
-        sub: 'Ton profil investisseur complet t\'est envoyé sur WhatsApp à la fin du quiz. Aucun spam.',
-        type: 'contact'
-      },
       {
         id: 'objectif',
         tag: 'Question 1 / 8',
@@ -863,59 +870,89 @@
       const q = QUESTIONS[currentQ];
       const card = document.getElementById('question-card');
       const total = QUESTIONS.length;
-      const pct = Math.round((currentQ / total) * 100);
+      const pct = Math.round(((currentQ + 1) / total) * 100);
 
       document.getElementById('progress-text').textContent = `${currentQ + 1} / ${total}`;
       document.getElementById('progress-fill').style.width = pct + '%';
 
-      if (q.type === 'contact') {
-        card.innerHTML = `
-          <div class="question-tag">${q.tag}</div>
-          <div class="question-text">${q.text}</div>
-          <div class="question-sub">${q.sub}</div>
-          <div class="input-group">
-            <div class="input-field">
-              <label class="input-label">Ton prénom</label>
-              <input type="text" id="input-prenom" placeholder="Ex: Thomas" autocomplete="given-name">
-            </div>
-            <div class="input-field">
-              <label class="input-label">Ton numéro WhatsApp</label>
-              <input type="tel" id="input-whatsapp" placeholder="+33 6 12 34 56 78" autocomplete="tel">
-              <span class="input-note">Format international requis · Ex: +33612345678<br>Tu recevras ton profil complet directement sur WhatsApp.</span>
-            </div>
-          </div>
-          <button class="btn-primary" onclick="submitContact()">Commencer le quiz →</button>
-        `;
-      } else {
-        card.innerHTML = `
-          <div class="question-tag">${q.tag}</div>
-          <div class="question-text">${q.text}</div>
-          <div class="question-sub">${q.sub}</div>
-          <div class="options-grid" id="options-grid">
-            ${q.options.map((opt, i) => `
-              <button class="option-btn" onclick="selectOption('${opt.value}', this)" data-value="${opt.value}">
-                ${opt.emoji ? `<span class="option-emoji">${opt.emoji}</span>` : ''}
-                <div class="option-content">
-                  <div class="option-title">${opt.title}</div>
-                  ${opt.desc ? `<div class="option-desc">${opt.desc}</div>` : ''}
-                </div>
-              </button>
-            `).join('')}
-          </div>
-          <button class="btn-primary" id="btn-next" onclick="nextQuestion()" disabled>Continuer →</button>
-        `;
+      card.innerHTML = `
+        <div class="question-tag">${q.tag}</div>
+        <div class="question-text">${q.text}</div>
+        <div class="question-sub">${q.sub}</div>
+        <div class="options-grid" id="options-grid">
+          ${q.options.map((opt) => `
+            <button class="option-btn" onclick="selectOption('${opt.value}', this)" data-value="${opt.value}">
+              ${opt.emoji ? `<span class="option-emoji">${opt.emoji}</span>` : ''}
+              <div class="option-content">
+                <div class="option-title">${opt.title}</div>
+                ${opt.desc ? `<div class="option-desc">${opt.desc}</div>` : ''}
+              </div>
+            </button>
+          `).join('')}
+        </div>
+        <button class="btn-primary" id="btn-next" onclick="nextQuestion()" disabled>Continuer →</button>
+      `;
 
-        // Restore selection if navigating back
-        if (answers[q.id]) {
-          const btns = card.querySelectorAll('.option-btn');
-          btns.forEach(btn => {
-            if (btn.dataset.value === answers[q.id]) {
-              btn.classList.add('selected');
-            }
-          });
-          document.getElementById('btn-next').disabled = false;
-        }
+      if (answers[q.id]) {
+        const btns = card.querySelectorAll('.option-btn');
+        btns.forEach(btn => {
+          if (btn.dataset.value === answers[q.id]) btn.classList.add('selected');
+        });
+        document.getElementById('btn-next').disabled = false;
       }
+    }
+
+    function selectOption(value, btn) {
+      document.getElementById('options-grid').querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      answers[QUESTIONS[currentQ].id] = value;
+      document.getElementById('btn-next').disabled = false;
+    }
+
+    function nextQuestion() {
+      currentQ++;
+      if (currentQ >= QUESTIONS.length) {
+        showPartialResult();
+      } else {
+        const card = document.getElementById('question-card');
+        card.style.animation = 'none';
+        card.offsetHeight;
+        card.style.animation = 'fadeUp 0.4s ease';
+        renderQuestion();
+      }
+    }
+
+    // ─── CONTACT GATE ─────────────────────────────────────────────────────────
+
+    function showContactGate() {
+      document.getElementById('screen-result-partial').classList.add('hidden');
+      document.getElementById('screen-contact').classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      const profileKey = computeProfile();
+      const profile = PROFILES[profileKey];
+
+      document.getElementById('contact-card').innerHTML = `
+        <div style="text-align:center;margin-bottom:24px;">
+          <span style="font-size:2.5rem;">${profile.emoji}</span>
+          <div style="font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold);margin:12px 0 6px;">Ton profil complet t'attend</div>
+          <div style="font-size:1.1rem;font-weight:800;color:var(--white);margin-bottom:6px;">${profile.name}</div>
+          <div style="font-size:0.85rem;color:var(--gray-400);line-height:1.5;">Forces · Risques · Zones recommandées · Promoteurs adaptés</div>
+        </div>
+        <div class="input-group">
+          <div class="input-field">
+            <label class="input-label">Ton prénom</label>
+            <input type="text" id="input-prenom" placeholder="Ex: Thomas" autocomplete="given-name">
+          </div>
+          <div class="input-field">
+            <label class="input-label">Ton numéro WhatsApp</label>
+            <input type="tel" id="input-whatsapp" placeholder="+33 6 12 34 56 78" autocomplete="tel">
+            <span class="input-note">Tu recevras aussi ton profil directement sur WhatsApp. Aucun spam.</span>
+          </div>
+        </div>
+        <button class="btn-primary" onclick="submitContact()">Voir mon profil complet →</button>
+        <p style="text-align:center;font-size:0.75rem;color:var(--gray-400);margin-top:12px;">Gratuit · Résultat immédiat</p>
+      `;
     }
 
     function submitContact() {
@@ -925,28 +962,8 @@
       if (!wa) { alert('Merci d\'entrer ton numéro WhatsApp.'); return; }
       answers['prenom'] = prenom;
       answers['whatsapp'] = wa;
-      currentQ++;
-      renderQuestion();
-    }
-
-    function selectOption(value, btn) {
-      const grid = document.getElementById('options-grid');
-      grid.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
-      btn.classList.add('selected');
-      answers[QUESTIONS[currentQ].id] = value;
-      document.getElementById('btn-next').disabled = false;
-    }
-
-    function nextQuestion() {
-      currentQ++;
-      if (currentQ >= QUESTIONS.length) {
-        showResult();
-      } else {
-        document.getElementById('question-card').style.animation = 'none';
-        document.getElementById('question-card').offsetHeight;
-        document.getElementById('question-card').style.animation = 'fadeUp 0.4s ease';
-        renderQuestion();
-      }
+      document.getElementById('screen-contact').classList.add('hidden');
+      showFullResult();
     }
 
     // ─── PROFILE LOGIC ────────────────────────────────────────────────────────
@@ -1033,9 +1050,54 @@
       }).catch(() => {}); // silencieux en cas d'erreur réseau
     }
 
-    function showResult() {
+    const WA_SVG = `<svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>`;
+
+    function showPartialResult() {
       document.getElementById('screen-quiz').classList.add('hidden');
+      document.getElementById('screen-result-partial').classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      const profileKey = computeProfile();
+      const profile = PROFILES[profileKey];
+      const otherProfiles = Object.entries(PROFILES).filter(([k]) => k !== profileKey);
+
+      document.getElementById('partial-content').innerHTML = `
+        <div style="text-align:center;margin-bottom:36px;">
+          <div class="result-badge">✦ Ton profil investisseur</div>
+          <span class="result-emoji">${profile.emoji}</span>
+          <div class="result-title">Tu es<br><span>${profile.name}</span></div>
+          <div class="result-tagline" style="margin-bottom:0;">${profile.tagline}</div>
+        </div>
+
+        <div style="background:linear-gradient(135deg,rgba(201,168,76,0.1),rgba(201,168,76,0.04));border:2px solid rgba(201,168,76,0.35);border-radius:20px;padding:28px;text-align:center;">
+          <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;">🔒 Profil complet</div>
+          <div style="font-size:1rem;font-weight:700;color:var(--white);margin-bottom:8px;line-height:1.5;">Découvre tes forces, tes risques,<br>tes zones et tes promoteurs idéaux</div>
+          <div style="font-size:0.85rem;color:var(--gray-400);margin-bottom:22px;line-height:1.5;">Entre ton prénom et ton WhatsApp pour accéder<br>à la totalité de ton profil — résultat immédiat.</div>
+          <button class="btn-primary" onclick="showContactGate()" style="margin-top:0;">Accéder à mon profil complet →</button>
+        </div>
+      `;
+
+      document.getElementById('other-profiles-partial').innerHTML = `
+        <div class="other-title" style="margin-top:40px;">Les autres profils investisseurs</div>
+        <div class="profiles-row">
+          ${otherProfiles.map(([k, p]) => `
+            <div class="profile-mini">
+              <div class="profile-mini-emoji">${p.emoji}</div>
+              <div class="profile-mini-name">${p.name}</div>
+            </div>
+          `).join('')}
+        </div>
+        <div style="text-align:center;margin-top:20px;">
+          <button onclick="restartQuiz()" style="background:transparent;border:1px solid rgba(255,255,255,0.15);color:var(--gray-400);padding:10px 20px;border-radius:8px;font-size:0.8rem;cursor:pointer;font-family:inherit;transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(201,168,76,0.4)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.15)';this.style.color='var(--gray-400)'">
+            ↺ Recommencer le quiz
+          </button>
+        </div>
+      `;
+    }
+
+    function showFullResult() {
       document.getElementById('screen-result').classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
 
       const profileKey = computeProfile();
       const profile = PROFILES[profileKey];
@@ -1047,7 +1109,6 @@
       const waMsg = encodeURIComponent(`Bonjour Clément, j'ai fait le quiz et je suis "${profile.name}". J'aimerais avoir une vision des opportunités qui correspondent à mon profil.`);
       const waLink = `https://wa.me/33624835980?text=${waMsg}`;
 
-      // Other profiles
       const otherProfiles = Object.entries(PROFILES).filter(([k]) => k !== profileKey);
 
       document.getElementById('result-content').innerHTML = `
@@ -1099,7 +1160,7 @@
           <div class="cta-title">Tu veux voir les opportunités<br>qui correspondent à ton profil ?</div>
           <div class="cta-sub">Contacte-moi sur WhatsApp — je te donne une vision complète des opportunités adaptées à ton profil <strong style="color:var(--gold)">sous 48h</strong>.</div>
           <a href="${waLink}" target="_blank" class="btn-whatsapp">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            ${WA_SVG}
             Contacter Clément sur WhatsApp
           </a>
           <div class="cta-phone">+33 6 24 83 59 80</div>
@@ -1122,14 +1183,14 @@
           </button>
         </div>
       `;
-
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function restartQuiz() {
       currentQ = 0;
       answers = {};
       document.getElementById('screen-result').classList.add('hidden');
+      document.getElementById('screen-result-partial').classList.add('hidden');
+      document.getElementById('screen-contact').classList.add('hidden');
       document.getElementById('screen-intro').classList.remove('hidden');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
