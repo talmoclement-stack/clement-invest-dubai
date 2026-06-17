@@ -955,15 +955,51 @@
       `;
     }
 
+    function validatePhone(raw) {
+      // Strip spaces, dashes, dots, parentheses
+      const cleaned = raw.replace(/[\s\-\.\(\)]/g, '');
+      // Must start with + and contain 7-15 digits
+      return /^\+[1-9]\d{6,14}$/.test(cleaned) ? cleaned : null;
+    }
+
     function submitContact() {
       const prenom = document.getElementById('input-prenom').value.trim();
-      const wa = document.getElementById('input-whatsapp').value.trim();
-      if (!prenom) { alert('Merci d\'entrer ton prénom.'); return; }
-      if (!wa) { alert('Merci d\'entrer ton numéro WhatsApp.'); return; }
+      const waRaw = document.getElementById('input-whatsapp').value.trim();
+
+      if (!prenom) {
+        showFieldError('input-prenom', 'Merci d\'entrer ton prénom.');
+        return;
+      }
+
+      const waClean = validatePhone(waRaw);
+      if (!waClean) {
+        showFieldError('input-whatsapp', 'Numéro invalide — utilise le format international : +33612345678');
+        return;
+      }
+
       answers['prenom'] = prenom;
-      answers['whatsapp'] = wa;
+      answers['whatsapp'] = waClean;
       document.getElementById('screen-contact').classList.add('hidden');
       showFullResult();
+    }
+
+    function showFieldError(fieldId, msg) {
+      const field = document.getElementById(fieldId);
+      field.style.borderColor = '#f87171';
+      field.focus();
+      // Remove existing error if any
+      const existing = field.parentNode.querySelector('.field-error');
+      if (existing) existing.remove();
+      const err = document.createElement('span');
+      err.className = 'field-error';
+      err.style.cssText = 'font-size:0.78rem;color:#f87171;margin-top:4px;display:block;';
+      err.textContent = msg;
+      field.parentNode.appendChild(err);
+      field.addEventListener('input', () => {
+        field.style.borderColor = '';
+        const e = field.parentNode.querySelector('.field-error');
+        if (e) e.remove();
+      }, { once: true });
     }
 
     // ─── PROFILE LOGIC ────────────────────────────────────────────────────────
