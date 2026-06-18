@@ -328,19 +328,6 @@
 
   <script>
     const WEBHOOK_URL = 'https://hook.eu1.make.com/2druy645e9jwt2au52euhzqd45tm8bb7';
-    const STORAGE_KEY = 'cid_carte_access';
-
-    // Vérifie si déjà débloqué
-    function checkAlreadyUnlocked() {
-      try {
-        const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-        if (data.unlocked) {
-          unlockCarte(data.prenom || '', false);
-          return true;
-        }
-      } catch(e) {}
-      return false;
-    }
 
     function unlockCarte(prenom, animate) {
       const overlay = document.getElementById('gate-overlay');
@@ -397,10 +384,7 @@
         // On laisse passer même si le webhook fail
       }
 
-      // Sauvegarder accès
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify({ unlocked: true, prenom }));
-      } catch(e) {}
+
 
       // Afficher succès
       document.getElementById('gate-form').classList.add('hidden');
@@ -415,13 +399,7 @@
       unlockCarte(prenom, true);
     });
 
-    // Reset via ?reset dans l'URL (pour tests)
-    if (window.location.search.includes('reset')) {
-      try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
-    }
 
-    // Auto-déverrouillage si déjà passé
-    checkAlreadyUnlocked();
   </script>
 
 </body>
