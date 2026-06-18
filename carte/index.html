@@ -415,6 +415,11 @@
       unlockCarte(prenom, true);
     });
 
+    // Reset via ?reset dans l'URL (pour tests)
+    if (window.location.search.includes('reset')) {
+      try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
+    }
+
     // Auto-déverrouillage si déjà passé
     checkAlreadyUnlocked();
   </script>
