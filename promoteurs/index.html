@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Répertoire des Promoteurs Dubai — Clément Invest Dubai</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0F1F3D;
+      --gold: #C9A84C;
+      --gold-pale: rgba(201,168,76,0.08);
+      --white: #FFFFFF;
+    }
+
+    html, body {
+      width: 100%; height: 100%;
+      font-family: 'Inter', -apple-system, sans-serif;
+      overflow: hidden;
+    }
+
+    /* ── IFRAME EN FOND ── */
+    #promo-frame {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      z-index: 1;
+      filter: blur(3px) brightness(0.9);
+      transform: scale(1.03);
+      transition: filter 0.6s ease, transform 0.6s ease;
+      pointer-events: none;
+    }
+    #promo-frame.unlocked {
+      filter: none;
+      transform: scale(1);
+      pointer-events: auto;
+    }
+
+    /* ── OVERLAY GATE ── */
+    #gate-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(15,31,61,0.5);
+      backdrop-filter: blur(2px);
+      transition: opacity 0.5s ease;
+    }
+    #gate-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* ── CARD ── */
+    .gate-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 44px 48px;
+      width: 100%;
+      max-width: 460px;
+      box-shadow: 0 32px 80px rgba(15,31,61,0.24), 0 4px 20px rgba(15,31,61,0.1);
+      text-align: center;
+      animation: popIn 0.4s cubic-bezier(0.22,1,0.36,1);
+    }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.94) translateY(16px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .gate-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--gold-pale);
+      border: 1px solid rgba(201,168,76,0.35);
+      border-radius: 40px;
+      padding: 5px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #8a6820;
+      margin-bottom: 20px;
+    }
+
+    .gate-title {
+      font-size: 26px;
+      font-weight: 900;
+      font-style: italic;
+      color: var(--navy);
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+    .gate-title span { color: var(--gold); }
+
+    .gate-sub {
+      font-size: 14px;
+      color: #6B7280;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .gate-preview {
+      background: #f8f9fc;
+      border: 1px solid rgba(15,31,61,0.06);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 28px;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .gate-preview-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--navy);
+      font-weight: 500;
+    }
+    .gate-preview-item::before {
+      content: '✓';
+      color: #16A34A;
+      font-weight: 800;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+
+    .gate-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .gate-input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1.5px solid rgba(15,31,61,0.12);
+      border-radius: 12px;
+      font-size: 15px;
+      font-family: inherit;
+      color: var(--navy);
+      background: #f8f9fc;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .gate-input::placeholder { color: #9CA3AF; }
+    .gate-input:focus {
+      border-color: var(--gold);
+      background: var(--white);
+    }
+
+    .gate-btn {
+      width: 100%;
+      padding: 16px;
+      background: var(--navy);
+      color: var(--white);
+      border: none;
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: 4px;
+    }
+    .gate-btn:hover { background: #162b52; transform: translateY(-1px); }
+    .gate-btn:active { transform: translateY(0); }
+    .gate-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    .gate-error {
+      font-size: 12px;
+      color: #DC2626;
+      text-align: left;
+      margin-top: -4px;
+      display: none;
+    }
+    .gate-error.visible { display: block; }
+
+    .gate-legal {
+      font-size: 11px;
+      color: #9CA3AF;
+      margin-top: 14px;
+      line-height: 1.5;
+    }
+
+    /* Succès */
+    #gate-success { display: none; flex-direction: column; align-items: center; gap: 12px; padding: 8px 0; }
+    #gate-success.visible { display: flex; }
+    .gate-form.hidden { display: none; }
+
+    .success-icon {
+      width: 56px; height: 56px;
+      background: #DCFCE7;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px;
+    }
+    .success-title { font-size: 20px; font-weight: 800; color: var(--navy); letter-spacing: -0.02em; }
+    .success-sub { font-size: 13px; color: #6B7280; text-align: center; line-height: 1.5; }
+    .success-btn {
+      margin-top: 8px;
+      padding: 14px 32px;
+      background: var(--gold);
+      color: var(--white);
+      border: none;
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .success-btn:hover { opacity: 0.9; }
+  </style>
+</head>
+<body>
+
+  <!-- RÉPERTOIRE EN FOND -->
+  <iframe
+    id="promo-frame"
+    src="promoteurs-bundle.html"
+    title="Répertoire des promoteurs Dubai"
+    loading="eager"
+  ></iframe>
+
+  <!-- GATE -->
+  <div id="gate-overlay">
+    <div class="gate-card">
+
+      <div class="gate-badge">📋 Accès gratuit</div>
+
+      <h1 class="gate-title">
+        37 promoteurs de Dubai<br>
+        <span>classés et décryptés</span>
+      </h1>
+
+      <p class="gate-sub">
+        Luxe, Premium, Middle, Mass Market — qui livrer, qui éviter, et lesquels sont dans ton quartier.
+      </p>
+
+      <div class="gate-preview">
+        <div class="gate-preview-item">Classement Luxe / Premium / Middle / Mass Market</div>
+        <div class="gate-preview-item">Historique de livraison de chaque promoteur</div>
+        <div class="gate-preview-item">Forces, faiblesses et points de vigilance</div>
+        <div class="gate-preview-item">Carte des promoteurs par quartier (Tier 1/2/3)</div>
+      </div>
+
+      <div class="gate-form" id="gate-form">
+        <input
+          class="gate-input"
+          id="input-prenom"
+          type="text"
+          placeholder="Ton prénom"
+          autocomplete="given-name"
+        />
+        <div>
+          <input
+            class="gate-input"
+            id="input-phone"
+            type="tel"
+            placeholder="Ton numéro WhatsApp (ex: +33 6 12 34 56 78)"
+            autocomplete="tel"
+          />
+          <div class="gate-error" id="phone-error">Format invalide — utilise le format international (+33...)</div>
+        </div>
+        <button class="gate-btn" id="gate-submit">Accéder au répertoire →</button>
+      </div>
+
+      <div id="gate-success">
+        <div class="success-icon">✓</div>
+        <div class="success-title" id="success-title">Bienvenue !</div>
+        <div class="success-sub">Ton répertoire est prêt. Clément te contactera sous 48h.</div>
+        <button class="success-btn" id="success-open">Ouvrir le répertoire →</button>
+      </div>
+
+      <p class="gate-legal">Tes infos restent confidentielles. Pas de spam, promis.</p>
+    </div>
+  </div>
+
+  <script>
+    const WEBHOOK_URL = 'https://hook.eu1.make.com/2druy645e9jwt2au52euhzqd45tm8bb7';
+
+    function validatePhone(raw) {
+      const cleaned = raw.replace(/[\s\-\(\)]/g, '');
+      return /^\+[1-9]\d{6,14}$/.test(cleaned) ? cleaned : null;
+    }
+
+    function unlockRepertoire(animate) {
+      const overlay = document.getElementById('gate-overlay');
+      const frame   = document.getElementById('promo-frame');
+      if (animate) {
+        overlay.classList.add('hidden');
+        setTimeout(() => {
+          overlay.style.display = 'none';
+          frame.classList.add('unlocked');
+        }, 500);
+      } else {
+        overlay.style.display = 'none';
+        frame.classList.add('unlocked');
+      }
+    }
+
+    document.getElementById('gate-submit').addEventListener('click', async () => {
+      const prenom   = document.getElementById('input-prenom').value.trim();
+      const phoneRaw = document.getElementById('input-phone').value.trim();
+      const phoneError = document.getElementById('phone-error');
+
+      const phone = validatePhone(phoneRaw);
+      if (!phone) {
+        phoneError.classList.add('visible');
+        document.getElementById('input-phone').focus();
+        return;
+      }
+      phoneError.classList.remove('visible');
+
+      const btn = document.getElementById('gate-submit');
+      btn.textContent = 'Chargement...';
+      btn.disabled = true;
+
+      try {
+        await fetch(WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            source:    'promoteur',
+            prenom:    prenom || 'Non renseigné',
+            whatsapp:  phone,
+            timestamp: new Date().toISOString(),
+          }),
+        });
+      } catch(e) {}
+
+      // Succès
+      document.getElementById('gate-form').classList.add('hidden');
+      document.getElementById('gate-success').classList.add('visible');
+      if (prenom) {
+        document.getElementById('success-title').textContent = `Bienvenue ${prenom} ! 🎉`;
+      }
+    });
+
+    document.getElementById('success-open').addEventListener('click', () => {
+      unlockRepertoire(true);
+    });
+  </script>
+
+</body>
+</html>
