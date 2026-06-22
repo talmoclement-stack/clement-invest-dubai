@@ -540,6 +540,18 @@ document.getElementById('gateForm').addEventListener('submit', async function(e)
   const firstName = document.getElementById('firstName').value.trim();
   const phone = document.getElementById('phone').value.trim();
   if (!firstName || !phone) return;
+  // Validation : prénom min 2 chars, téléphone min 8 chars avec chiffres
+  if (firstName.length < 2) {
+    document.getElementById('firstName').style.borderColor = '#f87171';
+    document.getElementById('firstName').focus();
+    return;
+  }
+  const phoneDigits = phone.replace(/\D/g,'');
+  if (phoneDigits.length < 8) {
+    document.getElementById('phone').style.borderColor = '#f87171';
+    document.getElementById('phone').focus();
+    return;
+  }
   try {
     await fetch(WEBHOOK, { method:'POST', headers:{'Content-Type':'application/json'},
       body: JSON.stringify({ source:'radar', firstName, phone, timestamp: new Date().toISOString() }) });
