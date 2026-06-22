@@ -170,12 +170,29 @@
     .r-footer a { color: var(--gold); text-decoration: none; font-weight: 700; }
 
     @media (max-width: 800px) {
-      .r-section { padding: 24px 20px 48px; }
+      .r-section { padding: 20px 16px 48px; }
       .slide { flex-direction: column; gap: 20px; }
-      .slide-img-col { width: 100%; min-height: 220px; border-radius: 14px; }
-      .slide-title { font-size: 24px; }
-      .r-header { padding: 18px 20px; }
-      .r-tab { font-size: 12px; padding: 14px 6px; }
+      .slide-img-col { width: 100%; min-height: 210px; max-height: 240px; border-radius: 14px; }
+      .slide-title { font-size: 22px; }
+      .slide-promo { font-size: 13px; }
+      .r-header { padding: 16px 20px; }
+      .r-brand-name { font-size: 16px; }
+      .r-tab { font-size: 11px; padding: 13px 4px; }
+      .slide-meta { gap: 8px; }
+      .s-meta { padding: 8px 10px; }
+      .s-meta-value { font-size: 12px; }
+      .sp-box { padding: 16px 14px 14px; }
+      .sp-text { font-size: 14px; }
+      .sp-forqui-text { font-size: 14px; }
+      .slide-cta { font-size: 14px; padding: 14px; }
+      .nav-btn { width: 42px; height: 42px; font-size: 17px; }
+      .gate-box { padding: 32px 20px; }
+      .gate-title { font-size: 28px; }
+    }
+    @media (max-width: 400px) {
+      .r-tab { font-size: 10px; padding: 12px 3px; }
+      .slide-title { font-size: 20px; }
+      .sp-text { font-size: 13px; }
     }
   </style>
 </head>
@@ -293,14 +310,14 @@
               <div class="sp-points">
                 <div class="sp-point"><div class="sp-icon">📅</div><div class="sp-text">Plan le plus lissé du marché : 1% par mois post-livraison — pression mensuelle minimale sur ton cash</div></div>
                 <div class="sp-point"><div class="sp-icon">🛋️</div><div class="sp-text">Livré clé en main meublé — louer dès le handover sans dépenser un centime de plus</div></div>
-                <div class="sp-point"><div class="sp-icon">💰</div><div class="sp-text">Studio cash dès 118K€ — le ticket d'entrée le plus bas pour un bien meublé à Dubai</div></div>
+                <div class="sp-point"><div class="sp-icon">💰</div><div class="sp-text">Studio cash dès 118K€ — le studio meublé le moins cher de Dubai, idéal pour un premier achat cash sans plan de paiement</div></div>
                 <div class="sp-point"><div class="sp-icon">🏙️</div><div class="sp-text">DLRC : demande locative prouvée, 9 000 transactions par an — location rapide garantie</div></div>
               </div>
               <div class="sp-forqui">
                 <div class="sp-forqui-icon">🎯</div>
                 <div>
                   <div class="sp-forqui-label">Pour qui</div>
-                  <div class="sp-forqui-text">Premier achat avec petit apport, qui veut maximiser le rendement sans effort de gestion et lisser son paiement dans le temps</div>
+                  <div class="sp-forqui-text">Premier achat avec petit apport, qui veut lisser son paiement dans le temps — ou investisseur cash qui veut le studio meublé au prix le plus bas du marché Dubai</div>
                 </div>
               </div>
             </div>
@@ -336,16 +353,16 @@
             <div class="sp-box">
               <div class="sp-title">✅ Pourquoi c'est une opportunité</div>
               <div class="sp-points">
-                <div class="sp-point"><div class="sp-icon">⚡</div><div class="sp-text">Post-handover disponible immédiatement — encaissable dès aujourd'hui, pas d'attente de construction</div></div>
-                <div class="sp-point"><div class="sp-icon">🏗️</div><div class="sp-text">Pantheon = promoteur fiable avec track record de livraisons qualitatives reconnues</div></div>
-                <div class="sp-point"><div class="sp-icon">📍</div><div class="sp-text">Wasl Gate : zone établie, accès rapide Marina et Jebel Ali — locataire facile à trouver</div></div>
-                <div class="sp-point"><div class="sp-icon">💶</div><div class="sp-text">Prix sous les 700K AED — rentabilité locative immédiate possible dès le premier mois</div></div>
+                <div class="sp-point"><div class="sp-icon">✅</div><div class="sp-text">Pantheon a déjà livré plusieurs projets — promoteur avec un track record prouvé, pas de risque de retard ou de mauvaise surprise</div></div>
+                <div class="sp-point"><div class="sp-icon">📅</div><div class="sp-text">Plan de paiement étalé en post-handover — tu paies progressivement après la livraison, sans stress sur la trésorerie</div></div>
+                <div class="sp-point"><div class="sp-icon">📍</div><div class="sp-text">Wasl Gate : zone en développement actif, station de métro à côté et proche de la Marina — locataire facile à trouver</div></div>
+                <div class="sp-point"><div class="sp-icon">💶</div><div class="sp-text">Studio à 690K AED — prix accessible pour un promoteur fiable dans une zone avec fort potentiel de croissance</div></div>
               </div>
               <div class="sp-forqui">
                 <div class="sp-forqui-icon">🎯</div>
                 <div>
                   <div class="sp-forqui-label">Pour qui</div>
-                  <div class="sp-forqui-text">Investisseur qui veut un actif immédiatement disponible et loué rapidement, sans attendre 2 ans de construction</div>
+                  <div class="sp-forqui-text">Investisseur qui veut un promoteur avec track record prouvé, un plan de paiement étalé post-livraison, dans une zone en développement avec métro et proximité Marina</div>
                 </div>
               </div>
             </div>
@@ -532,10 +549,10 @@
           </div>
         </div>
 
-        <!-- Sierra ELO -->
+        <!-- Sierra Beyond -->
         <div class="slide">
           <div class="slide-img-col">
-            <img class="slide-img" src="https://tohidfetrat.com/wp-content/uploads/2026/02/dubai-islands-island-e-aerial-masterplan-waterfront-community-dubai-tohid-fetrat.webp" alt="Sierra ELO Dubai Islands" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <img class="slide-img" src="https://design-middleeast.com/wp-content/uploads/2025/12/BEYOND-Developments-SIORA-Masterplan-at-Dubai-Islands-02-1100x619.jpg" alt="Sierra Beyond Dubai Islands" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="slide-img-fallback" style="display:none">🏖️</div>
             <div class="slide-badge-wrap">
               <span class="s-badge s-badge-blue">🟠 Relance imminente</span>
@@ -544,8 +561,8 @@
           </div>
           <div class="slide-content">
             <div class="slide-header">
-              <div class="slide-title">Sierra by ELO</div>
-              <div class="slide-promo">par <strong>ELO</strong> · Dubai Islands</div>
+              <div class="slide-title">Sierra</div>
+              <div class="slide-promo">par <strong>Beyond</strong> · Dubai Islands</div>
             </div>
             <div class="slide-meta">
               <div class="s-meta"><div class="s-meta-label">Zone</div><div class="s-meta-value gold">Dubai Islands</div></div>
@@ -558,17 +575,17 @@
                 <div class="sp-point"><div class="sp-icon">🏖️</div><div class="sp-text">Dubai Islands = la prochaine grande zone balnéaire de Dubai — développement massif en cours, valeur qui monte chaque mois</div></div>
                 <div class="sp-point"><div class="sp-icon">🌊</div><div class="sp-text">Front mer direct — la proximité à la plage reste LE critère de valeur n°1 à Dubai pour la location et la revente</div></div>
                 <div class="sp-point"><div class="sp-icon">📈</div><div class="sp-text">Acheter early sur une zone off-plan = historiquement le meilleur timing pour la plus-value à Dubai</div></div>
-                <div class="sp-point"><div class="sp-icon">🔥</div><div class="sp-text">ELO : promoteur en forte montée, projets qui s'arrachent à chaque lancement — pas d'hésitation possible</div></div>
+                <div class="sp-point"><div class="sp-icon">🔥</div><div class="sp-text">Beyond = le même promoteur qu'Arancia Yards — ultra-luxe, livraisons exceptionnelles, valeur de revente garantie</div></div>
               </div>
               <div class="sp-forqui">
                 <div class="sp-forqui-icon">🎯</div>
                 <div>
                   <div class="sp-forqui-label">Pour qui</div>
-                  <div class="sp-forqui-text">Chasseur de plus-value qui accepte d'attendre 2-3 ans pour un gain significatif sur un actif front mer, dans une zone qui n'a pas encore explosé</div>
+                  <div class="sp-forqui-text">Chasseur de plus-value qui accepte d'attendre 2-3 ans pour un gain significatif sur un actif front mer Beyond, dans une zone qui n'a pas encore explosé</div>
                 </div>
               </div>
             </div>
-            <a href="https://wa.me/33624835980?text=Bonjour+Clément,+j'ai+vu+Sierra+by+ELO+sur+le+Radar+et+je+veux+être+alerté+à+la+relance." class="slide-cta" target="_blank">M'alerter à la relance →</a>
+            <a href="https://wa.me/33624835980?text=Bonjour+Clément,+j'ai+vu+Sierra+by+Beyond+sur+le+Radar+et+je+veux+être+alerté+à+la+relance." class="slide-cta" target="_blank">M'alerter à la relance →</a>
           </div>
         </div>
 
