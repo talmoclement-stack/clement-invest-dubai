@@ -12,632 +12,681 @@
       --navy: #0F1F3D;
       --gold: #C9A84C;
       --gold-light: #f5e9c8;
-      --white: #ffffff;
+      --white: #fff;
       --gray: #6b7280;
       --green: #059669;
-      --green-light: #d1fae5;
-      --green-mid: #a7f3d0;
+      --green-bg: #ecfdf5;
+      --green-border: #6ee7b7;
     }
+    html { scroll-behavior: smooth; }
     body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--navy); min-height: 100vh; }
 
-    /* ── GATE ── */
-    #gate { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; background: var(--bg); }
-    .gate-box { background: var(--white); border-radius: 20px; padding: 48px 40px; max-width: 480px; width: 100%; box-shadow: 0 8px 40px rgba(15,31,61,0.10); text-align: center; }
-    .gate-logo { font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
-    .gate-title { font-size: 30px; font-weight: 900; color: var(--navy); line-height: 1.2; margin-bottom: 12px; }
-    .gate-title span { color: var(--gold); }
-    .gate-sub { font-size: 15px; color: var(--gray); line-height: 1.6; margin-bottom: 32px; }
-    .gate-badges { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 32px; }
-    .gate-badge { background: var(--gold-light); color: var(--navy); font-size: 12px; font-weight: 600; padding: 6px 12px; border-radius: 20px; }
-    .gate-form { display: flex; flex-direction: column; gap: 14px; }
-    .gate-form input { padding: 14px 18px; border: 2px solid #e5e7eb; border-radius: 10px; font-size: 15px; font-family: 'Inter', sans-serif; color: var(--navy); transition: border 0.2s; outline: none; }
+    /* ─── GATE ─── */
+    #gate { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; }
+    .gate-box { background: var(--white); border-radius: 24px; padding: 52px 44px; max-width: 480px; width: 100%; box-shadow: 0 12px 48px rgba(15,31,61,0.12); text-align: center; }
+    .gate-eyebrow { font-size: 12px; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+    .gate-title { font-size: 34px; font-weight: 900; color: var(--navy); line-height: 1.15; margin-bottom: 14px; }
+    .gate-title em { color: var(--gold); font-style: normal; }
+    .gate-sub { font-size: 15px; color: var(--gray); line-height: 1.65; margin-bottom: 36px; }
+    .gate-pills { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 36px; }
+    .gate-pill { background: var(--gold-light); color: var(--navy); font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 30px; }
+    .gate-form { display: flex; flex-direction: column; gap: 12px; }
+    .gate-form input { padding: 15px 18px; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 15px; font-family: inherit; color: var(--navy); outline: none; transition: border .2s; }
     .gate-form input:focus { border-color: var(--gold); }
     .gate-form input::placeholder { color: #9ca3af; }
-    .gate-btn { background: var(--gold); color: var(--navy); font-size: 15px; font-weight: 800; padding: 16px; border: none; border-radius: 10px; cursor: pointer; transition: all 0.2s; }
-    .gate-btn:hover { background: #b8943e; transform: translateY(-1px); }
-    .gate-privacy { font-size: 12px; color: #9ca3af; margin-top: 16px; line-height: 1.5; }
+    .gate-submit { background: var(--gold); color: var(--navy); font-size: 16px; font-weight: 800; padding: 17px; border: none; border-radius: 12px; cursor: pointer; transition: all .2s; letter-spacing: .3px; }
+    .gate-submit:hover { background: #b8943e; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(201,168,76,.35); }
+    .gate-note { font-size: 12px; color: #9ca3af; margin-top: 14px; }
 
-    /* ── RADAR ── */
+    /* ─── RADAR SHELL ─── */
     #radar { display: none; }
-    .radar-header { background: var(--navy); color: var(--white); padding: 28px 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
-    .radar-brand { display: flex; align-items: center; gap: 14px; }
-    .radar-brand-icon { width: 44px; height: 44px; background: var(--gold); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 22px; }
-    .radar-brand-name { font-size: 20px; font-weight: 900; color: var(--white); }
-    .radar-brand-sub { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 2px; }
-    .radar-date { font-size: 13px; color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.08); padding: 8px 16px; border-radius: 20px; }
-    .radar-date span { color: var(--gold); font-weight: 700; }
+    .r-header { background: var(--navy); padding: 22px 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; }
+    .r-brand { display: flex; align-items: center; gap: 12px; }
+    .r-brand-icon { width: 42px; height: 42px; background: var(--gold); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+    .r-brand-name { font-size: 18px; font-weight: 900; color: #fff; }
+    .r-brand-sub { font-size: 11px; color: rgba(255,255,255,.55); margin-top: 1px; }
+    .r-date { font-size: 12px; color: rgba(255,255,255,.55); background: rgba(255,255,255,.08); padding: 7px 14px; border-radius: 30px; }
+    .r-date strong { color: var(--gold); }
 
-    /* Filters */
-    .radar-filters { padding: 24px 40px 0; display: flex; gap: 10px; flex-wrap: wrap; }
-    .filter-btn { padding: 10px 20px; border-radius: 30px; border: 2px solid #e5e7eb; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.2s; background: var(--white); color: var(--gray); }
-    .filter-btn.active-all { border-color: var(--navy); color: var(--navy); }
-    .filter-btn.active-red { border-color: #dc2626; color: #dc2626; background: #fff5f5; }
-    .filter-btn.active-yellow { border-color: #d97706; color: #d97706; background: #fffbeb; }
-    .filter-btn.active-blue { border-color: #2563eb; color: #2563eb; background: #eff6ff; }
-    .filter-btn:hover { transform: translateY(-1px); box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    /* ─── SECTION TABS ─── */
+    .r-tabs { display: flex; background: var(--white); border-bottom: 2px solid #e5e7eb; }
+    .r-tab { flex: 1; padding: 16px 8px; text-align: center; font-size: 13px; font-weight: 700; color: var(--gray); cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all .2s; white-space: nowrap; }
+    .r-tab:hover { color: var(--navy); }
+    .r-tab.active { color: var(--navy); border-bottom-color: var(--gold); }
 
-    /* Section title */
-    .section-title { padding: 28px 40px 4px; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gray); display: flex; align-items: center; gap: 10px; }
-    .section-title::after { content: ''; flex: 1; height: 1px; background: #e5e7eb; }
+    /* ─── CAROUSEL SECTION ─── */
+    .r-section { display: none; padding: 32px 40px 60px; }
+    .r-section.active { display: block; }
 
-    /* Grid */
-    .radar-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px; padding: 16px 40px 8px; }
+    .carousel-wrap { position: relative; }
 
-    /* Card */
-    .project-card { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: 0 2px 12px rgba(15,31,61,0.07); transition: transform 0.2s, box-shadow 0.2s; display: flex; flex-direction: column; }
-    .project-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(15,31,61,0.13); }
+    /* slides */
+    .slides { display: flex; gap: 0; overflow: hidden; }
+    .slide { min-width: 100%; display: flex; gap: 32px; align-items: stretch; opacity: 0; pointer-events: none; position: absolute; top: 0; left: 0; width: 100%; transition: opacity .35s ease; }
+    .slide.active { opacity: 1; pointer-events: auto; position: relative; }
 
-    .card-img { width: 100%; height: 200px; object-fit: cover; display: block; }
-    .card-img-error { width: 100%; height: 200px; background: linear-gradient(135deg, #1a3a6b, #0F1F3D); display: flex; align-items: center; justify-content: center; font-size: 40px; }
+    /* left = image */
+    .slide-img-col { width: 46%; flex-shrink: 0; border-radius: 20px; overflow: hidden; position: relative; min-height: 460px; }
+    .slide-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .slide-img-fallback { width: 100%; height: 100%; background: linear-gradient(135deg,#1a3a6b,#0F1F3D); display: flex; align-items: center; justify-content: center; font-size: 64px; }
+    .slide-badge-wrap { position: absolute; top: 16px; left: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+    .s-badge { font-size: 11px; font-weight: 800; padding: 5px 12px; border-radius: 30px; backdrop-filter: blur(6px); }
+    .s-badge-red { background: rgba(220,38,38,.85); color: #fff; }
+    .s-badge-yellow { background: rgba(217,119,6,.85); color: #fff; }
+    .s-badge-blue { background: rgba(37,99,235,.85); color: #fff; }
+    .s-badge-gold { background: rgba(201,168,76,.9); color: var(--navy); }
+    .s-badge-dark { background: rgba(15,31,61,.8); color: #fff; }
 
-    .card-body { padding: 20px 20px 16px; flex: 1; display: flex; flex-direction: column; }
-    .card-badges { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
-    .badge { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; letter-spacing: 0.3px; text-transform: uppercase; }
-    .badge-red { background: #fee2e2; color: #dc2626; }
-    .badge-yellow { background: #fef3c7; color: #d97706; }
-    .badge-blue { background: #dbeafe; color: #2563eb; }
-    .badge-gold { background: var(--gold-light); color: #92680a; }
-    .badge-navy { background: #e0e7ff; color: var(--navy); }
+    /* right = content */
+    .slide-content { flex: 1; display: flex; flex-direction: column; gap: 0; }
 
-    .card-title { font-size: 20px; font-weight: 900; color: var(--navy); margin-bottom: 3px; line-height: 1.2; }
-    .card-promo { font-size: 13px; color: var(--gray); font-weight: 500; margin-bottom: 14px; }
-    .card-promo strong { color: var(--navy); }
+    .slide-header { margin-bottom: 4px; }
+    .slide-title { font-size: 32px; font-weight: 900; color: var(--navy); line-height: 1.1; }
+    .slide-promo { font-size: 14px; color: var(--gray); font-weight: 500; margin-top: 4px; }
+    .slide-promo strong { color: var(--navy); }
 
-    /* Meta grid */
-    .card-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
-    .meta-item { background: var(--bg); border-radius: 8px; padding: 9px 11px; }
-    .meta-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: var(--gray); margin-bottom: 3px; }
-    .meta-value { font-size: 13px; font-weight: 700; color: var(--navy); }
-    .meta-value.gold { color: #92680a; }
+    /* meta strip */
+    .slide-meta { display: flex; gap: 10px; flex-wrap: wrap; margin: 16px 0; }
+    .s-meta { background: var(--bg); border-radius: 10px; padding: 10px 14px; }
+    .s-meta-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .7px; color: var(--gray); margin-bottom: 3px; }
+    .s-meta-value { font-size: 13px; font-weight: 800; color: var(--navy); }
+    .s-meta-value.gold { color: #92680a; }
 
-    /* ── SELLING POINTS ── */
-    .selling-points {
-      background: var(--green-light);
-      border: 1.5px solid var(--green-mid);
-      border-radius: 10px;
-      padding: 14px 14px 12px;
-      margin-bottom: 14px;
+    /* ─── SELLING POINTS (BIG) ─── */
+    .sp-box {
+      background: var(--green-bg);
+      border: 2px solid var(--green-border);
+      border-radius: 16px;
+      padding: 22px 22px 18px;
+      margin-bottom: 18px;
       flex: 1;
     }
-    .sp-header {
+    .sp-title {
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--green);
+      margin-bottom: 16px;
       display: flex;
       align-items: center;
       gap: 6px;
-      font-size: 11px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      color: var(--green);
-      margin-bottom: 10px;
     }
-    .sp-list { display: flex; flex-direction: column; gap: 7px; }
-    .sp-item { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: #065f46; line-height: 1.45; }
-    .sp-dot { width: 6px; height: 6px; background: var(--green); border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
-    .sp-for {
-      margin-top: 10px;
-      padding-top: 8px;
-      border-top: 1px solid var(--green-mid);
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--green);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    .sp-for span { color: #065f46; font-weight: 600; text-transform: none; letter-spacing: 0; }
+    .sp-points { display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px; }
+    .sp-point { display: flex; align-items: flex-start; gap: 12px; }
+    .sp-icon { font-size: 18px; line-height: 1; margin-top: 1px; flex-shrink: 0; }
+    .sp-text { font-size: 15px; font-weight: 600; color: #064e3b; line-height: 1.4; }
 
-    /* Prices */
-    .card-prices { background: var(--bg); border-radius: 10px; padding: 12px 14px; margin-bottom: 14px; }
-    .prices-title { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--gray); margin-bottom: 8px; }
-    .prices-grid { display: flex; flex-direction: column; gap: 5px; }
-    .price-row { display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
+    /* "Pour qui" */
+    .sp-forqui {
+      background: var(--green);
+      border-radius: 10px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .sp-forqui-label {
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: rgba(255,255,255,.7);
+      margin-bottom: 4px;
+    }
+    .sp-forqui-text {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.4;
+    }
+    .sp-forqui-icon { font-size: 22px; flex-shrink: 0; }
+
+    /* prices */
+    .slide-prices { background: var(--bg); border-radius: 12px; padding: 14px 16px; margin-bottom: 16px; }
+    .prices-head { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .8px; color: var(--gray); margin-bottom: 10px; }
+    .price-row { display: flex; justify-content: space-between; font-size: 14px; padding: 5px 0; border-bottom: 1px solid #e5e7eb; }
+    .price-row:last-child { border-bottom: none; }
     .price-type { color: var(--gray); font-weight: 500; }
-    .price-aed { font-weight: 700; color: var(--navy); }
-    .price-eur { font-size: 11px; color: var(--gray); margin-left: 4px; }
+    .price-val { font-weight: 800; color: var(--navy); }
+    .price-eur { font-size: 12px; color: var(--gray); font-weight: 500; margin-left: 6px; }
 
     /* CTA */
-    .card-cta { background: var(--navy); color: var(--white); border: none; border-radius: 10px; padding: 13px; font-size: 14px; font-weight: 700; cursor: pointer; width: 100%; transition: all 0.2s; text-decoration: none; display: block; text-align: center; margin-top: auto; }
-    .card-cta:hover { background: var(--gold); color: var(--navy); }
+    .slide-cta { display: block; background: var(--navy); color: #fff; text-align: center; padding: 16px; border-radius: 12px; font-size: 15px; font-weight: 800; text-decoration: none; transition: all .2s; }
+    .slide-cta:hover { background: var(--gold); color: var(--navy); }
 
-    /* Footer */
-    .radar-footer { background: var(--navy); color: rgba(255,255,255,0.6); text-align: center; padding: 24px 40px; font-size: 13px; margin-top: 40px; }
-    .radar-footer a { color: var(--gold); text-decoration: none; font-weight: 700; }
+    /* carousel nav */
+    .carousel-nav { display: flex; align-items: center; justify-content: center; gap: 20px; margin-top: 28px; }
+    .nav-btn { width: 48px; height: 48px; border-radius: 50%; border: 2px solid var(--navy); background: var(--white); color: var(--navy); font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all .2s; }
+    .nav-btn:hover { background: var(--navy); color: #fff; }
+    .nav-btn:disabled { opacity: .3; cursor: not-allowed; }
+    .nav-dots { display: flex; gap: 8px; }
+    .nav-dot { width: 8px; height: 8px; border-radius: 50%; background: #d1d5db; cursor: pointer; transition: all .2s; }
+    .nav-dot.active { background: var(--navy); width: 24px; border-radius: 4px; }
+    .nav-counter { font-size: 13px; font-weight: 700; color: var(--gray); min-width: 40px; text-align: center; }
 
-    .hidden { display: none !important; }
+    /* footer */
+    .r-footer { background: var(--navy); color: rgba(255,255,255,.55); text-align: center; padding: 22px 40px; font-size: 13px; }
+    .r-footer a { color: var(--gold); text-decoration: none; font-weight: 700; }
 
-    @media (max-width: 600px) {
-      .radar-header { padding: 20px; }
-      .radar-filters { padding: 16px 20px 0; }
-      .radar-grid { grid-template-columns: 1fr; padding: 12px 20px 8px; }
-      .section-title { padding: 20px 20px 4px; }
-      .gate-box { padding: 32px 24px; }
+    @media (max-width: 800px) {
+      .r-section { padding: 24px 20px 48px; }
+      .slide { flex-direction: column; gap: 20px; }
+      .slide-img-col { width: 100%; min-height: 220px; border-radius: 14px; }
+      .slide-title { font-size: 24px; }
+      .r-header { padding: 18px 20px; }
+      .r-tab { font-size: 12px; padding: 14px 6px; }
     }
   </style>
 </head>
 <body>
 
-<!-- ══ GATE ══ -->
+<!-- ═══ GATE ═══ -->
 <div id="gate">
   <div class="gate-box">
-    <div class="gate-logo">Clément Invest Dubai</div>
-    <h1 class="gate-title">📡 Le <span>Radar</span><br>des Projets</h1>
-    <p class="gate-sub">Chaque semaine, les meilleurs projets Dubai analysés : prix, plans de paiement, potentiel. Accès gratuit, réservé aux investisseurs sérieux.</p>
-    <div class="gate-badges">
-      <span class="gate-badge">🔴 Lancements en cours</span>
-      <span class="gate-badge">🟡 Opportunités</span>
-      <span class="gate-badge">🟠 À venir</span>
+    <div class="gate-eyebrow">Clément Invest Dubai</div>
+    <h1 class="gate-title">📡 Le <em>Radar</em><br>des Projets</h1>
+    <p class="gate-sub">Chaque semaine, les meilleurs projets Dubai décortiqués : prix, plans de paiement, potentiel. Accès gratuit, réservé aux investisseurs sérieux.</p>
+    <div class="gate-pills">
+      <span class="gate-pill">🟡 Opportunités marché</span>
+      <span class="gate-pill">🔴 Lancements en cours</span>
+      <span class="gate-pill">🟠 Lancements à venir</span>
     </div>
     <form class="gate-form" id="gateForm">
       <input type="text" id="firstName" placeholder="Ton prénom" required>
-      <input type="tel" id="phone" placeholder="Ton numéro WhatsApp (ex: +33 6 …)" required>
-      <button type="submit" class="gate-btn">Accéder au Radar →</button>
+      <input type="tel" id="phone" placeholder="Ton WhatsApp (ex: +33 6 …)" required>
+      <button type="submit" class="gate-submit">Accéder au Radar →</button>
     </form>
-    <p class="gate-privacy">🔒 Tes infos restent confidentielles. Pas de spam — juste le Radar chaque semaine.</p>
+    <p class="gate-note">🔒 Pas de spam. Juste le Radar chaque semaine.</p>
   </div>
 </div>
 
-<!-- ══ RADAR ══ -->
+<!-- ═══ RADAR ═══ -->
 <div id="radar">
 
-  <div class="radar-header">
-    <div class="radar-brand">
-      <div class="radar-brand-icon">📡</div>
+  <div class="r-header">
+    <div class="r-brand">
+      <div class="r-brand-icon">📡</div>
       <div>
-        <div class="radar-brand-name">Le Radar</div>
-        <div class="radar-brand-sub">par Clément Invest Dubai</div>
+        <div class="r-brand-name">Le Radar</div>
+        <div class="r-brand-sub">par Clément Invest Dubai</div>
       </div>
     </div>
-    <div class="radar-date">Semaine du <span>23 juin 2026</span></div>
+    <div class="r-date">Semaine du <strong>23 juin 2026</strong></div>
   </div>
 
-  <div class="radar-filters">
-    <button class="filter-btn active-all" onclick="filterCards('all',this)">Tous les projets</button>
-    <button class="filter-btn" onclick="filterCards('red',this)">🔴 Lancements en cours</button>
-    <button class="filter-btn" onclick="filterCards('yellow',this)">🟡 Opportunités</button>
-    <button class="filter-btn" onclick="filterCards('blue',this)">🟠 À venir</button>
+  <!-- TABS -->
+  <div class="r-tabs">
+    <div class="r-tab active" onclick="showSection('opps',this)">🟡 Opportunités</div>
+    <div class="r-tab" onclick="showSection('launch',this)">🔴 Lancements en cours</div>
+    <div class="r-tab" onclick="showSection('coming',this)">🟠 À venir</div>
   </div>
 
-  <!-- ── EN COURS ── -->
-  <div class="section-title" data-section="red">🔴 Lancements en cours</div>
-  <div class="radar-grid">
+  <!-- ════ SECTION : OPPORTUNITÉS ════ -->
+  <div class="r-section active" id="sec-opps">
+    <div class="carousel-wrap" data-current="0">
 
-    <!-- WESTON -->
-    <div class="project-card" data-cat="red">
-      <img class="card-img" src="https://files.alnair.ae/uploads/2026/6/af/8f/af8fb75617d2431a99b93539b2c4dd54.jpg" alt="Weston by Wadan" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-      <div class="card-img-error" style="display:none">🏙️</div>
-      <div class="card-body">
-        <div class="card-badges">
-          <span class="badge badge-red">🔴 En cours</span>
-          <span class="badge badge-gold">50/50 Post-handover</span>
-          <span class="badge badge-navy">Meublé + équipé</span>
-        </div>
-        <div class="card-title">Weston</div>
-        <div class="card-promo">par <strong>Wadan</strong> · Dubai Land Residence Complex</div>
-        <div class="card-meta">
-          <div class="meta-item">
-            <div class="meta-label">Plan de paiement</div>
-            <div class="meta-value gold">50% post-livraison</div>
+      <div class="slides" id="slides-opps">
+
+        <!-- CARD 1 : Arancia Yards -->
+        <div class="slide active">
+          <div class="slide-img-col">
+            <img class="slide-img" src="https://cdn.thepropinvestor.com/uploadimg/projectimage/426/Arancia-Yards-hero-image1-PT0mKh.webp" alt="Arancia Yards" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="slide-img-fallback" style="display:none">🌿</div>
+            <div class="slide-badge-wrap">
+              <span class="s-badge s-badge-yellow">🟡 Opportunité</span>
+              <span class="s-badge s-badge-dark">Dernières unités</span>
+            </div>
           </div>
-          <div class="meta-item">
-            <div class="meta-label">EOI</div>
-            <div class="meta-value">50 000 AED</div>
-          </div>
-          <div class="meta-item">
-            <div class="meta-label">Zone</div>
-            <div class="meta-value">DLRC</div>
-          </div>
-          <div class="meta-item">
-            <div class="meta-label">Transactions/an</div>
-            <div class="meta-value">9 000+</div>
-          </div>
-        </div>
-        <div class="selling-points">
-          <div class="sp-header">✅ Selling Points</div>
-          <div class="sp-list">
-            <div class="sp-item"><div class="sp-dot"></div>Plan 50/50 post-livraison sur 3 ans — le plus agressif du marché en ce moment</div>
-            <div class="sp-item"><div class="sp-dot"></div>Livré 100% meublé, équipé et finitions premium — zéro travaux au handover</div>
-            <div class="sp-item"><div class="sp-dot"></div>DLRC : un des quartiers avec la plus forte demande locative de Dubai (9 000 trans./an)</div>
-            <div class="sp-item"><div class="sp-dot"></div>Wadan = promoteur qui a déjà livré — track record solide</div>
-          </div>
-          <div class="sp-for">Pour qui → <span>Investisseur rendement avec petit apport qui veut lisser son effort dans le temps</span></div>
-        </div>
-        <div class="card-prices">
-          <div class="prices-title">Prix de départ</div>
-          <div class="prices-grid">
-            <div class="price-row"><span class="price-type">Studio</span><span class="price-aed">650K AED<span class="price-eur">~153K€</span></span></div>
-            <div class="price-row"><span class="price-type">Smart Studio</span><span class="price-aed">680K AED<span class="price-eur">~160K€</span></span></div>
-            <div class="price-row"><span class="price-type">1 Bed</span><span class="price-aed">940K AED<span class="price-eur">~221K€</span></span></div>
-            <div class="price-row"><span class="price-type">2 Bed</span><span class="price-aed">1,57M AED<span class="price-eur">~370K€</span></span></div>
-            <div class="price-row"><span class="price-type">3 Bed</span><span class="price-aed">1,80M AED<span class="price-eur">~424K€</span></span></div>
+          <div class="slide-content">
+            <div class="slide-header">
+              <div class="slide-title">Arancia Yards</div>
+              <div class="slide-promo">par <strong>Beyond</strong> · City of Arabia</div>
+            </div>
+            <div class="slide-meta">
+              <div class="s-meta"><div class="s-meta-label">Unités restantes</div><div class="s-meta-value gold">Quelques 2 beds</div></div>
+              <div class="s-meta"><div class="s-meta-label">Relance</div><div class="s-meta-value">Imminente</div></div>
+              <div class="s-meta"><div class="s-meta-label">Green Spine</div><div class="s-meta-value">1 km de nature</div></div>
+            </div>
+            <div class="sp-box">
+              <div class="sp-title">✅ Pourquoi c'est une opportunité</div>
+              <div class="sp-points">
+                <div class="sp-point"><div class="sp-icon">🏆</div><div class="sp-text">Beyond = promoteur ultra-luxe qui livre à des prix résidentiels — une combinaison quasi introuvable</div></div>
+                <div class="sp-point"><div class="sp-icon">🌿</div><div class="sp-text">T'achètes une communauté entière (70% d'espaces verts, Green Spine 1 km) — pas un immeuble isolé</div></div>
+                <div class="sp-point"><div class="sp-icon">📈</div><div class="sp-text">Masterplan 4 milliards AED — City of Arabia en pleine montée en puissance, prix qui ne feront que grimper</div></div>
+                <div class="sp-point"><div class="sp-icon">🔒</div><div class="sp-text">Quasi-certitude de livraison et de revente : le standing du promoteur garantit la demande</div></div>
+              </div>
+              <div class="sp-forqui">
+                <div class="sp-forqui-icon">🎯</div>
+                <div>
+                  <div class="sp-forqui-label">Pour qui</div>
+                  <div class="sp-forqui-text">Investisseur patrimonial qui veut un actif de qualité premium à prix accessible, ou futur résident qui cherche du confort résidentiel haut de gamme</div>
+                </div>
+              </div>
+            </div>
+            <a href="https://wa.me/33624835980?text=Bonjour+Clément,+j'ai+vu+Arancia+Yards+by+Beyond+sur+le+Radar+et+je+suis+intéressé." class="slide-cta" target="_blank">Je suis intéressé — me contacter sur WhatsApp →</a>
           </div>
         </div>
-        <a href="https://wa.me/33624835980?text=Bonjour+Clément,+j'ai+vu+Weston+by+Wadan+sur+le+Radar+et+je+suis+intéressé." class="card-cta" target="_blank">Je suis intéressé →</a>
+
+        <!-- CARD 2 : Nuve / Elanora -->
+        <div class="slide">
+          <div class="slide-img-col">
+            <img class="slide-img" src="https://www.binayah.com/wp-content/uploads/2025/12/Nuve-by-Zoya-at-DLRC-01.webp" alt="Nuve Zoya" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="slide-img-fallback" style="display:none">🏠</div>
+            <div class="slide-badge-wrap">
+              <span class="s-badge s-badge-yellow">🟡 Opportunité</span>
+              <span class="s-badge s-badge-gold">Meublé clé en main</span>
+            </div>
+          </div>
+          <div class="slide-content">
+            <div class="slide-header">
+              <div class="slide-title">Nuve / Elanora</div>
+              <div class="slide-promo">par <strong>Zoya</strong> · Dubai Land Residence Complex</div>
+            </div>
+            <div class="slide-meta">
+              <div class="s-meta"><div class="s-meta-label">Plan de paiement</div><div class="s-meta-value gold">20% + 1%/mois</div></div>
+              <div class="s-meta"><div class="s-meta-label">Cash deal studio</div><div class="s-meta-value">500–550K AED</div></div>
+              <div class="s-meta"><div class="s-meta-label">Trans./an DLRC</div><div class="s-meta-value">9 000+</div></div>
+            </div>
+            <div class="sp-box">
+              <div class="sp-title">✅ Pourquoi c'est une opportunité</div>
+              <div class="sp-points">
+                <div class="sp-point"><div class="sp-icon">📅</div><div class="sp-text">Plan le plus lissé du marché : 1% par mois post-livraison — pression mensuelle minimale sur ton cash</div></div>
+                <div class="sp-point"><div class="sp-icon">🛋️</div><div class="sp-text">Livré clé en main meublé — louer dès le handover sans dépenser un centime de plus</div></div>
+                <div class="sp-point"><div class="sp-icon">💰</div><div class="sp-text">Studio cash dès 118K€ — le ticket d'entrée le plus bas pour un bien meublé à Dubai</div></div>
+                <div class="sp-point"><div class="sp-icon">🏙️</div><div class="sp-text">DLRC : demande locative prouvée, 9 000 transactions par an — location rapide garantie</div></div>
+              </div>
+              <div class="sp-forqui">
+                <div class="sp-forqui-icon">🎯</div>
+                <div>
+                  <div class="sp-forqui-label">Pour qui</div>
+                  <div class="sp-forqui-text">Premier achat avec petit apport, qui veut maximiser le rendement sans effort de gestion et lisser son paiement dans le temps</div>
+                </div>
+              </div>
+            </div>
+            <div class="slide-prices">
+              <div class="prices-head">Offres disponibles</div>
+              <div class="price-row"><span class="price-type">Studio (cash)</span><span class="price-val">500–550K AED<span class="price-eur">~118–130K€</span></span></div>
+              <div class="price-row"><span class="price-type">Off-plan</span><span class="price-val">20% + 1%/mois post-livraison</span></div>
+            </div>
+            <a href="https://wa.me/33624835980?text=Bonjour+Clément,+j'ai+vu+Nuve+Elanora+by+Zoya+sur+le+Radar+et+je+suis+intéressé." class="slide-cta" target="_blank">Je suis intéressé — me contacter sur WhatsApp →</a>
+          </div>
+        </div>
+
+        <!-- CARD 3 : Pantheon Wasl Gate -->
+        <div class="slide">
+          <div class="slide-img-col">
+            <img class="slide-img" src="https://admin.proprain.com/uploadfile/propertyimg/1162/Wasl-Gate-by-Pantheon-hero-image2-UN56qY.webp" alt="Pantheon Wasl Gate" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="slide-img-fallback" style="display:none">🏢</div>
+            <div class="slide-badge-wrap">
+              <span class="s-badge s-badge-yellow">🟡 Opportunité</span>
+              <span class="s-badge s-badge-gold">Post-handover dispo</span>
+            </div>
+          </div>
+          <div class="slide-content">
+            <div class="slide-header">
+              <div class="slide-title">Pantheon</div>
+              <div class="slide-promo">par <strong>Pantheon</strong> · Wasl Gate</div>
+            </div>
+            <div class="slide-meta">
+              <div class="s-meta"><div class="s-meta-label">Disponibilité</div><div class="s-meta-value gold">Studio restant</div></div>
+              <div class="s-meta"><div class="s-meta-label">Plan</div><div class="s-meta-value">Post-handover</div></div>
+              <div class="s-meta"><div class="s-meta-label">Prix</div><div class="s-meta-value">690K AED · ~162K€</div></div>
+            </div>
+            <div class="sp-box">
+              <div class="sp-title">✅ Pourquoi c'est une opportunité</div>
+              <div class="sp-points">
+                <div class="sp-point"><div class="sp-icon">⚡</div><div class="sp-text">Post-handover disponible immédiatement — encaissable dès aujourd'hui, pas d'attente de construction</div></div>
+                <div class="sp-point"><div class="sp-icon">🏗️</div><div class="sp-text">Pantheon = promoteur fiable avec track record de livraisons qualitatives reconnues</div></div>
+                <div class="sp-point"><div class="sp-icon">📍</div><div class="sp-text">Wasl Gate : zone établie, accès rapide Marina et Jebel Ali — locataire facile à trouver</div></div>
+                <div class="sp-point"><div class="sp-icon">💶</div><div class="sp-text">Prix sous les 700K AED — rentabilité locative immédiate possible dès le premier mois</div></div>
+              </div>
+              <div class="sp-forqui">
+                <div class="sp-forqui-icon">🎯</div>
+                <div>
+                  <div class="sp-forqui-label">Pour qui</div>
+                  <div class="sp-forqui-text">Investisseur qui veut un actif immédiatement disponible et loué rapidement, sans attendre 2 ans de construction</div>
+                </div>
+              </div>
+            </div>
+            <div class="slide-prices">
+              <div class="prices-head">Prix</div>
+              <div class="price-row"><span class="price-type">Studio</span><span class="price-val">690K AED<span class="price-eur">~162K€</span></span></div>
+            </div>
+            <a href="https://wa.me/33624835980?text=Bonjour+Clément,+j'ai+vu+le+studio+Pantheon+à+Wasl+Gate+sur+le+Radar+et+je+suis+intéressé." class="slide-cta" target="_blank">Je suis intéressé — me contacter sur WhatsApp →</a>
+          </div>
+        </div>
+
+      </div><!-- /slides -->
+
+      <div class="carousel-nav">
+        <button class="nav-btn" id="prev-opps" onclick="move('opps',-1)" disabled>←</button>
+        <div class="nav-dots" id="dots-opps">
+          <div class="nav-dot active" onclick="goTo('opps',0)"></div>
+          <div class="nav-dot" onclick="goTo('opps',1)"></div>
+          <div class="nav-dot" onclick="goTo('opps',2)"></div>
+        </div>
+        <span class="nav-counter" id="count-opps">1 / 3</span>
+        <button class="nav-btn" id="next-opps" onclick="move('opps',1)">→</button>
       </div>
     </div>
-
-    <!-- RAW DISTRICT 2 -->
-    <div class="project-card" data-cat="red">
-      <img class="card-img" src="https://topultraluxury.com/wp-content/uploads/Raw-District-2-by-Imtiaz-450x310.webp" alt="Raw District 2 Imtiaz" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-      <div class="card-img-error" style="display:none">🏗️</div>
-      <div class="card-body">
-        <div class="card-badges">
-          <span class="badge badge-red">🔴 Lancement imminent</span>
-          <span class="badge badge-gold">Post-handover</span>
-        </div>
-        <div class="card-title">Raw District 2</div>
-        <div class="card-promo">par <strong>Imtiaz</strong> · Downtown Jebel Ali</div>
-        <div class="card-meta">
-          <div class="meta-item">
-            <div class="meta-label">Plan de paiement</div>
-            <div class="meta-value gold">Post-handover confirmé</div>
-          </div>
-          <div class="meta-item">
-            <div class="meta-label">Métro</div>
-            <div class="meta-value">Accès direct</div>
-          </div>
-          <div class="meta-item">
-            <div class="meta-label">Marina</div>
-            <div class="meta-value">15 min</div>
-          </div>
-          <div class="meta-item">
-            <div class="meta-label">Promoteur</div>
-            <div class="meta-value">⭐ Meilleur Dubai</div>
-          </div>
-        </div>
-        <div class="selling-points">
-          <div class="sp-header">✅ Selling Points</div>
-          <div class="sp-list">
-            <div class="sp-item"><div class="sp-dot"></div>Imtiaz = meilleur promoteur de Dubai — livraisons en avance, finitions exceptionnelles</div>
-            <div class="sp-item"><div class="sp-dot"></div>Accès métro direct depuis le projet — accessibilité maximale pour la location</div>
-            <div class="sp-item"><div class="sp-dot"></div>15 min Marina, Expo City, Palm Jebel Ali — zone stratégique du futur Dubai</div>
-            <div class="sp-item"><div class="sp-dot"></div>Mixed-use (résidentiel + bureaux + retail) — communauté complète, forte demande</div>
-            <div class="sp-item"><div class="sp-dot"></div>Raw District 1 sold out — potentiel de plus-value sur phase 2 identique</div>
-          </div>
-          <div class="sp-for">Pour qui → <span>Investisseur qui veut sécurité + plus-value + le meilleur promoteur sans compromis</span></div>
-        </div>
-        <div class="card-prices">
-          <div class="prices-title">Prix de départ</div>
-          <div class="prices-grid">
-            <div class="price-row"><span class="price-type">Studio</span><span class="price-aed">666K AED<span class="price-eur">~157K€</span></span></div>
-            <div class="price-row"><span class="price-type">1 Bed</span><span class="price-aed">949K AED<span class="price-eur">~224K€</span></span></div>
-            <div class="price-row"><span class="price-type">2 Bed</span><span class="price-aed">1,55M AED<span class="price-eur">~365K€</span></span></div>
-            <div class="price-row"><span class="price-type">3 Bed</span><span class="price-aed">1,90M AED<span class="price-eur">~448K€</span></span></div>
-            <div class="price-row"><span class="price-type">Office</span><span class="price-aed">1,38M AED<span class="price-eur">~325K€</span></span></div>
-          </div>
-        </div>
-        <a href="https://wa.me/33624835980?text=Bonjour+Clément,+j'ai+vu+Raw+District+2+by+Imtiaz+sur+le+Radar+et+je+suis+intéressé." class="card-cta" target="_blank">Je suis intéressé →</a>
-      </div>
-    </div>
-
   </div>
 
-  <!-- ── OPPORTUNITÉS ── -->
-  <div class="section-title" data-section="yellow">🟡 Unités restantes — Opportunités</div>
-  <div class="radar-grid">
+  <!-- ════ SECTION : LANCEMENTS EN COURS ════ -->
+  <div class="r-section" id="sec-launch">
+    <div class="carousel-wrap" data-current="0">
+      <div class="slides" id="slides-launch">
 
-    <!-- ARANCIA YARDS (ex Beyond The Yard) -->
-    <div class="project-card" data-cat="yellow">
-      <img class="card-img" src="https://cdn.thepropinvestor.com/uploadimg/projectimage/426/Arancia-Yards-hero-image1-PT0mKh.webp" alt="Arancia Yards Beyond" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-      <div class="card-img-error" style="display:none">🌿</div>
-      <div class="card-body">
-        <div class="card-badges">
-          <span class="badge badge-yellow">🟡 Opportunité</span>
-          <span class="badge badge-navy">Dernières unités</span>
+        <!-- Weston -->
+        <div class="slide active">
+          <div class="slide-img-col">
+            <img class="slide-img" src="https://files.alnair.ae/uploads/2026/6/af/8f/af8fb75617d2431a99b93539b2c4dd54.jpg" alt="Weston Wadan" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="slide-img-fallback" style="display:none">🏙️</div>
+            <div class="slide-badge-wrap">
+              <span class="s-badge s-badge-red">🔴 En cours</span>
+              <span class="s-badge s-badge-gold">50/50 Post-handover</span>
+            </div>
+          </div>
+          <div class="slide-content">
+            <div class="slide-header">
+              <div class="slide-title">Weston</div>
+              <div class="slide-promo">par <strong>Wadan</strong> · Dubai Land Residence Complex</div>
+            </div>
+            <div class="slide-meta">
+              <div class="s-meta"><div class="s-meta-label">Plan de paiement</div><div class="s-meta-value gold">50% post-livraison</div></div>
+              <div class="s-meta"><div class="s-meta-label">EOI</div><div class="s-meta-value">50 000 AED</div></div>
+              <div class="s-meta"><div class="s-meta-label">Finition</div><div class="s-meta-value">Meublé + équipé</div></div>
+            </div>
+            <div class="sp-box">
+              <div class="sp-title">✅ Pourquoi c'est un super projet</div>
+              <div class="sp-points">
+                <div class="sp-point"><div class="sp-icon">🚀</div><div class="sp-text">Plan 50/50 post-livraison sur 3 ans — le plus agressif du marché en ce moment, nulle part ailleurs</div></div>
+                <div class="sp-point"><div class="sp-icon">🛋️</div><div class="sp-text">Livré 100% meublé, équipé, finitions premium — zéro travaux, zéro dépenses supplémentaires au handover</div></div>
+                <div class="sp-point"><div class="sp-icon">📊</div><div class="sp-text">DLRC : 9 000 transactions/an, un des quartiers avec la plus forte demande locative de Dubai</div></div>
+                <div class="sp-point"><div class="sp-icon">✅</div><div class="sp-text">Wadan a déjà livré — track record solide, pas un promoteur qui lance son premier projet</div></div>
+              </div>
+              <div class="sp-forqui">
+                <div class="sp-forqui-icon">🎯</div>
+                <div>
+                  <div class="sp-forqui-label">Pour qui</div>
+                  <div class="sp-forqui-text">Investisseur rendement avec petit apport qui veut lisser son effort dans le temps et toucher des loyers dans un quartier ultra-demandé</div>
+                </div>
+              </div>
+            </div>
+            <div class="slide-prices">
+              <div class="prices-head">Prix de départ</div>
+              <div class="price-row"><span class="price-type">Studio</span><span class="price-val">650K AED<span class="price-eur">~153K€</span></span></div>
+              <div class="price-row"><span class="price-type">Smart Studio</span><span class="price-val">680K AED<span class="price-eur">~160K€</span></span></div>
+              <div class="price-row"><span class="price-type">1 Bed</span><span class="price-val">940K AED<span class="price-eur">~221K€</span></span></div>
+              <div class="price-row"><span class="price-type">2 Bed</span><span class="price-val">1,57M AED<span class="price-eur">~370K€</span></span></div>
+              <div class="price-row"><span class="price-type">3 Bed</span><span class="price-val">1,80M AED<span class="price-eur">~424K€</span></span></div>
+            </div>
+            <a href="https://wa.me/33624835980?text=Bonjour+Clément,+j'ai+vu+Weston+by+Wadan+sur+le+Radar+et+je+suis+intéressé." class="slide-cta" target="_blank">Je suis intéressé — me contacter sur WhatsApp →</a>
+          </div>
         </div>
-        <div class="card-title">Arancia Yards</div>
-        <div class="card-promo">par <strong>Beyond</strong> · City of Arabia</div>
-        <div class="card-meta">
-          <div class="meta-item">
-            <div class="meta-label">Unités restantes</div>
-            <div class="meta-value gold">Quelques 2 beds</div>
+
+        <!-- Raw District 2 -->
+        <div class="slide">
+          <div class="slide-img-col">
+            <img class="slide-img" src="https://topultraluxury.com/wp-content/uploads/Raw-District-2-by-Imtiaz-450x310.webp" alt="Raw District 2" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="slide-img-fallback" style="display:none">🏗️</div>
+            <div class="slide-badge-wrap">
+              <span class="s-badge s-badge-red">🔴 Lancement imminent</span>
+              <span class="s-badge s-badge-gold">Post-handover</span>
+            </div>
           </div>
-          <div class="meta-item">
-            <div class="meta-label">Relance</div>
-            <div class="meta-value">Imminente</div>
-          </div>
-          <div class="meta-item">
-            <div class="meta-label">Promoteur</div>
-            <div class="meta-value">⭐⭐ Ultra luxe</div>
-          </div>
-          <div class="meta-item">
-            <div class="meta-label">Green Spine</div>
-            <div class="meta-value">1 km de nature</div>
+          <div class="slide-content">
+            <div class="slide-header">
+              <div class="slide-title">Raw District 2</div>
+              <div class="slide-promo">par <strong>Imtiaz</strong> · Downtown Jebel Ali</div>
+            </div>
+            <div class="slide-meta">
+              <div class="s-meta"><div class="s-meta-label">Plan de paiement</div><div class="s-meta-value gold">Post-handover confirmé</div></div>
+              <div class="s-meta"><div class="s-meta-label">Métro</div><div class="s-meta-value">Accès direct</div></div>
+              <div class="s-meta"><div class="s-meta-label">Marina</div><div class="s-meta-value">15 min</div></div>
+            </div>
+            <div class="sp-box">
+              <div class="sp-title">✅ Pourquoi c'est un super projet</div>
+              <div class="sp-points">
+                <div class="sp-point"><div class="sp-icon">🏆</div><div class="sp-text">Imtiaz = meilleur promoteur de Dubai — livraisons en avance, finitions exceptionnelles, valeur de revente supérieure</div></div>
+                <div class="sp-point"><div class="sp-icon">🚇</div><div class="sp-text">Accès métro direct depuis le projet — accessibilité maximale pour les locataires, loyer premium garanti</div></div>
+                <div class="sp-point"><div class="sp-icon">🌍</div><div class="sp-text">15 min Marina, Expo City, Palm Jebel Ali — zone stratégique du futur Dubai, en plein développement</div></div>
+                <div class="sp-point"><div class="sp-icon">🔥</div><div class="sp-text">Raw District 1 sold out en quelques heures — la phase 2 partira aussi très vite</div></div>
+              </div>
+              <div class="sp-forqui">
+                <div class="sp-forqui-icon">🎯</div>
+                <div>
+                  <div class="sp-forqui-label">Pour qui</div>
+                  <div class="sp-forqui-text">Investisseur qui veut la sécurité du meilleur promoteur + potentiel de plus-value sur une zone en fort développement + post-handover pour lisser le paiement</div>
+                </div>
+              </div>
+            </div>
+            <div class="slide-prices">
+              <div class="prices-head">Prix de départ</div>
+              <div class="price-row"><span class="price-type">Studio</span><span class="price-val">666K AED<span class="price-eur">~157K€</span></span></div>
+              <div class="price-row"><span class="price-type">1 Bed</span><span class="price-val">949K AED<span class="price-eur">~224K€</span></span></div>
+              <div class="price-row"><span class="price-type">2 Bed</span><span class="price-val">1,55M AED<span class="price-eur">~365K€</span></span></div>
+              <div class="price-row"><span class="price-type">3 Bed</span><span class="price-val">1,90M AED<span class="price-eur">~448K€</span></span></div>
+              <div class="price-row"><span class="price-type">Office</span><span class="price-val">1,38M AED<span class="price-eur">~325K€</span></span></div>
+            </div>
+            <a href="https://wa.me/33624835980?text=Bonjour+Clément,+j'ai+vu+Raw+District+2+by+Imtiaz+sur+le+Radar+et+je+suis+intéressé." class="slide-cta" target="_blank">Je suis intéressé — me contacter sur WhatsApp →</a>
           </div>
         </div>
-        <div class="selling-points">
-          <div class="sp-header">✅ Selling Points</div>
-          <div class="sp-list">
-            <div class="sp-item"><div class="sp-dot"></div>Beyond = promoteur ultra-luxe qui livre à des prix résidentiels accessibles — rare</div>
-            <div class="sp-item"><div class="sp-dot"></div>T'achètes une communauté entière (70% d'espaces verts, Green Spine 1km) — pas un immeuble</div>
-            <div class="sp-item"><div class="sp-dot"></div>Masterplan 4 milliards AED — City of Arabia en pleine montée en puissance</div>
-            <div class="sp-item"><div class="sp-dot"></div>Quasi-certitude de livraison + revente : standing du promoteur garantit la demande</div>
-          </div>
-          <div class="sp-for">Pour qui → <span>Investisseur patrimonial qui veut un actif de qualité à prix accessible, ou futur résident premium</span></div>
+
+      </div><!-- /slides-launch -->
+      <div class="carousel-nav">
+        <button class="nav-btn" id="prev-launch" onclick="move('launch',-1)" disabled>←</button>
+        <div class="nav-dots" id="dots-launch">
+          <div class="nav-dot active" onclick="goTo('launch',0)"></div>
+          <div class="nav-dot" onclick="goTo('launch',1)"></div>
         </div>
-        <a href="https://wa.me/33624835980?text=Bonjour+Clément,+j'ai+vu+Arancia+Yards+by+Beyond+sur+le+Radar+et+je+suis+intéressé." class="card-cta" target="_blank">Je suis intéressé →</a>
+        <span class="nav-counter" id="count-launch">1 / 2</span>
+        <button class="nav-btn" id="next-launch" onclick="move('launch',1)">→</button>
       </div>
     </div>
-
-    <!-- NUVE / ELANORA -->
-    <div class="project-card" data-cat="yellow">
-      <img class="card-img" src="https://www.binayah.com/wp-content/uploads/2025/12/Nuve-by-Zoya-at-DLRC-01.webp" alt="Nuve Zoya DLRC" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-      <div class="card-img-error" style="display:none">🏠</div>
-      <div class="card-body">
-        <div class="card-badges">
-          <span class="badge badge-yellow">🟡 Opportunité</span>
-          <span class="badge badge-gold">Meublé clé en main</span>
-          <span class="badge badge-navy">Petit budget</span>
-        </div>
-        <div class="card-title">Nuve / Elanora</div>
-        <div class="card-promo">par <strong>Zoya</strong> · Dubai Land Residence Complex</div>
-        <div class="card-meta">
-          <div class="meta-item">
-            <div class="meta-label">Plan de paiement</div>
-            <div class="meta-value gold">20% + 1%/mois</div>
-          </div>
-          <div class="meta-item">
-            <div class="meta-label">Cash deal studio</div>
-            <div class="meta-value">500–550K AED</div>
-          </div>
-          <div class="meta-item">
-            <div class="meta-label">Zone</div>
-            <div class="meta-value">DLRC</div>
-          </div>
-          <div class="meta-item">
-            <div class="meta-label">Transactions/an</div>
-            <div class="meta-value">9 000+</div>
-          </div>
-        </div>
-        <div class="selling-points">
-          <div class="sp-header">✅ Selling Points</div>
-          <div class="sp-list">
-            <div class="sp-item"><div class="sp-dot"></div>Plan le plus lissé du marché : 1% par mois post-livraison = pression mensuelle minimale</div>
-            <div class="sp-item"><div class="sp-dot"></div>Livré clé en main meublé — louer dès le handover sans dépenser un centime de plus</div>
-            <div class="sp-item"><div class="sp-dot"></div>Studios cash dès 118K€ — le ticket d'entrée le plus bas pour un bien meublé à Dubai</div>
-            <div class="sp-item"><div class="sp-dot"></div>DLRC : demande locative prouvée, quartier établi avec 9 000 transactions/an</div>
-          </div>
-          <div class="sp-for">Pour qui → <span>Premier achat, petit apport, veut maximiser le rendement sans effort de gestion</span></div>
-        </div>
-        <div class="card-prices">
-          <div class="prices-title">Offres disponibles</div>
-          <div class="prices-grid">
-            <div class="price-row"><span class="price-type">Studio (cash)</span><span class="price-aed">500–550K AED<span class="price-eur">~118–130K€</span></span></div>
-            <div class="price-row"><span class="price-type">Plan off-plan</span><span class="price-aed">20% + 1%/mois post-livraison</span></div>
-          </div>
-        </div>
-        <a href="https://wa.me/33624835980?text=Bonjour+Clément,+j'ai+vu+Nuve+Elanora+by+Zoya+sur+le+Radar+et+je+suis+intéressé." class="card-cta" target="_blank">Je suis intéressé →</a>
-      </div>
-    </div>
-
-    <!-- PANTHEON Wasl Gate -->
-    <div class="project-card" data-cat="yellow">
-      <img class="card-img" src="https://admin.proprain.com/uploadfile/propertyimg/1162/Wasl-Gate-by-Pantheon-hero-image2-UN56qY.webp" alt="Pantheon Wasl Gate" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-      <div class="card-img-error" style="display:none">🏢</div>
-      <div class="card-body">
-        <div class="card-badges">
-          <span class="badge badge-yellow">🟡 Opportunité</span>
-          <span class="badge badge-gold">Post-handover dispo</span>
-        </div>
-        <div class="card-title">Pantheon</div>
-        <div class="card-promo">par <strong>Pantheon</strong> · Wasl Gate</div>
-        <div class="card-meta">
-          <div class="meta-item">
-            <div class="meta-label">Disponibilité</div>
-            <div class="meta-value gold">Studio restant</div>
-          </div>
-          <div class="meta-item">
-            <div class="meta-label">Plan</div>
-            <div class="meta-value">Post-handover</div>
-          </div>
-          <div class="meta-item">
-            <div class="meta-label">Prix</div>
-            <div class="meta-value">690K AED</div>
-          </div>
-          <div class="meta-item">
-            <div class="meta-label">En euros</div>
-            <div class="meta-value">~162K€</div>
-          </div>
-        </div>
-        <div class="selling-points">
-          <div class="sp-header">✅ Selling Points</div>
-          <div class="sp-list">
-            <div class="sp-item"><div class="sp-dot"></div>Post-handover disponible immédiatement — encaissable dès aujourd'hui</div>
-            <div class="sp-item"><div class="sp-dot"></div>Pantheon = promoteur fiable avec track record de livraisons qualitatives</div>
-            <div class="sp-item"><div class="sp-dot"></div>Wasl Gate : zone établie, accès rapide à la Marina et Jebel Ali</div>
-            <div class="sp-item"><div class="sp-dot"></div>Prix sous les 700K AED — rentabilité locative immédiate possible</div>
-          </div>
-          <div class="sp-for">Pour qui → <span>Investisseur qui veut un actif immédiatement disponible, sans attente de construction</span></div>
-        </div>
-        <div class="card-prices">
-          <div class="prices-title">Prix</div>
-          <div class="prices-grid">
-            <div class="price-row"><span class="price-type">Studio</span><span class="price-aed">690K AED<span class="price-eur">~162K€</span></span></div>
-          </div>
-        </div>
-        <a href="https://wa.me/33624835980?text=Bonjour+Clément,+j'ai+vu+le+studio+Pantheon+à+Wasl+Gate+sur+le+Radar+et+je+suis+intéressé." class="card-cta" target="_blank">Je suis intéressé →</a>
-      </div>
-    </div>
-
   </div>
 
-  <!-- ── À VENIR ── -->
-  <div class="section-title" data-section="blue">🟠 Lancements à venir</div>
-  <div class="radar-grid">
+  <!-- ════ SECTION : À VENIR ════ -->
+  <div class="r-section" id="sec-coming">
+    <div class="carousel-wrap" data-current="0">
+      <div class="slides" id="slides-coming">
 
-    <!-- ELLINGTON Meydan -->
-    <div class="project-card" data-cat="blue">
-      <img class="card-img" src="https://www.constructionweekonline.com/cloud/2026/06/19/Everly-Place_Image-1.png" alt="Ellington Everly Place Meydan" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-      <div class="card-img-error" style="display:none">🌊</div>
-      <div class="card-body">
-        <div class="card-badges">
-          <span class="badge badge-blue">🟠 À venir</span>
-          <span class="badge badge-gold">Front lagon</span>
-          <span class="badge badge-navy">Low-rise · 209 unités</span>
+        <!-- Ellington Meydan -->
+        <div class="slide active">
+          <div class="slide-img-col">
+            <img class="slide-img" src="https://www.constructionweekonline.com/cloud/2026/06/19/Everly-Place_Image-1.png" alt="Ellington Meydan" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="slide-img-fallback" style="display:none">🌊</div>
+            <div class="slide-badge-wrap">
+              <span class="s-badge s-badge-blue">🟠 À venir</span>
+              <span class="s-badge s-badge-gold">Front lagon</span>
+              <span class="s-badge s-badge-dark">209 unités seulement</span>
+            </div>
+          </div>
+          <div class="slide-content">
+            <div class="slide-header">
+              <div class="slide-title">Ellington — Meydan</div>
+              <div class="slide-promo">par <strong>Ellington</strong> · Meydan</div>
+            </div>
+            <div class="slide-meta">
+              <div class="s-meta"><div class="s-meta-label">Type</div><div class="s-meta-value gold">Low-rise · front lagon</div></div>
+              <div class="s-meta"><div class="s-meta-label">Total unités</div><div class="s-meta-value">209 seulement</div></div>
+              <div class="s-meta"><div class="s-meta-label">Downtown</div><div class="s-meta-value">10 min</div></div>
+            </div>
+            <div class="sp-box">
+              <div class="sp-title">✅ Pourquoi c'est un super projet</div>
+              <div class="sp-points">
+                <div class="sp-point"><div class="sp-icon">🏆</div><div class="sp-text">Ellington = meilleur promoteur design de Dubai — appartements qui se revendent et se louent en priorité sur tout le marché</div></div>
+                <div class="sp-point"><div class="sp-icon">🌊</div><div class="sp-text">Low-rise front lagon avec seulement 209 unités — produit rare à Meydan, demande qui dépasse largement l'offre</div></div>
+                <div class="sp-point"><div class="sp-icon">📍</div><div class="sp-text">10 min Downtown, 10 min Business Bay — localisation centrale parfaite, demand locative garantie même exigeante</div></div>
+                <div class="sp-point"><div class="sp-icon">🌱</div><div class="sp-text">Jardins privés disponibles — actif résidentiel premium idéal pour location haut de gamme ou résidence principale</div></div>
+              </div>
+              <div class="sp-forqui">
+                <div class="sp-forqui-icon">🎯</div>
+                <div>
+                  <div class="sp-forqui-label">Pour qui</div>
+                  <div class="sp-forqui-text">Investisseur patrimonial haut de gamme ou futur résident qui veut la certitude absolue — le meilleur promoteur, la meilleure localisation, la rareté</div>
+                </div>
+              </div>
+            </div>
+            <a href="https://wa.me/33624835980?text=Bonjour+Clément,+j'ai+vu+Ellington+Meydan+sur+le+Radar+et+je+veux+être+alerté+au+lancement." class="slide-cta" target="_blank">M'alerter au lancement →</a>
+          </div>
         </div>
-        <div class="card-title">Ellington — Meydan</div>
-        <div class="card-promo">par <strong>Ellington</strong> · Meydan</div>
-        <div class="card-meta">
-          <div class="meta-item">
-            <div class="meta-label">Produit</div>
-            <div class="meta-value gold">Low-rise · front lagon</div>
+
+        <!-- Sierra ELO -->
+        <div class="slide">
+          <div class="slide-img-col">
+            <img class="slide-img" src="https://tohidfetrat.com/wp-content/uploads/2026/02/dubai-islands-island-e-aerial-masterplan-waterfront-community-dubai-tohid-fetrat.webp" alt="Sierra ELO Dubai Islands" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="slide-img-fallback" style="display:none">🏖️</div>
+            <div class="slide-badge-wrap">
+              <span class="s-badge s-badge-blue">🟠 Relance imminente</span>
+              <span class="s-badge s-badge-gold">Front mer</span>
+            </div>
           </div>
-          <div class="meta-item">
-            <div class="meta-label">Total unités</div>
-            <div class="meta-value">209 seulement</div>
-          </div>
-          <div class="meta-item">
-            <div class="meta-label">Localisation</div>
-            <div class="meta-value">Centre-ville Dubai</div>
-          </div>
-          <div class="meta-item">
-            <div class="meta-label">Promoteur</div>
-            <div class="meta-value">⭐ Top 1 Dubai</div>
+          <div class="slide-content">
+            <div class="slide-header">
+              <div class="slide-title">Sierra by ELO</div>
+              <div class="slide-promo">par <strong>ELO</strong> · Dubai Islands</div>
+            </div>
+            <div class="slide-meta">
+              <div class="s-meta"><div class="s-meta-label">Zone</div><div class="s-meta-value gold">Dubai Islands</div></div>
+              <div class="s-meta"><div class="s-meta-label">Vue</div><div class="s-meta-value">Front mer direct</div></div>
+              <div class="s-meta"><div class="s-meta-label">Potentiel</div><div class="s-meta-value">Plus-value fort</div></div>
+            </div>
+            <div class="sp-box">
+              <div class="sp-title">✅ Pourquoi c'est un super projet</div>
+              <div class="sp-points">
+                <div class="sp-point"><div class="sp-icon">🏖️</div><div class="sp-text">Dubai Islands = la prochaine grande zone balnéaire de Dubai — développement massif en cours, valeur qui monte chaque mois</div></div>
+                <div class="sp-point"><div class="sp-icon">🌊</div><div class="sp-text">Front mer direct — la proximité à la plage reste LE critère de valeur n°1 à Dubai pour la location et la revente</div></div>
+                <div class="sp-point"><div class="sp-icon">📈</div><div class="sp-text">Acheter early sur une zone off-plan = historiquement le meilleur timing pour la plus-value à Dubai</div></div>
+                <div class="sp-point"><div class="sp-icon">🔥</div><div class="sp-text">ELO : promoteur en forte montée, projets qui s'arrachent à chaque lancement — pas d'hésitation possible</div></div>
+              </div>
+              <div class="sp-forqui">
+                <div class="sp-forqui-icon">🎯</div>
+                <div>
+                  <div class="sp-forqui-label">Pour qui</div>
+                  <div class="sp-forqui-text">Chasseur de plus-value qui accepte d'attendre 2-3 ans pour un gain significatif sur un actif front mer, dans une zone qui n'a pas encore explosé</div>
+                </div>
+              </div>
+            </div>
+            <a href="https://wa.me/33624835980?text=Bonjour+Clément,+j'ai+vu+Sierra+by+ELO+sur+le+Radar+et+je+veux+être+alerté+à+la+relance." class="slide-cta" target="_blank">M'alerter à la relance →</a>
           </div>
         </div>
-        <div class="selling-points">
-          <div class="sp-header">✅ Selling Points</div>
-          <div class="sp-list">
-            <div class="sp-item"><div class="sp-dot"></div>Ellington = meilleur promoteur design de Dubai — les appartements se revendent et se louent en priorité</div>
-            <div class="sp-item"><div class="sp-dot"></div>Low-rise front lagon : produit rarissime à Meydan — seulement 209 unités dans l'immeuble entier</div>
-            <div class="sp-item"><div class="sp-dot"></div>Meydan : zone centrale, 10 min Downtown, 10 min Business Bay — demand locative garantie</div>
-            <div class="sp-item"><div class="sp-dot"></div>Jardins privés disponibles — actif résidentiel premium idéal pour résidence ou location haut de gamme</div>
+
+        <!-- Binghatti Al Jaddaf -->
+        <div class="slide">
+          <div class="slide-img-col">
+            <img class="slide-img" src="https://dubaimasterplan.com/wp-content/uploads/2026/01/Binghatti-Cullinan-At-Al-Jaddaf-2.webp" alt="Binghatti Al Jaddaf" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="slide-img-fallback" style="display:none">🌆</div>
+            <div class="slide-badge-wrap">
+              <span class="s-badge s-badge-blue">🟠 À venir</span>
+              <span class="s-badge s-badge-dark">Zone sous-cotée</span>
+            </div>
           </div>
-          <div class="sp-for">Pour qui → <span>Investisseur patrimonial haut de gamme ou futur résident qui veut la certitude absolue</span></div>
+          <div class="slide-content">
+            <div class="slide-header">
+              <div class="slide-title">Binghatti — Al Jaddaf</div>
+              <div class="slide-promo">par <strong>Binghatti</strong> · Al Jaddaf</div>
+            </div>
+            <div class="slide-meta">
+              <div class="s-meta"><div class="s-meta-label">Métro</div><div class="s-meta-value gold">Ligne bleue — direct</div></div>
+              <div class="s-meta"><div class="s-meta-label">Downtown</div><div class="s-meta-value">5 min</div></div>
+              <div class="s-meta"><div class="s-meta-label">Prix</div><div class="s-meta-value">À confirmer</div></div>
+            </div>
+            <div class="sp-box">
+              <div class="sp-title">✅ Pourquoi c'est un super projet</div>
+              <div class="sp-points">
+                <div class="sp-point"><div class="sp-icon">💎</div><div class="sp-text">Al Jaddaf : zone ultra-centrale encore sous-cotée — Downtown à 5 min, Business Bay à 7 min, Creek Harbour direct</div></div>
+                <div class="sp-point"><div class="sp-icon">🚇</div><div class="sp-text">Nouvelle station métro ligne bleue juste à côté — accessibilité qui fait exploser la valeur locative dès l'ouverture</div></div>
+                <div class="sp-point"><div class="sp-icon">🔥</div><div class="sp-text">Binghatti = promoteur iconique à Dubai, projets sold out en quelques heures à chaque lancement sans exception</div></div>
+                <div class="sp-point"><div class="sp-icon">⏱️</div><div class="sp-text">Être informé avant le lancement officiel = meilleur prix garanti — l'avantage du premier entrant</div></div>
+              </div>
+              <div class="sp-forqui">
+                <div class="sp-forqui-icon">🎯</div>
+                <div>
+                  <div class="sp-forqui-label">Pour qui</div>
+                  <div class="sp-forqui-text">Investisseur qui veut combiner rendement locatif fort (zone centrale) + plus-value (début de cycle) avec le meilleur promoteur de la zone</div>
+                </div>
+              </div>
+            </div>
+            <a href="https://wa.me/33624835980?text=Bonjour+Clément,+j'ai+vu+Binghatti+Al+Jaddaf+sur+le+Radar+et+je+veux+être+alerté+au+lancement." class="slide-cta" target="_blank">M'alerter au lancement →</a>
+          </div>
         </div>
-        <a href="https://wa.me/33624835980?text=Bonjour+Clément,+j'ai+vu+Ellington+Meydan+sur+le+Radar+et+je+veux+être+alerté+au+lancement." class="card-cta" target="_blank">M'alerter au lancement →</a>
+
+      </div><!-- /slides-coming -->
+      <div class="carousel-nav">
+        <button class="nav-btn" id="prev-coming" onclick="move('coming',-1)" disabled>←</button>
+        <div class="nav-dots" id="dots-coming">
+          <div class="nav-dot active" onclick="goTo('coming',0)"></div>
+          <div class="nav-dot" onclick="goTo('coming',1)"></div>
+          <div class="nav-dot" onclick="goTo('coming',2)"></div>
+        </div>
+        <span class="nav-counter" id="count-coming">1 / 3</span>
+        <button class="nav-btn" id="next-coming" onclick="move('coming',1)">→</button>
       </div>
     </div>
-
-    <!-- SIERRA by ELO -->
-    <div class="project-card" data-cat="blue">
-      <img class="card-img" src="https://tohidfetrat.com/wp-content/uploads/2026/02/dubai-islands-island-e-aerial-masterplan-waterfront-community-dubai-tohid-fetrat.webp" alt="Sierra ELO Dubai Islands" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-      <div class="card-img-error" style="display:none">🏖️</div>
-      <div class="card-body">
-        <div class="card-badges">
-          <span class="badge badge-blue">🟠 Relance imminente</span>
-          <span class="badge badge-gold">Front mer</span>
-        </div>
-        <div class="card-title">Sierra by ELO</div>
-        <div class="card-promo">par <strong>ELO</strong> · Dubai Islands</div>
-        <div class="card-meta">
-          <div class="meta-item">
-            <div class="meta-label">Zone</div>
-            <div class="meta-value gold">Dubai Islands</div>
-          </div>
-          <div class="meta-item">
-            <div class="meta-label">Potentiel</div>
-            <div class="meta-value">Plus-value fort</div>
-          </div>
-          <div class="meta-item">
-            <div class="meta-label">Vue</div>
-            <div class="meta-value">Front mer</div>
-          </div>
-          <div class="meta-item">
-            <div class="meta-label">Statut</div>
-            <div class="meta-value">Relance bientôt</div>
-          </div>
-        </div>
-        <div class="selling-points">
-          <div class="sp-header">✅ Selling Points</div>
-          <div class="sp-list">
-            <div class="sp-item"><div class="sp-dot"></div>Dubai Islands = la prochaine grande zone balnéaire de Dubai — développement massif en cours</div>
-            <div class="sp-item"><div class="sp-dot"></div>Front mer direct — la proximité à la plage reste le critère de valeur n°1 à Dubai</div>
-            <div class="sp-item"><div class="sp-dot"></div>Acheter early sur une zone off-plan = historiquement le meilleur moment pour la plus-value</div>
-            <div class="sp-item"><div class="sp-dot"></div>ELO : promoteur en montée, projets qui s'arrachent à chaque lancement</div>
-          </div>
-          <div class="sp-for">Pour qui → <span>Chasseur de plus-value qui accepte d'attendre 2-3 ans pour un gain significatif sur le front mer</span></div>
-        </div>
-        <a href="https://wa.me/33624835980?text=Bonjour+Clément,+j'ai+vu+Sierra+by+ELO+sur+le+Radar+et+je+veux+être+alerté+à+la+relance." class="card-cta" target="_blank">M'alerter à la relance →</a>
-      </div>
-    </div>
-
-    <!-- BINGHATTI Al Jaddaf -->
-    <div class="project-card" data-cat="blue">
-      <img class="card-img" src="https://dubaimasterplan.com/wp-content/uploads/2026/01/Binghatti-Cullinan-At-Al-Jaddaf-2.webp" alt="Binghatti Al Jaddaf" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-      <div class="card-img-error" style="display:none">🌆</div>
-      <div class="card-body">
-        <div class="card-badges">
-          <span class="badge badge-blue">🟠 À venir</span>
-          <span class="badge badge-navy">Zone sous-cotée</span>
-        </div>
-        <div class="card-title">Binghatti — Al Jaddaf</div>
-        <div class="card-promo">par <strong>Binghatti</strong> · Al Jaddaf</div>
-        <div class="card-meta">
-          <div class="meta-item">
-            <div class="meta-label">Zone</div>
-            <div class="meta-value gold">Al Jaddaf</div>
-          </div>
-          <div class="meta-item">
-            <div class="meta-label">Métro</div>
-            <div class="meta-value">Ligne bleue — direct</div>
-          </div>
-          <div class="meta-item">
-            <div class="meta-label">Accès</div>
-            <div class="meta-value">Downtown · BBay</div>
-          </div>
-          <div class="meta-item">
-            <div class="meta-label">Prix</div>
-            <div class="meta-value">À confirmer</div>
-          </div>
-        </div>
-        <div class="selling-points">
-          <div class="sp-header">✅ Selling Points</div>
-          <div class="sp-list">
-            <div class="sp-item"><div class="sp-dot"></div>Al Jaddaf : zone ultra-centrale encore sous-cotée — Downtown à 5 min, Business Bay à 7 min</div>
-            <div class="sp-item"><div class="sp-dot"></div>Nouvelle station métro ligne bleue juste à côté — accessibilité qui explose la valeur locative</div>
-            <div class="sp-item"><div class="sp-dot"></div>Binghatti = promoteur iconique à Dubai, projets sold out en quelques heures à chaque lancement</div>
-            <div class="sp-item"><div class="sp-dot"></div>Acheter avant le lancement officiel = meilleur prix garanti sur cette zone</div>
-          </div>
-          <div class="sp-for">Pour qui → <span>Investisseur qui veut combiner rendement locatif fort + plus-value sur une zone en début de cycle</span></div>
-        </div>
-        <a href="https://wa.me/33624835980?text=Bonjour+Clément,+j'ai+vu+Binghatti+Al+Jaddaf+sur+le+Radar+et+je+veux+être+alerté+au+lancement." class="card-cta" target="_blank">M'alerter au lancement →</a>
-      </div>
-    </div>
-
   </div>
 
-  <div class="radar-footer">
-    <p>📡 Le Radar est mis à jour chaque semaine par <strong style="color:white">Clément Talmo</strong> · <a href="https://wa.me/33624835980">WhatsApp +33 6 24 83 59 80</a> · <a href="https://go.clementinvestdubai.com/quiz">Quiz profil investisseur</a></p>
+  <div class="r-footer">
+    <p>📡 Le Radar est mis à jour chaque semaine par <strong style="color:#fff">Clément Talmo</strong> · <a href="https://wa.me/33624835980">WhatsApp +33 6 24 83 59 80</a> · <a href="https://go.clementinvestdubai.com/quiz">Quiz profil investisseur</a></p>
   </div>
 
-</div>
+</div><!-- /radar -->
 
 <script>
+/* ── Gate ── */
 const WEBHOOK = 'https://hook.eu1.make.com/2druy645e9jwt2au52euhzqd45tm8bb7';
-
 document.getElementById('gateForm').addEventListener('submit', async function(e) {
   e.preventDefault();
   const firstName = document.getElementById('firstName').value.trim();
-  const phone     = document.getElementById('phone').value.trim();
+  const phone = document.getElementById('phone').value.trim();
   if (!firstName || !phone) return;
   try {
-    await fetch(WEBHOOK, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ source: 'radar', firstName, phone, timestamp: new Date().toISOString() })
-    });
-  } catch(err) { console.warn('Webhook', err); }
+    await fetch(WEBHOOK, { method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ source:'radar', firstName, phone, timestamp: new Date().toISOString() }) });
+  } catch(err) {}
   document.getElementById('gate').style.display = 'none';
   document.getElementById('radar').style.display = 'block';
-  window.scrollTo(0, 0);
+  window.scrollTo(0,0);
 });
 
-function filterCards(cat, btn) {
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active-all','active-red','active-yellow','active-blue'));
-  const map = { all:'active-all', red:'active-red', yellow:'active-yellow', blue:'active-blue' };
-  btn.classList.add(map[cat]);
-  document.querySelectorAll('.project-card').forEach(c => {
-    c.style.display = (cat === 'all' || c.dataset.cat === cat) ? 'flex' : 'none';
-  });
-  document.querySelectorAll('.section-title').forEach(t => {
-    if (cat === 'all') { t.style.display = ''; return; }
-    const smap = { red:'red', yellow:'yellow', blue:'blue' };
-    t.style.display = t.dataset.section === smap[cat] ? '' : 'none';
-  });
-  document.querySelectorAll('.radar-grid').forEach(g => {
-    const vis = [...g.querySelectorAll('.project-card')].some(c => c.style.display !== 'none');
-    g.style.display = vis ? '' : 'none';
-  });
+/* ── Tabs ── */
+function showSection(id, btn) {
+  document.querySelectorAll('.r-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.r-section').forEach(s => s.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('sec-' + id).classList.add('active');
 }
+
+/* ── Carousel ── */
+const state = {};
+
+function getSlides(id) { return document.querySelectorAll('#slides-' + id + ' .slide'); }
+
+function goTo(id, idx) {
+  const slides = getSlides(id);
+  const n = slides.length;
+  if (!state[id]) state[id] = 0;
+  slides[state[id]].classList.remove('active');
+  state[id] = idx;
+  slides[idx].classList.add('active');
+  // dots
+  document.querySelectorAll('#dots-' + id + ' .nav-dot').forEach((d,i) => d.classList.toggle('active', i === idx));
+  // counter
+  document.getElementById('count-' + id).textContent = (idx+1) + ' / ' + n;
+  // buttons
+  document.getElementById('prev-' + id).disabled = idx === 0;
+  document.getElementById('next-' + id).disabled = idx === n-1;
+}
+
+function move(id, dir) {
+  if (!state[id]) state[id] = 0;
+  const n = getSlides(id).length;
+  const next = Math.max(0, Math.min(n-1, state[id] + dir));
+  goTo(id, next);
+}
+
+// init states
+['opps','launch','coming'].forEach(id => { state[id] = 0; });
 </script>
 </body>
 </html>
