@@ -554,7 +554,7 @@ document.getElementById('gateForm').addEventListener('submit', async function(e)
   }
   try {
     await fetch(WEBHOOK, { method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ source:'radar', firstName, phone, timestamp: new Date().toISOString() }) });
+      body: JSON.stringify({ source:'radar', prenom: firstName, whatsapp: phone, timestamp: new Date().toISOString() }) });
   } catch(err) {}
   document.getElementById('gate').style.display = 'none';
   document.getElementById('radar').style.display = 'block';
