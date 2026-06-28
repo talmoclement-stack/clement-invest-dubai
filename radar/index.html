@@ -207,7 +207,7 @@
         <div class="r-brand-sub">par Clément Invest Dubai</div>
       </div>
     </div>
-    <div class="r-date">Semaine du <strong>23 juin 2026</strong></div>
+    <div class="r-date">Semaine du <strong>28 juin 2026</strong></div>
   </div>
 
   <!-- ═══ OVERVIEW ═══ -->
@@ -260,6 +260,19 @@
           </div>
         </div>
 
+        <div class="mini-card" onclick="openDetail('dealscash')">
+          <div class="mini-img-wrap">
+            <div class="mini-img-fallback" style="display:flex">💰</div>
+            <span class="mini-badge mb-yellow">🟡 Deal cash</span>
+          </div>
+          <div class="mini-body">
+            <div class="mini-title">Deals Cash — JGC</div>
+            <div class="mini-promo">Jumeirah Garden City · Livraison fin 2026</div>
+            <div class="mini-why">Studio dès ~230K€, 1BR ~330-350K€ — -15% si cash. Livraison fin 2026 / début 2027. Introuvable ailleurs.</div>
+            <div class="mini-cta">Explorer le projet <span class="mini-cta-arrow">→</span></div>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -292,6 +305,32 @@
             <div class="mini-title">Raw District 2</div>
             <div class="mini-promo">Imtiaz · Downtown Jebel Ali</div>
             <div class="mini-why">Meilleur promoteur de Dubai, accès métro direct, 15 min Marina — post-handover confirmé.</div>
+            <div class="mini-cta">Explorer le projet <span class="mini-cta-arrow">→</span></div>
+          </div>
+        </div>
+
+        <div class="mini-card" onclick="openDetail('hmb')">
+          <div class="mini-img-wrap">
+            <div class="mini-img-fallback" style="display:flex">🏢</div>
+            <span class="mini-badge mb-red">🔴 Pre-launch</span>
+          </div>
+          <div class="mini-body">
+            <div class="mini-title">HMB</div>
+            <div class="mini-promo">HMB · Jumeirah Village Circle</div>
+            <div class="mini-why">JVC, studio 680K AED — plan 1%/mois post-handover ou 50/50. Grands layouts, amenities rooftop.</div>
+            <div class="mini-cta">Explorer le projet <span class="mini-cta-arrow">→</span></div>
+          </div>
+        </div>
+
+        <div class="mini-card" onclick="openDetail('objectone')">
+          <div class="mini-img-wrap">
+            <div class="mini-img-fallback" style="display:flex">🏙️</div>
+            <span class="mini-badge mb-red">🔴 Lancement</span>
+          </div>
+          <div class="mini-body">
+            <div class="mini-title">Sky Level 1</div>
+            <div class="mini-promo">Object One · JVC</div>
+            <div class="mini-why">High-rise JVC, à partir 945K AED — 0 paiement pendant 1 an, plan 40/60 ou PHPP. Commission 7%.</div>
             <div class="mini-cta">Explorer le projet <span class="mini-cta-arrow">→</span></div>
           </div>
         </div>
@@ -467,34 +506,36 @@ const PROJECTS = {
     img: 'https://topultraluxury.com/wp-content/uploads/Raw-District-2-by-Imtiaz-450x310.webp',
     title: 'Raw District 2',
     promo: 'par <strong>Imtiaz</strong> · Downtown Jebel Ali',
-    badges: [{ cls:'db-red', text:'🔴 Lancement imminent' }, { cls:'db-gold', text:'Post-handover' }],
-    meta: [{ l:'Plan de paiement', v:'Post-handover confirmé', g:true }, { l:'Métro', v:'Accès direct' }, { l:'Marina', v:'15 min' }],
+    badges: [{ cls:'db-red', text:'🔴 Lancement imminent' }, { cls:'db-gold', text:'Post-handover' }, { cls:'db-dark', text:'Meublé clé en main' }],
+    meta: [{ l:'Plan 1', v:'50/50', g:false }, { l:'Plan 2', v:'60/40 post-handover', g:true }, { l:'Livraison', v:'Q1 2029' }, { l:'Métro', v:'Accès direct' }],
     points: [
       ['🏆','Imtiaz = meilleur promoteur de Dubai — livraisons en avance, finitions exceptionnelles, valeur de revente supérieure'],
       ['🚇','Accès métro direct depuis le projet — accessibilité maximale pour les locataires, loyer premium garanti'],
-      ['🌍','15 min Marina, Expo City, Palm Jebel Ali — zone stratégique du futur Dubai, en plein développement'],
-      ['🔥','Raw District 1 sold out en quelques heures — la phase 2 partira aussi très vite'],
+      ['🌍','15 min Marina, 8 min Expo City, 10 min Palm Jebel Ali — zone stratégique du futur Dubai, en plein développement'],
+      ['🔥','Raw District 1 sold out en 24h — la phase 2 partira aussi très vite, allocation sous 4-5 semaines'],
+      ['🛋️','Livré 100% meublé — location possible dès la remise des clés, sans dépense supplémentaire'],
     ],
     forqui: 'Investisseur qui veut la sécurité du meilleur promoteur + potentiel de plus-value sur une zone en fort développement + post-handover pour lisser le paiement',
-    prices: [['Studio','666K AED','~157K€'],['1 Bed','949K AED','~224K€'],['2 Bed','1,55M AED','~365K€'],['3 Bed','1,90M AED','~448K€'],['Office','1,38M AED','~325K€']],
+    prices: [['Studio (EOI 50K)','666 000 AED','~157K€'],['1 Bed (EOI 80K)','949 000 AED','~224K€'],['2 Bed (EOI 100K)','1 550 000 AED','~365K€'],['3 Bed (EOI 100K)','1 900 000 AED','~448K€'],['Office (EOI 100K)','1 380 000 AED','~325K€']],
     cta: 'https://wa.me/33624835980?text=Bonjour+Clément,+j\'ai+vu+Raw+District+2+sur+le+Radar+et+je+suis+intéressé.',
     ctaText: 'Je suis intéressé — me contacter →',
   },
   ellington: {
     img: 'https://www.constructionweekonline.com/cloud/2026/06/19/Everly-Place_Image-1.png',
-    title: 'Ellington — Meydan',
-    promo: 'par <strong>Ellington</strong> · Meydan',
-    badges: [{ cls:'db-blue', text:'🟠 À venir' }, { cls:'db-gold', text:'Front lagon' }, { cls:'db-dark', text:'209 unités seulement' }],
-    meta: [{ l:'Type', v:'Low-rise · front lagon', g:true }, { l:'Total unités', v:'209 seulement' }, { l:'Downtown', v:'10 min' }],
+    title: 'Everly Place — Meydan Horizon',
+    promo: 'par <strong>Ellington</strong> · Meydan Horizon',
+    badges: [{ cls:'db-blue', text:'🟠 Phase EOI' }, { cls:'db-gold', text:'Front lagon' }, { cls:'db-dark', text:'209 unités seulement' }],
+    meta: [{ l:'Prix 1BR à partir de', v:'1 900 000 AED · ~450K€', g:true }, { l:'Plan', v:'70/30 · livraison Q4 2029' }, { l:'EOI', v:'50 000 AED · 100% remboursable' }, { l:'Charges copro', v:'16 AED/sq.ft (basses)' }],
     points: [
-      ['🏆','Ellington = meilleur promoteur design de Dubai — appartements qui se revendent et se louent en priorité sur tout le marché'],
-      ['🌊','Low-rise front lagon avec seulement 209 unités — produit rare à Meydan, demande qui dépasse largement l\'offre'],
-      ['📍','10 min Downtown, 10 min Business Bay — localisation centrale parfaite, demande locative garantie'],
-      ['🌱','Jardins privés disponibles — actif résidentiel premium idéal pour location haut de gamme ou résidence principale'],
+      ['🏆','Ellington = top promoteur design de Dubai — 0 moins-value sur toutes les transactions analysées, loyers 25-35% au-dessus du marché'],
+      ['🌊','Low-rise G+2P+10 front lagon, 209 unités seulement — produit boutique rare à Meydan Horizon, EOI 100% remboursable'],
+      ['📍','15 min Downtown, Business Bay, DIFC — bassin locatif premium (cadres, banquiers, avocats). Sobha Hartland 1 juste à côté déjà mature'],
+      ['📈','Plus-values prouvées : +40 à +85% sur projets Ellington précédents à Sobha Hartland 1, JVC, Dubai Hills'],
+      ['💡','Financement possible à 50% via crédit bancaire UAE — possibilité d\'optimiser son effet de levier'],
     ],
-    forqui: 'Investisseur patrimonial haut de gamme ou futur résident qui veut la certitude absolue — le meilleur promoteur, la meilleure localisation, la rareté',
-    prices: [],
-    cta: 'https://wa.me/33624835980?text=Bonjour+Clément,+j\'ai+vu+Ellington+Meydan+sur+le+Radar+et+je+veux+être+alerté+au+lancement.',
+    forqui: 'Investisseur patrimonial avec budget 450K€+ qui veut la certitude absolue — meilleur promoteur, front lagon, 0 risque, vision 5-7 ans',
+    prices: [['1 Bedroom (à partir)', '1 900 000 AED', '~450K€'], ['1BR + Study', 'à confirmer', ''], ['2 Bedrooms', 'à confirmer', ''], ['3 Bedrooms', 'à confirmer', '']],
+    cta: 'https://wa.me/33624835980?text=Bonjour+Clément,+j\'ai+vu+Ellington+Everly+Place+sur+le+Radar+et+je+veux+être+alerté+au+lancement.',
     ctaText: "M'alerter au lancement →",
   },
   sierra: {
@@ -532,6 +573,61 @@ const PROJECTS = {
     ctaText: "M'alerter au lancement →",
   },
 };
+
+  hmb: {
+    img: '',
+    title: 'HMB Residences',
+    promo: 'par <strong>HMB</strong> · Jumeirah Village Circle',
+    badges: [{ cls:'db-red', text:'🔴 Pre-launch exclusif' }, { cls:'db-gold', text:'1%/mois post-HO' }],
+    meta: [{ l:'Plan 1', v:'50/50', g:false }, { l:'Plan 2 (PHPP)', v:'64/36 — 1%/mois post-HO', g:true }, { l:'EOI', v:'AED 50 000' }, { l:'Livraison', v:'À confirmer · JVC' }],
+    points: [
+      ['📍','JVC — une des zones locatives les plus actives de Dubai : 28 794 contrats/an, demande locative prouvée et continue'],
+      ['📅','Plan PHPP 1%/mois post-handover — le plan le plus lissé du marché, mensualités minimes après livraison'],
+      ['🏠','Layouts spacieux (studio 441 sq.ft, 1BR 715+ sq.ft) — tailles au-dessus des standards du marché JVC'],
+      ['✨','2 niveaux d\'amenities (1er étage + rooftop) — piscine, gym, espaces détente inclus'],
+      ['💎','Duplex 3BR exclusifs — seulement 2 disponibles, rareté garantie'],
+    ],
+    forqui: 'Investisseur rendement qui veut JVC — la zone locative la plus active de Dubai — avec le plan de paiement le plus doux du marché',
+    prices: [['Studio (50/50)','680 000 AED','~161K€'],['Studio (PHPP)','750 000 AED','~177K€'],['1BR (50/50)','1 080 000 AED','~255K€'],['1BR (PHPP)','1 230 000 AED','~291K€'],['1BR+Study (50/50)','1 175 000 AED','~278K€'],['2BR+Study (50/50)','1 600 000 AED','~378K€'],['Duplex 3BR (50/50)','2 800 000 AED','~662K€']],
+    cta: 'https://wa.me/33624835980?text=Bonjour+Clément,+j\'ai+vu+HMB+JVC+sur+le+Radar+et+je+suis+intéressé.',
+    ctaText: 'Je suis intéressé — me contacter →',
+  },
+  objectone: {
+    img: '',
+    title: 'Sky Level 1',
+    promo: 'par <strong>Object One</strong> · JVC',
+    badges: [{ cls:'db-red', text:'🔴 Lancement' }, { cls:'db-gold', text:'0 paiement 1 an' }, { cls:'db-dark', text:'PHPP dispo' }],
+    meta: [{ l:'Prix à partir de', v:'945 000 AED · ~224K€', g:true }, { l:'Plan', v:'40/60 ou PHPP 40/30/30' }, { l:'0 paiement', v:'Jusqu\'à mai 2027 (offre lancement)' }, { l:'EOI', v:'30 000 AED · acompte 24% sous 14j' }],
+    points: [
+      ['🎁','0 paiement pendant 1 an jusqu\'à mai 2027 — offre de lancement exclusive, trésorerie préservée au maximum'],
+      ['📍','JVC — 28 794 contrats locatifs/an, zone la plus active de Dubai sur le segment résidentiel intermédiaire'],
+      ['📅','Plan PHPP 40/30/30 — seulement 40% pendant construction, le reste étalé sur 2 tranches post-livraison'],
+      ['💰','Commission 7% versée sous 30 jours — transparence et réactivité promoteur'],
+      ['🏙️','High-rise moderne — vues dégagées, strong rental demand garanti sur JVC'],
+    ],
+    forqui: 'Investisseur JVC qui veut préserver sa trésorerie au maximum avec 0 paiement la première année, et étaler le reste en post-handover',
+    prices: [['À partir de','945 000 AED','~224K€'],['Surface min','566 sq.ft (~53 m²)','']],
+    cta: 'https://wa.me/33624835980?text=Bonjour+Clément,+j\'ai+vu+Object+One+Sky+Level+1+sur+le+Radar+et+je+suis+intéressé.',
+    ctaText: 'Je suis intéressé — me contacter →',
+  },
+  dealscash: {
+    img: '',
+    title: 'Deals Cash — JGC',
+    promo: 'Jumeirah Garden City · Livraison fin 2026 / début 2027',
+    badges: [{ cls:'db-yellow', text:'🟡 Deal cash exclusif' }, { cls:'db-gold', text:'-15% si cash' }, { cls:'db-red', text:'⚡ Livraison proche' }],
+    meta: [{ l:'Studio', v:'Dès ~230K€ (sous 1M AED)', g:true }, { l:'1 Bedroom', v:'~330–350K€', g:true }, { l:'Remise cash', v:'-15% sur le prix', g:true }, { l:'Livraison', v:'Fin 2026 / début 2027' }],
+    points: [
+      ['💰','Studio en dessous de 1M AED (~230K€ ou moins) dans une zone centrale de Dubai — introuvable à ce prix ailleurs sur le marché'],
+      ['🏠','1 Bedroom autour de 330–350K€ — rapport qualité/prix exceptionnel pour Jumeirah Garden City'],
+      ['-15%','Remise cash de 15% — uniquement pour paiement comptant, opportunité réservée aux acheteurs réactifs'],
+      ['⚡','Livraison fin 2026 / début 2027 — rendement locatif immédiat, pas d\'attente de 2-3 ans'],
+      ['📍','Jumeirah Garden City — zone établie, très bien connectée, forte demande locative prouvée'],
+    ],
+    forqui: 'Investisseur avec capital disponible qui veut maximiser son rendement immédiat avec une décote cash sur un bien livré rapidement dans une zone centrale',
+    prices: [['Studio (cash)', 'Dès ~975 000 AED', '~230K€ ou moins'], ['1 Bedroom (cash)', '~1 400 000–1 480 000 AED', '~330–350K€']],
+    cta: 'https://wa.me/33624835980?text=Bonjour+Clément,+j\'ai+vu+les+deals+cash+JGC+sur+le+Radar+et+je+suis+intéressé.',
+    ctaText: 'Je veux ces deals — me contacter →',
+  },
 
 /* ── Gate ── */
 const WEBHOOK = 'https://hook.eu1.make.com/2druy645e9jwt2au52euhzqd45tm8bb7';
