@@ -681,13 +681,13 @@ document.getElementById('gateForm').addEventListener('submit', async function(e)
     document.getElementById('phone').focus();
     return;
   }
-  try {
-    await fetch(WEBHOOK, { method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ source:'radar', prenom: firstName, whatsapp: phone, timestamp: new Date().toISOString() }) });
-  } catch(err) {}
+  // Ouvre la page immédiatement, envoie le webhook en arrière-plan
   document.getElementById('gate').style.display = 'none';
   document.getElementById('radar').style.display = 'block';
   window.scrollTo(0,0);
+  fetch(WEBHOOK, { method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({ source:'radar', prenom: firstName, whatsapp: phone, timestamp: new Date().toISOString() }) })
+    .catch(function() {});
 });
 
 /* ── Detail ── */
