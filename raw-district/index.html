@@ -29,6 +29,34 @@ h1,h2,h3 { font-family: 'Playfair Display', serif; font-weight: 800; line-height
 .eyebrow { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .3em; color: var(--gold); }
 section { padding: 56px 0; }
 
+/* ── GATE ── */
+#gate-overlay {
+  position: fixed; inset: 0; z-index: 9999;
+  background: linear-gradient(135deg, var(--navy) 0%, #060f1e 100%);
+  display: flex; align-items: center; justify-content: center; padding: 24px;
+  transition: opacity .5s ease;
+}
+#gate-overlay.hidden { opacity: 0; pointer-events: none; }
+.gate-box {
+  background: #fff; max-width: 420px; width: 100%;
+  border-radius: 20px; padding: 44px 36px; text-align: center;
+  box-shadow: 0 30px 80px -20px rgba(0,0,0,.6);
+}
+.gate-logo { font-size: 10px; letter-spacing: .3em; text-transform: uppercase; color: var(--gold); font-weight: 800; margin-bottom: 22px; }
+.gate-box h2 { font-size: 22px; color: var(--navy); margin-bottom: 8px; }
+.gate-box p { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 28px; }
+.gate-form { display: flex; flex-direction: column; gap: 14px; text-align: left; }
+.gate-field { display: flex; flex-direction: column; gap: 4px; }
+.gate-field label { font-size: 10px; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); font-weight: 800; }
+.gate-field input { border: 1.5px solid #e5e7eb; border-radius: 10px; padding: 13px 14px; font-size: 15px; font-family: 'Mulish', sans-serif; outline: none; transition: border-color .2s; width: 100%; }
+.gate-field input:focus { border-color: var(--navy); }
+.gate-field input.err { border-color: #e53935; }
+.gate-err { font-size: 11px; color: #e53935; display: none; margin-top: 2px; }
+.gate-err.show { display: block; }
+.gate-btn { background: var(--navy); color: #fff; border: none; cursor: pointer; padding: 15px; font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; border-radius: 10px; width: 100%; margin-top: 4px; transition: background .2s; font-family: 'Mulish', sans-serif; }
+.gate-btn:hover { background: var(--navy2); }
+.gate-disc { font-size: 11px; color: #bbb; margin-top: 14px; }
+
 /* ── HEADER ── */
 .topbar { background: var(--navy); padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; }
 .topbar-brand { font-family: 'Playfair Display'; font-weight: 800; color: #fff; font-size: 16px; }
@@ -218,6 +246,32 @@ table.renta tr.best td { background: #f0fdf4; }
 </style>
 </head>
 <body>
+
+<!-- GATE -->
+<div id="gate-overlay">
+  <div class="gate-box">
+    <div class="gate-logo">Clément Invest Dubai</div>
+    <h2>Accéder au dossier projet</h2>
+    <p>RAW District 2 — Imtiaz · Jebel Ali<br>Localisation, promoteur, pricing et rentabilité.</p>
+    <iframe name="fs-gate" style="display:none;"></iframe>
+    <form class="gate-form" action="https://formspree.io/f/mbdqzvkv" method="POST" target="fs-gate" onsubmit="handleGate(event)" novalidate>
+      <input type="hidden" name="_subject" value="🏙️ Nouveau lead RAW District 2">
+      <input type="hidden" name="source" value="RAW District 2 — Gating">
+      <div class="gate-field">
+        <label for="g-prenom">Prénom</label>
+        <input type="text" id="g-prenom" name="prenom" placeholder="Votre prénom" autocomplete="given-name">
+        <span class="gate-err" id="g-err-p">Merci d'indiquer votre prénom.</span>
+      </div>
+      <div class="gate-field">
+        <label for="g-tel">Téléphone (WhatsApp)</label>
+        <input type="tel" id="g-tel" name="telephone" placeholder="+33 6 12 34 56 78" autocomplete="tel">
+        <span class="gate-err" id="g-err-t">Numéro invalide — ex : +33612345678</span>
+      </div>
+      <button type="submit" class="gate-btn">Accéder au dossier →</button>
+    </form>
+    <p class="gate-disc">Informations confidentielles. Clément vous contacte sous 24h.</p>
+  </div>
+</div>
 
 <!-- TOPBAR -->
 <div class="topbar">
@@ -586,5 +640,40 @@ table.renta tr.best td { background: #f0fdf4; }
   </a>
 </div>
 
+<script>
+function isPhone(v){ return /^\+?[\d\s\-().]{7,}$/.test(v.trim()); }
+
+function handleGate(e){
+  const p = document.getElementById('g-prenom');
+  const t = document.getElementById('g-tel');
+  let ok = true;
+
+  if(!p.value.trim()){
+    p.classList.add('err');
+    document.getElementById('g-err-p').classList.add('show');
+    ok = false;
+  } else {
+    p.classList.remove('err');
+    document.getElementById('g-err-p').classList.remove('show');
+  }
+
+  if(!isPhone(t.value)){
+    t.classList.add('err');
+    document.getElementById('g-err-t').classList.add('show');
+    ok = false;
+  } else {
+    t.classList.remove('err');
+    document.getElementById('g-err-t').classList.remove('show');
+  }
+
+  if(!ok){ e.preventDefault(); return; }
+
+  setTimeout(()=>{
+    const o = document.getElementById('gate-overlay');
+    o.classList.add('hidden');
+    setTimeout(()=> o.style.display = 'none', 600);
+  }, 300);
+}
+</script>
 </body>
 </html>
