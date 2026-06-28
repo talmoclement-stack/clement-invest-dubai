@@ -309,6 +309,20 @@
           </div>
         </div>
 
+        <div class="mini-card" onclick="openDetail('ellington')">
+          <div class="mini-img-wrap">
+            <img class="mini-img" src="https://images.bayut.com/thumbnails/736561424-1066x800.webp" alt="Everly Place Meydan" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="mini-img-fallback" style="display:none">🌊</div>
+            <span class="mini-badge mb-red">🔴 En cours — EOI</span>
+          </div>
+          <div class="mini-body">
+            <div class="mini-title">Everly Place — Meydan</div>
+            <div class="mini-promo">Ellington · Meydan Horizon</div>
+            <div class="mini-why">Low-rise front lagon, 209 unités · EOI 50K AED 100% remboursable. 1BR à partir 1.9M AED.</div>
+            <div class="mini-cta">Explorer le projet <span class="mini-cta-arrow">→</span></div>
+          </div>
+        </div>
+
         <div class="mini-card" onclick="openDetail('hmb')">
           <div class="mini-img-wrap">
             <div class="mini-img-fallback" style="display:flex">🏢</div>
@@ -343,19 +357,7 @@
       <div class="ov-section-title">🟠 Lancements à venir</div>
       <div class="ov-grid">
 
-        <div class="mini-card" onclick="openDetail('ellington')">
-          <div class="mini-img-wrap">
-            <img class="mini-img" src="https://www.constructionweekonline.com/cloud/2026/06/19/Everly-Place_Image-1.png" alt="Ellington Meydan" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-            <div class="mini-img-fallback" style="display:none">🌊</div>
-            <span class="mini-badge mb-blue">🟠 À venir</span>
-          </div>
-          <div class="mini-body">
-            <div class="mini-title">Ellington — Meydan</div>
-            <div class="mini-promo">Ellington · Meydan</div>
-            <div class="mini-why">Low-rise front lagon, 209 unités seulement — le meilleur promoteur + rareté + centre-ville.</div>
-            <div class="mini-cta">Explorer le projet <span class="mini-cta-arrow">→</span></div>
-          </div>
-        </div>
+
 
         <div class="mini-card" onclick="openDetail('sierra')">
           <div class="mini-img-wrap">
@@ -524,7 +526,7 @@ const PROJECTS = {
     img: 'https://www.constructionweekonline.com/cloud/2026/06/19/Everly-Place_Image-1.png',
     title: 'Everly Place — Meydan Horizon',
     promo: 'par <strong>Ellington</strong> · Meydan Horizon',
-    badges: [{ cls:'db-blue', text:'🟠 Phase EOI' }, { cls:'db-gold', text:'Front lagon' }, { cls:'db-dark', text:'209 unités seulement' }],
+    badges: [{ cls:'db-red', text:'🔴 En cours — EOI' }, { cls:'db-gold', text:'Front lagon' }, { cls:'db-dark', text:'209 unités seulement' }],
     meta: [{ l:'Prix 1BR à partir de', v:'1 900 000 AED · ~450K€', g:true }, { l:'Plan', v:'70/30 · livraison Q4 2029' }, { l:'EOI', v:'50 000 AED · 100% remboursable' }, { l:'Charges copro', v:'16 AED/sq.ft (basses)' }],
     points: [
       ['🏆','Ellington = top promoteur design de Dubai — 0 moins-value sur toutes les transactions analysées, loyers 25-35% au-dessus du marché'],
