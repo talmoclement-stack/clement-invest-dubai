@@ -359,6 +359,19 @@
 
 
 
+        <div class="mini-card" onclick="openDetail('jura')">
+          <div class="mini-img-wrap">
+            <div class="mini-img-fallback" style="display:flex">🏙️</div>
+            <span class="mini-badge mb-blue">🟠 À venir</span>
+          </div>
+          <div class="mini-body">
+            <div class="mini-title">Jura Terraces</div>
+            <div class="mini-promo">Majid Développement · DLRC</div>
+            <div class="mini-why">DLRC, plan 50/50 post-handover — studio, 1BR, 2BR. Détails prix à venir.</div>
+            <div class="mini-cta">Explorer le projet <span class="mini-cta-arrow">→</span></div>
+          </div>
+        </div>
+
         <div class="mini-card" onclick="openDetail('sierra')">
           <div class="mini-img-wrap">
             <img class="mini-img" src="https://design-middleeast.com/wp-content/uploads/2025/12/BEYOND-Developments-SIORA-Masterplan-at-Dubai-Islands-02-1100x619.jpg" alt="Sierra Beyond" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
@@ -576,6 +589,23 @@ const PROJECTS = {
   },
 };
 
+  jura: {
+    img: '',
+    title: 'Jura Terraces',
+    promo: 'par <strong>Majid Développement</strong> · Dubai Land Residence Complex',
+    badges: [{ cls:'db-blue', text:'🟠 À venir' }, { cls:'db-gold', text:'50/50 Post-HO' }, { cls:'db-dark', text:'DLRC' }],
+    meta: [{ l:'Plan', v:'50/50 Post-handover', g:true }, { l:'Zone', v:'Dubai Land Residence Complex' }, { l:'Typologies', v:'Studio / 1BR / 2BR' }, { l:'Prix', v:'À confirmer' }],
+    points: [
+      ['📍','DLRC — 8 376 contrats locatifs/an, zone en forte croissance avec demande locative prouvée'],
+      ['📅','Plan 50/50 post-handover — effort financier divisé par deux, idéal pour investisseur avec apport limité'],
+      ['🏙️','Promoteur Majid Développement — projet en phase de lancement, se positionner tôt = meilleurs prix garantis'],
+      ['⏳','Prix et détails à venir — contactez Clément pour être alerté dès la sortie officielle'],
+    ],
+    forqui: 'Investisseur DLRC qui veut se positionner tôt avec un plan post-handover sur une zone à forte demande locative',
+    prices: [],
+    cta: 'https://wa.me/33624835980?text=Bonjour+Clément,+j\'ai+vu+Jura+Terraces+sur+le+Radar+et+je+veux+être+alerté+au+lancement.',
+    ctaText: "M'alerter au lancement →",
+  },
   hmb: {
     img: '',
     title: 'HMB Residences',
