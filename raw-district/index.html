@@ -184,6 +184,21 @@ table.renta tr.best td { background: #f0fdf4; }
 .sticky-cta a { display: flex; align-items: center; gap: 10px; background: var(--gold); color: var(--navy); font-size: 14px; font-weight: 800; padding: 14px 22px; border-radius: 40px; text-decoration: none; box-shadow: 0 8px 24px rgba(15,31,61,.35); transition: all .2s; }
 .sticky-cta a:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(15,31,61,.45); }
 
+/* ── MAP ── */
+.map-section { background: var(--cream); }
+.map-statement { background: linear-gradient(135deg, var(--navy), var(--navy2)); border-radius: 20px; padding: 32px 36px; margin-bottom: 28px; }
+.map-statement .quote-big { font-family: 'Playfair Display'; font-size: clamp(22px, 3.5vw, 32px); color: #fff; font-weight: 800; line-height: 1.25; margin-bottom: 12px; }
+.map-statement .quote-big em { color: var(--gold2); font-style: italic; }
+.map-statement .quote-sub { font-size: 15px; color: rgba(255,255,255,.7); line-height: 1.6; max-width: 680px; }
+.map-frame { border-radius: 20px; overflow: hidden; box-shadow: var(--shadow); border: 2px solid var(--line); }
+.map-frame iframe { display: block; width: 100%; height: 420px; border: none; }
+.map-tags { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+.map-tag { background: #fff; border: 1px solid var(--line); border-radius: 30px; padding: 7px 14px; font-size: 13px; font-weight: 700; color: var(--navy); box-shadow: 0 2px 8px rgba(15,31,61,.08); }
+.map-tag .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 6px; }
+.dot-gold { background: var(--gold); }
+.dot-green { background: var(--green); }
+.dot-navy { background: var(--navy); }
+
 /* ── RESPONSIVE ── */
 @media(max-width:800px) {
   .loc-grid, .promo-grid, .pay-grid { grid-template-columns: 1fr; }
@@ -264,6 +279,32 @@ table.renta tr.best td { background: #f0fdf4; }
     <div class="loc-highlight">
       <div class="icon">💡</div>
       <p>Tu achètes <strong>avant que les infrastructures soient finies</strong> — c'est exactement comme ça que se font les bonnes plus-values à Dubai. Les gens qui ont acheté à DLRC il y a 3 ans ont le même profil de zone.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MAP + PHRASE CLÉ -->
+<section class="map-section">
+  <div class="wrap">
+    <div class="map-statement">
+      <div class="quote-big">C'est pas une zone qui <em>deviendra</em> bien.<br>C'est une zone qui l'est déjà — et que le marché n'a pas encore pricé.</div>
+      <div class="quote-sub">Le métro est là. La Marina est à 15 minutes. Expo City à 8. Les grandes infrastructures existent. Mais le prix reflète encore une zone "périphérique". Ce décalage, c'est exactement là que se cachent les bons investissements.</div>
+    </div>
+    <div class="map-frame">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14462.5!2d55.08!3d24.993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f6f1e8b4c4f8d%3A0xa1e3fa6b7c2d9e0b!2sDowntown+Jebel+Ali%2C+Dubai!5e0!3m2!1sfr!2sfr!4v1719561600000!5m2!1sfr!2sfr"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+    <div class="map-tags">
+      <span class="map-tag"><span class="dot dot-gold"></span>🚇 Métro en face</span>
+      <span class="map-tag"><span class="dot dot-green"></span>Sheikh Zayed Road — accès direct</span>
+      <span class="map-tag"><span class="dot dot-navy"></span>Expo City 8 min</span>
+      <span class="map-tag"><span class="dot dot-gold"></span>Palm Jebel Ali 10 min</span>
+      <span class="map-tag"><span class="dot dot-navy"></span>Marina 15 min</span>
+      <span class="map-tag"><span class="dot dot-green"></span>Futur aéroport 25 min</span>
     </div>
   </div>
 </section>
