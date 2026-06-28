@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RAW District 2 — Imtiaz · Jebel Ali · Clément Invest Dubai</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,600&family=Mulish:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #F5F0E8;
+  --cream2: #FBF8F2;
+  --navy: #0F1F3D;
+  --navy2: #1a3060;
+  --gold: #C9A84C;
+  --gold2: #e8c96a;
+  --orange: #C9A84C;
+  --ink: #1a1a1a;
+  --muted: #6b7280;
+  --line: rgba(15,31,61,.12);
+  --shadow: 0 14px 40px -16px rgba(15,31,61,.25);
+  --green: #059669;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Mulish', system-ui, sans-serif; background: var(--cream); color: var(--ink); -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 1060px; margin: 0 auto; padding: 0 24px; }
+h1,h2,h3 { font-family: 'Playfair Display', serif; font-weight: 800; line-height: 1.08; color: var(--navy); }
+.eyebrow { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .3em; color: var(--gold); }
+section { padding: 56px 0; }
+
+/* ── HEADER ── */
+.topbar { background: var(--navy); padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; }
+.topbar-brand { font-family: 'Playfair Display'; font-weight: 800; color: #fff; font-size: 16px; }
+.topbar-brand span { color: var(--gold2); }
+.topbar-cta { background: var(--gold); color: var(--navy); font-size: 12px; font-weight: 800; padding: 9px 18px; border-radius: 30px; text-decoration: none; white-space: nowrap; }
+
+/* ── HERO ── */
+.hero { position: relative; min-height: 80vh; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; }
+.hero-img { position: absolute; inset: 0; background: url('https://sspark.genspark.ai/cfimages?u1=myAYomksJcP6Cbiz3YFv%2BLG7nMqV4%2F1ScB9x5sVIEHHNRWk7vmAO%2BNnoTmm59z0tpEPMzW%2FF3MheMJ7EUggmnpcC7qWYu28YiccFOHsHWoW9GpYCzirhEBgmNOrchTtMfjY7FgA%3D&u2=dJHNWfGv08LdyDBb&width=1024') center/cover no-repeat; transform: scale(1.03); }
+.hero-img::after { content:''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,20,45,.35) 0%, rgba(10,20,45,.8) 100%); }
+.hero-content { position: relative; z-index: 2; padding: 48px 24px 56px; max-width: 1060px; margin: 0 auto; width: 100%; }
+.hero-kicker { color: var(--gold2); font-size: 11px; font-weight: 800; letter-spacing: .35em; text-transform: uppercase; margin-bottom: 16px; }
+.hero-title { font-size: clamp(48px, 8vw, 88px); color: #fff; line-height: .95; margin-bottom: 8px; }
+.hero-title em { font-style: italic; color: var(--gold2); }
+.hero-sub { font-size: clamp(15px, 2vw, 19px); color: rgba(255,255,255,.85); max-width: 580px; margin: 16px 0 32px; line-height: 1.6; }
+.hero-badges { display: flex; gap: 12px; flex-wrap: wrap; }
+.hbadge { background: rgba(255,255,255,.10); border: 1px solid rgba(201,168,76,.4); border-radius: 14px; padding: 12px 18px; backdrop-filter: blur(4px); }
+.hbadge b { display: block; font-family: 'Playfair Display'; font-size: 22px; color: var(--gold2); line-height: 1.1; }
+.hbadge span { font-size: 11px; color: rgba(255,255,255,.8); }
+
+/* ── VIDEO EMBED ── */
+.video-block { background: var(--navy); padding: 0; }
+.video-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; }
+.video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+.video-label { background: var(--navy); text-align: center; padding: 14px; color: rgba(255,255,255,.5); font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+
+/* ── SECTION COMMUNE ── */
+.section-label { font-family: 'Playfair Display'; font-style: italic; font-size: 20px; color: var(--gold); margin-bottom: 4px; }
+.section-title { font-size: clamp(28px, 4vw, 42px); margin-bottom: 14px; }
+.lead { font-size: 17px; color: #3a3830; line-height: 1.65; max-width: 740px; }
+
+/* ── LOCALISATION ── */
+.loc-section { background: var(--cream2); }
+.loc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 32px; }
+.loc-box { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 28px; box-shadow: var(--shadow); }
+.loc-box h3 { font-size: 16px; color: var(--navy); margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
+.loc-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px dashed var(--line); font-size: 14.5px; }
+.loc-item:last-child { border-bottom: none; }
+.loc-item .place { color: #3a3830; font-weight: 500; }
+.loc-item .time { background: var(--navy); color: #fff; font-size: 12px; font-weight: 800; padding: 3px 12px; border-radius: 30px; }
+.loc-item .time.gold { background: var(--gold); color: var(--navy); }
+.loc-highlight { background: linear-gradient(135deg, var(--navy), var(--navy2)); border-radius: 16px; padding: 22px 24px; margin-top: 24px; display: flex; align-items: center; gap: 16px; }
+.loc-highlight .icon { font-size: 32px; flex-shrink: 0; }
+.loc-highlight p { color: rgba(255,255,255,.9); font-size: 15px; line-height: 1.55; }
+.loc-highlight p strong { color: var(--gold2); }
+
+/* ── PHOTO BAND ── */
+.photo-trio { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 32px; }
+.photo-trio figure { margin: 0; border-radius: 16px; overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow); }
+.photo-trio img { width: 100%; height: 200px; object-fit: cover; display: block; }
+.photo-trio figcaption { font-size: 12px; color: var(--muted); padding: 8px 12px; background: #fff; font-weight: 600; }
+
+/* ── PROMOTEUR ── */
+.promo-section { background: linear-gradient(160deg, var(--navy), var(--navy2)); color: #fff; }
+.promo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 32px; align-items: start; }
+.promo-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.pstat { background: rgba(255,255,255,.08); border: 1px solid rgba(201,168,76,.25); border-radius: 16px; padding: 20px; text-align: center; }
+.pstat b { display: block; font-family: 'Playfair Display'; font-size: 36px; color: var(--gold2); line-height: 1; }
+.pstat span { font-size: 11.5px; color: rgba(255,255,255,.7); margin-top: 6px; display: block; font-weight: 600; }
+.promo-text h2 { color: #fff; margin-bottom: 14px; }
+.promo-text .eyebrow { color: var(--gold2); margin-bottom: 8px; }
+.promo-quote { font-family: 'Playfair Display'; font-style: italic; font-size: 22px; color: var(--gold2); border-left: 3px solid var(--gold); padding-left: 16px; margin: 20px 0; line-height: 1.4; }
+.promo-points { display: flex; flex-direction: column; gap: 12px; margin-top: 16px; }
+.pp { display: flex; align-items: flex-start; gap: 12px; }
+.pp-icon { width: 32px; height: 32px; border-radius: 50%; background: rgba(201,168,76,.2); display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
+.pp-text { font-size: 14.5px; color: rgba(255,255,255,.85); line-height: 1.5; }
+.pp-text strong { color: #fff; }
+
+/* ── COMMUNAUTÉ ── */
+.community-img { width: 100%; height: 380px; object-fit: cover; border-radius: 20px; display: block; margin-bottom: 28px; box-shadow: var(--shadow); }
+.amenities-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-top: 24px; }
+.amenity { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 20px; box-shadow: var(--shadow); }
+.amenity .icon { font-size: 28px; margin-bottom: 10px; }
+.amenity h4 { font-size: 14px; font-weight: 800; color: var(--navy); margin-bottom: 5px; }
+.amenity p { font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+
+/* ── PRIX & RENTA ── */
+.prix-section { background: var(--cream2); }
+.table-wrap { overflow-x: auto; margin-top: 28px; }
+table.renta { width: 100%; border-collapse: collapse; font-size: 14.5px; border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); }
+table.renta thead tr { background: var(--navy); color: #fff; }
+table.renta th { padding: 14px 18px; text-align: left; font-weight: 700; font-size: 12px; letter-spacing: .05em; text-transform: uppercase; }
+table.renta td { padding: 14px 18px; border-bottom: 1px solid var(--line); background: #fff; }
+table.renta tr:last-child td { border-bottom: none; }
+table.renta .val { font-family: 'Playfair Display'; font-weight: 800; color: var(--navy); font-size: 16px; }
+table.renta .val.green { color: var(--green); }
+table.renta .val.gold { color: #92680a; }
+table.renta tr.best td { background: #f0fdf4; }
+.renta-note { background: linear-gradient(135deg, #fff8e7, #fef3c7); border: 1.5px solid var(--gold); border-radius: 14px; padding: 16px 20px; margin-top: 18px; font-size: 14px; color: var(--navy); line-height: 1.6; }
+
+/* ── PLAN DE PAIEMENT ── */
+.pay-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 28px; }
+.pay-card { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 28px; box-shadow: var(--shadow); }
+.pay-card h3 { font-size: 18px; margin-bottom: 6px; }
+.pay-card .tag { display: inline-block; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; padding: 4px 10px; border-radius: 20px; margin-bottom: 16px; }
+.tag-gold { background: var(--gold2); color: var(--navy); }
+.tag-navy { background: var(--navy); color: #fff; }
+.pay-steps { display: flex; flex-direction: column; gap: 10px; }
+.pay-step { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px dashed var(--line); font-size: 14px; }
+.pay-step:last-child { border-bottom: none; }
+.pay-step .phase { color: var(--muted); font-weight: 500; }
+.pay-step .pct { font-family: 'Playfair Display'; font-weight: 800; color: var(--navy); font-size: 18px; }
+.pay-step .pct.big { color: var(--gold); font-size: 22px; }
+.split-bar { display: flex; height: 28px; border-radius: 8px; overflow: hidden; margin-top: 16px; font-size: 12px; font-weight: 800; color: #fff; }
+.split-bar .a { background: var(--gold); display: flex; align-items: center; justify-content: center; color: var(--navy); }
+.split-bar .b { background: var(--navy); display: flex; align-items: center; justify-content: center; flex: 1; }
+.eoi-box { background: linear-gradient(135deg, var(--navy), var(--navy2)); border-radius: 16px; padding: 22px; margin-top: 20px; color: #fff; }
+.eoi-box h4 { color: var(--gold2); font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 14px; }
+.eoi-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,.1); font-size: 14px; color: rgba(255,255,255,.85); }
+.eoi-row:last-child { border-bottom: none; }
+.eoi-row b { color: var(--gold2); font-family: 'Playfair Display'; font-size: 16px; }
+
+/* ── POUR QUI ── */
+.forqui-section { background: var(--cream2); }
+.profils-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-top: 28px; }
+.profil { border-radius: 20px; overflow: hidden; box-shadow: var(--shadow); }
+.profil .top { padding: 24px; color: #fff; }
+.profil.p1 .top { background: linear-gradient(150deg, #1a5c3a, #0d3d24); }
+.profil.p2 .top { background: linear-gradient(150deg, #1a3a7a, var(--navy)); }
+.profil.p3 .top { background: linear-gradient(150deg, #7a4a1a, #5a3010); }
+.profil .top .ico { font-size: 32px; margin-bottom: 10px; }
+.profil .top h3 { color: #fff; font-size: 19px; margin-bottom: 4px; }
+.profil .top .sub { font-size: 11px; color: rgba(255,255,255,.8); text-transform: uppercase; letter-spacing: .12em; font-weight: 700; }
+.profil .body { background: #fff; padding: 20px; border: 1px solid var(--line); border-top: none; border-radius: 0 0 20px 20px; }
+.profil .body ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.profil .body li { font-size: 13.5px; color: #3a3830; display: flex; align-items: flex-start; gap: 8px; line-height: 1.45; }
+.profil .body li::before { content: '✓'; color: var(--green); font-weight: 800; flex-shrink: 0; margin-top: 1px; }
+
+/* ── VIDEO QUARTIER ── */
+.video-quartier { background: var(--navy); padding: 48px 0; }
+.video-quartier .wrap { text-align: center; }
+.video-quartier h2 { color: #fff; margin-bottom: 8px; }
+.video-quartier p { color: rgba(255,255,255,.6); font-size: 15px; margin-bottom: 28px; }
+.video-quartier-wrap { border-radius: 20px; overflow: hidden; box-shadow: 0 20px 60px -20px rgba(0,0,0,.5); }
+.video-quartier-wrap .video-wrap { border-radius: 20px; }
+
+/* ── CTA FINAL ── */
+.cta-section { background: linear-gradient(160deg, var(--navy), var(--navy2)); color: #fff; text-align: center; padding: 72px 24px; }
+.cta-section h2 { color: #fff; font-size: clamp(28px,4vw,44px); margin-bottom: 12px; }
+.cta-section p { color: rgba(255,255,255,.75); font-size: 17px; max-width: 560px; margin: 0 auto 36px; line-height: 1.6; }
+.cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.btn-gold { background: var(--gold); color: var(--navy); font-size: 15px; font-weight: 800; padding: 16px 32px; border-radius: 40px; text-decoration: none; transition: all .2s; }
+.btn-gold:hover { background: var(--gold2); transform: translateY(-2px); }
+.btn-outline { background: transparent; color: #fff; font-size: 15px; font-weight: 700; padding: 16px 32px; border-radius: 40px; text-decoration: none; border: 2px solid rgba(255,255,255,.4); transition: all .2s; }
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ── FOOTER ── */
+.footer { background: #060f1f; color: rgba(255,255,255,.4); text-align: center; padding: 22px; font-size: 12px; }
+.footer a { color: var(--gold); text-decoration: none; font-weight: 700; }
+
+/* ── STICKY CTA ── */
+.sticky-cta { position: fixed; bottom: 24px; right: 24px; z-index: 100; }
+.sticky-cta a { display: flex; align-items: center; gap: 10px; background: var(--gold); color: var(--navy); font-size: 14px; font-weight: 800; padding: 14px 22px; border-radius: 40px; text-decoration: none; box-shadow: 0 8px 24px rgba(15,31,61,.35); transition: all .2s; }
+.sticky-cta a:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(15,31,61,.45); }
+
+/* ── RESPONSIVE ── */
+@media(max-width:800px) {
+  .loc-grid, .promo-grid, .pay-grid { grid-template-columns: 1fr; }
+  .photo-trio { grid-template-columns: 1fr 1fr; }
+  .amenities-grid { grid-template-columns: 1fr 1fr; }
+  .profils-grid { grid-template-columns: 1fr; }
+  .promo-stats { grid-template-columns: 1fr 1fr; }
+  .hero { min-height: 70vh; }
+  .topbar { padding: 12px 16px; }
+}
+@media(max-width:480px) {
+  .photo-trio { grid-template-columns: 1fr; }
+  .amenities-grid { grid-template-columns: 1fr; }
+  .promo-stats { grid-template-columns: 1fr 1fr; }
+  .sticky-cta { bottom: 16px; right: 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-brand">Clément <span>Invest Dubai</span></div>
+  <a href="https://wa.me/33624835980?text=Bonjour+Clément,+j'ai+vu+la+page+RAW+District+2+et+je+suis+intéressé." class="topbar-cta" target="_blank">💬 Me contacter</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-img"></div>
+  <div class="hero-content wrap">
+    <div class="hero-kicker">Lancement · Jebel Ali · Imtiaz Developments</div>
+    <h1 class="hero-title">RAW<br>District <em>2</em></h1>
+    <p class="hero-sub">Pas un immeuble. Une communauté. Par le meilleur promoteur de Dubai — livré meublé, avec post-handover disponible.</p>
+    <div class="hero-badges">
+      <div class="hbadge"><b>666K AED</b><span>Studio à partir de</span></div>
+      <div class="hbadge"><b>Q1 2029</b><span>Livraison</span></div>
+      <div class="hbadge"><b>60/40</b><span>Post-handover dispo</span></div>
+      <div class="hbadge"><b>Meublé</b><span>Clé en main</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- VIDEO INTRO (espace réservé) -->
+<div class="video-block">
+  <div class="video-label">▶ Ma présentation du projet</div>
+  <div style="background:#0a1428;height:80px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.3);font-size:13px;font-weight:600;">
+    Vidéo à insérer ici
+  </div>
+</div>
+
+<!-- LOCALISATION -->
+<section class="loc-section">
+  <div class="wrap">
+    <div class="eyebrow">Localisation</div>
+    <h2 class="section-title">Loin sur la carte.<br>Proche de tout.</h2>
+    <p class="lead">Jebel Ali paraît éloigné. C'est une illusion. En face du métro, à 15 min de la Marina, 8 min d'Expo City — et au cœur de ce qui sera le nouveau Dubai dans 5 ans.</p>
+
+    <div class="loc-grid">
+      <div class="loc-box">
+        <h3>📍 Aujourd'hui</h3>
+        <div class="loc-item"><span class="place">🚇 Station métro</span><span class="time gold">En face</span></div>
+        <div class="loc-item"><span class="place">Dubai Marina</span><span class="time">15–20 min</span></div>
+        <div class="loc-item"><span class="place">Expo City</span><span class="time">8 min</span></div>
+        <div class="loc-item"><span class="place">Palm Jumeirah</span><span class="time">20 min</span></div>
+        <div class="loc-item"><span class="place">Downtown Dubai</span><span class="time">30–40 min</span></div>
+        <div class="loc-item"><span class="place">Abu Dhabi</span><span class="time">50 min</span></div>
+      </div>
+      <div class="loc-box">
+        <h3>🔭 Demain — le futur Dubai</h3>
+        <div class="loc-item"><span class="place">Expo City (futur centre-ville)</span><span class="time gold">8 min</span></div>
+        <div class="loc-item"><span class="place">Palm Jebel Ali</span><span class="time">10 min</span></div>
+        <div class="loc-item"><span class="place">Futur aéroport Al Maktoum</span><span class="time">25 min</span></div>
+        <div class="loc-item"><span class="place">Future marina Jebel Ali</span><span class="time">15 min</span></div>
+        <div class="loc-item"><span class="place">Sheikh Zayed Road</span><span class="time">Accès direct</span></div>
+      </div>
+    </div>
+
+    <div class="loc-highlight">
+      <div class="icon">💡</div>
+      <p>Tu achètes <strong>avant que les infrastructures soient finies</strong> — c'est exactement comme ça que se font les bonnes plus-values à Dubai. Les gens qui ont acheté à DLRC il y a 3 ans ont le même profil de zone.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTOS -->
+<section style="padding: 0 0 48px;">
+  <div class="wrap">
+    <div class="photo-trio">
+      <figure>
+        <img src="https://sspark.genspark.ai/cfimages?u1=wFN06xsjqbOWQ2BsNVqysQVxQ%2Bg%2BGo3OC5YBQBxV1WbDrk19WnFep27i8IkgO1n2DhrdDxICf1zgzoqSyskTg0Pe1rxMqCk7wD0OalPpN7hbhrVunjClHopllBdltDeikRn3Cr8%3D&u2=ypl06rzrrMgGrtCW&width=1024" alt="Intérieurs RAW District">
+        <figcaption>Intérieurs — Smart Home</figcaption>
+      </figure>
+      <figure>
+        <img src="https://sspark.genspark.ai/cfimages?u1=ojmCccp1BNZBNnEmpOpWhHG5E8%2F8WdRtVLeSxX6OnSSeXM72wghisswhwQYFVQ1XJ1eNdIgneALz70XZ0mnf7QsczHNGw9Nc9b7c%2Bn1qZq1h9Xxu0aYgXQ2w%2Fb1bxkitYKAUb0s%3D&u2=r%2BeKGayk2brtKbbc&width=1024" alt="Espaces de vie">
+        <figcaption>Espaces de vie — Fully furnished</figcaption>
+      </figure>
+      <figure>
+        <img src="https://sspark.genspark.ai/cfimages?u1=1SyoK5UbhVCAVOyJRmGsP1v18j0kK4NzWv2c%2Fm8G4m5zslKFLaoDzY9sAkKT7npPHNV2S47PObxLF4Z9SHauMmsaZvOAie2QLdZy9VyINyFphF4fsRcX7gs%3D&u2=NXfBY5jQD3%2BAaJZL&width=1024" alt="Amenities RAW District">
+        <figcaption>Amenities — RAW Pro Gym</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- PROMOTEUR -->
+<section class="promo-section">
+  <div class="wrap">
+    <div class="promo-grid">
+      <div class="promo-text">
+        <div class="eyebrow" style="color:var(--gold2)">Le promoteur</div>
+        <h2 style="color:#fff; margin-top:6px;">Imtiaz —<br>le standard de référence.</h2>
+        <div class="promo-quote">"Le meilleur promoteur de Dubai pour les budgets normaux. Livraisons à l'heure ou en avance. Qualité inégalée."</div>
+        <div class="promo-points">
+          <div class="pp"><div class="pp-icon">🏆</div><div class="pp-text"><strong>Track record irréprochable</strong> — tous ses projets livrés à l'heure ou en avance, sans exception</div></div>
+          <div class="pp"><div class="pp-icon">🛋️</div><div class="pp-text"><strong>Livré 100% meublé</strong> — qualité premium, tu loues dès la remise des clés sans débourser un euro de plus</div></div>
+          <div class="pp"><div class="pp-icon">📈</div><div class="pp-text"><strong>Valeur de revente supérieure</strong> — les biens Imtiaz se revendent plus vite et plus cher que la moyenne</div></div>
+          <div class="pp"><div class="pp-icon">🔒</div><div class="pp-text"><strong>Compte escrow garanti</strong> — fonds protégés, RERA certifié, zéro risque de détournement</div></div>
+          <div class="pp"><div class="pp-icon">🔥</div><div class="pp-text"><strong>RAW District 1 sold out en 24h</strong> — la phase 2 partira aussi très vite</div></div>
+        </div>
+      </div>
+      <div class="promo-stats">
+        <div class="pstat"><b>100%</b><span>Projets livrés à l'heure ou en avance</span></div>
+        <div class="pstat"><b>Meublé</b><span>Clé en main à chaque livraison</span></div>
+        <div class="pstat"><b>24h</b><span>Délai de sold out sur RAW District 1</span></div>
+        <div class="pstat"><b>#1</b><span>Promoteur qualité/prix à Dubai</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNAUTÉ & AMENITIES -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Le projet</div>
+    <h2 class="section-title">T'achètes pas un appartement.<br>T'achètes une communauté.</h2>
+    <p class="lead">RAW District, c'est un écosystème conçu pour ceux qui refusent de séparer leur vie de leur travail — ou leur investissement de leur style de vie.</p>
+
+    <img src="https://sspark.genspark.ai/cfimages?u1=c5MEEVDlD8N9fQ23EVGJrBOPbtQycg9JbqhFRM9ytpTE6WH5Y1ty%2F%2BzeAVgMAk1bf7WxpGc3CggQsNN98etECgpPp9RQPFklVqfEqP1DrVltMQeh4CyDfQv6CZJbmyQtmg%3D&u2=r8MAmZoOyDZlN8cW&width=1024" alt="RAW District Communauté" class="community-img">
+
+    <div class="amenities-grid">
+      <div class="amenity"><div class="icon">🍽️</div><h4>District Table</h4><p>Espace de restauration communautaire — le cœur social du projet.</p></div>
+      <div class="amenity"><div class="icon">🎨</div><h4>The Gallery</h4><p>Collection d'art Masih Imtiaz. Un espace culturel rotatif au cœur du district.</p></div>
+      <div class="amenity"><div class="icon">🔒</div><h4>The Vault</h4><p>Espace membres exclusif — réservé à ceux qui ont mérité la tranquillité.</p></div>
+      <div class="amenity"><div class="icon">💪</div><h4>RAW Pro Gym</h4><p>Salle de sport sérieuse : cold plunge, yoga deck, zones de récupération.</p></div>
+      <div class="amenity"><div class="icon">🎙️</div><h4>Creative Studios</h4><p>Studios podcast, photo, espaces de création et labs design.</p></div>
+      <div class="amenity"><div class="icon">🎬</div><h4>Cinéma</h4><p>Expérience cinéma indoor et outdoor — où les histoires se regardent autant qu'elles se vivent.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRIX & RENTA -->
+<section class="prix-section">
+  <div class="wrap">
+    <div class="eyebrow">Rentabilité</div>
+    <h2 class="section-title">Les chiffres — sans bullshit.</h2>
+    <p class="lead">Hypothèses pessimistes basées sur le projet Azizi voisin — moins bien que RAW District. Le vrai rendement sera probablement supérieur.</p>
+
+    <div class="table-wrap">
+      <table class="renta">
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Prix de départ</th>
+            <th>Loyer pessimiste/an</th>
+            <th>Renta brute pessimiste</th>
+            <th>Loyer optimiste/an (+20%)</th>
+            <th>Renta brute optimiste</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Studio</strong></td>
+            <td class="val">666 000 AED<br><small style="color:var(--muted);font-size:12px;">~157K€</small></td>
+            <td class="val">50 000 AED<br><small style="color:var(--muted);font-size:12px;">~11 770€</small></td>
+            <td class="val gold">7.5%</td>
+            <td class="val">60 000 AED<br><small style="color:var(--muted);font-size:12px;">~14 130€</small></td>
+            <td class="val green">9.0%</td>
+          </tr>
+          <tr class="best">
+            <td><strong>1 Bedroom</strong></td>
+            <td class="val">949 000 AED<br><small style="color:var(--muted);font-size:12px;">~224K€</small></td>
+            <td class="val">65 000 AED<br><small style="color:var(--muted);font-size:12px;">~15 300€</small></td>
+            <td class="val gold">6.85%</td>
+            <td class="val">78 000 AED<br><small style="color:var(--muted);font-size:12px;">~18 370€</small></td>
+            <td class="val green">8.2%</td>
+          </tr>
+          <tr>
+            <td><strong>2 Bedrooms</strong></td>
+            <td class="val">1 550 000 AED<br><small style="color:var(--muted);font-size:12px;">~365K€</small></td>
+            <td class="val">100 000 AED<br><small style="color:var(--muted);font-size:12px;">~23 550€</small></td>
+            <td class="val gold">6.45%</td>
+            <td class="val">120 000 AED<br><small style="color:var(--muted);font-size:12px;">~28 260€</small></td>
+            <td class="val green">7.7%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="renta-note">
+      💡 <strong>À noter :</strong> ces rendements sont calculés sur des loyers Azizi — un projet voisin moins bien fini et sans les amenities de RAW District. Le rendement réel de RAW District sera supérieur. Et avec le <strong>plan post-handover</strong>, tu commences à toucher des loyers avant d'avoir fini de payer — ce qui améliore encore le cash-flow effectif.
+    </div>
+  </div>
+</section>
+
+<!-- PLAN DE PAIEMENT -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Plan de paiement</div>
+    <h2 class="section-title">Tu paies la moitié.<br>Après la livraison.</h2>
+    <p class="lead">Deux options disponibles. Les deux avec du post-handover — une rareté sur le marché en ce moment.</p>
+
+    <div class="pay-grid">
+      <div class="pay-card">
+        <h3>Plan 50 / 50</h3>
+        <div class="tag tag-gold">Option 1</div>
+        <div class="pay-steps">
+          <div class="pay-step"><span class="phase">À la réservation (EOI)</span><span class="pct">10%</span></div>
+          <div class="pay-step"><span class="phase">Pendant la construction</span><span class="pct">40%</span></div>
+          <div class="pay-step"><span class="phase">À la livraison (Q1 2029)</span><span class="pct big">50%</span></div>
+        </div>
+        <div class="split-bar">
+          <div class="a" style="flex: 0 0 50%;">50% pendant</div>
+          <div class="b">50% à la livraison</div>
+        </div>
+      </div>
+      <div class="pay-card">
+        <h3>Plan 60 / 40 post-handover</h3>
+        <div class="tag tag-navy">Option 2 — recommandé</div>
+        <div class="pay-steps">
+          <div class="pay-step"><span class="phase">À la réservation (EOI)</span><span class="pct">10%</span></div>
+          <div class="pay-step"><span class="phase">Pendant la construction</span><span class="pct">50%</span></div>
+          <div class="pay-step"><span class="phase">Post-livraison (étalé)</span><span class="pct big">40%</span></div>
+        </div>
+        <div class="split-bar">
+          <div class="a" style="flex: 0 0 60%;">60% pendant</div>
+          <div class="b">40% après livraison</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="eoi-box" style="margin-top:24px;">
+      <h4>Montants EOI (réservation)</h4>
+      <div class="eoi-row"><span>Studio</span><b>50 000 AED</b></div>
+      <div class="eoi-row"><span>1 Bedroom</span><b>80 000 AED</b></div>
+      <div class="eoi-row"><span>2 & 3 Bedrooms</span><b>100 000 AED</b></div>
+      <div class="eoi-row"><span>Bureaux & Retail</span><b>100 000 AED</b></div>
+      <div style="margin-top:12px;font-size:13px;color:rgba(255,255,255,.6);">⏳ Allocation prévue sous 4-5 semaines après EOI</div>
+    </div>
+  </div>
+</section>
+
+<!-- POUR QUI -->
+<section class="forqui-section">
+  <div class="wrap">
+    <div class="eyebrow">Pour qui</div>
+    <h2 class="section-title">Ce projet est fait pour toi si…</h2>
+
+    <div class="profils-grid">
+      <div class="profil p1">
+        <div class="top">
+          <div class="ico">💰</div>
+          <h3>Le Chasseur de Rendement</h3>
+          <div class="sub">Rentabilité prioritaire</div>
+        </div>
+        <div class="body">
+          <ul>
+            <li>Tu veux un rendement brut de 7–9% avec des hypothèses pessimistes</li>
+            <li>Tu veux que ce soit livré meublé — zéro travaux, zéro frais supplémentaires</li>
+            <li>Tu veux un promoteur qui livre à l'heure, sans mauvaises surprises</li>
+            <li>Tu veux un quartier avec de la demande locative réelle</li>
+          </ul>
+        </div>
+      </div>
+      <div class="profil p2">
+        <div class="top">
+          <div class="ico">📈</div>
+          <h3>Le Chasseur de Courbe</h3>
+          <div class="sub">Plus-value + sécurité</div>
+        </div>
+        <div class="body">
+          <ul>
+            <li>Tu veux acheter dans une zone en développement mais avec des infrastructures déjà présentes</li>
+            <li>Tu cherches la plus-value sans prendre tous les risques d'une zone vierge</li>
+            <li>Tu veux le meilleur promoteur pour maximiser la valeur de revente</li>
+            <li>Tu crois au développement de Jebel Ali / Palm Jebel Ali sur 3-5 ans</li>
+          </ul>
+        </div>
+      </div>
+      <div class="profil p3">
+        <div class="top">
+          <div class="ico">🏰</div>
+          <h3>Le Gardien prudent</h3>
+          <div class="sub">Sécurité maximale</div>
+        </div>
+        <div class="body">
+          <ul>
+            <li>Tu veux absolument le promoteur le plus sûr de Dubai — c'est Imtiaz</li>
+            <li>Tu veux un plan de paiement étalé pour ne pas bloquer tout ton capital</li>
+            <li>Tu veux un accès métro direct pour garantir la demande locative</li>
+            <li>Tu veux acheter dans une zone avec du track record locatif</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO QUARTIER -->
+<div class="video-quartier">
+  <div class="wrap">
+    <h2>Visite du quartier</h2>
+    <p>Je t'emmène sur place — Downtown Jebel Ali vu de l'intérieur.</p>
+    <div class="video-quartier-wrap">
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/nj8_RM4oh9g" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA FINAL -->
+<section class="cta-section">
+  <h2>Tu veux être alerté au lancement ?</h2>
+  <p>Les EOI partent vite. RAW District 1 était sold out en 24h. Contacte-moi maintenant pour bloquer ta place avant l'allocation officielle.</p>
+  <div class="cta-btns">
+    <a href="https://wa.me/33624835980?text=Bonjour+Clément,+je+suis+intéressé+par+RAW+District+2+et+je+veux+être+alerté+au+lancement." class="btn-gold" target="_blank">💬 Me contacter sur WhatsApp</a>
+    <a href="https://go.clementinvestdubai.com/quiz" class="btn-outline" target="_blank">🎯 Faire mon profil investisseur</a>
+  </div>
+</section>
+
+<div class="footer">
+  Page réalisée par <a href="https://go.clementinvestdubai.com">Clément Invest Dubai</a> · +33 6 24 83 59 80 · Données non contractuelles, à titre indicatif
+</div>
+
+<!-- STICKY CTA -->
+<div class="sticky-cta">
+  <a href="https://wa.me/33624835980?text=Bonjour+Clément,+je+suis+intéressé+par+RAW+District+2." target="_blank">
+    💬 Je suis intéressé
+  </a>
+</div>
+
+</body>
+</html>
