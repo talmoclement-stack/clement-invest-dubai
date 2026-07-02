@@ -760,6 +760,18 @@ document.getElementById('gateForm').addEventListener('submit', async function(e)
     return;
   }
 
+  // Blacklist patterns évidents (chiffres répétés, séquentiels, faux)
+  const isFakePattern = (n) => {
+    if (/^(\d)\1{5,}$/.test(n)) return true;          // 0000000, 1111111, 7777777...
+    if (/^(0?1234567|0?9876543|123456789)/.test(n)) return true; // séquentiels
+    if (/^(0{6,}|1{6,}|2{6,}|3{6,}|4{6,}|5{6,}|6{6,}|7{6,}|8{6,}|9{6,})/.test(n)) return true;
+    return false;
+  };
+  if (isFakePattern(phoneDigits)) {
+    showPhoneError('Ce numéro ne semble pas valide. Merci d\'entrer ton vrai numéro WhatsApp.');
+    return;
+  }
+
   // Construire le numéro complet international
   // Supprimer le 0 initial si présent (ex: 0612345678 → 612345678)
   const localClean = phoneDigits.replace(/^0+/, '');
