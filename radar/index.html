@@ -672,30 +672,95 @@ const PROJECTS = {
 
 /* ── Gate ── */
 const WEBHOOK = 'https://hook.eu1.make.com/2druy645e9jwt2au52euhzqd45tm8bb7';
+const NUMVERIFY_KEY = '9LDIq5lno86pUtz5ttQhH4PZ8vFxtmrB';
+
+function showPhoneError(msg) {
+  const input = document.getElementById('phone');
+  input.style.borderColor = '#f87171';
+  input.focus();
+  let err = document.getElementById('phone-error');
+  if (!err) {
+    err = document.createElement('p');
+    err.id = 'phone-error';
+    err.style.cssText = 'color:#ef4444;font-size:13px;margin-top:-4px;text-align:left;';
+    input.parentNode.insertBefore(err, input.nextSibling);
+  }
+  err.textContent = msg;
+}
+
+function clearPhoneError() {
+  const input = document.getElementById('phone');
+  input.style.borderColor = '#e5e7eb';
+  const err = document.getElementById('phone-error');
+  if (err) err.remove();
+}
+
+function setSubmitLoading(loading) {
+  const btn = document.querySelector('.gate-submit');
+  btn.disabled = loading;
+  btn.textContent = loading ? 'Vérification en cours…' : 'Accéder au Radar →';
+  btn.style.opacity = loading ? '0.7' : '1';
+}
+
+function openRadar(firstName, phone) {
+  document.getElementById('gate').style.display = 'none';
+  document.getElementById('radar').style.display = 'block';
+  window.scrollTo(0, 0);
+  fetch(WEBHOOK, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ source: 'radar', prenom: firstName, whatsapp: phone, timestamp: new Date().toISOString() })
+  }).catch(function() {});
+}
+
 document.getElementById('gateForm').addEventListener('submit', async function(e) {
   e.preventDefault();
+  clearPhoneError();
+
   const firstName = document.getElementById('firstName').value.trim();
   const phone = document.getElementById('phone').value.trim();
-  if (!firstName || !phone) return;
-  // Validation : prénom min 2 chars, téléphone min 8 chars avec chiffres
-  if (firstName.length < 2) {
+
+  // Validation prénom
+  if (!firstName || firstName.length < 2) {
     document.getElementById('firstName').style.borderColor = '#f87171';
     document.getElementById('firstName').focus();
     return;
   }
-  const phoneDigits = phone.replace(/\D/g,'');
+
+  // Validation format de base
+  const phoneDigits = phone.replace(/\D/g, '');
   if (phoneDigits.length < 8) {
-    document.getElementById('phone').style.borderColor = '#f87171';
-    document.getElementById('phone').focus();
+    showPhoneError('Numéro trop court — merci d\'entrer ton vrai numéro WhatsApp.');
     return;
   }
-  // Ouvre la page immédiatement, envoie le webhook en arrière-plan
-  document.getElementById('gate').style.display = 'none';
-  document.getElementById('radar').style.display = 'block';
-  window.scrollTo(0,0);
-  fetch(WEBHOOK, { method:'POST', headers:{'Content-Type':'application/json'},
-    body: JSON.stringify({ source:'radar', prenom: firstName, whatsapp: phone, timestamp: new Date().toISOString() }) })
-    .catch(function() {});
+
+  // Validation Numverify
+  setSubmitLoading(true);
+  try {
+    // Nettoyer le numéro : supprimer le + initial pour l'API
+    const phoneClean = phone.replace(/\s/g, '').replace(/^00/, '+');
+    const apiPhone = encodeURIComponent(phoneClean);
+    const resp = await fetch(
+      `https://apilayer.net/api/validate?access_key=${NUMVERIFY_KEY}&number=${apiPhone}&format=1`,
+      { method: 'GET' }
+    );
+    const data = await resp.json();
+
+    // Si l'API répond correctement
+    if (data && data.valid === false) {
+      setSubmitLoading(false);
+      showPhoneError('Ce numéro ne semble pas valide. Merci d\'entrer ton vrai numéro WhatsApp.');
+      return;
+    }
+    // valid === true ou erreur API (on laisse passer en cas d'erreur API pour ne pas bloquer)
+    setSubmitLoading(false);
+    openRadar(firstName, phoneClean);
+
+  } catch (err) {
+    // En cas d'erreur réseau/API, on laisse passer (fail open)
+    setSubmitLoading(false);
+    openRadar(firstName, phone);
+  }
 });
 
 /* ── Detail ── */
