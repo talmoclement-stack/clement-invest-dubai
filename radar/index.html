@@ -28,6 +28,10 @@
     .gate-form input { padding: 15px 18px; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 15px; font-family: inherit; color: var(--navy); outline: none; transition: border .2s; }
     .gate-form input:focus { border-color: var(--gold); }
     .gate-form input::placeholder { color: #9ca3af; }
+    .phone-row { display: flex; gap: 8px; }
+    .phone-row select { padding: 15px 10px; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 14px; font-family: inherit; color: var(--navy); outline: none; transition: border .2s; background: #fff; cursor: pointer; min-width: 120px; flex-shrink: 0; }
+    .phone-row select:focus { border-color: var(--gold); }
+    .phone-row input { flex: 1; }
     .gate-submit { background: var(--gold); color: var(--navy); font-size: 16px; font-weight: 800; padding: 17px; border: none; border-radius: 12px; cursor: pointer; transition: all .2s; }
     .gate-submit:hover { background: #b8943e; transform: translateY(-2px); }
     .gate-note { font-size: 12px; color: #9ca3af; margin-top: 14px; }
@@ -192,7 +196,28 @@
     </div>
     <form class="gate-form" id="gateForm">
       <input type="text" id="firstName" placeholder="Ton prénom" required>
-      <input type="tel" id="phone" placeholder="Ton WhatsApp (ex: +33 6 …)" required>
+      <div class="phone-row">
+        <select id="dialCode">
+          <option value="+33">🇫🇷 +33</option>
+          <option value="+32">🇧🇪 +32</option>
+          <option value="+41">🇨🇭 +41</option>
+          <option value="+352">🇱🇺 +352</option>
+          <option value="+1">🇨🇦 +1</option>
+          <option value="+971">🇦🇪 +971</option>
+          <option value="+212">🇲🇦 +212</option>
+          <option value="+213">🇩🇿 +213</option>
+          <option value="+216">🇹🇳 +216</option>
+          <option value="+221">🇸🇳 +221</option>
+          <option value="+225">🇨🇮 +225</option>
+          <option value="+44">🇬🇧 +44</option>
+          <option value="+49">🇩🇪 +49</option>
+          <option value="+34">🇪🇸 +34</option>
+          <option value="+39">🇮🇹 +39</option>
+          <option value="+1">🇺🇸 +1</option>
+          <option value="+other">Autre</option>
+        </select>
+        <input type="tel" id="phone" placeholder="6 12 34 56 78" required>
+      </div>
       <button type="submit" class="gate-submit">Accéder au Radar →</button>
     </form>
     <p class="gate-note">🔒 Pas de spam. Juste le Radar chaque semaine.</p>
@@ -718,7 +743,8 @@ document.getElementById('gateForm').addEventListener('submit', async function(e)
   clearPhoneError();
 
   const firstName = document.getElementById('firstName').value.trim();
-  const phone = document.getElementById('phone').value.trim();
+  const dialCode = document.getElementById('dialCode').value;
+  const phoneLocal = document.getElementById('phone').value.trim();
 
   // Validation prénom
   if (!firstName || firstName.length < 2) {
@@ -728,38 +754,44 @@ document.getElementById('gateForm').addEventListener('submit', async function(e)
   }
 
   // Validation format de base
-  const phoneDigits = phone.replace(/\D/g, '');
-  if (phoneDigits.length < 8) {
-    showPhoneError('Numéro trop court — merci d\'entrer ton vrai numéro WhatsApp.');
+  const phoneDigits = phoneLocal.replace(/\D/g, '');
+  if (phoneDigits.length < 6) {
+    showPhoneError('Numéro trop court — entre ton numéro sans l\'indicatif pays.');
     return;
+  }
+
+  // Construire le numéro complet international
+  // Supprimer le 0 initial si présent (ex: 0612345678 → 612345678)
+  const localClean = phoneDigits.replace(/^0+/, '');
+  let fullPhone;
+  if (dialCode === '+other') {
+    fullPhone = '+' + localClean;
+  } else {
+    fullPhone = dialCode + localClean;
   }
 
   // Validation Numverify
   setSubmitLoading(true);
   try {
-    // Nettoyer le numéro : supprimer le + initial pour l'API
-    const phoneClean = phone.replace(/\s/g, '').replace(/^00/, '+');
-    const apiPhone = encodeURIComponent(phoneClean);
+    const apiPhone = encodeURIComponent(fullPhone);
     const resp = await fetch(
       `https://apilayer.net/api/validate?access_key=${NUMVERIFY_KEY}&number=${apiPhone}&format=1`,
       { method: 'GET' }
     );
     const data = await resp.json();
 
-    // Si l'API répond correctement
     if (data && data.valid === false) {
       setSubmitLoading(false);
-      showPhoneError('Ce numéro ne semble pas valide. Merci d\'entrer ton vrai numéro WhatsApp.');
+      showPhoneError('Ce numéro ne semble pas valide. Vérifie l\'indicatif pays et ton numéro.');
       return;
     }
-    // valid === true ou erreur API (on laisse passer en cas d'erreur API pour ne pas bloquer)
     setSubmitLoading(false);
-    openRadar(firstName, phoneClean);
+    openRadar(firstName, fullPhone);
 
   } catch (err) {
-    // En cas d'erreur réseau/API, on laisse passer (fail open)
+    // Fail open : en cas d'erreur API on laisse passer
     setSubmitLoading(false);
-    openRadar(firstName, phone);
+    openRadar(firstName, fullPhone);
   }
 });
 
