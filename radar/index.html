@@ -760,11 +760,41 @@ document.getElementById('gateForm').addEventListener('submit', async function(e)
     return;
   }
 
-  // Blacklist patterns évidents (chiffres répétés, séquentiels, faux)
+  // Longueur max par indicatif pays (chiffres locaux, sans indicatif)
+  const maxLengthByDial = {
+    '+33': 9, '+32': 9, '+41': 9, '+352': 8, '+1': 10,
+    '+44': 10, '+49': 11, '+34': 9, '+39': 10, '+351': 9,
+    '+31': 9, '+971': 9, '+974': 8, '+966': 9, '+212': 9,
+    '+216': 8, '+221': 9
+  };
+  const maxLen = maxLengthByDial[dialCode] || 12;
+  if (phoneDigits.length > maxLen) {
+    showPhoneError(`Numéro trop long pour l'indicatif ${dialCode} (max ${maxLen} chiffres).`);
+    return;
+  }
+
+  // Validation prénom — bloquer les prénoms test/faux
+  const fakeName = /^(test|tqt|azerty|qwerty|asdf|aaa|bbb|xxx|abc|foo|bar|lol|fake)/i;
+  if (fakeName.test(firstName)) {
+    document.getElementById('firstName').style.borderColor = '#f87171';
+    document.getElementById('firstName').focus();
+    return;
+  }
+
+  // Blacklist patterns évidents (chiffres répétés, séquentiels, alternés, faux)
   const isFakePattern = (n) => {
-    if (/^(\d)\1{5,}$/.test(n)) return true;          // 0000000, 1111111, 7777777...
+    if (/^(\d)\1{5,}/.test(n)) return true;           // 000000, 111111, 888888...
     if (/^(0?1234567|0?9876543|123456789)/.test(n)) return true; // séquentiels
     if (/^(0{6,}|1{6,}|2{6,}|3{6,}|4{6,}|5{6,}|6{6,}|7{6,}|8{6,}|9{6,})/.test(n)) return true;
+    // Patterns alternés (8484848484, 2424242424, 1212121212...)
+    if (/^(\d{1,2})\1{3,}/.test(n)) return true;      // répétition d'un groupe de 1-2 chiffres
+    if (/^(12){4,}/.test(n)) return true;
+    if (/^(24){4,}/.test(n)) return true;
+    if (/^(48){4,}/.test(n)) return true;
+    if (/^(84){4,}/.test(n)) return true;
+    if (/^(36){4,}/.test(n)) return true;
+    // Longueur totale absurde (>13 chiffres locaux = jamais un vrai numéro)
+    if (n.length > 13) return true;
     return false;
   };
   if (isFakePattern(phoneDigits)) {
