@@ -110,8 +110,16 @@
       background: #25D366; color: #fff;
       font-size: 15px; font-weight: 800; padding: 16px 24px;
       border-radius: 12px; text-decoration: none; transition: opacity .2s;
+      margin-bottom: 10px;
     }
     .confirm-wa:hover { opacity: 0.88; }
+    .confirm-quiz {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      background: var(--gold); color: var(--navy);
+      font-size: 15px; font-weight: 800; padding: 16px 24px;
+      border-radius: 12px; text-decoration: none; transition: opacity .2s;
+    }
+    .confirm-quiz:hover { opacity: 0.88; }
     .confirm-note { font-size: 12px; color: #9ca3af; margin-top: 14px; }
 
     @media (max-width: 500px) {
@@ -169,12 +177,15 @@
     <div class="confirm-icon">✅</div>
     <div class="confirm-title">C'est noté, <span id="confirm-name"></span>&nbsp;!</div>
     <p class="confirm-text">
-      Un membre de notre équipe va vous envoyer le lien du Radar <strong>par WhatsApp</strong> dans les plus brefs délais.<br><br>
-      En attendant, vous pouvez nous écrire directement :
+      Vous allez recevoir le lien du Radar via WhatsApp <strong>de manière automatique</strong>.<br><br>
+      En attendant, vous pouvez prendre rendez-vous avec nous :
     </p>
-    <a class="confirm-wa" href="https://wa.me/33624835980" target="_blank">
+    <a class="confirm-wa" href="https://wa.me/33624835980?text=Bonjour%20Cl%C3%A9ment%2C%20je%20viens%20de%20m%27inscrire%20sur%20le%20Radar%20et%20j%27aimerais%20%C3%A9changer%20avec%20vous%20pour%20un%20premier%20rendez-vous." target="_blank">
       <svg width="22" height="22" viewBox="0 0 32 32" fill="white"><path d="M16 3C9.373 3 4 8.373 4 15c0 2.385.668 4.61 1.822 6.51L4 29l7.697-1.8A12.94 12.94 0 0016 28c6.627 0 12-5.373 12-12S22.627 3 16 3zm0 22a10.94 10.94 0 01-5.57-1.526l-.398-.237-4.572 1.069 1.101-4.454-.26-.416A10.94 10.94 0 015 15c0-6.065 4.935-11 11-11s11 4.935 11 11-4.935 11-11 11zm5.906-7.994c-.325-.162-1.921-.948-2.219-1.057-.299-.108-.517-.162-.735.162-.219.325-.843 1.057-.975 1.273-.13.217-.26.243-.584.081-.325-.162-1.37-.506-2.609-1.61-.964-.86-1.615-1.921-1.805-2.245-.189-.325-.02-.5.142-.661.146-.145.325-.379.487-.568.163-.19.217-.325.325-.541.108-.217.054-.406-.027-.568-.081-.162-.735-1.773-1.007-2.428-.265-.637-.535-.55-.735-.56l-.626-.01c-.217 0-.568.081-.866.406-.298.325-1.138 1.112-1.138 2.713 0 1.601 1.165 3.147 1.327 3.364.162.217 2.293 3.502 5.557 4.91.777.336 1.383.536 1.856.686.78.248 1.49.213 2.051.129.625-.093 1.921-.785 2.193-1.544.27-.76.27-1.41.19-1.544-.083-.135-.3-.217-.624-.379z"/></svg>
-      Écrire sur WhatsApp
+      Prendre rendez-vous sur WhatsApp
+    </a>
+    <a class="confirm-quiz" href="https://go.clementinvestdubai.com/quiz" target="_blank">
+      🎯 Faire le quiz — obtenir mon couple quartier / promoteur
     </a>
     <p class="confirm-note">WhatsApp : +33 6 24 83 59 80</p>
   </div>
