@@ -9,7 +9,7 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
       --bg: #F0EDE8; --navy: #0F1F3D; --gold: #C9A84C; --gold-light: #f5e9c8;
-      --white: #fff; --gray: #6b7280; --green: #059669;
+      --white: #fff; --gray: #6b7280;
     }
     body {
       font-family: 'Inter', sans-serif;
@@ -21,7 +21,6 @@
       justify-content: center;
       padding: 24px;
     }
-
     .box {
       background: var(--white);
       border-radius: 24px;
@@ -32,33 +31,21 @@
       text-align: center;
     }
 
-    /* ── Vue formulaire ── */
+    /* ── Formulaire ── */
     .eyebrow {
       font-size: 12px; font-weight: 800; letter-spacing: 2.5px;
       text-transform: uppercase; color: var(--gold); margin-bottom: 10px;
     }
-    h1 {
-      font-size: 32px; font-weight: 900; color: var(--navy);
-      line-height: 1.15; margin-bottom: 14px;
-    }
+    h1 { font-size: 32px; font-weight: 900; color: var(--navy); line-height: 1.15; margin-bottom: 14px; }
     h1 em { color: var(--gold); font-style: normal; }
-    .sub {
-      font-size: 15px; color: var(--gray); line-height: 1.65; margin-bottom: 28px;
-    }
-    .pills {
-      display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 32px;
-    }
-    .pill {
-      background: var(--gold-light); color: var(--navy);
-      font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 30px;
-    }
+    .sub { font-size: 15px; color: var(--gray); line-height: 1.65; margin-bottom: 28px; }
+    .pills { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 32px; }
+    .pill { background: var(--gold-light); color: var(--navy); font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 30px; }
 
-    /* Form */
     .form { display: flex; flex-direction: column; gap: 12px; }
     .form input {
       padding: 15px 18px; border: 2px solid #e5e7eb; border-radius: 12px;
-      font-size: 15px; font-family: inherit; color: var(--navy); outline: none;
-      transition: border .2s;
+      font-size: 15px; font-family: inherit; color: var(--navy); outline: none; transition: border .2s;
     }
     .form input:focus { border-color: var(--gold); }
     .form input::placeholder { color: #9ca3af; }
@@ -67,8 +54,7 @@
     .phone-row select {
       padding: 15px 10px; border: 2px solid #e5e7eb; border-radius: 12px;
       font-size: 14px; font-family: inherit; color: var(--navy); outline: none;
-      transition: border .2s; background: #fff; cursor: pointer;
-      min-width: 120px; flex-shrink: 0;
+      transition: border .2s; background: #fff; cursor: pointer; min-width: 120px; flex-shrink: 0;
     }
     .phone-row select:focus { border-color: var(--gold); }
     .phone-row input { flex: 1; }
@@ -76,53 +62,43 @@
     .submit-btn {
       background: var(--gold); color: var(--navy);
       font-size: 16px; font-weight: 800; padding: 17px;
-      border: none; border-radius: 12px; cursor: pointer;
-      transition: all .2s; font-family: inherit;
+      border: none; border-radius: 12px; cursor: pointer; transition: all .2s; font-family: inherit;
     }
     .submit-btn:hover { background: #b8943e; transform: translateY(-2px); }
     .submit-btn:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
 
     .note { font-size: 12px; color: #9ca3af; margin-top: 14px; }
-
     .error-msg {
-      background: #fef2f2; border: 1.5px solid #fca5a5;
-      border-radius: 10px; padding: 10px 14px;
-      font-size: 13px; color: #dc2626; font-weight: 600;
-      display: none; text-align: left;
+      background: #fef2f2; border: 1.5px solid #fca5a5; border-radius: 10px; padding: 10px 14px;
+      font-size: 13px; color: #dc2626; font-weight: 600; display: none; text-align: left;
     }
 
-    /* ── Vue confirmation ── */
+    /* ── Confirmation ── */
     #confirm { display: none; }
     .confirm-icon {
       width: 72px; height: 72px; background: #ecfdf5;
       border-radius: 50%; display: flex; align-items: center; justify-content: center;
       font-size: 36px; margin: 0 auto 24px;
     }
-    .confirm-title {
-      font-size: 26px; font-weight: 900; color: var(--navy); margin-bottom: 12px;
-    }
-    .confirm-text {
-      font-size: 15px; color: var(--gray); line-height: 1.7; margin-bottom: 16px;
-    }
+    .confirm-title { font-size: 26px; font-weight: 900; color: var(--navy); margin-bottom: 16px; }
+    .confirm-text { font-size: 15px; color: var(--gray); line-height: 1.7; margin-bottom: 20px; }
     .confirm-text strong { color: var(--navy); }
+
+    .btn-quiz {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      background: var(--gold); color: var(--navy);
+      font-size: 15px; font-weight: 800; padding: 16px 24px;
+      border-radius: 12px; text-decoration: none; transition: opacity .2s; margin-bottom: 10px;
+    }
+    .btn-quiz:hover { opacity: 0.88; }
 
     .btn-wa {
       display: flex; align-items: center; justify-content: center; gap: 10px;
       background: #25D366; color: #fff;
       font-size: 15px; font-weight: 800; padding: 16px 24px;
       border-radius: 12px; text-decoration: none; transition: opacity .2s;
-      margin-bottom: 10px;
     }
     .btn-wa:hover { opacity: 0.88; }
-
-    .btn-radar {
-      display: flex; align-items: center; justify-content: center; gap: 10px;
-      background: var(--navy); color: var(--gold);
-      font-size: 15px; font-weight: 800; padding: 16px 24px;
-      border-radius: 12px; text-decoration: none; transition: opacity .2s;
-      margin-bottom: 10px;
-    }
-    .btn-radar:hover { opacity: 0.88; }
 
     .confirm-note { font-size: 12px; color: #9ca3af; margin-top: 14px; }
 
@@ -165,7 +141,6 @@
           <option value="+49">🇩🇪 +49</option>
           <option value="+34">🇪🇸 +34</option>
           <option value="+39">🇮🇹 +39</option>
-          <option value="+1">🇺🇸 +1</option>
           <option value="+other">Autre</option>
         </select>
         <input type="tel" id="phone" placeholder="6 12 34 56 78" autocomplete="tel-national">
@@ -176,27 +151,27 @@
     <p class="note">🔒 Pas de spam. On t'envoie juste le lien.</p>
   </div>
 
-  <!-- ── CONFIRMATION ── -->
+  <!-- ── CONFIRMATION — pas d'accès direct, même logique que le Radar ── -->
   <div id="confirm">
     <div class="confirm-icon">✅</div>
     <div class="confirm-title">C'est noté, <span id="confirm-name"></span>&nbsp;!</div>
     <p class="confirm-text">
-      <strong>Tu vas recevoir la carte interactive par WhatsApp dans les prochaines minutes.</strong>
+      <strong>Vous allez recevoir la carte interactive par WhatsApp dans les prochaines minutes.</strong>
     </p>
     <p class="confirm-text">
-      Si tu veux échanger directement ou poser une question sur ton projet, on est là :
+      Si vous le souhaitez, vous pouvez aussi déterminer quels sont les quartiers et promoteurs adaptés à votre profil :
+    </p>
+    <a class="btn-quiz" href="https://go.clementinvestdubai.com/quiz" target="_blank">
+      🎯 Découvrir mon profil investisseur
+    </a>
+    <p class="confirm-text" style="margin-top: 20px;">
+      Ou prendre rendez-vous directement avec nous pour toute question ou pour parler de votre projet :
     </p>
     <a class="btn-wa"
-       href="https://wa.me/33624835980?text=Bonjour%20Cl%C3%A9ment%2C%20je%20viens%20de%20demander%20la%20carte%20interactive%20Dubai%20et%20j%27aimerais%20%C3%A9changer%20avec%20vous%20sur%20mon%20projet."
+       href="https://wa.me/33624835980?text=Bonjour%20Cl%C3%A9ment%2C%20je%20viens%20de%20m%27inscrire%20pour%20recevoir%20la%20carte%20interactive%20Dubai%20et%20j%27aimerais%20%C3%A9changer%20avec%20vous%20sur%20mon%20projet."
        target="_blank">
       <svg width="22" height="22" viewBox="0 0 32 32" fill="white"><path d="M16 3C9.373 3 4 8.373 4 15c0 2.385.668 4.61 1.822 6.51L4 29l7.697-1.8A12.94 12.94 0 0016 28c6.627 0 12-5.373 12-12S22.627 3 16 3zm0 22a10.94 10.94 0 01-5.57-1.526l-.398-.237-4.572 1.069 1.101-4.454-.26-.416A10.94 10.94 0 015 15c0-6.065 4.935-11 11-11s11 4.935 11 11-4.935 11-11 11zm5.906-7.994c-.325-.162-1.921-.948-2.219-1.057-.299-.108-.517-.162-.735.162-.219.325-.843 1.057-.975 1.273-.13.217-.26.243-.584.081-.325-.162-1.37-.506-2.609-1.61-.964-.86-1.615-1.921-1.805-2.245-.189-.325-.02-.5.142-.661.146-.145.325-.379.487-.568.163-.19.217-.325.325-.541.108-.217.054-.406-.027-.568-.081-.162-.735-1.773-1.007-2.428-.265-.637-.535-.55-.735-.56l-.626-.01c-.217 0-.568.081-.866.406-.298.325-1.138 1.112-1.138 2.713 0 1.601 1.165 3.147 1.327 3.364.162.217 2.293 3.502 5.557 4.91.777.336 1.383.536 1.856.686.78.248 1.49.213 2.051.129.625-.093 1.921-.785 2.193-1.544.27-.76.27-1.41.19-1.544-.083-.135-.3-.217-.624-.379z"/></svg>
-      Écrire à Clément
-    </a>
-    <p class="confirm-text" style="margin-top:8px;">
-      En attendant, tu peux aussi accéder au <strong>Radar des Opportunités</strong> — les meilleurs projets Dubai décortiqués chaque semaine :
-    </p>
-    <a class="btn-radar" href="https://go.clementinvestdubai.com/radar" target="_blank">
-      📡 Accéder au Radar des Opportunités
+      Prendre rendez-vous
     </a>
     <p class="confirm-note">WhatsApp : +33 6 24 83 59 80</p>
   </div>
@@ -236,7 +211,6 @@ document.getElementById('gateForm').addEventListener('submit', async function(e)
   const dialCode   = document.getElementById('dialCode').value;
   const phoneLocal = document.getElementById('phone').value.trim().replace(/\s+/g, '');
 
-  // Validation prénom
   if (!firstName || firstName.length < 2) {
     showError('Merci d\'indiquer ton prénom (minimum 2 caractères).');
     document.getElementById('firstName').focus();
@@ -248,7 +222,6 @@ document.getElementById('gateForm').addEventListener('submit', async function(e)
     return;
   }
 
-  // Validation téléphone
   const digits = phoneLocal.replace(/\D/g, '');
   if (digits.length < 6) {
     showError('Merci d\'indiquer un numéro de téléphone valide.');
@@ -263,7 +236,6 @@ document.getElementById('gateForm').addEventListener('submit', async function(e)
   const fullPhone = dialCode.replace('+other', '') + digits;
   setLoading(true);
 
-  // Webhook Make.com — fire-and-forget
   fetch(WEBHOOK, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -275,7 +247,6 @@ document.getElementById('gateForm').addEventListener('submit', async function(e)
     })
   }).catch(function() {});
 
-  // Afficher confirmation
   document.getElementById('confirm-name').textContent = firstName;
   document.getElementById('form-view').style.display = 'none';
   document.getElementById('confirm').style.display = 'block';
