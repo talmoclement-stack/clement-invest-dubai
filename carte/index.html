@@ -1,406 +1,287 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <title>Carte interactive Dubai — Clément Invest Dubai</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🗺️ La Carte Interactive Dubai | Clément Invest Dubai</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
-      --navy: #0F1F3D;
-      --gold: #C9A84C;
-      --gold-pale: rgba(201,168,76,0.08);
-      --bg: #F5F4F0;
-      --white: #FFFFFF;
+      --bg: #F0EDE8; --navy: #0F1F3D; --gold: #C9A84C; --gold-light: #f5e9c8;
+      --white: #fff; --gray: #6b7280; --green: #059669;
     }
-
-    html, body {
-      width: 100%; height: 100%;
-      font-family: 'Inter', -apple-system, sans-serif;
-      overflow: hidden;
-    }
-
-    /* ── IFRAME CARTE EN FOND ── */
-    #carte-frame {
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-      z-index: 1;
-      /* Légèrement flouée pour donner envie sans tout révéler */
-      filter: blur(3px) brightness(0.92);
-      transform: scale(1.03);
-      transition: filter 0.6s ease, transform 0.6s ease;
-      pointer-events: none;
-    }
-    #carte-frame.unlocked {
-      filter: none;
-      transform: scale(1);
-      pointer-events: auto;
-    }
-
-    /* ── OVERLAY GATE ── */
-    #gate-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 100;
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--navy);
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(15,31,61,0.45);
-      backdrop-filter: blur(2px);
-      transition: opacity 0.5s ease;
-    }
-    #gate-overlay.hidden {
-      opacity: 0;
-      pointer-events: none;
+      padding: 24px;
     }
 
-    /* ── CARTE FORMULAIRE ── */
-    .gate-card {
+    .box {
       background: var(--white);
       border-radius: 24px;
-      padding: 44px 48px;
+      padding: 52px 44px;
+      max-width: 480px;
       width: 100%;
-      max-width: 460px;
-      box-shadow: 0 32px 80px rgba(15,31,61,0.22), 0 4px 20px rgba(15,31,61,0.1);
+      box-shadow: 0 12px 48px rgba(15,31,61,0.12);
       text-align: center;
-      animation: popIn 0.4s cubic-bezier(0.22,1,0.36,1);
     }
 
-    @keyframes popIn {
-      from { opacity: 0; transform: scale(0.94) translateY(16px); }
-      to   { opacity: 1; transform: scale(1) translateY(0); }
+    /* ── Vue formulaire ── */
+    .eyebrow {
+      font-size: 12px; font-weight: 800; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 10px;
+    }
+    h1 {
+      font-size: 32px; font-weight: 900; color: var(--navy);
+      line-height: 1.15; margin-bottom: 14px;
+    }
+    h1 em { color: var(--gold); font-style: normal; }
+    .sub {
+      font-size: 15px; color: var(--gray); line-height: 1.65; margin-bottom: 28px;
+    }
+    .pills {
+      display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 32px;
+    }
+    .pill {
+      background: var(--gold-light); color: var(--navy);
+      font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 30px;
     }
 
-    .gate-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: var(--gold-pale);
-      border: 1px solid rgba(201,168,76,0.35);
-      border-radius: 40px;
-      padding: 5px 14px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #8a6820;
-      margin-bottom: 20px;
+    /* Form */
+    .form { display: flex; flex-direction: column; gap: 12px; }
+    .form input {
+      padding: 15px 18px; border: 2px solid #e5e7eb; border-radius: 12px;
+      font-size: 15px; font-family: inherit; color: var(--navy); outline: none;
+      transition: border .2s;
+    }
+    .form input:focus { border-color: var(--gold); }
+    .form input::placeholder { color: #9ca3af; }
+
+    .phone-row { display: flex; gap: 8px; }
+    .phone-row select {
+      padding: 15px 10px; border: 2px solid #e5e7eb; border-radius: 12px;
+      font-size: 14px; font-family: inherit; color: var(--navy); outline: none;
+      transition: border .2s; background: #fff; cursor: pointer;
+      min-width: 120px; flex-shrink: 0;
+    }
+    .phone-row select:focus { border-color: var(--gold); }
+    .phone-row input { flex: 1; }
+
+    .submit-btn {
+      background: var(--gold); color: var(--navy);
+      font-size: 16px; font-weight: 800; padding: 17px;
+      border: none; border-radius: 12px; cursor: pointer;
+      transition: all .2s; font-family: inherit;
+    }
+    .submit-btn:hover { background: #b8943e; transform: translateY(-2px); }
+    .submit-btn:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
+
+    .note { font-size: 12px; color: #9ca3af; margin-top: 14px; }
+
+    .error-msg {
+      background: #fef2f2; border: 1.5px solid #fca5a5;
+      border-radius: 10px; padding: 10px 14px;
+      font-size: 13px; color: #dc2626; font-weight: 600;
+      display: none; text-align: left;
     }
 
-    .gate-title {
-      font-size: 26px;
-      font-weight: 900;
-      font-style: italic;
-      color: var(--navy);
-      letter-spacing: -0.03em;
-      line-height: 1.15;
+    /* ── Vue confirmation ── */
+    #confirm { display: none; }
+    .confirm-icon {
+      width: 72px; height: 72px; background: #ecfdf5;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 36px; margin: 0 auto 24px;
+    }
+    .confirm-title {
+      font-size: 26px; font-weight: 900; color: var(--navy); margin-bottom: 12px;
+    }
+    .confirm-text {
+      font-size: 15px; color: var(--gray); line-height: 1.7; margin-bottom: 16px;
+    }
+    .confirm-text strong { color: var(--navy); }
+
+    .btn-wa {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      background: #25D366; color: #fff;
+      font-size: 15px; font-weight: 800; padding: 16px 24px;
+      border-radius: 12px; text-decoration: none; transition: opacity .2s;
       margin-bottom: 10px;
     }
-    .gate-title span { color: var(--gold); }
+    .btn-wa:hover { opacity: 0.88; }
 
-    .gate-sub {
-      font-size: 14px;
-      color: #6B7280;
-      line-height: 1.6;
-      margin-bottom: 28px;
+    .btn-radar {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      background: var(--navy); color: var(--gold);
+      font-size: 15px; font-weight: 800; padding: 16px 24px;
+      border-radius: 12px; text-decoration: none; transition: opacity .2s;
+      margin-bottom: 10px;
     }
+    .btn-radar:hover { opacity: 0.88; }
 
-    /* Preview de ce qu'ils vont voir */
-    .gate-preview {
-      background: #f8f9fc;
-      border: 1px solid rgba(15,31,61,0.06);
-      border-radius: 12px;
-      padding: 14px 16px;
-      margin-bottom: 28px;
-      text-align: left;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .gate-preview-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 13px;
-      color: var(--navy);
-      font-weight: 500;
-    }
-    .gate-preview-item::before {
-      content: '✓';
-      color: #16A34A;
-      font-weight: 800;
-      font-size: 13px;
-      flex-shrink: 0;
-    }
+    .confirm-note { font-size: 12px; color: #9ca3af; margin-top: 14px; }
 
-    /* Formulaire */
-    .gate-form {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+    @media (max-width: 500px) {
+      .box { padding: 36px 20px; }
+      h1 { font-size: 26px; }
     }
-
-    .gate-input-wrap {
-      position: relative;
-    }
-
-    .gate-input {
-      width: 100%;
-      padding: 14px 16px;
-      border: 1.5px solid rgba(15,31,61,0.12);
-      border-radius: 12px;
-      font-size: 15px;
-      font-family: inherit;
-      color: var(--navy);
-      background: #f8f9fc;
-      outline: none;
-      transition: border-color 0.2s, background 0.2s;
-    }
-    .gate-input::placeholder { color: #9CA3AF; }
-    .gate-input:focus {
-      border-color: var(--gold);
-      background: var(--white);
-    }
-
-    .gate-btn {
-      width: 100%;
-      padding: 16px;
-      background: var(--navy);
-      color: var(--white);
-      border: none;
-      border-radius: 12px;
-      font-family: inherit;
-      font-size: 15px;
-      font-weight: 700;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      transition: background 0.2s, transform 0.15s;
-      margin-top: 4px;
-    }
-    .gate-btn:hover { background: #162b52; transform: translateY(-1px); }
-    .gate-btn:active { transform: translateY(0); }
-
-    .gate-error {
-      font-size: 12px;
-      color: #DC2626;
-      text-align: left;
-      margin-top: -4px;
-      display: none;
-    }
-    .gate-error.visible { display: block; }
-
-    .gate-legal {
-      font-size: 11px;
-      color: #9CA3AF;
-      margin-top: 14px;
-      line-height: 1.5;
-    }
-
-    /* ── SUCCÈS ── */
-    #gate-success {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      padding: 8px 0;
-    }
-    #gate-success.visible { display: flex; }
-    .gate-form.hidden { display: none; }
-
-    .success-icon {
-      width: 56px; height: 56px;
-      background: #DCFCE7;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 26px;
-    }
-    .success-title {
-      font-size: 20px;
-      font-weight: 800;
-      color: var(--navy);
-      letter-spacing: -0.02em;
-    }
-    .success-sub {
-      font-size: 13px;
-      color: #6B7280;
-      text-align: center;
-      line-height: 1.5;
-    }
-    .success-btn {
-      margin-top: 8px;
-      padding: 14px 32px;
-      background: var(--gold);
-      color: var(--white);
-      border: none;
-      border-radius: 12px;
-      font-family: inherit;
-      font-size: 15px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: opacity 0.2s;
-    }
-    .success-btn:hover { opacity: 0.9; }
   </style>
 </head>
 <body>
 
-  <!-- CARTE EN FOND (iframe) -->
-  <iframe
-    id="carte-frame"
-    src="carte-bundle.html"
-    title="Carte interactive Dubai"
-    loading="eager"
-  ></iframe>
+<div class="box">
 
-  <!-- GATE OVERLAY -->
-  <div id="gate-overlay">
-    <div class="gate-card">
-
-      <div class="gate-badge">🗺️ Accès gratuit</div>
-
-      <h1 class="gate-title">
-        27 quartiers de Dubai<br>
-        <span>en un coup d'œil</span>
-      </h1>
-
-      <p class="gate-sub">
-        Prix, rendements, profils, maturité — toutes les données pour investir sans te tromper.
-      </p>
-
-      <div class="gate-preview">
-        <div class="gate-preview-item">Prix au m² et rendements par quartier</div>
-        <div class="gate-preview-item">Filtres par budget, profil et post-handover</div>
-        <div class="gate-preview-item">Forces & faiblesses de chaque zone</div>
-        <div class="gate-preview-item">Contact direct pour poser tes questions</div>
-      </div>
-
-      <!-- FORMULAIRE -->
-      <div class="gate-form" id="gate-form">
-        <div class="gate-input-wrap">
-          <input
-            class="gate-input"
-            id="input-prenom"
-            type="text"
-            placeholder="Ton prénom"
-            autocomplete="given-name"
-          />
-        </div>
-
-        <div class="gate-input-wrap">
-          <input
-            class="gate-input"
-            id="input-phone"
-            type="tel"
-            placeholder="Ton numéro WhatsApp (ex: +33 6 12 34 56 78)"
-            autocomplete="tel"
-          />
-          <div class="gate-error" id="phone-error">Format invalide — utilise le format international (+33...)</div>
-        </div>
-
-        <button class="gate-btn" id="gate-submit">
-          Accéder à la carte →
-        </button>
-      </div>
-
-      <!-- SUCCÈS -->
-      <div id="gate-success">
-        <div class="success-icon">✓</div>
-        <div class="success-title" id="success-title">Bienvenue !</div>
-        <div class="success-sub">Ta carte est prête. Clément te contactera sous 48h.</div>
-        <button class="success-btn" id="success-open">
-          Ouvrir la carte →
-        </button>
-      </div>
-
-      <p class="gate-legal">Tes infos restent confidentielles. Pas de spam, promis.</p>
+  <!-- ── FORMULAIRE ── -->
+  <div id="form-view">
+    <div class="eyebrow">Clément Invest Dubai</div>
+    <h1>🗺️ La <em>Carte</em><br>Interactive Dubai</h1>
+    <p class="sub">Prix au m², rendements locatifs et forces de chaque quartier — mis à jour en 2026. Reçois le lien directement par WhatsApp.</p>
+    <div class="pills">
+      <span class="pill">📍 Prix au m² par quartier</span>
+      <span class="pill">📈 Rendements locatifs</span>
+      <span class="pill">🏗️ Projets off-plan</span>
     </div>
+    <form class="form" id="gateForm" novalidate>
+      <input type="text" id="firstName" placeholder="Ton prénom" autocomplete="given-name">
+      <div class="phone-row">
+        <select id="dialCode">
+          <option value="+33">🇫🇷 +33</option>
+          <option value="+32">🇧🇪 +32</option>
+          <option value="+41">🇨🇭 +41</option>
+          <option value="+352">🇱🇺 +352</option>
+          <option value="+1">🇨🇦 +1</option>
+          <option value="+971">🇦🇪 +971</option>
+          <option value="+212">🇲🇦 +212</option>
+          <option value="+213">🇩🇿 +213</option>
+          <option value="+216">🇹🇳 +216</option>
+          <option value="+221">🇸🇳 +221</option>
+          <option value="+225">🇨🇮 +225</option>
+          <option value="+44">🇬🇧 +44</option>
+          <option value="+49">🇩🇪 +49</option>
+          <option value="+34">🇪🇸 +34</option>
+          <option value="+39">🇮🇹 +39</option>
+          <option value="+1">🇺🇸 +1</option>
+          <option value="+other">Autre</option>
+        </select>
+        <input type="tel" id="phone" placeholder="6 12 34 56 78" autocomplete="tel-national">
+      </div>
+      <div class="error-msg" id="error-msg"></div>
+      <button type="submit" class="submit-btn" id="submitBtn">Recevoir la carte par WhatsApp →</button>
+    </form>
+    <p class="note">🔒 Pas de spam. On t'envoie juste le lien.</p>
   </div>
 
-  <script>
-    const WEBHOOK_URL = 'https://hook.eu1.make.com/2druy645e9jwt2au52euhzqd45tm8bb7';
+  <!-- ── CONFIRMATION ── -->
+  <div id="confirm">
+    <div class="confirm-icon">✅</div>
+    <div class="confirm-title">C'est noté, <span id="confirm-name"></span>&nbsp;!</div>
+    <p class="confirm-text">
+      <strong>Tu vas recevoir la carte interactive par WhatsApp dans les prochaines minutes.</strong>
+    </p>
+    <p class="confirm-text">
+      Si tu veux échanger directement ou poser une question sur ton projet, on est là :
+    </p>
+    <a class="btn-wa"
+       href="https://wa.me/33624835980?text=Bonjour%20Cl%C3%A9ment%2C%20je%20viens%20de%20demander%20la%20carte%20interactive%20Dubai%20et%20j%27aimerais%20%C3%A9changer%20avec%20vous%20sur%20mon%20projet."
+       target="_blank">
+      <svg width="22" height="22" viewBox="0 0 32 32" fill="white"><path d="M16 3C9.373 3 4 8.373 4 15c0 2.385.668 4.61 1.822 6.51L4 29l7.697-1.8A12.94 12.94 0 0016 28c6.627 0 12-5.373 12-12S22.627 3 16 3zm0 22a10.94 10.94 0 01-5.57-1.526l-.398-.237-4.572 1.069 1.101-4.454-.26-.416A10.94 10.94 0 015 15c0-6.065 4.935-11 11-11s11 4.935 11 11-4.935 11-11 11zm5.906-7.994c-.325-.162-1.921-.948-2.219-1.057-.299-.108-.517-.162-.735.162-.219.325-.843 1.057-.975 1.273-.13.217-.26.243-.584.081-.325-.162-1.37-.506-2.609-1.61-.964-.86-1.615-1.921-1.805-2.245-.189-.325-.02-.5.142-.661.146-.145.325-.379.487-.568.163-.19.217-.325.325-.541.108-.217.054-.406-.027-.568-.081-.162-.735-1.773-1.007-2.428-.265-.637-.535-.55-.735-.56l-.626-.01c-.217 0-.568.081-.866.406-.298.325-1.138 1.112-1.138 2.713 0 1.601 1.165 3.147 1.327 3.364.162.217 2.293 3.502 5.557 4.91.777.336 1.383.536 1.856.686.78.248 1.49.213 2.051.129.625-.093 1.921-.785 2.193-1.544.27-.76.27-1.41.19-1.544-.083-.135-.3-.217-.624-.379z"/></svg>
+      Écrire à Clément
+    </a>
+    <p class="confirm-text" style="margin-top:8px;">
+      En attendant, tu peux aussi accéder au <strong>Radar des Opportunités</strong> — les meilleurs projets Dubai décortiqués chaque semaine :
+    </p>
+    <a class="btn-radar" href="https://go.clementinvestdubai.com/radar" target="_blank">
+      📡 Accéder au Radar des Opportunités
+    </a>
+    <p class="confirm-note">WhatsApp : +33 6 24 83 59 80</p>
+  </div>
 
-    function unlockCarte(prenom, animate) {
-      const overlay = document.getElementById('gate-overlay');
-      const frame = document.getElementById('carte-frame');
+</div>
 
-      if (animate) {
-        overlay.classList.add('hidden');
-        setTimeout(() => {
-          overlay.style.display = 'none';
-          frame.classList.add('unlocked');
-        }, 500);
-      } else {
-        overlay.style.display = 'none';
-        frame.classList.add('unlocked');
-      }
-    }
+<script>
+const WEBHOOK = 'https://hook.eu1.make.com/2druy645e9jwt2au52euhzqd45tm8bb7';
 
-    function validatePhone(raw) {
-      const cleaned = raw.replace(/[\s\-\(\)]/g, '');
-      return /^\+[1-9]\d{6,14}$/.test(cleaned) ? cleaned : null;
-    }
+function showError(msg) {
+  const el = document.getElementById('error-msg');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+function clearError() {
+  document.getElementById('error-msg').style.display = 'none';
+}
+function setLoading(on) {
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = on;
+  btn.textContent = on ? 'Envoi en cours…' : 'Recevoir la carte par WhatsApp →';
+}
 
-    document.getElementById('gate-submit').addEventListener('click', async () => {
-      const prenom = document.getElementById('input-prenom').value.trim();
-      const phoneRaw = document.getElementById('input-phone').value.trim();
-      const phoneError = document.getElementById('phone-error');
+function isFakePattern(digits) {
+  if (digits.length > 13) return true;
+  const uniq = new Set(digits.split('')).size;
+  if (uniq <= 2) return true;
+  if (/(.{2})\1{3}/.test(digits)) return true;
+  return false;
+}
 
-      // Validation
-      const phone = validatePhone(phoneRaw);
-      if (!phone) {
-        phoneError.classList.add('visible');
-        document.getElementById('input-phone').focus();
-        return;
-      }
-      phoneError.classList.remove('visible');
+document.getElementById('gateForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  clearError();
 
-      const btn = document.getElementById('gate-submit');
-      btn.textContent = 'Chargement...';
-      btn.disabled = true;
+  const firstName  = document.getElementById('firstName').value.trim();
+  const dialCode   = document.getElementById('dialCode').value;
+  const phoneLocal = document.getElementById('phone').value.trim().replace(/\s+/g, '');
 
-      // Envoi webhook Make.com
-      try {
-        await fetch(WEBHOOK_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            source: 'carte_interactive',
-            prenom: prenom || 'Non renseigné',
-            whatsapp: phone,
-            timestamp: new Date().toISOString(),
-          }),
-        });
-      } catch(e) {
-        // On laisse passer même si le webhook fail
-      }
+  // Validation prénom
+  if (!firstName || firstName.length < 2) {
+    showError('Merci d\'indiquer ton prénom (minimum 2 caractères).');
+    document.getElementById('firstName').focus();
+    return;
+  }
+  const fakePrenoms = ['test','azerty','qwerty','asdfgh','aaa','bbb','xxx','yyy'];
+  if (fakePrenoms.includes(firstName.toLowerCase())) {
+    showError('Merci d\'indiquer ton vrai prénom.');
+    return;
+  }
 
+  // Validation téléphone
+  const digits = phoneLocal.replace(/\D/g, '');
+  if (digits.length < 6) {
+    showError('Merci d\'indiquer un numéro de téléphone valide.');
+    document.getElementById('phone').focus();
+    return;
+  }
+  if (isFakePattern(digits)) {
+    showError('Ce numéro ne semble pas valide. Merci de saisir ton vrai numéro WhatsApp.');
+    return;
+  }
 
+  const fullPhone = dialCode.replace('+other', '') + digits;
+  setLoading(true);
 
-      // Afficher succès
-      document.getElementById('gate-form').classList.add('hidden');
-      document.getElementById('gate-success').classList.add('visible');
-      if (prenom) {
-        document.getElementById('success-title').textContent = `Bienvenue ${prenom} ! 🎉`;
-      }
-    });
+  // Webhook Make.com — fire-and-forget
+  fetch(WEBHOOK, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      source: 'carte_interactive',
+      prenom: firstName,
+      whatsapp: fullPhone,
+      timestamp: new Date().toISOString()
+    })
+  }).catch(function() {});
 
-    document.getElementById('success-open').addEventListener('click', () => {
-      const prenom = document.getElementById('input-prenom').value.trim();
-      unlockCarte(prenom, true);
-    });
-
-
-  </script>
-
+  // Afficher confirmation
+  document.getElementById('confirm-name').textContent = firstName;
+  document.getElementById('form-view').style.display = 'none';
+  document.getElementById('confirm').style.display = 'block';
+  setLoading(false);
+  window.scrollTo(0, 0);
+});
+</script>
 </body>
 </html>
