@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>📡 Le Radar — Projets Dubai | Clément Invest Dubai</title>
+  <title>Top 5 Projets Dubai Ce Mois-Ci — Rapport Gratuit</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
     * { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
-      --bg: #F0EDE8; --navy: #0F1F3D; --gold: #C9A84C; --gold-light: #f5e9c8;
+      --bg: #0F1F3D; --navy: #0F1F3D; --gold: #C9A84C; --gold-light: #f5e9c8;
       --white: #fff; --gray: #6b7280; --green: #059669;
     }
     body {
       font-family: 'Inter', sans-serif;
       background: var(--bg);
-      color: var(--navy);
+      color: var(--white);
       min-height: 100vh;
       display: flex;
       align-items: center;
@@ -22,38 +22,87 @@
       padding: 24px;
     }
 
-    .box {
-      background: var(--white);
-      border-radius: 24px;
-      padding: 52px 44px;
+    .wrap {
       max-width: 480px;
       width: 100%;
-      box-shadow: 0 12px 48px rgba(15,31,61,0.12);
       text-align: center;
     }
 
-    /* ── Vue formulaire ── */
-    .eyebrow {
-      font-size: 12px; font-weight: 800; letter-spacing: 2.5px;
-      text-transform: uppercase; color: var(--gold); margin-bottom: 10px;
-    }
-    h1 {
-      font-size: 32px; font-weight: 900; color: var(--navy);
-      line-height: 1.15; margin-bottom: 14px;
-    }
-    h1 em { color: var(--gold); font-style: normal; }
-    .sub {
-      font-size: 15px; color: var(--gray); line-height: 1.65; margin-bottom: 28px;
-    }
-    .pills {
-      display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 32px;
-    }
-    .pill {
-      background: var(--gold-light); color: var(--navy);
-      font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 30px;
+    /* Badge urgence */
+    .badge-urgence {
+      display: inline-block;
+      background: #dc2626;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
     }
 
-    /* Form */
+    h1 {
+      font-size: 36px;
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    h1 em { color: var(--gold); font-style: normal; }
+
+    .sub {
+      font-size: 16px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    /* Preuves */
+    .proofs {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+    .proof {
+      text-align: center;
+    }
+    .proof-num {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--gold);
+    }
+    .proof-label {
+      font-size: 11px;
+      color: rgba(255,255,255,0.55);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Box formulaire */
+    .box {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 36px 32px;
+      color: var(--navy);
+    }
+
+    .box-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .box-sub {
+      font-size: 13px;
+      color: var(--gray);
+      margin-bottom: 22px;
+      line-height: 1.5;
+    }
+
     .form { display: flex; flex-direction: column; gap: 12px; }
     .form input {
       padding: 15px 18px; border: 2px solid #e5e7eb; border-radius: 12px;
@@ -67,22 +116,22 @@
     .phone-row select {
       padding: 15px 10px; border: 2px solid #e5e7eb; border-radius: 12px;
       font-size: 14px; font-family: inherit; color: var(--navy); outline: none;
-      transition: border .2s; background: #fff; cursor: pointer;
-      min-width: 120px; flex-shrink: 0;
+      background: #fff; cursor: pointer; min-width: 110px; flex-shrink: 0;
     }
     .phone-row select:focus { border-color: var(--gold); }
     .phone-row input { flex: 1; }
 
     .submit-btn {
       background: var(--gold); color: var(--navy);
-      font-size: 16px; font-weight: 800; padding: 17px;
+      font-size: 17px; font-weight: 900; padding: 18px;
       border: none; border-radius: 12px; cursor: pointer;
       transition: all .2s; font-family: inherit;
+      letter-spacing: 0.3px;
     }
-    .submit-btn:hover { background: #b8943e; transform: translateY(-2px); }
+    .submit-btn:hover { background: #b8943e; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,0.35); }
     .submit-btn:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
 
-    .note { font-size: 12px; color: #9ca3af; margin-top: 14px; }
+    .note { font-size: 12px; color: #9ca3af; margin-top: 12px; }
 
     .error-msg {
       background: #fef2f2; border: 1.5px solid #fca5a5;
@@ -91,42 +140,56 @@
       display: none; text-align: left;
     }
 
-    /* ── Vue confirmation ── */
-    #confirm { display: none; }
-    .confirm-icon {
-      width: 72px; height: 72px; background: #ecfdf5;
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-size: 36px; margin: 0 auto 24px;
+    /* Ce que tu reçois */
+    .what-you-get {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 22px;
+      text-align: left;
     }
-    .confirm-title {
-      font-size: 26px; font-weight: 900; color: var(--navy); margin-bottom: 12px;
+    .get-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--navy);
+      line-height: 1.4;
     }
-    .confirm-text {
-      font-size: 15px; color: var(--gray); line-height: 1.7; margin-bottom: 28px;
+    .get-icon {
+      color: var(--gold);
+      font-weight: 900;
+      flex-shrink: 0;
+      margin-top: 1px;
     }
-    .confirm-text strong { color: var(--navy); }
-    .confirm-wa {
-      display: flex; align-items: center; justify-content: center; gap: 10px;
-      background: #25D366; color: #fff;
-      font-size: 15px; font-weight: 800; padding: 16px 24px;
-      border-radius: 12px; text-decoration: none; transition: opacity .2s;
-      margin-bottom: 10px;
-    }
-    .confirm-wa:hover { opacity: 0.88; }
+
+    /* Confirmation */
+    #confirm { display: none; text-align: center; }
+    .confirm-icon { font-size: 52px; margin-bottom: 16px; }
+    .confirm-title { font-size: 24px; font-weight: 900; color: var(--navy); margin-bottom: 10px; }
+    .confirm-text { font-size: 14px; color: var(--gray); line-height: 1.65; margin-bottom: 20px; }
     .confirm-quiz {
       display: flex; align-items: center; justify-content: center; gap: 10px;
       background: var(--gold); color: var(--navy);
       font-size: 15px; font-weight: 800; padding: 16px 24px;
-      border-radius: 12px; text-decoration: none; transition: opacity .2s;
+      border-radius: 12px; text-decoration: none;
     }
-    .confirm-quiz:hover { opacity: 0.88; }
-    .confirm-note { font-size: 12px; color: #9ca3af; margin-top: 14px; }
+
+    /* Footer minimal */
+    .footer-min {
+      margin-top: 24px;
+      font-size: 11px;
+      color: rgba(255,255,255,0.3);
+      text-align: center;
+    }
+    .footer-min a { color: rgba(255,255,255,0.4); text-decoration: none; }
 
     @media (max-width: 500px) {
-      .box { padding: 36px 20px; }
-      h1 { font-size: 26px; }
+      h1 { font-size: 28px; }
+      .box { padding: 28px 20px; }
     }
   </style>
+
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -144,73 +207,83 @@ fbq("track", "PageView");
 src="https://www.facebook.com/tr?id=257203259730727&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
-
 </head>
 <body>
 
-<div class="box">
+<div class="wrap">
 
-  <!-- ── FORMULAIRE ── -->
-  <div id="form-view">
-    <div class="eyebrow">Clément Invest Dubai</div>
-    <h1>📡 Le <em>Radar</em><br>des Projets</h1>
-    <p class="sub">Chaque semaine, les meilleurs projets Dubai décortiqués : prix, plans de paiement, potentiel. Accès gratuit, réservé aux investisseurs sérieux.</p>
-    <div class="pills">
-      <span class="pill">🟡 Opportunités marché</span>
-      <span class="pill">🔴 Lancements en cours</span>
-      <span class="pill">🟠 Lancements à venir</span>
+  <!-- HEADLINE -->
+  <div class="badge-urgence">🔴 Mis à jour chaque semaine</div>
+  <h1>Top 5 Projets<br><em>Off-Plan Dubai</em><br>Ce Mois-Ci</h1>
+  <p class="sub">Prix d'entrée, rendement locatif estimé, plus-value attendue.<br>Gratuit. Sans engagement. Réservé aux investisseurs sérieux.</p>
+
+  <!-- PREUVES SOCIALES -->
+  <div class="proofs">
+    <div class="proof">
+      <div class="proof-num">297+</div>
+      <div class="proof-label">Investisseurs inscrits</div>
     </div>
-    <form class="form" id="gateForm" novalidate>
-      <input type="text" id="firstName" placeholder="Ton prénom" autocomplete="given-name">
-      <div class="phone-row">
-        <select id="dialCode">
-          <option value="+33">🇫🇷 +33</option>
-          <option value="+32">🇧🇪 +32</option>
-          <option value="+41">🇨🇭 +41</option>
-          <option value="+352">🇱🇺 +352</option>
-          <option value="+1">🇨🇦 +1</option>
-          <option value="+971">🇦🇪 +971</option>
-          <option value="+212">🇲🇦 +212</option>
-          <option value="+213">🇩🇿 +213</option>
-          <option value="+216">🇹🇳 +216</option>
-          <option value="+221">🇸🇳 +221</option>
-          <option value="+225">🇨🇮 +225</option>
-          <option value="+44">🇬🇧 +44</option>
-          <option value="+49">🇩🇪 +49</option>
-          <option value="+34">🇪🇸 +34</option>
-          <option value="+39">🇮🇹 +39</option>
-          <option value="+1">🇺🇸 +1</option>
-          <option value="+other">Autre</option>
-        </select>
-        <input type="tel" id="phone" placeholder="6 12 34 56 78" autocomplete="tel-national">
-      </div>
-      <div class="error-msg" id="error-msg"></div>
-      <button type="submit" class="submit-btn" id="submitBtn">Recevoir le lien par WhatsApp →</button>
-    </form>
-    <p class="note">🔒 Pas de spam. On t'envoie juste le lien.</p>
+    <div class="proof">
+      <div class="proof-num">7-9%</div>
+      <div class="proof-label">Renta locative moyenne</div>
+    </div>
+    <div class="proof">
+      <div class="proof-num">5 ans</div>
+      <div class="proof-label">Sur le marché Dubai</div>
+    </div>
   </div>
 
-  <!-- ── CONFIRMATION ── -->
-  <div id="confirm">
-    <div class="confirm-icon">✅</div>
-    <div class="confirm-title">C'est noté, <span id="confirm-name"></span>&nbsp;!</div>
-    <p class="confirm-text">
-      <strong>Vous allez recevoir le lien du Radar via WhatsApp.</strong>
-    </p>
-    <p class="confirm-text" style="margin-top:18px">
-      Si vous le souhaitez, vous pouvez aussi déterminer quels sont les quartiers et promoteurs adaptés à votre profil :
-    </p>
-    <a class="confirm-quiz" href="https://go.clementinvestdubai.com/quiz" target="_blank" style="margin-top:10px">
-      🎯 Découvrir mon profil investisseur
-    </a>
-    <p class="confirm-text" style="margin-top:22px">
-      Ou prendre rendez-vous directement avec nous pour toute question ou pour parler de votre projet :
-    </p>
-    <a class="confirm-wa" href="https://wa.me/33624835980?text=Bonjour%20Cl%C3%A9ment%2C%20je%20viens%20de%20m%27inscrire%20sur%20le%20Radar%20et%20j%27aimerais%20%C3%A9changer%20avec%20vous%20pour%20un%20premier%20rendez-vous." target="_blank" style="margin-top:10px">
-      <svg width="22" height="22" viewBox="0 0 32 32" fill="white"><path d="M16 3C9.373 3 4 8.373 4 15c0 2.385.668 4.61 1.822 6.51L4 29l7.697-1.8A12.94 12.94 0 0016 28c6.627 0 12-5.373 12-12S22.627 3 16 3zm0 22a10.94 10.94 0 01-5.57-1.526l-.398-.237-4.572 1.069 1.101-4.454-.26-.416A10.94 10.94 0 015 15c0-6.065 4.935-11 11-11s11 4.935 11 11-4.935 11-11 11zm5.906-7.994c-.325-.162-1.921-.948-2.219-1.057-.299-.108-.517-.162-.735.162-.219.325-.843 1.057-.975 1.273-.13.217-.26.243-.584.081-.325-.162-1.37-.506-2.609-1.61-.964-.86-1.615-1.921-1.805-2.245-.189-.325-.02-.5.142-.661.146-.145.325-.379.487-.568.163-.19.217-.325.325-.541.108-.217.054-.406-.027-.568-.081-.162-.735-1.773-1.007-2.428-.265-.637-.535-.55-.735-.56l-.626-.01c-.217 0-.568.081-.866.406-.298.325-1.138 1.112-1.138 2.713 0 1.601 1.165 3.147 1.327 3.364.162.217 2.293 3.502 5.557 4.91.777.336 1.383.536 1.856.686.78.248 1.49.213 2.051.129.625-.093 1.921-.785 2.193-1.544.27-.76.27-1.41.19-1.544-.083-.135-.3-.217-.624-.379z"/></svg>
-      Prendre rendez-vous
-    </a>
-    <p class="confirm-note" style="margin-top:14px">WhatsApp : +33 6 24 83 59 80</p>
+  <!-- FORMULAIRE -->
+  <div class="box">
+    <div class="box-title">Accéder au rapport gratuit →</div>
+    <div class="box-sub">Reçois le lien instantanément sur WhatsApp</div>
+
+    <!-- CE QUE TU REÇOIS -->
+    <div class="what-you-get">
+      <div class="get-item"><span class="get-icon">✓</span><span>Top 5 projets off-plan sélectionnés ce mois</span></div>
+      <div class="get-item"><span class="get-icon">✓</span><span>Prix d'entrée, plan de paiement, renta estimée</span></div>
+      <div class="get-item"><span class="get-icon">✓</span><span>Mon analyse : ce que les agents ne disent pas</span></div>
+      <div class="get-item"><span class="get-icon">✓</span><span>Mis à jour chaque semaine — accès permanent</span></div>
+    </div>
+
+    <div id="form-view">
+      <form class="form" id="gateForm" novalidate>
+        <input type="text" id="firstName" placeholder="Ton prénom" autocomplete="given-name">
+        <div class="phone-row">
+          <select id="dialCode">
+            <option value="+33">🇫🇷 +33</option>
+            <option value="+32">🇧🇪 +32</option>
+            <option value="+41">🇨🇭 +41</option>
+            <option value="+352">🇱🇺 +352</option>
+            <option value="+971">🇦🇪 +971</option>
+            <option value="+212">🇲🇦 +212</option>
+            <option value="+213">🇩🇿 +213</option>
+            <option value="+216">🇹🇳 +216</option>
+            <option value="+44">🇬🇧 +44</option>
+            <option value="+1">🇺🇸/🇨🇦 +1</option>
+            <option value="+other">Autre</option>
+          </select>
+          <input type="tel" id="phone" placeholder="6 12 34 56 78" autocomplete="tel-national">
+        </div>
+        <div class="error-msg" id="error-msg"></div>
+        <button type="submit" class="submit-btn" id="submitBtn">Obtenir le rapport gratuit →</button>
+      </form>
+      <p class="note">🔒 Zéro spam. Juste le rapport, directement sur WhatsApp.</p>
+    </div>
+
+    <!-- CONFIRMATION -->
+    <div id="confirm">
+      <div class="confirm-icon">✅</div>
+      <div class="confirm-title">C'est parti, <span id="confirm-name"></span>&nbsp;!</div>
+      <p class="confirm-text">Tu reçois le lien du Radar sur WhatsApp dans quelques secondes.<br><br>En attendant, découvrez quel type de projet Dubai correspond vraiment à votre profil :</p>
+      <a class="confirm-quiz" href="https://go.clementinvestdubai.com/quiz" target="_blank">
+        🎯 Faire le quiz investisseur →
+      </a>
+    </div>
+  </div>
+
+  <div class="footer-min">
+    <a href="https://go.clementinvestdubai.com">clementinvestdubai.com</a> · Agent immobilier certifié Dubai · RERA
   </div>
 
 </div>
@@ -229,15 +302,13 @@ function clearError() {
 function setLoading(on) {
   const btn = document.getElementById('submitBtn');
   btn.disabled = on;
-  btn.textContent = on ? 'Envoi en cours…' : 'Recevoir le lien par WhatsApp →';
+  btn.textContent = on ? 'Envoi en cours…' : 'Obtenir le rapport gratuit →';
 }
 
-// Blacklist patterns faux numéros
 function isFakePattern(digits) {
   if (digits.length > 13) return true;
   const uniq = new Set(digits.split('')).size;
   if (uniq <= 2) return true;
-  // répétition 4+ fois d'un groupe de 2
   if (/(.{2})\1{3}/.test(digits)) return true;
   return false;
 }
@@ -246,11 +317,10 @@ document.getElementById('gateForm').addEventListener('submit', async function(e)
   e.preventDefault();
   clearError();
 
-  const firstName = document.getElementById('firstName').value.trim();
-  const dialCode  = document.getElementById('dialCode').value;
+  const firstName  = document.getElementById('firstName').value.trim();
+  const dialCode   = document.getElementById('dialCode').value;
   const phoneLocal = document.getElementById('phone').value.trim().replace(/\s+/g, '');
 
-  // Validation prénom
   if (!firstName || firstName.length < 2) {
     showError('Merci d\'indiquer ton prénom (minimum 2 caractères).');
     document.getElementById('firstName').focus();
@@ -262,7 +332,6 @@ document.getElementById('gateForm').addEventListener('submit', async function(e)
     return;
   }
 
-  // Validation téléphone
   const digits = phoneLocal.replace(/\D/g, '');
   if (digits.length < 6) {
     showError('Merci d\'indiquer un numéro de téléphone valide.');
@@ -277,22 +346,20 @@ document.getElementById('gateForm').addEventListener('submit', async function(e)
   const fullPhone = dialCode.replace('+other', '') + digits;
   setLoading(true);
 
-  // Meta Pixel — événement Lead
-  if (typeof fbq === 'function') { fbq('track', 'Lead', { content_name: 'Radar', content_category: 'real_estate' }); }
+  // Meta Pixel — Lead
+  if (typeof fbq === 'function') { fbq('track', 'Lead', { content_name: 'Radar-Ads', content_category: 'real_estate' }); }
 
-  // Envoi webhook (fire-and-forget)
   fetch(WEBHOOK, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      source: 'radar',
+      source: 'radar-ads',
       prenom: firstName,
       whatsapp: fullPhone,
       timestamp: new Date().toISOString()
     })
   }).catch(function() {});
 
-  // Afficher confirmation immédiatement
   document.getElementById('confirm-name').textContent = firstName;
   document.getElementById('form-view').style.display = 'none';
   document.getElementById('confirm').style.display = 'block';
