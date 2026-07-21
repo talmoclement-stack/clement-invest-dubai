@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz · Quel Projet Dubai Correspond À Votre Profil ?</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #0F1F3D; --navy: #0F1F3D; --gold: #C9A84C;
+      --white: #fff; --gray: #6b7280;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--white);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .wrap { max-width: 480px; width: 100%; text-align: center; }
+
+    .badge {
+      display: inline-block;
+      background: #7c3aed;
+      color: #fff;
+      font-size: 11px; font-weight: 800;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 34px; font-weight: 900;
+      line-height: 1.1; margin-bottom: 16px;
+    }
+    h1 em { color: var(--gold); font-style: normal; }
+
+    .sub {
+      font-size: 15px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    /* Profils preview */
+    .profils {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+    .profil-chip {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 30px;
+      padding: 7px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.85);
+    }
+
+    /* Box */
+    .box {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 36px 32px;
+      color: var(--navy);
+    }
+    .box-title { font-size: 17px; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
+    .box-sub { font-size: 13px; color: var(--gray); margin-bottom: 22px; line-height: 1.5; }
+
+    .what-you-get { display: flex; flex-direction: column; gap: 8px; margin-bottom: 22px; text-align: left; }
+    .get-item { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--navy); line-height: 1.4; }
+    .get-icon { color: #7c3aed; font-weight: 900; flex-shrink: 0; margin-top: 1px; }
+
+    .submit-btn {
+      width: 100%;
+      background: var(--gold); color: var(--navy);
+      font-size: 17px; font-weight: 900; padding: 18px;
+      border: none; border-radius: 12px; cursor: pointer;
+      transition: all .2s; font-family: inherit;
+    }
+    .submit-btn:hover { background: #b8943e; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,0.35); }
+
+    .note { font-size: 12px; color: #9ca3af; margin-top: 12px; }
+
+    /* Confirmation */
+    #confirm { display: none; }
+    .confirm-icon { font-size: 52px; margin-bottom: 16px; }
+    .confirm-title { font-size: 24px; font-weight: 900; color: var(--navy); margin-bottom: 10px; }
+    .confirm-text { font-size: 14px; color: var(--gray); line-height: 1.65; margin-bottom: 20px; }
+    .confirm-cta {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      background: #7c3aed; color: #fff;
+      font-size: 15px; font-weight: 800; padding: 16px 24px;
+      border-radius: 12px; text-decoration: none;
+    }
+
+    .footer-min { margin-top: 24px; font-size: 11px; color: rgba(255,255,255,0.3); }
+    .footer-min a { color: rgba(255,255,255,0.4); text-decoration: none; }
+
+    @media (max-width: 500px) {
+      h1 { font-size: 26px; }
+      .box { padding: 28px 20px; }
+    }
+  </style>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version="2.0";
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,"script",
+"https://connect.facebook.net/en_US/fbevents.js");
+fbq("init", "257203259730727");
+fbq("track", "PageView");
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=257203259730727&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="badge">🎯 Quiz investisseur · 2 minutes</div>
+  <h1>Quel <em>Quartier & Promoteur</em><br>Dubai Pour Vous ?</h1>
+  <p class="sub">8 questions. Résultat personnalisé immédiat.<br>Quartier, promoteur et projet selon votre profil. Gratuit, sans engagement.</p>
+
+  <!-- Profils preview -->
+  <div class="profils">
+    <div class="profil-chip">🎯 Chasseur de Cash-Flow</div>
+    <div class="profil-chip">🚀 Pionnier Stratège</div>
+    <div class="profil-chip">🏗️ Bâtisseur</div>
+    <div class="profil-chip">🏖️ Résident-Investisseur</div>
+  </div>
+
+  <!-- BOX -->
+  <div class="box">
+    <div class="box-title">Obtenez votre recommandation personnalisée →</div>
+    <div class="box-sub">Résultat immédiat · Gratuit · Sans inscription</div>
+
+    <div class="what-you-get">
+      <div class="get-item"><span class="get-icon">✓</span><span>Votre profil investisseur parmi 4 types</span></div>
+      <div class="get-item"><span class="get-icon">✓</span><span>Le quartier Dubai qui correspond à vos objectifs</span></div>
+      <div class="get-item"><span class="get-icon">✓</span><span>Le promoteur recommandé selon votre budget</span></div>
+      <div class="get-item"><span class="get-icon">✓</span><span>Les projets concrets à surveiller maintenant</span></div>
+    </div>
+
+    <div id="cta-view">
+      <a href="https://go.clementinvestdubai.com/quiz" class="submit-btn" style="display:block;text-decoration:none;text-align:center;" onclick="trackClick()">
+        Faire le quiz — Résultat immédiat →
+      </a>
+      <p class="note">🔒 Gratuit · Sans engagement · 100% personnalisé</p>
+    </div>
+  </div>
+
+  <div class="footer-min">
+    <a href="https://go.clementinvestdubai.com">clementinvestdubai.com</a> · Agent immobilier certifié Dubai · RERA
+  </div>
+
+</div>
+
+<script>
+function trackClick() {
+  if (typeof fbq === 'function') {
+    fbq('track', 'Lead', { content_name: 'Quiz-Ads', content_category: 'real_estate' });
+  }
+}
+</script>
+</body>
+</html>

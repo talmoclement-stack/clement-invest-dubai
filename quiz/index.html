@@ -1098,6 +1098,9 @@ src="https://www.facebook.com/tr?id=257203259730727&ev=PageView&noscript=1"
         geo: answers.geo || '',
         source: 'quiz.clementinvestdubai.com'
       };
+      // Meta Pixel — événement Lead
+      if (typeof fbq === 'function') { fbq('track', 'Lead', { content_name: 'Quiz', content_category: 'real_estate' }); }
+
       fetch('https://hook.eu1.make.com/2druy645e9jwt2au52euhzqd45tm8bb7', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

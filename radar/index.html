@@ -277,6 +277,9 @@ document.getElementById('gateForm').addEventListener('submit', async function(e)
   const fullPhone = dialCode.replace('+other', '') + digits;
   setLoading(true);
 
+  // Meta Pixel — événement Lead
+  if (typeof fbq === 'function') { fbq('track', 'Lead', { content_name: 'Radar', content_category: 'real_estate' }); }
+
   // Envoi webhook (fire-and-forget)
   fetch(WEBHOOK, {
     method: 'POST',

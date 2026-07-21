@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top 5 Projets Dubai Ce Mois-Ci — Rapport Gratuit</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #0F1F3D; --navy: #0F1F3D; --gold: #C9A84C; --gold-light: #f5e9c8;
+      --white: #fff; --gray: #6b7280; --green: #059669;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--white);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .wrap {
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+    }
+
+    /* Badge urgence */
+    .badge-urgence {
+      display: inline-block;
+      background: #dc2626;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 36px;
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    h1 em { color: var(--gold); font-style: normal; }
+
+    .sub {
+      font-size: 16px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    /* Preuves */
+    .proofs {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+    .proof {
+      text-align: center;
+    }
+    .proof-num {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--gold);
+    }
+    .proof-label {
+      font-size: 11px;
+      color: rgba(255,255,255,0.55);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Box formulaire */
+    .box {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 36px 32px;
+      color: var(--navy);
+    }
+
+    .box-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .box-sub {
+      font-size: 13px;
+      color: var(--gray);
+      margin-bottom: 22px;
+      line-height: 1.5;
+    }
+
+    .form { display: flex; flex-direction: column; gap: 12px; }
+    .form input {
+      padding: 15px 18px; border: 2px solid #e5e7eb; border-radius: 12px;
+      font-size: 15px; font-family: inherit; color: var(--navy); outline: none;
+      transition: border .2s;
+    }
+    .form input:focus { border-color: var(--gold); }
+    .form input::placeholder { color: #9ca3af; }
+
+    .phone-row { display: flex; gap: 8px; }
+    .phone-row select {
+      padding: 15px 10px; border: 2px solid #e5e7eb; border-radius: 12px;
+      font-size: 14px; font-family: inherit; color: var(--navy); outline: none;
+      background: #fff; cursor: pointer; min-width: 110px; flex-shrink: 0;
+    }
+    .phone-row select:focus { border-color: var(--gold); }
+    .phone-row input { flex: 1; }
+
+    .submit-btn {
+      background: var(--gold); color: var(--navy);
+      font-size: 17px; font-weight: 900; padding: 18px;
+      border: none; border-radius: 12px; cursor: pointer;
+      transition: all .2s; font-family: inherit;
+      letter-spacing: 0.3px;
+    }
+    .submit-btn:hover { background: #b8943e; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,0.35); }
+    .submit-btn:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
+
+    .note { font-size: 12px; color: #9ca3af; margin-top: 12px; }
+
+    .error-msg {
+      background: #fef2f2; border: 1.5px solid #fca5a5;
+      border-radius: 10px; padding: 10px 14px;
+      font-size: 13px; color: #dc2626; font-weight: 600;
+      display: none; text-align: left;
+    }
+
+    /* Ce que tu reçois */
+    .what-you-get {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 22px;
+      text-align: left;
+    }
+    .get-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--navy);
+      line-height: 1.4;
+    }
+    .get-icon {
+      color: var(--gold);
+      font-weight: 900;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* Confirmation */
+    #confirm { display: none; text-align: center; }
+    .confirm-icon { font-size: 52px; margin-bottom: 16px; }
+    .confirm-title { font-size: 24px; font-weight: 900; color: var(--navy); margin-bottom: 10px; }
+    .confirm-text { font-size: 14px; color: var(--gray); line-height: 1.65; margin-bottom: 20px; }
+    .confirm-quiz {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      background: var(--gold); color: var(--navy);
+      font-size: 15px; font-weight: 800; padding: 16px 24px;
+      border-radius: 12px; text-decoration: none;
+    }
+
+    /* Footer minimal */
+    .footer-min {
+      margin-top: 24px;
+      font-size: 11px;
+      color: rgba(255,255,255,0.3);
+      text-align: center;
+    }
+    .footer-min a { color: rgba(255,255,255,0.4); text-decoration: none; }
+
+    @media (max-width: 500px) {
+      h1 { font-size: 28px; }
+      .box { padding: 28px 20px; }
+    }
+  </style>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version="2.0";
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,"script",
+"https://connect.facebook.net/en_US/fbevents.js");
+fbq("init", "257203259730727");
+fbq("track", "PageView");
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=257203259730727&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- HEADLINE -->
+  <div class="badge-urgence">🔴 Mis à jour chaque semaine</div>
+  <h1>Top 5 Projets<br><em>Off-Plan Dubai</em><br>Ce Mois-Ci</h1>
+  <p class="sub">Prix d'entrée, rendement locatif estimé, plus-value attendue.<br>Gratuit. Sans engagement. Réservé aux investisseurs sérieux.</p>
+
+  <!-- PREUVES SOCIALES -->
+  <div class="proofs">
+    <div class="proof">
+      <div class="proof-num">297+</div>
+      <div class="proof-label">Investisseurs inscrits</div>
+    </div>
+    <div class="proof">
+      <div class="proof-num">7-9%</div>
+      <div class="proof-label">Renta locative moyenne</div>
+    </div>
+    <div class="proof">
+      <div class="proof-num">5 ans</div>
+      <div class="proof-label">Sur le marché Dubai</div>
+    </div>
+  </div>
+
+  <!-- FORMULAIRE -->
+  <div class="box">
+    <div class="box-title">Accéder au rapport gratuit →</div>
+    <div class="box-sub">Reçois le lien instantanément sur WhatsApp</div>
+
+    <!-- CE QUE TU REÇOIS -->
+    <div class="what-you-get">
+      <div class="get-item"><span class="get-icon">✓</span><span>Top 5 projets off-plan sélectionnés ce mois</span></div>
+      <div class="get-item"><span class="get-icon">✓</span><span>Prix d'entrée, plan de paiement, renta estimée</span></div>
+      <div class="get-item"><span class="get-icon">✓</span><span>Mon analyse : ce que les agents ne disent pas</span></div>
+      <div class="get-item"><span class="get-icon">✓</span><span>Mis à jour chaque semaine — accès permanent</span></div>
+    </div>
+
+    <div id="form-view">
+      <form class="form" id="gateForm" novalidate>
+        <input type="text" id="firstName" placeholder="Ton prénom" autocomplete="given-name">
+        <div class="phone-row">
+          <select id="dialCode">
+            <option value="+33">🇫🇷 +33</option>
+            <option value="+32">🇧🇪 +32</option>
+            <option value="+41">🇨🇭 +41</option>
+            <option value="+352">🇱🇺 +352</option>
+            <option value="+971">🇦🇪 +971</option>
+            <option value="+212">🇲🇦 +212</option>
+            <option value="+213">🇩🇿 +213</option>
+            <option value="+216">🇹🇳 +216</option>
+            <option value="+44">🇬🇧 +44</option>
+            <option value="+1">🇺🇸/🇨🇦 +1</option>
+            <option value="+other">Autre</option>
+          </select>
+          <input type="tel" id="phone" placeholder="6 12 34 56 78" autocomplete="tel-national">
+        </div>
+        <div class="error-msg" id="error-msg"></div>
+        <button type="submit" class="submit-btn" id="submitBtn">Obtenir le rapport gratuit →</button>
+      </form>
+      <p class="note">🔒 Zéro spam. Juste le rapport, directement sur WhatsApp.</p>
+    </div>
+
+    <!-- CONFIRMATION -->
+    <div id="confirm">
+      <div class="confirm-icon">✅</div>
+      <div class="confirm-title">C'est parti, <span id="confirm-name"></span>&nbsp;!</div>
+      <p class="confirm-text">Tu reçois le lien du Radar sur WhatsApp dans quelques secondes.<br><br>En attendant, découvrez quel type de projet Dubai correspond vraiment à votre profil :</p>
+      <a class="confirm-quiz" href="https://go.clementinvestdubai.com/quiz" target="_blank">
+        🎯 Faire le quiz investisseur →
+      </a>
+    </div>
+  </div>
+
+  <div class="footer-min">
+    <a href="https://go.clementinvestdubai.com">clementinvestdubai.com</a> · Agent immobilier certifié Dubai · RERA
+  </div>
+
+</div>
+
+<script>
+const WEBHOOK = 'https://hook.eu1.make.com/2druy645e9jwt2au52euhzqd45tm8bb7';
+
+function showError(msg) {
+  const el = document.getElementById('error-msg');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+function clearError() {
+  document.getElementById('error-msg').style.display = 'none';
+}
+function setLoading(on) {
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = on;
+  btn.textContent = on ? 'Envoi en cours…' : 'Obtenir le rapport gratuit →';
+}
+
+function isFakePattern(digits) {
+  if (digits.length > 13) return true;
+  const uniq = new Set(digits.split('')).size;
+  if (uniq <= 2) return true;
+  if (/(.{2})\1{3}/.test(digits)) return true;
+  return false;
+}
+
+document.getElementById('gateForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  clearError();
+
+  const firstName  = document.getElementById('firstName').value.trim();
+  const dialCode   = document.getElementById('dialCode').value;
+  const phoneLocal = document.getElementById('phone').value.trim().replace(/\s+/g, '');
+
+  if (!firstName || firstName.length < 2) {
+    showError('Merci d\'indiquer ton prénom (minimum 2 caractères).');
+    document.getElementById('firstName').focus();
+    return;
+  }
+  const fakePrenoms = ['test','azerty','qwerty','asdfgh','aaa','bbb','xxx','yyy'];
+  if (fakePrenoms.includes(firstName.toLowerCase())) {
+    showError('Merci d\'indiquer ton vrai prénom.');
+    return;
+  }
+
+  const digits = phoneLocal.replace(/\D/g, '');
+  if (digits.length < 6) {
+    showError('Merci d\'indiquer un numéro de téléphone valide.');
+    document.getElementById('phone').focus();
+    return;
+  }
+  if (isFakePattern(digits)) {
+    showError('Ce numéro ne semble pas valide. Merci de saisir ton vrai numéro WhatsApp.');
+    return;
+  }
+
+  const fullPhone = dialCode.replace('+other', '') + digits;
+  setLoading(true);
+
+  // Meta Pixel — Lead
+  if (typeof fbq === 'function') { fbq('track', 'Lead', { content_name: 'Radar-Ads', content_category: 'real_estate' }); }
+
+  fetch(WEBHOOK, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      source: 'radar-ads',
+      prenom: firstName,
+      whatsapp: fullPhone,
+      timestamp: new Date().toISOString()
+    })
+  }).catch(function() {});
+
+  document.getElementById('confirm-name').textContent = firstName;
+  document.getElementById('form-view').style.display = 'none';
+  document.getElementById('confirm').style.display = 'block';
+  setLoading(false);
+  window.scrollTo(0, 0);
+});
+</script>
+</body>
+</html>
