@@ -28,55 +28,40 @@ html, body {
 }
 
 body {
-  background: var(--cream);
+  background: #fff;
   color: var(--navy);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   padding: 0;
 }
 
-/* Hero — image de fond pleine hauteur */
+/* Hero */
 .hero {
   position: relative;
   width: 100%;
   max-width: 480px;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  overflow: hidden;
+  align-items: center;
 }
 
+/* Image créative complète */
 .hero-bg {
-  position: absolute;
-  inset: 0;
-  background-image: url('quiz-bg.png');
-  background-size: cover;
-  background-position: center top;
-  background-repeat: no-repeat;
-  z-index: 0;
+  width: 100%;
+  display: block;
 }
 
-/* Dégradé bas pour lisibilité du CTA */
-.hero-gradient {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 280px;
-  background: linear-gradient(to bottom, transparent, rgba(242,237,227,0.97) 45%, var(--cream) 70%);
-  z-index: 1;
-}
+.hero-gradient { display: none; }
 
-/* Contenu superposé */
+/* Contenu sous l'image */
 .hero-content {
-  position: relative;
-  z-index: 2;
+  width: 100%;
   padding: 24px 24px 36px;
   text-align: center;
+  background: #fff;
 }
 
 /* Icônes preuves */
@@ -175,12 +160,10 @@ src="https://www.facebook.com/tr?id=257203259730727&ev=PageView&noscript=1"/></n
 <body>
 
 <div class="hero">
-  <!-- Image de fond = créative Meta -->
-  <div class="hero-bg"></div>
-  <!-- Dégradé pour lisibilité CTA -->
-  <div class="hero-gradient"></div>
+  <!-- Image créative complète -->
+  <img src="quiz-bg.png" class="hero-bg" alt="Quiz investisseur Dubai">
 
-  <!-- Contenu en bas de page -->
+  <!-- Contenu CTA -->
   <div class="hero-content">
 
     <!-- Preuves -->
