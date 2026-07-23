@@ -1328,6 +1328,11 @@ src="https://www.facebook.com/tr?id=257203259730727&ev=PageView&noscript=1"
       document.getElementById('screen-intro').classList.remove('hidden');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+
+    // Auto-start si ?start=1 dans l'URL (depuis quiz-ads)
+    if (new URLSearchParams(window.location.search).get('start') === '1') {
+      window.addEventListener('DOMContentLoaded', function() { startQuiz(); });
+    }
   </script>
 
 </body>
