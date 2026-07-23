@@ -9,116 +9,168 @@
   gtag('js', new Date());
   gtag('config', 'AW-17772499593');
 </script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quiz · Quel Projet Dubai Correspond À Votre Profil ?</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    :root {
-      --bg: #0F1F3D; --navy: #0F1F3D; --gold: #C9A84C;
-      --white: #fff; --gray: #6b7280;
-    }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--white);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-    }
-    .wrap { max-width: 480px; width: 100%; text-align: center; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz · Quel investisseur à Dubai es-tu ?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --cream: #F5F0E8;
+  --navy: #0F1F3D;
+  --gold: #C9A84C;
+  --gold-dark: #A8892E;
+}
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--cream);
+  color: var(--navy);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px;
+}
 
-    .badge {
-      display: inline-block;
-      background: #7c3aed;
-      color: #fff;
-      font-size: 11px; font-weight: 800;
-      letter-spacing: 1.5px; text-transform: uppercase;
-      padding: 5px 14px; border-radius: 20px;
-      margin-bottom: 20px;
-    }
+.wrap {
+  max-width: 460px;
+  width: 100%;
+  text-align: center;
+}
 
-    h1 {
-      font-size: 34px; font-weight: 900;
-      line-height: 1.1; margin-bottom: 16px;
-    }
-    h1 em { color: var(--gold); font-style: normal; }
+/* Titre */
+h1 {
+  font-size: 42px;
+  font-weight: 900;
+  color: var(--navy);
+  line-height: 1.05;
+  margin-bottom: 10px;
+  letter-spacing: -1px;
+}
 
-    .sub {
-      font-size: 15px;
-      color: rgba(255,255,255,0.7);
-      line-height: 1.6;
-      margin-bottom: 28px;
-    }
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 14px 0;
+}
+.divider-line {
+  width: 60px;
+  height: 1px;
+  background: var(--gold);
+}
+.divider-diamond {
+  width: 8px;
+  height: 8px;
+  background: var(--gold);
+  transform: rotate(45deg);
+}
 
-    /* Profils preview */
-    .profils {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 32px;
-    }
-    .profil-chip {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 30px;
-      padding: 7px 16px;
-      font-size: 13px;
-      font-weight: 600;
-      color: rgba(255,255,255,0.85);
-    }
+.subtitle {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 28px;
+  line-height: 1.5;
+}
+.subtitle em {
+  color: var(--gold);
+  font-style: normal;
+  font-weight: 700;
+}
 
-    /* Box */
-    .box {
-      background: var(--white);
-      border-radius: 20px;
-      padding: 36px 32px;
-      color: var(--navy);
-    }
-    .box-title { font-size: 17px; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
-    .box-sub { font-size: 13px; color: var(--gray); margin-bottom: 22px; line-height: 1.5; }
+/* Carte Dubai SVG stylisée */
+.map-wrap {
+  position: relative;
+  width: 100%;
+  margin: 0 auto 28px;
+  max-width: 380px;
+}
 
-    .what-you-get { display: flex; flex-direction: column; gap: 8px; margin-bottom: 22px; text-align: left; }
-    .get-item { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--navy); line-height: 1.4; }
-    .get-icon { color: #7c3aed; font-weight: 900; flex-shrink: 0; margin-top: 1px; }
+.map-svg {
+  width: 100%;
+  filter: drop-shadow(0 4px 20px rgba(201,168,76,0.15));
+}
 
-    .submit-btn {
-      width: 100%;
-      background: var(--gold); color: var(--navy);
-      font-size: 17px; font-weight: 900; padding: 18px;
-      border: none; border-radius: 12px; cursor: pointer;
-      transition: all .2s; font-family: inherit;
-    }
-    .submit-btn:hover { background: #b8943e; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,0.35); }
+/* Icônes bottom */
+.proof-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 28px;
+  background: rgba(15,31,61,0.05);
+  border-radius: 16px;
+  padding: 16px 8px;
+}
+.proof-item {
+  flex: 1;
+  text-align: center;
+  padding: 0 8px;
+}
+.proof-item:not(:last-child) {
+  border-right: 1px solid rgba(15,31,61,0.12);
+}
+.proof-icon {
+  font-size: 22px;
+  margin-bottom: 5px;
+  display: block;
+}
+.proof-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--navy);
+}
 
-    .note { font-size: 12px; color: #9ca3af; margin-top: 12px; }
+/* CTA */
+.cta-btn {
+  display: block;
+  width: 100%;
+  background: var(--navy);
+  color: #fff;
+  font-size: 20px;
+  font-weight: 900;
+  padding: 22px 24px;
+  border-radius: 14px;
+  text-decoration: none;
+  text-align: center;
+  letter-spacing: -0.3px;
+  transition: all .2s;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+.cta-btn:hover {
+  background: #162d52;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(15,31,61,0.25);
+}
+.cta-btn .arrow {
+  color: var(--gold);
+  margin-left: 6px;
+}
 
-    /* Confirmation */
-    #confirm { display: none; }
-    .confirm-icon { font-size: 52px; margin-bottom: 16px; }
-    .confirm-title { font-size: 24px; font-weight: 900; color: var(--navy); margin-bottom: 10px; }
-    .confirm-text { font-size: 14px; color: var(--gray); line-height: 1.65; margin-bottom: 20px; }
-    .confirm-cta {
-      display: flex; align-items: center; justify-content: center; gap: 10px;
-      background: #7c3aed; color: #fff;
-      font-size: 15px; font-weight: 800; padding: 16px 24px;
-      border-radius: 12px; text-decoration: none;
-    }
+.note {
+  font-size: 12px;
+  color: #888;
+  margin-top: 12px;
+}
 
-    .footer-min { margin-top: 24px; font-size: 11px; color: rgba(255,255,255,0.3); }
-    .footer-min a { color: rgba(255,255,255,0.4); text-decoration: none; }
+.footer {
+  margin-top: 28px;
+  font-size: 11px;
+  color: #aaa;
+}
 
-    @media (max-width: 500px) {
-      h1 { font-size: 26px; }
-      .box { padding: 28px 20px; }
-    }
-  </style>
+@media (max-width: 440px) {
+  h1 { font-size: 32px; }
+  .cta-btn { font-size: 17px; padding: 20px; }
+}
+</style>
 
-<!-- Meta Pixel Code -->
+<!-- Meta Pixel -->
 <script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -132,49 +184,95 @@ fbq("init", "257203259730727");
 fbq("track", "PageView");
 </script>
 <noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=257203259730727&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
+src="https://www.facebook.com/tr?id=257203259730727&ev=PageView&noscript=1"/></noscript>
 </head>
 <body>
 
 <div class="wrap">
 
-  <div class="badge">🎯 Quiz investisseur · 2 minutes</div>
-  <h1>Quel <em>Quartier & Promoteur</em><br>Dubai Pour Vous ?</h1>
-  <p class="sub">8 questions. Résultat personnalisé immédiat.<br>Quartier, promoteur et projet selon votre profil. Gratuit, sans engagement.</p>
+  <h1>Quel investisseur<br>à Dubai es-tu ?</h1>
 
-  <!-- Profils preview -->
-  <div class="profils">
-    <div class="profil-chip">🎯 Chasseur de Cash-Flow</div>
-    <div class="profil-chip">🚀 Pionnier Stratège</div>
-    <div class="profil-chip">🏗️ Bâtisseur</div>
-    <div class="profil-chip">🏖️ Résident-Investisseur</div>
+  <div class="divider">
+    <div class="divider-line"></div>
+    <div class="divider-diamond"></div>
+    <div class="divider-line"></div>
   </div>
 
-  <!-- BOX -->
-  <div class="box">
-    <div class="box-title">Obtenez votre recommandation personnalisée →</div>
-    <div class="box-sub">Résultat immédiat · Gratuit · Sans inscription</div>
+  <p class="subtitle">Découvre ton <em>match idéal</em> et investis à Dubai en toute confiance.</p>
 
-    <div class="what-you-get">
-      <div class="get-item"><span class="get-icon">✓</span><span>Votre profil investisseur parmi 4 types</span></div>
-      <div class="get-item"><span class="get-icon">✓</span><span>Le quartier Dubai qui correspond à vos objectifs</span></div>
-      <div class="get-item"><span class="get-icon">✓</span><span>Le promoteur recommandé selon votre budget</span></div>
-      <div class="get-item"><span class="get-icon">✓</span><span>Les projets concrets à surveiller maintenant</span></div>
+  <!-- Carte Dubai SVG -->
+  <div class="map-wrap">
+    <svg class="map-svg" viewBox="0 0 380 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Fond carte -->
+      <rect width="380" height="280" rx="20" fill="#EDE8DC"/>
+
+      <!-- Lignes de rue stylisées -->
+      <line x1="40" y1="140" x2="340" y2="140" stroke="#D4C9B0" stroke-width="1.5" stroke-dasharray="4,4"/>
+      <line x1="190" y1="40" x2="190" y2="240" stroke="#D4C9B0" stroke-width="1.5" stroke-dasharray="4,4"/>
+      <line x1="40" y1="90" x2="340" y2="90" stroke="#D4C9B0" stroke-width="1"/>
+      <line x1="40" y1="190" x2="340" y2="190" stroke="#D4C9B0" stroke-width="1"/>
+      <line x1="100" y1="40" x2="100" y2="240" stroke="#D4C9B0" stroke-width="1"/>
+      <line x1="280" y1="40" x2="280" y2="240" stroke="#D4C9B0" stroke-width="1"/>
+
+      <!-- Zone highlight Dubai Creek Harbour (centre) -->
+      <ellipse cx="190" cy="140" rx="48" ry="38" fill="#C9A84C" fill-opacity="0.25" stroke="#C9A84C" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+      <!-- Pin Dubai Creek Harbour -->
+      <ellipse cx="190" cy="140" rx="22" ry="18" fill="#C9A84C"/>
+      <path d="M190 108 C178 108 168 116 168 126 C168 142 190 158 190 158 C190 158 212 142 212 126 C212 116 202 108 190 108Z" fill="#C9A84C" stroke="#fff" stroke-width="2"/>
+      <circle cx="190" cy="126" r="5" fill="#fff"/>
+      <text x="190" y="172" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" font-weight="800" fill="#0F1F3D">DUBAI CREEK</text>
+      <text x="190" y="183" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" font-weight="800" fill="#0F1F3D">HARBOUR</text>
+
+      <!-- Labels quartiers -->
+      <text x="68" y="130" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" font-weight="700" fill="#0F1F3D" opacity="0.7">DUBAI</text>
+      <text x="68" y="141" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" font-weight="700" fill="#0F1F3D" opacity="0.7">MARINA</text>
+
+      <text x="145" y="96" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" font-weight="700" fill="#0F1F3D" opacity="0.7">DOWNTOWN</text>
+      <text x="145" y="107" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" font-weight="700" fill="#0F1F3D" opacity="0.7">DUBAI</text>
+
+      <text x="190" y="214" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" font-weight="700" fill="#0F1F3D" opacity="0.7">DUBAI HILLS</text>
+      <text x="190" y="225" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" font-weight="700" fill="#0F1F3D" opacity="0.7">ESTATE</text>
+
+      <text x="315" y="130" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" font-weight="700" fill="#0F1F3D" opacity="0.7">JUMEIRAH</text>
+      <text x="315" y="141" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" font-weight="700" fill="#0F1F3D" opacity="0.7">VILLAGE</text>
+
+      <!-- Burj Khalifa silhouette (droite) -->
+      <rect x="332" y="48" width="4" height="72" rx="2" fill="#0F1F3D" opacity="0.15"/>
+      <rect x="334" y="42" width="2" height="12" rx="1" fill="#0F1F3D" opacity="0.15"/>
+      <rect x="326" y="68" width="14" height="4" rx="1" fill="#0F1F3D" opacity="0.1"/>
+
+      <!-- Palm Jumeirah silhouette (gauche) -->
+      <ellipse cx="55" cy="195" rx="22" ry="14" fill="none" stroke="#0F1F3D" stroke-width="1" opacity="0.12"/>
+      <line x1="55" y1="181" x2="55" y2="209" stroke="#0F1F3D" stroke-width="1.5" opacity="0.12"/>
+      <line x1="42" y1="190" x2="68" y2="200" stroke="#0F1F3D" stroke-width="1" opacity="0.1"/>
+      <line x1="42" y1="200" x2="68" y2="190" stroke="#0F1F3D" stroke-width="1" opacity="0.1"/>
+    </svg>
+  </div>
+
+  <!-- Preuves sociales -->
+  <div class="proof-row">
+    <div class="proof-item">
+      <span class="proof-icon">🎁</span>
+      <div class="proof-label">Quiz gratuit</div>
     </div>
-
-    <div id="cta-view">
-      <a href="https://go.clementinvestdubai.com/quiz" class="submit-btn" style="display:block;text-decoration:none;text-align:center;" onclick="trackClick()">
-        Faire le quiz — Résultat immédiat →
-      </a>
-      <p class="note">🔒 Gratuit · Sans engagement · 100% personnalisé</p>
+    <div class="proof-item">
+      <span class="proof-icon">🎯</span>
+      <div class="proof-label">Résultat immédiat</div>
+    </div>
+    <div class="proof-item">
+      <span class="proof-icon">✅</span>
+      <div class="proof-label">100% personnalisé</div>
     </div>
   </div>
 
-  <div class="footer-min">
-    <a href="https://go.clementinvestdubai.com">clementinvestdubai.com</a> · Agent immobilier certifié Dubai · RERA
-  </div>
+  <!-- CTA -->
+  <a href="https://go.clementinvestdubai.com/quiz" class="cta-btn" onclick="trackClick()">
+    Commencer le quiz <span class="arrow">›</span>
+  </a>
+  <p class="note">🔒 Gratuit · Sans engagement · 2 minutes</p>
+
+  <div class="footer">clementinvestdubai.com · Agent certifié Dubai · RERA</div>
 
 </div>
 
@@ -183,7 +281,17 @@ function trackClick() {
   if (typeof fbq === 'function') {
     fbq('track', 'Lead', { content_name: 'Quiz-Ads', content_category: 'real_estate' });
   }
+  if (typeof gtag === 'function') {
+    gtag('event', 'conversion', { send_to: 'AW-17772499593', event_label: 'quiz-ads-click' });
+  }
 }
+
+// Capture UTM source pour tracking
+(function() {
+  var params = new URLSearchParams(window.location.search);
+  var source = params.get('utm_source') || 'direct';
+  sessionStorage.setItem('lead_source', source);
+})();
 </script>
 </body>
 </html>
