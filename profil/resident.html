@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Le Résident-Investisseur — Clément Invest Dubai</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0F1F3D;
+      --gold: #C9A84C;
+      --accent: #d97706;
+      --accent-light: #fffbeb;
+      --risk-bg: #fff5f5;
+      --risk-text: #c53030;
+      --work-bg: #fffbeb;
+      --work-border: #C9A84C;
+      --text: #1a1a2e;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --white: #ffffff;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f9fafb;
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    .page { max-width: 600px; margin: 0 auto; padding: 0 16px 48px; }
+
+    /* HEADER */
+    .header {
+      padding: 20px 0 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 32px;
+    }
+    .header-brand {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.2px;
+    }
+    .header-brand span { color: var(--gold); }
+    .header-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    /* HERO */
+    .hero { text-align: center; margin-bottom: 36px; }
+    .hero-emoji { font-size: 64px; line-height: 1; margin-bottom: 16px; display: block; }
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .hero-name {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.5px;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .hero-tagline {
+      font-size: 15px;
+      color: var(--muted);
+      font-style: italic;
+      line-height: 1.7;
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 16px 20px;
+      background: var(--white);
+      border-radius: 12px;
+      border-left: 3px solid var(--accent);
+    }
+
+    /* SECTIONS */
+    .section {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 16px;
+      border: 1px solid var(--border);
+    }
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-forces { background: #f0fdf4; border-color: #bbf7d0; }
+    .section-forces .section-title { color: #15803d; }
+    .section-risques { background: var(--risk-bg); border-color: #fecaca; }
+    .section-risques .section-title { color: var(--risk-text); }
+    .section-travail { background: var(--work-bg); border-color: #fde68a; }
+    .section-travail .section-title { color: #92400e; }
+
+    .list-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin-bottom: 10px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .list-item:last-child { margin-bottom: 0; }
+    .list-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      margin-top: 8px;
+      flex-shrink: 0;
+    }
+    .dot-green { background: #16a34a; }
+    .dot-red { background: #dc2626; }
+
+    .travail-text {
+      font-size: 14px;
+      line-height: 1.7;
+      color: #78350f;
+    }
+
+    /* ZONES */
+    .zones-wrap { display: flex; flex-wrap: wrap; gap: 8px; }
+    .zone-pill {
+      background: var(--navy);
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 100px;
+    }
+
+    /* PROMOTEURS */
+    .promo-group { margin-bottom: 16px; }
+    .promo-group:last-child { margin-bottom: 0; }
+    .promo-group-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .promo-list { display: flex; flex-wrap: wrap; gap: 6px; }
+    .promo-chip {
+      font-size: 13px;
+      font-weight: 500;
+      padding: 4px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: #f9fafb;
+      color: var(--navy);
+    }
+    .promo-chip.top {
+      background: var(--accent-light);
+      border-color: var(--accent);
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* CTA */
+    .cta-block {
+      background: var(--navy);
+      border-radius: 16px;
+      padding: 32px 24px;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .cta-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .cta-sub {
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #25D366;
+      color: white;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 16px 28px;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .cta-btn:hover { opacity: 0.9; }
+    .cta-note {
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      margin-top: 12px;
+    }
+
+    /* FOOTER */
+    .footer {
+      text-align: center;
+      font-size: 11px;
+      color: var(--muted);
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-brand">Clément <span>Invest Dubai</span></div>
+    <div class="header-label">Profil investisseur</div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <span class="hero-emoji">🏖️</span>
+    <div class="hero-eyebrow">Votre profil</div>
+    <div class="hero-name">Le Résident-Investisseur</div>
+    <div class="hero-tagline">
+      "T'es dans la position la plus puissante qui soit : t'achètes un bien dans lequel tu peux vivre. Dans le meilleur des cas, ça crache de la renta. Dans le pire des cas, t'as un endroit qui te plaît à Dubai. T'as deux filets de sécurité là où les autres n'en ont qu'un."
+    </div>
+  </div>
+
+  <!-- FORCES -->
+  <div class="section section-forces">
+    <div class="section-title">✦ Vos forces</div>
+    <div class="list-item">
+      <div class="list-dot dot-green"></div>
+      <span>Tu vas t'impliquer vraiment dans ton achat — et ça se voit dans la qualité des décisions</span>
+    </div>
+    <div class="list-item">
+      <div class="list-dot dot-green"></div>
+      <span>T'as une double motivation : la tête et le cœur. C'est ce qui fait que tu vas jusqu'au bout</span>
+    </div>
+    <div class="list-item">
+      <div class="list-dot dot-green"></div>
+      <span>T'es prêt à payer pour de la qualité — parce que c'est aussi pour toi</span>
+    </div>
+  </div>
+
+  <!-- RISQUES -->
+  <div class="section section-risques">
+    <div class="section-title">⚠ Votre risque principal</div>
+    <div class="list-item">
+      <div class="list-dot dot-red"></div>
+      <span>Trop aller vers l'investissement pur : tu achètes un truc rentable dans lequel tu ne te vois pas vivre — et tu rates l'essence de ce que tu voulais</span>
+    </div>
+    <div class="list-item">
+      <div class="list-dot dot-red"></div>
+      <span>Trop aller vers l'émotionnel : tu craques sur un coup de cœur et tu fais un mauvais investissement sans t'en rendre compte</span>
+    </div>
+  </div>
+
+  <!-- CE QU'IL FAUT TRAVAILLER -->
+  <div class="section section-travail">
+    <div class="section-title">🎯 Ce qu'il faut travailler</div>
+    <div class="travail-text">
+      Construire deux listes en parallèle : les critères de ton cerveau investisseur — rendement, zone, promoteur, liquidité — et les critères de ton cerveau émotionnel. Puis trouver les opportunités qui cochent les deux colonnes.
+    </div>
+  </div>
+
+  <!-- ZONES -->
+  <div class="section">
+    <div class="section-title" style="color:var(--navy);">📍 Zones recommandées</div>
+    <div class="zones-wrap">
+      <span class="zone-pill">Dubailand RC</span>
+      <span class="zone-pill">Meydan Horizon</span>
+      <span class="zone-pill">Sobha Hartland</span>
+      <span class="zone-pill">Dubai Creek Harbour</span>
+      <span class="zone-pill">Dubai Islands</span>
+      <span class="zone-pill">Wasl Gate</span>
+      <span class="zone-pill">Jebel Ali</span>
+      <span class="zone-pill">JVC</span>
+      <span class="zone-pill">Arjan</span>
+      <span class="zone-pill">Sport City</span>
+      <span class="zone-pill">Motor City</span>
+      <span class="zone-pill">Al Sufouh</span>
+    </div>
+  </div>
+
+  <!-- PROMOTEURS -->
+  <div class="section">
+    <div class="section-title" style="color:var(--navy);">🏗️ Promoteurs recommandés</div>
+    <div class="promo-group">
+      <div class="promo-group-label">Top — Fiabilité maximale</div>
+      <div class="promo-list">
+        <span class="promo-chip top">IMAN</span>
+        <span class="promo-chip top">Ellington</span>
+        <span class="promo-chip top">Sobha</span>
+        <span class="promo-chip top">Binghatti</span>
+        <span class="promo-chip top">Emaar</span>
+        <span class="promo-chip top">Beyond</span>
+      </div>
+    </div>
+    <div class="promo-group">
+      <div class="promo-group-label">Solides — Bon rapport qualité-prix</div>
+      <div class="promo-list">
+        <span class="promo-chip">Imtiaz</span>
+        <span class="promo-chip">Prestige One</span>
+        <span class="promo-chip">Leos</span>
+        <span class="promo-chip">Prescott</span>
+        <span class="promo-chip">Wadan</span>
+        <span class="promo-chip">Majid</span>
+        <span class="promo-chip">Zoya</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <div class="cta-title">Obtenir une sélection personnalisée<br>sous 48h</div>
+    <div class="cta-sub">On a les projets qui correspondent exactement à votre profil.<br>Pour vous aider à acheter — pas vous vendre un projet.</div>
+    <a href="https://wa.me/33624835980?text=Bonjour+Clément%2C+j%27ai+reçu+mon+profil+investisseur+et+j%27aimerais+en+discuter." class="cta-btn" target="_blank">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Contacter Clément sur WhatsApp
+    </a>
+    <div class="cta-note">Gratuit · Sans engagement · Réponse sous 48h</div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    Clément Invest Dubai · Confidentiel · Ne pas diffuser
+  </div>
+
+</div>
+</body>
+</html>
