@@ -1040,7 +1040,7 @@ src="https://www.facebook.com/tr?id=257203259730727&ev=PageView&noscript=1"
       answers['prenom'] = prenom;
       answers['whatsapp'] = waClean;
       document.getElementById('screen-contact').classList.add('hidden');
-      showFullResult();
+      showConfirmation();
     }
 
     function showFieldError(fieldId, msg) {
@@ -1208,6 +1208,48 @@ src="https://www.facebook.com/tr?id=257203259730727&ev=PageView&noscript=1"
           <button onclick="restartQuiz()" style="background:transparent;border:1px solid rgba(255,255,255,0.15);color:var(--gray-400);padding:10px 20px;border-radius:8px;font-size:0.8rem;cursor:pointer;font-family:inherit;transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(201,168,76,0.4)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.15)';this.style.color='var(--gray-400)'">
             ↺ Recommencer le quiz
           </button>
+        </div>
+      `;
+    }
+
+    function showConfirmation() {
+      // Envoyer le profil à Make.com (qui enverra le bon PDF sur WhatsApp)
+      const profileKey = computeProfile();
+      const profile = PROFILES[profileKey];
+      sendToMake(profileKey, profile.name);
+
+      // Afficher l'écran de confirmation — pas de résultats ici
+      document.getElementById('screen-result').classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      const prenom = answers.prenom || '';
+      document.getElementById('result-content').innerHTML = `
+        <div style="text-align:center;padding:48px 24px;">
+          <div style="font-size:3rem;margin-bottom:20px;">✅</div>
+          <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;">Profil calculé</div>
+          <div style="font-size:1.8rem;font-weight:900;color:var(--navy);margin-bottom:12px;letter-spacing:-0.02em;line-height:1.2;">
+            ${prenom ? `${prenom}, votre` : 'Votre'} profil investisseur<br>arrive sur WhatsApp
+          </div>
+          <div style="font-size:1rem;color:#4B5563;margin-bottom:32px;line-height:1.7;max-width:400px;margin-left:auto;margin-right:auto;">
+            On a analysé vos réponses. Votre profil complet — zones, promoteurs, stratégie — vous est envoyé <strong style="color:var(--navy)">maintenant sur WhatsApp</strong>.
+          </div>
+          <div style="background:linear-gradient(135deg,rgba(201,168,76,0.1),rgba(201,168,76,0.03));border:1.5px solid rgba(201,168,76,0.35);border-radius:16px;padding:24px 28px;max-width:420px;margin:0 auto 28px;">
+            <div style="font-size:0.8rem;font-weight:700;color:var(--gold);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:10px;">Ce que vous allez recevoir</div>
+            <div style="font-size:0.9rem;color:#374151;line-height:1.8;text-align:left;">
+              ${profile.emoji} <strong>Votre profil :</strong> ${profile.name}<br>
+              📍 Les zones Dubai adaptées à votre profil<br>
+              🏗️ Les promoteurs recommandés<br>
+              ⚠️ Les erreurs à éviter selon votre profil
+            </div>
+          </div>
+          <div style="font-size:0.8rem;color:#9CA3AF;margin-top:8px;">
+            Vous ne recevez rien ? Vérifiez votre numéro WhatsApp ou contactez-nous directement.<br>
+            <a href="https://wa.me/33624835980" target="_blank" style="color:var(--gold);font-weight:600;text-decoration:none;">+33 6 24 83 59 80</a>
+          </div>
+          <div style="margin-top:28px;">
+            <button onclick="restartQuiz()" style="background:transparent;border:1px solid rgba(15,31,61,0.15);color:#6B7280;padding:10px 20px;border-radius:8px;font-size:0.8rem;cursor:pointer;font-family:inherit;transition:all 0.2s;">
+              ↺ Recommencer le quiz
+            </button>
+          </div>
         </div>
       `;
     }
