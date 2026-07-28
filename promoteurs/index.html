@@ -297,10 +297,9 @@ src="https://www.facebook.com/tr?id=257203259730727&ev=PageView&noscript=1"
       </div>
 
       <div id="gate-success">
-        <div class="success-icon">✓</div>
-        <div class="success-title" id="success-title">Bienvenue !</div>
-        <div class="success-sub">Ton répertoire est prêt. Clément te contactera sous 48h.</div>
-        <button class="success-btn" id="success-open">Ouvrir le répertoire →</button>
+        <div class="success-icon">🎉</div>
+        <div class="success-title" id="success-title">Félicitations !</div>
+        <div class="success-sub">On t'envoie le lien d'accès sur WhatsApp dans quelques minutes.<br>Garde ton téléphone à portée 📱</div>
       </div>
 
       <p class="gate-legal">Tes infos restent confidentielles. Pas de spam, promis.</p>
@@ -368,9 +367,7 @@ src="https://www.facebook.com/tr?id=257203259730727&ev=PageView&noscript=1"
       }
     });
 
-    document.getElementById('success-open').addEventListener('click', () => {
-      unlockRepertoire(true);
-    });
+    // Pas de bouton "ouvrir" — le contenu n'est pas débloqué ici
   </script>
 
 </body>
