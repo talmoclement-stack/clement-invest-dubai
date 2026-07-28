@@ -41,7 +41,7 @@
 
     body {
       font-family: 'Inter', -apple-system, sans-serif;
-      background: var(--navy);
+      background: #f8f9fc;
       color: var(--navy);
       min-height: 100vh;
       transition: background 0.3s ease;
@@ -581,46 +581,46 @@ src="https://www.facebook.com/tr?id=257203259730727&ev=PageView&noscript=1"
 
   <div class="quiz-wrapper">
 
-    <!-- INTRO — version squeeze -->
-    <div id="screen-intro" style="width:100%;max-width:520px;text-align:center;animation:fadeUp 0.4s ease;">
+    <!-- INTRO — landing page blanche avec visuel -->
+    <div id="screen-intro" style="width:100%;max-width:680px;animation:fadeUp 0.4s ease;">
 
-      <!-- Badge -->
-      <div style="display:inline-block;background:#7c3aed;color:#fff;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:5px 16px;border-radius:20px;margin-bottom:22px;">🎯 Quiz investisseur · 2 minutes</div>
-
-      <!-- Headline -->
-      <h1 style="font-size:2rem;font-weight:900;line-height:1.1;margin-bottom:16px;color:var(--white);">Quel <span style="color:var(--gold)">Quartier & Promoteur</span><br>Dubai Pour Vous ?</h1>
-
-      <!-- Sous-titre -->
-      <p style="font-size:15px;color:rgba(255,255,255,0.7);line-height:1.6;margin-bottom:28px;">8 questions. Résultat personnalisé immédiat.<br>Quartier, promoteur et projet selon votre profil. Gratuit, sans engagement.</p>
-
-      <!-- Profils chips -->
-      <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:32px;">
-        <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:30px;padding:7px 16px;font-size:13px;font-weight:600;color:rgba(255,255,255,0.85);">🎯 Chasseur de Cash-Flow</div>
-        <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:30px;padding:7px 16px;font-size:13px;font-weight:600;color:rgba(255,255,255,0.85);">🚀 Pionnier Stratège</div>
-        <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:30px;padding:7px 16px;font-size:13px;font-weight:600;color:rgba(255,255,255,0.85);">🏗️ Bâtisseur</div>
-        <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:30px;padding:7px 16px;font-size:13px;font-weight:600;color:rgba(255,255,255,0.85);">🏖️ Résident-Investisseur</div>
+      <!-- Carte visuelle principale -->
+      <div style="border-radius:20px;overflow:hidden;box-shadow:0 8px 40px rgba(15,31,61,0.18);margin-bottom:28px;cursor:pointer;" onclick="startQuiz()">
+        <img src="landing-visuel.jpeg" alt="Quel quartier et promoteur à Dubai vous correspond ?" style="width:100%;display:block;" />
       </div>
 
-      <!-- Box blanche -->
-      <div style="background:#fff;border-radius:20px;padding:32px 28px;color:var(--navy);margin-bottom:20px;">
-        <div style="font-size:16px;font-weight:800;color:var(--navy);margin-bottom:6px;">Obtenez votre recommandation personnalisée →</div>
-        <div style="font-size:13px;color:#6b7280;margin-bottom:22px;">Résultat immédiat · Gratuit · Sans inscription</div>
-
-        <!-- Bullet points -->
-        <div style="display:flex;flex-direction:column;gap:9px;margin-bottom:24px;text-align:left;">
-          <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--navy);line-height:1.4;"><span style="color:#7c3aed;font-weight:900;flex-shrink:0;">✓</span><span>Votre profil investisseur parmi 4 types</span></div>
-          <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--navy);line-height:1.4;"><span style="color:#7c3aed;font-weight:900;flex-shrink:0;">✓</span><span>Le quartier Dubai qui correspond à vos objectifs</span></div>
-          <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--navy);line-height:1.4;"><span style="color:#7c3aed;font-weight:900;flex-shrink:0;">✓</span><span>Le promoteur recommandé selon votre budget</span></div>
-          <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--navy);line-height:1.4;"><span style="color:#7c3aed;font-weight:900;flex-shrink:0;">✓</span><span>Les projets concrets à surveiller maintenant</span></div>
+      <!-- Promesse + bullets -->
+      <div style="background:#fff;border-radius:20px;padding:32px 28px;margin-bottom:16px;">
+        <div style="font-size:18px;font-weight:900;color:#0F1F3D;margin-bottom:6px;letter-spacing:-0.3px;">En 2 minutes, découvrez :</div>
+        <div style="font-size:13px;color:#6b7280;margin-bottom:22px;">Résultat immédiat · Gratuit · 100% personnalisé</div>
+        <div style="display:flex;flex-direction:column;gap:11px;margin-bottom:28px;">
+          <div style="display:flex;align-items:flex-start;gap:12px;font-size:14px;color:#0F1F3D;line-height:1.5;">
+            <span style="color:#C9A84C;font-weight:900;font-size:16px;flex-shrink:0;">✓</span>
+            <span>Votre <strong>profil investisseur</strong> parmi 4 types (Cash-Flow, Bâtisseur, Pionnier, Résident)</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;font-size:14px;color:#0F1F3D;line-height:1.5;">
+            <span style="color:#C9A84C;font-weight:900;font-size:16px;flex-shrink:0;">✓</span>
+            <span>Le <strong>quartier Dubai</strong> qui correspond exactement à vos objectifs</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;font-size:14px;color:#0F1F3D;line-height:1.5;">
+            <span style="color:#C9A84C;font-weight:900;font-size:16px;flex-shrink:0;">✓</span>
+            <span>Le <strong>promoteur recommandé</strong> selon votre budget et votre tolérance au risque</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;font-size:14px;color:#0F1F3D;line-height:1.5;">
+            <span style="color:#C9A84C;font-weight:900;font-size:16px;flex-shrink:0;">✓</span>
+            <span>Les <strong>projets concrets</strong> à surveiller en ce moment</span>
+          </div>
         </div>
 
-        <!-- CTA -->
-        <button class="btn-primary" onclick="startQuiz()" style="width:100%;font-size:16px;padding:18px;">Faire le quiz — Résultat immédiat →</button>
-        <p style="font-size:12px;color:#9ca3af;margin-top:12px;">🔒 Gratuit · Sans engagement · 100% personnalisé</p>
+        <!-- CTA principal -->
+        <button onclick="startQuiz()" style="width:100%;padding:18px;background:#0F1F3D;color:#fff;border:none;border-radius:14px;font-family:inherit;font-size:17px;font-weight:800;cursor:pointer;letter-spacing:-0.2px;transition:background 0.2s,transform 0.15s;" onmouseover="this.style.background='#1a2f5a'" onmouseout="this.style.background='#0F1F3D'">
+          Commencer le quiz &nbsp;›
+        </button>
+        <p style="font-size:12px;color:#9ca3af;text-align:center;margin-top:12px;">🔒 Gratuit · Sans engagement · Résultat immédiat</p>
       </div>
 
       <!-- Footer minimal -->
-      <p style="font-size:11px;color:rgba(255,255,255,0.3);">
+      <p style="font-size:11px;color:rgba(255,255,255,0.35);text-align:center;padding-bottom:16px;">
         <a href="https://go.clementinvestdubai.com" style="color:rgba(255,255,255,0.4);text-decoration:none;">clementinvestdubai.com</a> · Agent immobilier certifié Dubai · RERA
       </p>
     </div>
