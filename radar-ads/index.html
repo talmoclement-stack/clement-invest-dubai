@@ -163,6 +163,12 @@ src="https://www.facebook.com/tr?id=257203259730727&ev=PageView&noscript=1"/></n
 
     <div id="form-view">
 
+      <!-- Preuve sociale -->
+      <div style="display:flex;align-items:center;justify-content:center;gap:8px;background:#FEF9EC;border:1.5px solid rgba(201,168,76,0.4);border-radius:10px;padding:9px 14px;margin-bottom:14px;">
+        <span style="font-size:1rem;">👥</span>
+        <span style="font-size:12px;color:#92400e;font-weight:600;">+800 investisseurs reçoivent déjà le Radar chaque semaine</span>
+      </div>
+
       <!-- Titre gate -->
       <div class="form-title" style="margin-bottom:4px;">🔍 Ton accès au Radar est prêt</div>
       <div class="form-sub" style="margin-bottom:16px;">Voici un aperçu des projets de cette semaine —<br>entre tes infos pour débloquer le rapport complet</div>
@@ -210,7 +216,11 @@ src="https://www.facebook.com/tr?id=257203259730727&ev=PageView&noscript=1"/></n
         </div>
         <div style="display:flex;align-items:flex-start;gap:8px;font-size:13px;color:#374151;">
           <span style="color:#C9A84C;font-weight:900;flex-shrink:0;">✓</span>
-          <span><strong>Mis à jour chaque semaine</strong> — toujours les meilleures opportunités du moment</span>
+          <span><strong>Mis à jour chaque lundi</strong> — la sélection change à chaque nouvelle semaine</span>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:8px;font-size:12px;color:#DC2626;font-weight:600;background:#FEF2F2;border-radius:8px;padding:8px 10px;margin-top:2px;">
+          <span>⏳</span>
+          <span>Mise à jour lundi prochain — reçois la sélection actuelle avant qu'elle change</span>
         </div>
       </div>
 
@@ -218,27 +228,18 @@ src="https://www.facebook.com/tr?id=257203259730727&ev=PageView&noscript=1"/></n
       <div style="font-size:13px;font-weight:700;color:#0F1F3D;text-align:center;margin-bottom:10px;">→ Où on t'envoie le Radar ?</div>
       <form class="form" id="gateForm" novalidate>
         <input type="text" id="firstName" placeholder="Ton prénom" autocomplete="given-name">
-        <div class="phone-row">
-          <select id="dialCode">
-            <option value="+33">🇫🇷 +33</option>
-            <option value="+32">🇧🇪 +32</option>
-            <option value="+41">🇨🇭 +41</option>
-            <option value="+352">🇱🇺 +352</option>
-            <option value="+971">🇦🇪 +971</option>
-            <option value="+other">Autre</option>
-          </select>
-          <input type="tel" id="phone" placeholder="6 12 34 56 78" autocomplete="tel-national">
-        </div>
+        <input type="tel" id="phone" placeholder="+33 6 12 34 56 78" autocomplete="tel" style="width:100%;padding:14px 16px;border:1.5px solid #e0e0e0;border-radius:10px;font-size:15px;font-family:inherit;color:#0F1F3D;outline:none;transition:border-color .2s;">
         <div id="errorMsg" style="display:none;color:#dc2626;font-size:13px;text-align:left;padding:8px 12px;background:#fef2f2;border-radius:8px;"></div>
         <button type="submit" class="submit-btn" id="submitBtn">Recevoir le Radar →</button>
       </form>
       <p class="note">🔒 Gratuit · Mis à jour chaque semaine · Sans engagement</p>
+      <p style="font-size:12px;color:#aaa;text-align:center;margin-top:6px;">Une question ? <a href="https://wa.me/33624835980" target="_blank" style="color:#C9A84C;font-weight:600;text-decoration:none;">WhatsApp +33 6 24 83 59 80</a></p>
     </div>
 
     <div id="confirm" style="display:none;text-align:center;padding:16px 0;">
       <div style="font-size:48px;margin-bottom:12px;">✅</div>
       <div style="font-size:20px;font-weight:900;color:var(--navy);margin-bottom:8px;">C'est parti, <span id="confirm-name"></span>&nbsp;!</div>
-      <div style="font-size:14px;color:#666;line-height:1.6;">Tu vas recevoir le rapport sur WhatsApp dans quelques secondes.<br>Clément ou son équipe te contactera sous 24h.</div>
+      <div style="font-size:14px;color:#666;line-height:1.6;">Julien de l'équipe va t'envoyer le Radar sur WhatsApp <strong>dans les prochaines minutes</strong>.</div>
     </div>
 
     <div class="footer">clementinvestdubai.com · Agent certifié Dubai · RERA</div>
@@ -277,8 +278,7 @@ document.getElementById('gateForm').addEventListener('submit', async function(e)
   clearError();
 
   const firstName  = document.getElementById('firstName').value.trim();
-  const dialCode   = document.getElementById('dialCode').value;
-  const phoneLocal = document.getElementById('phone').value.trim().replace(/\s+/g, '');
+  const phoneRaw   = document.getElementById('phone').value.trim().replace(/\s+/g, '');
 
   if (!firstName || firstName.length < 2) {
     showError('Merci d\'indiquer ton prénom (minimum 2 caractères).');
@@ -290,18 +290,19 @@ document.getElementById('gateForm').addEventListener('submit', async function(e)
     showError('Merci d\'indiquer ton vrai prénom.');
     return;
   }
-  const digits = phoneLocal.replace(/\D/g, '');
-  if (digits.length < 6) {
-    showError('Merci d\'indiquer un numéro de téléphone valide.');
+  // Doit commencer par + et contenir au moins 7 chiffres
+  if (!/^\+[1-9]\d{6,14}$/.test(phoneRaw.replace(/[\s\-\.\(\)]/g, ''))) {
+    showError('Format international requis — ex : +33 6 12 34 56 78');
     document.getElementById('phone').focus();
     return;
   }
+  const digits = phoneRaw.replace(/\D/g, '');
   if (isFakePattern(digits)) {
     showError('Ce numéro ne semble pas valide. Merci de saisir ton vrai numéro WhatsApp.');
     return;
   }
 
-  const fullPhone = dialCode.replace('+other', '') + digits;
+  const fullPhone = phoneRaw.replace(/[\s\-\.\(\)]/g, '');
   setLoading(true);
 
   if (typeof fbq === 'function') { fbq('track', 'Lead', { content_name: 'Radar-Ads', content_category: 'real_estate' }); }

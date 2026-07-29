@@ -589,8 +589,15 @@ src="https://www.facebook.com/tr?id=257203259730727&ev=PageView&noscript=1"
         <img src="landing-visuel.jpeg" alt="Quel quartier et promoteur à Dubai vous correspond ?" style="width:100%;display:block;" />
       </div>
 
+      <!-- Preuve sociale -->
+      <div style="display:flex;align-items:center;justify-content:center;gap:10px;background:#FEF9EC;border:1.5px solid rgba(201,168,76,0.4);border-radius:12px;padding:10px 16px;margin-bottom:16px;">
+        <span style="font-size:1.1rem;">👥</span>
+        <span style="font-size:13px;color:#92400e;font-weight:600;">+1 200 investisseurs ont déjà fait ce quiz</span>
+      </div>
+
       <!-- Promesse + bullets -->
       <div style="background:#fff;border-radius:20px;padding:32px 28px;margin-bottom:16px;">
+        <div style="font-size:13px;color:#6b7280;margin-bottom:6px;">Tu ne sais pas quel quartier ni quel promoteur choisir à Dubai ?</div>
         <div style="font-size:18px;font-weight:900;color:#0F1F3D;margin-bottom:6px;letter-spacing:-0.3px;">En 2 minutes, découvrez :</div>
         <div style="font-size:13px;color:#6b7280;margin-bottom:22px;">Résultat immédiat · Gratuit · 100% personnalisé</div>
         <div style="display:flex;flex-direction:column;gap:11px;margin-bottom:28px;">
@@ -614,9 +621,10 @@ src="https://www.facebook.com/tr?id=257203259730727&ev=PageView&noscript=1"
 
         <!-- CTA principal -->
         <button onclick="startQuiz()" style="width:100%;padding:18px;background:#0F1F3D;color:#fff;border:none;border-radius:14px;font-family:inherit;font-size:17px;font-weight:800;cursor:pointer;letter-spacing:-0.2px;transition:background 0.2s,transform 0.15s;" onmouseover="this.style.background='#1a2f5a'" onmouseout="this.style.background='#0F1F3D'">
-          Commencer le quiz &nbsp;›
+          Découvrir mon profil investisseur &nbsp;›
         </button>
         <p style="font-size:12px;color:#9ca3af;text-align:center;margin-top:12px;">🔒 Gratuit · Sans engagement · Résultat immédiat</p>
+        <p style="font-size:12px;color:#9ca3af;text-align:center;margin-top:8px;">Une question ? <a href="https://wa.me/33624835980" target="_blank" style="color:var(--gold);text-decoration:none;font-weight:600;">WhatsApp +33 6 24 83 59 80</a></p>
       </div>
 
       <!-- Footer minimal -->
@@ -987,6 +995,18 @@ src="https://www.facebook.com/tr?id=257203259730727&ev=PageView&noscript=1"
         card.style.animation = 'none';
         card.offsetHeight;
         card.style.animation = 'fadeUp 0.4s ease';
+        // Encouragement à mi-quiz
+        if (currentQ === 4) {
+          const encouragement = document.createElement('div');
+          encouragement.style.cssText = 'text-align:center;font-size:13px;color:var(--gold);font-weight:600;margin-bottom:8px;animation:fadeUp 0.4s ease;';
+          encouragement.textContent = '✦ Parfait — tu es à mi-chemin, encore 4 questions';
+          const progressContainer = document.querySelector('.progress-container');
+          const existing = progressContainer.querySelector('.mid-encouragement');
+          if (existing) existing.remove();
+          encouragement.classList.add('mid-encouragement');
+          progressContainer.appendChild(encouragement);
+          setTimeout(() => encouragement.remove(), 3500);
+        }
         renderQuestion();
       }
     }
@@ -1077,8 +1097,9 @@ src="https://www.facebook.com/tr?id=257203259730727&ev=PageView&noscript=1"
             <span class="input-note">📱 Résultat envoyé sur WhatsApp · Aucun spam</span>
           </div>
         </div>
-        <button class="btn-primary" onclick="submitContact()" style="font-size:1rem;padding:18px;">Recevoir mon analyse complète →</button>
+        <button class="btn-primary" onclick="submitContact()" style="font-size:1rem;padding:18px;">Débloquer mon profil Dubai →</button>
         <p style="text-align:center;font-size:0.75rem;color:var(--gray-400);margin-top:10px;">🔒 Gratuit · Sans engagement · Résultat sous 24h</p>
+        <p style="text-align:center;font-size:0.75rem;color:#9CA3AF;margin-top:6px;">Une question ? <a href="https://wa.me/33624835980" target="_blank" style="color:var(--gold);text-decoration:none;font-weight:600;">WhatsApp +33 6 24 83 59 80</a></p>
       `;
     }
 
@@ -1300,7 +1321,7 @@ src="https://www.facebook.com/tr?id=257203259730727&ev=PageView&noscript=1"
             On a analysé vos réponses. Votre profil complet — zones, promoteurs, stratégie — vous sera envoyé <strong style="color:var(--navy)">sur WhatsApp</strong> par un membre de notre équipe.
           </div>
           <div style="background:#FEF9EC;border:1.5px solid #C9A84C;border-radius:12px;padding:16px 20px;max-width:420px;margin:0 auto 24px;font-size:0.9rem;color:#92400e;line-height:1.6;">
-            💬 <strong>Un membre de l'équipe va vous contacter pour vous envoyer votre profil sur WhatsApp. Ne soyez pas surpris.</strong>
+            💬 <strong>Julien de l'équipe va vous envoyer votre profil complet sur WhatsApp dans les prochaines minutes.</strong>
           </div>
           <div style="background:linear-gradient(135deg,rgba(201,168,76,0.1),rgba(201,168,76,0.03));border:1.5px solid rgba(201,168,76,0.35);border-radius:16px;padding:24px 28px;max-width:420px;margin:0 auto 28px;">
             <div style="font-size:0.8rem;font-weight:700;color:var(--gold);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:10px;">Ce que vous allez recevoir</div>
