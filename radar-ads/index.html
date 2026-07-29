@@ -162,8 +162,60 @@ src="https://www.facebook.com/tr?id=257203259730727&ev=PageView&noscript=1"/></n
   <div class="cta-block">
 
     <div id="form-view">
-      <div class="form-title">Accède au rapport gratuit →</div>
-      <div class="form-sub">Prénom + WhatsApp — reçois le rapport en 30 secondes</div>
+
+      <!-- Titre gate -->
+      <div class="form-title" style="margin-bottom:4px;">🔍 Ton accès au Radar est prêt</div>
+      <div class="form-sub" style="margin-bottom:16px;">Voici un aperçu des projets de cette semaine —<br>entre tes infos pour débloquer le rapport complet</div>
+
+      <!-- Preview projets verrouillés -->
+      <div style="background:#f8f9fc;border:1.5px solid #E5E7EB;border-radius:14px;padding:14px 16px;margin-bottom:16px;text-align:left;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#9CA3AF;margin-bottom:12px;">📍 Sélection projets — semaine en cours</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#374151;">
+            <span>🏙️</span>
+            <span>Projet Premium — <strong>JVC / Arjan</strong></span>
+            <span style="margin-left:auto;font-size:11px;color:#16A34A;font-weight:700;white-space:nowrap;">~8–10% 🔒</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#374151;">
+            <span>🌊</span>
+            <span>Projet Vue Mer — <strong>Dubai Islands</strong></span>
+            <span style="margin-left:auto;font-size:11px;color:#16A34A;font-weight:700;white-space:nowrap;">~7–9% 🔒</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#374151;">
+            <span>🚀</span>
+            <span>Projet Émergent — <strong>Wasl Gate</strong></span>
+            <span style="margin-left:auto;font-size:11px;color:#16A34A;font-weight:700;white-space:nowrap;">~9–12% 🔒</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#9CA3AF;font-style:italic;">
+            <span>＋</span>
+            <span>2 projets supplémentaires</span>
+            <span style="margin-left:auto;font-size:11px;background:#E5E7EB;color:#6B7280;padding:2px 8px;border-radius:20px;white-space:nowrap;">🔒</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ce que tu reçois -->
+      <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:18px;text-align:left;">
+        <div style="display:flex;align-items:flex-start;gap:8px;font-size:13px;color:#374151;">
+          <span style="color:#C9A84C;font-weight:900;flex-shrink:0;">✓</span>
+          <span>Les <strong>5 meilleurs projets off-plan</strong> du moment</span>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:8px;font-size:13px;color:#374151;">
+          <span style="color:#C9A84C;font-weight:900;flex-shrink:0;">✓</span>
+          <span><strong>Rendement estimé</strong> + prix d'entrée pour chaque projet</span>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:8px;font-size:13px;color:#374151;">
+          <span style="color:#C9A84C;font-weight:900;flex-shrink:0;">✓</span>
+          <span><strong>Promoteur + historique de livraison</strong> détaillé</span>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:8px;font-size:13px;color:#374151;">
+          <span style="color:#C9A84C;font-weight:900;flex-shrink:0;">✓</span>
+          <span><strong>Mis à jour chaque semaine</strong> — toujours les meilleures opportunités du moment</span>
+        </div>
+      </div>
+
+      <!-- Formulaire -->
+      <div style="font-size:13px;font-weight:700;color:#0F1F3D;text-align:center;margin-bottom:10px;">→ Où on t'envoie le Radar ?</div>
       <form class="form" id="gateForm" novalidate>
         <input type="text" id="firstName" placeholder="Ton prénom" autocomplete="given-name">
         <div class="phone-row">
@@ -178,9 +230,9 @@ src="https://www.facebook.com/tr?id=257203259730727&ev=PageView&noscript=1"/></n
           <input type="tel" id="phone" placeholder="6 12 34 56 78" autocomplete="tel-national">
         </div>
         <div id="errorMsg" style="display:none;color:#dc2626;font-size:13px;text-align:left;padding:8px 12px;background:#fef2f2;border-radius:8px;"></div>
-        <button type="submit" class="submit-btn" id="submitBtn">Obtenir le rapport gratuit →</button>
+        <button type="submit" class="submit-btn" id="submitBtn">Recevoir le Radar →</button>
       </form>
-      <p class="note">🔒 Gratuit · Instantané · Sans engagement</p>
+      <p class="note">🔒 Gratuit · Mis à jour chaque semaine · Sans engagement</p>
     </div>
 
     <div id="confirm" style="display:none;text-align:center;padding:16px 0;">
