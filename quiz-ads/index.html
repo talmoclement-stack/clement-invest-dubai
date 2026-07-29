@@ -993,6 +993,26 @@ src="https://www.facebook.com/tr?id=257203259730727&ev=PageView&noscript=1"
 
     // ─── CONTACT GATE ─────────────────────────────────────────────────────────
 
+    // Phrases courtes force + faiblesse par profil (pour la gate)
+    const PROFILE_HOOKS = {
+      cashflow: {
+        force: '💪 Tu analyses les projets mieux que 90% des investisseurs.',
+        faiblesse: '⚠️ Mais à force de vouloir maximiser le rendement, tu peux aller vers des zones trop risquées sans t\'en rendre compte.'
+      },
+      batisseur: {
+        force: '💪 Tu joues long terme et tu t\'y tiens — pas de décision impulsive.',
+        faiblesse: '⚠️ Mais tu peux passer à côté d\'opportunités en développement qui t\'auraient rapporté bien plus.'
+      },
+      pionnier: {
+        force: '💪 Tu arrives à voir le potentiel d\'une zone avant qu\'elle soit sur toutes les lèvres.',
+        faiblesse: '⚠️ Mais le flair sans données, c\'est du pari. Pas de l\'investissement.'
+      },
+      resident: {
+        force: '💪 Tu as deux filets de sécurité là où les autres n\'en ont qu\'un.',
+        faiblesse: '⚠️ Mais sans méthode, tu risques de laisser ton côté émotionnel prendre le dessus sur l\'investisseur.'
+      }
+    };
+
     function showContactGate() {
       document.getElementById('screen-result-partial').classList.add('hidden');
       document.getElementById('screen-contact').classList.remove('hidden');
@@ -1000,13 +1020,52 @@ src="https://www.facebook.com/tr?id=257203259730727&ev=PageView&noscript=1"
 
       const profileKey = computeProfile();
       const profile = PROFILES[profileKey];
+      const hooks = PROFILE_HOOKS[profileKey];
 
       document.getElementById('contact-card').innerHTML = `
-        <div style="text-align:center;margin-bottom:28px;">
-          <div style="font-size:3rem;margin-bottom:8px;">🎉</div>
-          <div style="font-size:1.5rem;font-weight:900;color:#0F1F3D;margin-bottom:6px;line-height:1.2;">Ton profil investisseur<br>est prêt !</div>
-          <div style="font-size:0.9rem;color:#4B5563;line-height:1.5;">Quartier · Promoteur · Stratégie<br>— personnalisés selon tes réponses</div>
+
+        <!-- Profil révélé -->
+        <div style="text-align:center;margin-bottom:24px;">
+          <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">✦ Ton profil investisseur</div>
+          <div style="font-size:3rem;margin-bottom:8px;">${profile.emoji}</div>
+          <div style="font-size:1.5rem;font-weight:900;color:#0F1F3D;letter-spacing:-0.03em;line-height:1.2;">Tu es <span style="color:var(--gold);">${profile.name}</span></div>
         </div>
+
+        <!-- Force + Faiblesse -->
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:24px;">
+          <div style="background:#F0FDF4;border-left:3px solid #16A34A;border-radius:0 10px 10px 0;padding:12px 16px;font-size:0.88rem;color:#166534;line-height:1.5;">${hooks.force}</div>
+          <div style="background:#FEF2F2;border-left:3px solid #DC2626;border-radius:0 10px 10px 0;padding:12px 16px;font-size:0.88rem;color:#991B1B;line-height:1.5;">${hooks.faiblesse}</div>
+        </div>
+
+        <!-- Contenu verrouillé -->
+        <div style="background:#f8f9fc;border:1.5px solid #E5E7EB;border-radius:16px;padding:20px 18px;margin-bottom:24px;">
+          <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#9CA3AF;margin-bottom:14px;">🔒 Ton analyse complète</div>
+          <div style="display:flex;flex-direction:column;gap:9px;">
+            <div style="display:flex;align-items:center;gap:10px;font-size:0.88rem;color:#374151;">
+              <span style="font-size:1rem;">📍</span>
+              <span>Les <strong>quartiers Dubai</strong> qui correspondent à ton profil</span>
+              <span style="margin-left:auto;font-size:0.75rem;background:#E5E7EB;color:#6B7280;padding:2px 8px;border-radius:20px;flex-shrink:0;">🔒</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:0.88rem;color:#374151;">
+              <span style="font-size:1rem;">🏗️</span>
+              <span>Les <strong>promoteurs recommandés</strong> selon ton budget</span>
+              <span style="margin-left:auto;font-size:0.75rem;background:#E5E7EB;color:#6B7280;padding:2px 8px;border-radius:20px;flex-shrink:0;">🔒</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:0.88rem;color:#374151;">
+              <span style="font-size:1rem;">⚠️</span>
+              <span>Les <strong>erreurs à éviter</strong> selon ton profil</span>
+              <span style="margin-left:auto;font-size:0.75rem;background:#E5E7EB;color:#6B7280;padding:2px 8px;border-radius:20px;flex-shrink:0;">🔒</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:0.88rem;color:#374151;">
+              <span style="font-size:1rem;">🎯</span>
+              <span>La <strong>stratégie personnalisée</strong> pour ton profil</span>
+              <span style="margin-left:auto;font-size:0.75rem;background:#E5E7EB;color:#6B7280;padding:2px 8px;border-radius:20px;flex-shrink:0;">🔒</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulaire -->
+        <div style="margin-bottom:6px;font-size:0.88rem;font-weight:700;color:#0F1F3D;text-align:center;">→ Où on envoie ton analyse complète ?</div>
         <div class="input-group">
           <div class="input-field">
             <label class="input-label">Ton prénom</label>
@@ -1015,11 +1074,11 @@ src="https://www.facebook.com/tr?id=257203259730727&ev=PageView&noscript=1"
           <div class="input-field">
             <label class="input-label">Ton numéro WhatsApp</label>
             <input type="tel" id="input-whatsapp" placeholder="+33 6 12 34 56 78" autocomplete="tel">
-            <span class="input-note">Aucun spam · Résultat envoyé sur WhatsApp</span>
+            <span class="input-note">📱 Résultat envoyé sur WhatsApp · Aucun spam</span>
           </div>
         </div>
-        <button class="btn-primary" onclick="submitContact()">Accéder à mon profil personnalisé →</button>
-        <p style="text-align:center;font-size:0.75rem;color:var(--gray-400);margin-top:12px;">Gratuit · Résultat immédiat</p>
+        <button class="btn-primary" onclick="submitContact()" style="font-size:1rem;padding:18px;">Recevoir mon analyse complète →</button>
+        <p style="text-align:center;font-size:0.75rem;color:var(--gray-400);margin-top:10px;">🔒 Gratuit · Sans engagement · Résultat sous 24h</p>
       `;
     }
 
