@@ -1044,92 +1044,36 @@ src="https://www.facebook.com/tr?id=257203259730727&ev=PageView&noscript=1"
 
       document.getElementById('contact-card').innerHTML = `
 
-        <!-- Profil révélé -->
-        <div style="text-align:center;margin-bottom:24px;">
-          <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">✦ Ton profil investisseur</div>
-          <div style="font-size:3rem;margin-bottom:8px;">${profile.emoji}</div>
-          <div style="font-size:1.5rem;font-weight:900;color:#0F1F3D;letter-spacing:-0.03em;line-height:1.2;">Tu es <span style="color:var(--gold);">${profile.name}</span></div>
+        <!-- 1. Profil révélé -->
+        <div style="text-align:center;margin-bottom:12px;">
+          <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">✦ Ton profil investisseur</div>
+          <div style="font-size:2.4rem;margin-bottom:6px;">${profile.emoji}</div>
+          <div style="font-size:1.4rem;font-weight:900;color:#0F1F3D;letter-spacing:-0.03em;line-height:1.2;">Tu es <span style="color:var(--gold);">${profile.name}</span></div>
         </div>
 
-        <!-- Force + Faiblesse -->
-        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:24px;">
-          <div style="background:#F0FDF4;border-left:3px solid #16A34A;border-radius:0 10px 10px 0;padding:12px 16px;font-size:0.88rem;color:#166534;line-height:1.5;">${hooks.force}</div>
-          <div style="background:#FEF2F2;border-left:3px solid #DC2626;border-radius:0 10px 10px 0;padding:12px 16px;font-size:0.88rem;color:#991B1B;line-height:1.5;">${hooks.faiblesse}</div>
+        <!-- 2. Une phrase clé -->
+        <div style="background:#F8F9FC;border-left:3px solid var(--gold);border-radius:0 10px 10px 0;padding:12px 16px;font-size:0.88rem;color:#374151;line-height:1.6;margin-bottom:16px;font-style:italic;">
+          ${hooks.force} ${hooks.faiblesse}
         </div>
 
-        <!-- Contenu verrouillé -->
-        <div style="background:#f8f9fc;border:1.5px solid #E5E7EB;border-radius:16px;padding:20px 18px;margin-bottom:24px;">
-          <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#9CA3AF;margin-bottom:14px;">🔒 Ton analyse complète</div>
-          <div style="display:flex;flex-direction:column;gap:9px;">
-            <div style="display:flex;align-items:center;gap:10px;font-size:0.88rem;color:#374151;">
-              <span style="font-size:1rem;">📍</span>
-              <span>Les <strong>quartiers Dubai</strong> qui correspondent à ton profil</span>
-              <span style="margin-left:auto;font-size:0.75rem;background:#E5E7EB;color:#6B7280;padding:2px 8px;border-radius:20px;flex-shrink:0;">🔒</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:10px;font-size:0.88rem;color:#374151;">
-              <span style="font-size:1rem;">🏗️</span>
-              <span>Les <strong>promoteurs recommandés</strong> selon ton budget</span>
-              <span style="margin-left:auto;font-size:0.75rem;background:#E5E7EB;color:#6B7280;padding:2px 8px;border-radius:20px;flex-shrink:0;">🔒</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:10px;font-size:0.88rem;color:#374151;">
-              <span style="font-size:1rem;">⚠️</span>
-              <span>Les <strong>erreurs à éviter</strong> selon ton profil</span>
-              <span style="margin-left:auto;font-size:0.75rem;background:#E5E7EB;color:#6B7280;padding:2px 8px;border-radius:20px;flex-shrink:0;">🔒</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:10px;font-size:0.88rem;color:#374151;">
-              <span style="font-size:1rem;">🎯</span>
-              <span>La <strong>stratégie personnalisée</strong> pour ton profil</span>
-              <span style="margin-left:auto;font-size:0.75rem;background:#E5E7EB;color:#6B7280;padding:2px 8px;border-radius:20px;flex-shrink:0;">🔒</span>
-            </div>
+        <!-- 3. Vidéo centrée -->
+        <div style="display:flex;justify-content:center;margin-bottom:16px;">
+          <div style="border-radius:14px;overflow:hidden;box-shadow:0 6px 24px rgba(15,31,61,0.18);width:220px;height:391px;flex-shrink:0;">
+            <iframe
+              width="220"
+              height="391"
+              src="https://www.youtube.com/embed/Puyzs4khWHg?rel=0&modestbranding=1"
+              title="Clément Invest Dubai"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              style="display:block;">
+            </iframe>
           </div>
         </div>
 
-        <!-- Vidéo de réassurance -->
-        <div style="margin-bottom:20px;">
-          <div style="font-size:0.8rem;font-weight:700;color:#0F1F3D;text-align:center;margin-bottom:10px;">👇 Regarde ça avant de donner tes infos</div>
-          <div style="display:flex;gap:14px;align-items:flex-start;">
-            <!-- Player YouTube Shorts -->
-            <div style="flex-shrink:0;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(15,31,61,0.15);">
-              <iframe
-                width="140"
-                height="250"
-                src="https://www.youtube.com/embed/Puyzs4khWHg?rel=0&modestbranding=1"
-                title="Clément Invest Dubai"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-                style="display:block;">
-              </iframe>
-            </div>
-            <!-- Bloc chaîne YouTube -->
-            <div style="flex:1;display:flex;flex-direction:column;gap:8px;">
-              <div style="font-size:0.82rem;font-weight:700;color:#0F1F3D;line-height:1.4;">Clément Talmo<br><span style="color:#C9A84C;">Agent immobilier · Dubai</span></div>
-              <div style="display:flex;flex-direction:column;gap:5px;">
-                <div style="font-size:0.78rem;color:#374151;display:flex;align-items:center;gap:5px;">
-                  <span>📹</span><span><strong>+300 vidéos</strong> sur Dubai</span>
-                </div>
-                <div style="font-size:0.78rem;color:#374151;display:flex;align-items:center;gap:5px;">
-                  <span>👥</span><span><strong>1 300 abonnés</strong> YouTube</span>
-                </div>
-                <div style="font-size:0.78rem;color:#374151;display:flex;align-items:center;gap:5px;">
-                  <span>📅</span><span>Actif depuis <strong>2 ans</strong></span>
-                </div>
-              </div>
-              <a href="https://www.youtube.com/@ClementInvestDubai" target="_blank" style="display:inline-flex;align-items:center;gap:5px;background:#FF0000;color:#fff;font-size:0.72rem;font-weight:700;padding:6px 10px;border-radius:6px;text-decoration:none;margin-top:2px;">
-                <svg width="14" height="10" viewBox="0 0 24 17" fill="white"><path d="M23.5 2.5S23.2.6 22.4.8C21.5 0 20.5 0 20.5 0S16.8-.1 12 0C7.2-.1 3.5 0 3.5 0S2.5 0 1.6.8C.8.6.5 2.5.5 2.5S0 4.7 0 6.8v2.3c0 2.1.5 4.3.5 4.3s.3 1.9 1.1 2.2c.9.9 2.1.8 2.6.9C5.8 16.6 12 16.7 12 16.7s3.7 0 6.5-.3c.5-.1 1.7 0 2.6-.9.8-.3 1.1-2.2 1.1-2.2S23 11.3 23 9.2V6.8c0-2.1-.5-4.3-.5-4.3zM9.7 11.5V5.1l6.6 3.2-6.6 3.2z"/></svg>
-                Voir la chaîne
-              </a>
-              <div style="font-size:0.72rem;color:#6B7280;line-height:1.4;margin-top:2px;">Vérifie par toi-même — on est là depuis 2 ans.</div>
-            </div>
-          </div>
-          <!-- Réassurance -->
-          <div style="margin-top:12px;background:#F0FDF4;border-left:3px solid #16A34A;border-radius:0 8px 8px 0;padding:10px 12px;font-size:0.78rem;color:#166534;line-height:1.5;">
-            ✅ <strong>Julien de l'équipe</strong> t'envoie ton profil sur WhatsApp. Un seul message. Aucun harcèlement.
-          </div>
-        </div>
-
-        <!-- Formulaire -->
-        <div style="margin-bottom:6px;font-size:0.88rem;font-weight:700;color:#0F1F3D;text-align:center;">→ Où on envoie ton analyse complète ?</div>
+        <!-- 4. Formulaire -->
+        <div style="margin-bottom:10px;font-size:0.9rem;font-weight:800;color:#0F1F3D;text-align:center;">→ Où on envoie ton analyse complète ?</div>
         <div class="input-group">
           <div class="input-field">
             <label class="input-label">Ton prénom</label>
@@ -1138,12 +1082,36 @@ src="https://www.facebook.com/tr?id=257203259730727&ev=PageView&noscript=1"
           <div class="input-field">
             <label class="input-label">Ton numéro WhatsApp</label>
             <input type="tel" id="input-whatsapp" placeholder="+33 6 12 34 56 78" autocomplete="tel">
-            <span class="input-note">📱 Résultat envoyé sur WhatsApp · Aucun spam</span>
           </div>
         </div>
         <button class="btn-primary" onclick="submitContact()" style="font-size:1rem;padding:18px;">Débloquer mon profil Dubai →</button>
-        <p style="text-align:center;font-size:0.75rem;color:var(--gray-400);margin-top:10px;">🔒 Gratuit · Sans engagement · Résultat sous 24h</p>
-        <p style="text-align:center;font-size:0.75rem;color:#9CA3AF;margin-top:6px;">Une question ? <a href="https://wa.me/33624835980" target="_blank" style="color:var(--gold);text-decoration:none;font-weight:600;">WhatsApp +33 6 24 83 59 80</a></p>
+
+        <!-- 5. Promesse sous le bouton -->
+        <div style="margin-top:20px;display:flex;flex-direction:column;gap:7px;text-align:left;">
+          <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#9CA3AF;margin-bottom:2px;">Ce que tu vas recevoir</div>
+          <div style="display:flex;align-items:flex-start;gap:8px;font-size:0.82rem;color:#374151;">
+            <span style="color:var(--gold);font-weight:900;flex-shrink:0;">✓</span>
+            <span>Les <strong>quartiers Dubai</strong> qui correspondent à ton profil</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:8px;font-size:0.82rem;color:#374151;">
+            <span style="color:var(--gold);font-weight:900;flex-shrink:0;">✓</span>
+            <span>Les <strong>promoteurs recommandés</strong> selon ton budget</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:8px;font-size:0.82rem;color:#374151;">
+            <span style="color:var(--gold);font-weight:900;flex-shrink:0;">✓</span>
+            <span>Les <strong>erreurs à éviter</strong> selon ton profil</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:8px;font-size:0.82rem;color:#374151;">
+            <span style="color:var(--gold);font-weight:900;flex-shrink:0;">✓</span>
+            <span>La <strong>stratégie personnalisée</strong> pour ton objectif</span>
+          </div>
+        </div>
+
+        <div style="margin-top:14px;background:#F0FDF4;border-left:3px solid #16A34A;border-radius:0 8px 8px 0;padding:10px 12px;font-size:0.78rem;color:#166534;line-height:1.5;">
+          ✅ <strong>Un membre de l'équipe</strong> t'envoie ton profil sur WhatsApp. Un seul message. Aucun harcèlement.
+        </div>
+
+        <p style="text-align:center;font-size:0.72rem;color:var(--gray-400);margin-top:10px;">🔒 Gratuit · Sans engagement</p>
       `;
     }
 
