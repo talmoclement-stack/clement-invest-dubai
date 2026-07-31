@@ -1044,20 +1044,20 @@ src="https://www.facebook.com/tr?id=1515228769880162&ev=PageView&noscript=1"
 
       document.getElementById('contact-card').innerHTML = `
 
-        <!-- 1. Profil révélé -->
-        <div style="text-align:center;margin-bottom:12px;">
-          <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">✦ Ton profil investisseur</div>
-          <div style="font-size:2.4rem;margin-bottom:6px;">${profile.emoji}</div>
-          <div style="font-size:1.4rem;font-weight:900;color:#0F1F3D;letter-spacing:-0.03em;line-height:1.2;">Tu es <span style="color:var(--gold);">${profile.name}</span></div>
+        <!-- 1. Profil + phrase compacts -->
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+          <div style="font-size:2rem;flex-shrink:0;">${profile.emoji}</div>
+          <div>
+            <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);">Ton profil investisseur</div>
+            <div style="font-size:1.1rem;font-weight:900;color:#0F1F3D;letter-spacing:-0.02em;line-height:1.2;">${profile.name}</div>
+          </div>
+        </div>
+        <div style="background:#F8F9FC;border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:8px 12px;font-size:0.8rem;color:#374151;line-height:1.5;margin-bottom:12px;font-style:italic;">
+          ${hooks.force}
         </div>
 
-        <!-- 2. Une phrase clé -->
-        <div style="background:#F8F9FC;border-left:3px solid var(--gold);border-radius:0 10px 10px 0;padding:12px 16px;font-size:0.88rem;color:#374151;line-height:1.6;margin-bottom:16px;font-style:italic;">
-          ${hooks.force} ${hooks.faiblesse}
-        </div>
-
-        <!-- 3. Vidéo centrée -->
-        <div style="display:flex;justify-content:center;margin-bottom:16px;">
+        <!-- 2. Vidéo centrée -->
+        <div style="display:flex;justify-content:center;margin-bottom:12px;">
           <div style="border-radius:14px;overflow:hidden;box-shadow:0 6px 24px rgba(15,31,61,0.18);width:220px;height:391px;flex-shrink:0;">
             <iframe
               width="220"
@@ -1072,7 +1072,7 @@ src="https://www.facebook.com/tr?id=1515228769880162&ev=PageView&noscript=1"
           </div>
         </div>
 
-        <!-- 4. Formulaire -->
+        <!-- 3. Formulaire -->
         <div style="margin-bottom:10px;font-size:0.9rem;font-weight:800;color:#0F1F3D;text-align:center;">→ Où on envoie ton analyse complète ?</div>
         <div class="input-group">
           <div class="input-field">
