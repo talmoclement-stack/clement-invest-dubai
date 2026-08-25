@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rejoindre l'équipe — Closer Immobilier Dubai</title>
+<meta name="description" content="Je cherche 3 à 5 vendeurs déterminés. Pas une formation. Un job. Dubaï, immobilier off-plan, à distance.">
+<meta name="robots" content="noindex">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #1A2E4A;
+    --navy-dark: #0F1E31;
+    --green: #3D6B5A;
+    --terra: #C0513A;
+    --cream: #F2F0EB;
+    --cream-dark: #E8E4DC;
+    --gold: #C8A96E;
+    --text: #1A1A1A;
+    --muted: #666;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    background: #0D0D0D;
+    color: white;
+    line-height: 1.6;
+  }
+
+  /* ─── TOP BAR ─── */
+  .topbar {
+    background: var(--terra);
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    background: var(--navy-dark);
+    padding: 60px 20px 48px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .hero-label {
+    display: inline-block;
+    background: rgba(200,169,110,0.15);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 24px;
+  }
+
+  .hero h1 {
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 800;
+    line-height: 1.15;
+    max-width: 760px;
+    margin: 0 auto 20px;
+    letter-spacing: -0.5px;
+  }
+
+  .hero h1 span { color: var(--gold); }
+
+  .hero-sub {
+    font-size: clamp(16px, 2.5vw, 19px);
+    color: rgba(255,255,255,0.65);
+    max-width: 560px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+  }
+
+  /* ─── VIDEO SECTION ─── */
+  .video-section {
+    background: #111;
+    padding: 48px 20px;
+  }
+
+  .video-wrap {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #1a1a1a;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+  }
+
+  .video-container iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: none;
+    border-radius: 12px;
+  }
+
+  /* Placeholder si pas encore de vidéo */
+  .video-placeholder {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    background: linear-gradient(135deg, #1A2E4A 0%, #0F1E31 100%);
+    border-radius: 12px;
+    cursor: pointer;
+  }
+
+  .play-btn {
+    width: 72px; height: 72px;
+    background: var(--terra);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 32px rgba(192,81,58,0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .play-btn:hover { transform: scale(1.08); box-shadow: 0 12px 40px rgba(192,81,58,0.5); }
+
+  .play-btn svg { margin-left: 4px; }
+
+  .video-placeholder p {
+    color: rgba(255,255,255,0.6);
+    font-size: 15px;
+    text-align: center;
+    padding: 0 20px;
+  }
+
+  .video-caption {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    font-style: italic;
+  }
+
+  /* ─── CTA PRINCIPAL ─── */
+  .cta-section {
+    background: var(--navy-dark);
+    padding: 56px 20px;
+    text-align: center;
+  }
+
+  .cta-section h2 {
+    font-size: clamp(22px, 4vw, 34px);
+    font-weight: 800;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+  }
+
+  .cta-section p {
+    color: rgba(255,255,255,0.6);
+    font-size: 16px;
+    max-width: 500px;
+    margin: 0 auto 32px;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--terra);
+    color: white;
+    font-size: 17px;
+    font-weight: 700;
+    padding: 18px 44px;
+    border-radius: 8px;
+    text-decoration: none;
+    letter-spacing: 0.2px;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 8px 28px rgba(192,81,58,0.35);
+  }
+
+  .btn-primary:hover {
+    background: #a84430;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 36px rgba(192,81,58,0.45);
+  }
+
+  .btn-note {
+    display: block;
+    margin-top: 14px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.35);
+  }
+
+  /* ─── STATS ─── */
+  .stats-section {
+    background: #111;
+    padding: 56px 20px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 24px;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .stat-item {}
+
+  .stat-num {
+    font-size: 38px;
+    font-weight: 800;
+    color: var(--gold);
+    letter-spacing: -1px;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 6px;
+    line-height: 1.4;
+  }
+
+  /* ─── CE QUE TU OBTIENS ─── */
+  .offer-section {
+    background: var(--navy-dark);
+    padding: 64px 20px;
+  }
+
+  .section-title {
+    text-align: center;
+    font-size: clamp(22px, 4vw, 32px);
+    font-weight: 800;
+    margin-bottom: 8px;
+    letter-spacing: -0.3px;
+  }
+
+  .section-sub {
+    text-align: center;
+    color: rgba(255,255,255,0.5);
+    font-size: 15px;
+    margin-bottom: 44px;
+  }
+
+  .offer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .offer-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 28px 24px;
+    transition: border-color 0.2s;
+  }
+
+  .offer-card:hover { border-color: rgba(200,169,110,0.3); }
+
+  .offer-icon {
+    font-size: 28px;
+    margin-bottom: 14px;
+  }
+
+  .offer-card h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: white;
+  }
+
+  .offer-card p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.6;
+  }
+
+  /* ─── POUR QUI ─── */
+  .filter-section {
+    background: #111;
+    padding: 64px 20px;
+  }
+
+  .filter-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 600px) {
+    .filter-grid { grid-template-columns: 1fr; }
+  }
+
+  .filter-card {
+    border-radius: 12px;
+    padding: 28px 24px;
+  }
+
+  .filter-card.yes {
+    background: rgba(61,107,90,0.12);
+    border: 1px solid rgba(61,107,90,0.3);
+  }
+
+  .filter-card.no {
+    background: rgba(192,81,58,0.08);
+    border: 1px solid rgba(192,81,58,0.2);
+  }
+
+  .filter-card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+  }
+
+  .filter-card.yes h3 { color: #6BBF9A; }
+  .filter-card.no h3 { color: #E07060; }
+
+  .filter-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .filter-card ul li {
+    font-size: 14px;
+    color: rgba(255,255,255,0.65);
+    padding-left: 22px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .filter-card ul li::before {
+    position: absolute;
+    left: 0;
+    font-size: 14px;
+  }
+
+  .filter-card.yes ul li::before { content: "✓"; color: #6BBF9A; }
+  .filter-card.no ul li::before { content: "✗"; color: #E07060; }
+
+  /* ─── PRIX ─── */
+  .price-section {
+    background: var(--navy-dark);
+    padding: 64px 20px;
+    text-align: center;
+  }
+
+  .price-box {
+    max-width: 480px;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(200,169,110,0.3);
+    border-radius: 16px;
+    padding: 40px 32px;
+  }
+
+  .price-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .price-amount {
+    font-size: 64px;
+    font-weight: 900;
+    letter-spacing: -2px;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .price-amount span { font-size: 28px; font-weight: 600; }
+
+  .price-desc {
+    font-size: 14px;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 28px;
+    line-height: 1.5;
+  }
+
+  .price-items {
+    text-align: left;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+
+  .price-items li {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    padding-left: 24px;
+    position: relative;
+  }
+
+  .price-items li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  /* ─── FAQ ─── */
+  .faq-section {
+    background: #111;
+    padding: 64px 20px;
+  }
+
+  .faq-list {
+    max-width: 680px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .faq-item {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .faq-q {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 20px 24px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .faq-q .arrow {
+    flex-shrink: 0;
+    transition: transform 0.25s;
+    color: var(--gold);
+    font-size: 18px;
+  }
+
+  .faq-item.open .arrow { transform: rotate(45deg); }
+
+  .faq-a {
+    display: none;
+    padding: 0 24px 20px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.7;
+  }
+
+  .faq-item.open .faq-a { display: block; }
+
+  /* ─── FINAL CTA ─── */
+  .final-cta {
+    background: var(--navy);
+    padding: 72px 20px;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .final-cta h2 {
+    font-size: clamp(24px, 4.5vw, 38px);
+    font-weight: 800;
+    max-width: 600px;
+    margin: 0 auto 16px;
+    letter-spacing: -0.3px;
+    line-height: 1.2;
+  }
+
+  .final-cta p {
+    color: rgba(255,255,255,0.55);
+    font-size: 15px;
+    max-width: 440px;
+    margin: 0 auto 36px;
+  }
+
+  .spots-badge {
+    display: inline-block;
+    background: rgba(192,81,58,0.15);
+    border: 1px solid rgba(192,81,58,0.4);
+    color: #E07060;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 28px;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #0D0D0D;
+    padding: 24px 20px;
+    text-align: center;
+    font-size: 12px;
+    color: rgba(255,255,255,0.2);
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+
+  footer a { color: rgba(255,255,255,0.3); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  🔴 &nbsp;Places limitées — 3 à 5 profils maximum recrutés
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-label">Recrutement Équipe Dubai 2026</div>
+  <h1>Je cherche des vendeurs.<br>Pas des <span>rêveurs.</span></h1>
+  <p class="hero-sub">
+    Immobilier off-plan à Dubai, à distance, depuis la France ou l'Europe.
+    Aucune expérience Dubai requise. Expérience vente indispensable.
+  </p>
+</section>
+
+<!-- VIDEO -->
+<section class="video-section">
+  <div class="video-wrap">
+    <div class="video-container" id="videoContainer">
+      <!-- PLACEHOLDER — remplacer src par l'URL YouTube une fois la vidéo filmée -->
+      <!-- Ex: <iframe src="https://www.youtube.com/embed/XXXXXXXXXXXX?rel=0" allowfullscreen></iframe> -->
+      <div class="video-placeholder" id="videoPlaceholder">
+        <div class="play-btn">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+        <p>Vidéo bientôt disponible<br><span style="font-size:12px;color:rgba(255,255,255,0.35)">En attendant, lis ce qui suit — tout est là.</span></p>
+      </div>
+    </div>
+    <p class="video-caption">Regarde jusqu'au bout — la vidéo dure environ 12 minutes.</p>
+  </div>
+</section>
+
+<!-- CTA PRINCIPAL -->
+<section class="cta-section">
+  <h2>Si ça t'a parlé — réserve un appel.</h2>
+  <p>On se voit 20-30 minutes. Je regarde ton profil. Si t'as ce qu'il faut, tu fais partie des 3 à 5 qu'on accompagne.</p>
+  <a href="https://zcal.co/i/-3UaEpyg" target="_blank" class="btn-primary">
+    → Réserver mon appel avec Clément
+  </a>
+  <span class="btn-note">Appel gratuit · Aucun engagement · Places limitées</span>
+</section>
+
+<!-- STATS -->
+<section class="stats-section">
+  <div class="stats-grid">
+    <div class="stat-item">
+      <div class="stat-num">430K€</div>
+      <div class="stat-label">generés en 2 ans et demi</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">~30</div>
+      <div class="stat-label">ventes réalisées</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">12K€</div>
+      <div class="stat-label">commission moyenne</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">des ventes faites à distance</div>
+    </div>
+  </div>
+</section>
+
+<!-- CE QUE TU OBTIENS -->
+<section class="offer-section">
+  <h2 class="section-title">Ce que tu obtiens</h2>
+  <p class="section-sub">Pas une formation. Un accélérateur. Un job.</p>
+  <div class="offer-grid">
+    <div class="offer-card">
+      <div class="offer-icon">🎓</div>
+      <h3>Formation complète Dubai</h3>
+      <p>Histoire, économie, quartiers, promoteurs, setting, méthodes de closing. 2 ans d'apprentissage condensés en modules structurés.</p>
+    </div>
+    <div class="offer-card">
+      <div class="offer-icon">📞</div>
+      <h3>200 leads qualifiés</h3>
+      <p>Des prospects prêts à acheter à Dubai, au téléphone pour toi. J'investis une partie de tes 15K pour financer ta prospection.</p>
+    </div>
+    <div class="offer-card">
+      <div class="offer-icon">🔁</div>
+      <h3>Suivi hebdomadaire</h3>
+      <p>Débriefs d'appels, examens oraux par module, accompagnement pendant 3 à 6 mois. Je ne te lâche pas avant ta première vente.</p>
+    </div>
+    <div class="offer-card">
+      <div class="offer-icon">📍</div>
+      <h3>Zéro déménagement requis</h3>
+      <p>Tout se fait à distance. Tu économises 30 à 40 000€ par rapport à un agent classique qui s'installe à Dubai.</p>
+    </div>
+  </div>
+</section>
+
+<!-- POUR QUI -->
+<section class="filter-section">
+  <h2 class="section-title" style="margin-bottom:8px;">Pour qui — et pour qui pas.</h2>
+  <p class="section-sub" style="margin-bottom:36px;">Sois honnête avec toi-même avant de postuler.</p>
+  <div class="filter-grid">
+    <div class="filter-card yes">
+      <h3>✓ C'EST POUR TOI SI...</h3>
+      <ul>
+        <li>T'as la rage de faire du fric — vraiment</li>
+        <li>T'as déjà fait de la vente</li>
+        <li>Tu t'en fous de ton égo</li>
+        <li>T'es autonome — tu regardes les modules sans qu'on te force</li>
+        <li>T'es OK avec traverser des déserts avant de récolter</li>
+        <li>Tu te vois potentiellement vivre à Dubai</li>
+        <li>T'as 15 000€ de côté ou tu peux les avoir</li>
+      </ul>
+    </div>
+    <div class="filter-card no">
+      <h3>✗ C'EST PAS POUR TOI SI...</h3>
+      <ul>
+        <li>Tu cherches un side project entre deux trucs</li>
+        <li>T'as peur du rejet au téléphone</li>
+        <li>Tu vas douter au bout d'un mois et chercher des excuses</li>
+        <li>Tu veux "réfléchir encore un peu"</li>
+        <li>T'as pas les moyens ou tu veux négocier le prix</li>
+        <li>T'attends que ça marche tout seul</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PRIX -->
+<section class="price-section">
+  <h2 class="section-title" style="margin-bottom:8px;">L'offre</h2>
+  <p class="section-sub" style="margin-bottom:36px;">Une seule. Pas de tier. Pas de bullshit.</p>
+  <div class="price-box">
+    <div class="price-label">Accélérateur Dubai — Offre complète</div>
+    <div class="price-amount">15 000<span>€</span></div>
+    <p class="price-desc">En faisant 2 à 3 ventes, tu te rembourses.<br>La moyenne du marché : 12 000€ de commission.</p>
+    <ul class="price-items">
+      <li>Formation complète en 5 modules avec examens</li>
+      <li>200 leads qualifiés achetés pour toi</li>
+      <li>Suivi hebdomadaire pendant 3 à 6 mois</li>
+      <li>Débriefs d'appels de vente en direct</li>
+      <li>Accès à mes scripts, templates et méthodes</li>
+      <li>Intégration dans l'équipe Talmo Properties</li>
+    </ul>
+    <a href="https://zcal.co/i/-3UaEpyg" target="_blank" class="btn-primary" style="display:block;text-align:center;">
+      → Réserver mon appel
+    </a>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <h2 class="section-title" style="margin-bottom:8px;">Questions fréquentes</h2>
+  <p class="section-sub" style="margin-bottom:36px;">Les vraies. Pas les polies.</p>
+  <div class="faq-list">
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Je connais rien à Dubai ni à l'immobilier.
+        <span class="arrow">+</span>
+      </button>
+      <div class="faq-a">
+        On s'en bat les couilles. Moi c'était pareil. Je sais exactement comment former quelqu'un sur ce marché très rapidement. J'ai une capacité à simplifier Dubai qui va te faire aller beaucoup plus vite que tout le monde.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Et si ça marche pas — je perds 15 000€ ?
+        <span class="arrow">+</span>
+      </button>
+      <div class="faq-a">
+        C'est comme si tu prenais un coach sportif qui sait exactement ce que tu dois faire parce qu'il était dans ta situation il y a deux ans, et que t'as juste à te pointer et faire les séances. Si tu les fais pas, c'est juste que t'es une merde et t'auras perdu tes 15 000. Si tu les fais : 2 à 3 ventes et t'es remboursé. Je vois pas comment ça peut pas marcher avec tout ce qu'on met dans la balance.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Pourquoi tu fais payer si t'as besoin de vendeurs ?
+        <span class="arrow">+</span>
+      </button>
+      <div class="faq-a">
+        Parce que je fais entre 150 000 et 200 000€ par an. Je vais écouter tes appels, discuter avec toi, faire des examens oraux, investir en marketing pour toi. C'est inintéressant pour moi si ça me fait pas gagner un peu d'argent. Et surtout : les gens qui paient sont déterminés. Les gratuits ne bossent jamais.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        J'ai pas 15 000€ maintenant.
+        <span class="arrow">+</span>
+      </button>
+      <div class="faq-a">
+        Alors c'est pas pour toi maintenant. Moi dans mon parcours, j'ai dû faire un prêt pour financer mes débuts. J'ai fait ce qu'il fallait faire. C'est ça que je cherche chez toi. Si t'es pas dans cette disposition, reviens quand t'es prêt.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Est-ce que je dois aller à Dubai ?
+        <span class="arrow">+</span>
+      </button>
+      <div class="faq-a">
+        Non. Toutes mes ventes, je les ai faites depuis l'étranger, par visio. Les acheteurs ne sont généralement pas sur place non plus. Tout se fait à distance. C'est l'un des avantages majeurs de ce marché.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="spots-badge">3 à 5 places disponibles · 2026</div>
+  <h2>Si t'as la rage — on se parle.</h2>
+  <p>Réserve un appel. Si ton profil match, tu fais partie de l'équipe. Sinon, je te dis honnêtement pourquoi.</p>
+  <a href="https://zcal.co/i/-3UaEpyg" target="_blank" class="btn-primary">
+    → Réserver mon appel avec Clément
+  </a>
+  <span class="btn-note" style="display:block;margin-top:14px;font-size:13px;color:rgba(255,255,255,0.3)">
+    Appel gratuit · 20-30 min · Aucun engagement
+  </span>
+</section>
+
+<footer>
+  <p>© 2026 Talmo Properties L.L.C — Dubai, UAE &nbsp;·&nbsp; <a href="https://go.clementinvestdubai.com">go.clementinvestdubai.com</a></p>
+</footer>
+
+<script>
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+</script>
+
+</body>
+</html>
