@@ -10,162 +10,188 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
     --navy: #1A2E4A;
-    --navy-dark: #0F1E31;
+    --navy-light: #2C4A6E;
     --green: #3D6B5A;
     --terra: #C0513A;
-    --cream: #F2F0EB;
+    --cream: #F7F5F2;
     --gold: #C8A96E;
+    --text: #1A1A1A;
+    --text-soft: #5A5A5A;
+    --text-muted: #9A9A9A;
+    --border: #E5E2DC;
   }
   html { scroll-behavior: smooth; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; background: #0D0D0D; color: white; line-height: 1.6; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; background: #FFFFFF; color: var(--text); line-height: 1.6; }
 
   /* TOPBAR */
-  .topbar { background: var(--terra); text-align: center; padding: 10px 20px; font-size: 13px; font-weight: 700; letter-spacing: 0.5px; }
+  .topbar { background: var(--terra); text-align: center; padding: 10px 20px; font-size: 13px; font-weight: 700; letter-spacing: 0.5px; color: white; }
 
   /* HERO */
-  .hero { background: var(--navy-dark); padding: 64px 20px 52px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.06); }
-  .hero-label { display: inline-block; background: rgba(200,169,110,0.15); border: 1px solid var(--gold); color: var(--gold); font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 6px 16px; border-radius: 100px; margin-bottom: 24px; }
-  .hero h1 { font-size: clamp(28px, 5vw, 50px); font-weight: 800; line-height: 1.15; max-width: 780px; margin: 0 auto 20px; letter-spacing: -0.5px; }
-  .hero h1 span { color: var(--gold); }
-  .hero-sub { font-size: clamp(16px, 2.5vw, 19px); color: rgba(255,255,255,0.6); max-width: 580px; margin: 0 auto 0; line-height: 1.6; }
+  .hero { background: #FFFFFF; padding: 72px 20px 60px; text-align: center; border-bottom: 1px solid var(--border); }
+  .hero-label { display: inline-block; background: rgba(26,46,74,0.07); border: 1px solid rgba(26,46,74,0.15); color: var(--navy); font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 6px 16px; border-radius: 100px; margin-bottom: 24px; }
+  .hero h1 { font-size: clamp(30px, 5vw, 52px); font-weight: 900; line-height: 1.1; max-width: 780px; margin: 0 auto 20px; letter-spacing: -1px; color: var(--navy); }
+  .hero h1 span { color: var(--terra); }
+  .hero-sub { font-size: clamp(16px, 2.5vw, 19px); color: var(--text-soft); max-width: 580px; margin: 0 auto; line-height: 1.6; }
 
   /* VIDEO */
-  .video-section { background: #111; padding: 52px 20px; }
+  .video-section { background: var(--cream); padding: 52px 20px; }
   .video-wrap { max-width: 820px; margin: 0 auto; }
-  .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; background: #1a1a1a; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 24px 60px rgba(0,0,0,0.5); }
+  .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; background: #eee; border: 1px solid var(--border); box-shadow: 0 16px 48px rgba(0,0,0,0.1); }
   .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 12px; }
-  .video-caption { text-align: center; margin-top: 18px; font-size: 13px; color: rgba(255,255,255,0.35); font-style: italic; }
+  .video-caption { text-align: center; margin-top: 16px; font-size: 13px; color: var(--text-muted); font-style: italic; }
 
   /* CTA PRIMARY */
-  .cta-section { background: var(--navy-dark); padding: 56px 20px; text-align: center; }
-  .cta-section h2 { font-size: clamp(22px, 4vw, 34px); font-weight: 800; margin-bottom: 12px; }
-  .cta-section p { color: rgba(255,255,255,0.55); font-size: 16px; max-width: 500px; margin: 0 auto 32px; }
-  .btn-primary { display: inline-block; background: var(--terra); color: white; font-size: 17px; font-weight: 700; padding: 18px 44px; border-radius: 8px; text-decoration: none; transition: background 0.2s, transform 0.15s, box-shadow 0.2s; box-shadow: 0 8px 28px rgba(192,81,58,0.35); }
-  .btn-primary:hover { background: #a84430; transform: translateY(-2px); box-shadow: 0 12px 36px rgba(192,81,58,0.45); }
-  .btn-note { display: block; margin-top: 12px; font-size: 13px; color: rgba(255,255,255,0.3); }
+  .btn-primary { display: inline-block; background: var(--terra); color: white; font-size: 17px; font-weight: 700; padding: 18px 44px; border-radius: 8px; text-decoration: none; transition: background 0.2s, transform 0.15s, box-shadow 0.2s; box-shadow: 0 6px 20px rgba(192,81,58,0.3); }
+  .btn-primary:hover { background: #a84430; transform: translateY(-2px); box-shadow: 0 10px 28px rgba(192,81,58,0.4); }
+  .btn-note { display: block; margin-top: 12px; font-size: 13px; color: var(--text-muted); }
 
-  /* SECTIONS GENERIQUES */
+  .cta-section { background: #FFFFFF; padding: 56px 20px; text-align: center; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .cta-section h2 { font-size: clamp(22px, 4vw, 32px); font-weight: 800; margin-bottom: 12px; color: var(--navy); }
+  .cta-section p { color: var(--text-soft); font-size: 16px; max-width: 520px; margin: 0 auto 32px; line-height: 1.7; }
+
+  /* SECTIONS */
   section { padding: 72px 20px; }
-  .section-label { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
-  .section-title { font-size: clamp(24px, 4vw, 36px); font-weight: 800; margin-bottom: 10px; letter-spacing: -0.3px; line-height: 1.2; }
-  .section-sub { color: rgba(255,255,255,0.5); font-size: 16px; margin-bottom: 48px; max-width: 560px; }
+  .section-label { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--terra); margin-bottom: 10px; }
+  .section-title { font-size: clamp(24px, 4vw, 36px); font-weight: 900; margin-bottom: 10px; letter-spacing: -0.5px; line-height: 1.15; color: var(--navy); }
+  .section-sub { color: var(--text-soft); font-size: 16px; margin-bottom: 48px; max-width: 560px; line-height: 1.6; }
   .centered { text-align: center; }
   .centered .section-sub { margin-left: auto; margin-right: auto; }
 
-  /* STATS */
-  .stats-section { background: #111; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); }
-  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 32px; max-width: 820px; margin: 0 auto; text-align: center; }
-  .stat-num { font-size: 40px; font-weight: 900; color: var(--gold); letter-spacing: -1px; line-height: 1; }
-  .stat-label { font-size: 13px; color: rgba(255,255,255,0.45); margin-top: 6px; line-height: 1.4; }
+  /* RÉSULTATS — grande section combinée */
+  .results-section { background: var(--cream); }
+  .results-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; max-width: 960px; margin: 0 auto 56px; }
+  @media (max-width: 700px) { .results-grid { grid-template-columns: 1fr; } }
 
-  /* RÉSULTAT / VALEUR */
-  .value-section { background: var(--navy-dark); }
-  .value-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; max-width: 960px; margin: 0 auto; }
-  .value-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 28px 24px; transition: border-color 0.2s; }
-  .value-card:hover { border-color: rgba(200,169,110,0.25); }
-  .value-card-icon { font-size: 26px; margin-bottom: 12px; }
-  .value-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 8px; color: white; }
-  .value-card p { font-size: 13.5px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+  .result-block { background: white; border: 1px solid var(--border); border-radius: 14px; padding: 32px 28px; }
+  .result-block-title { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--terra); margin-bottom: 20px; }
+  .stat-row { display: flex; justify-content: space-between; align-items: baseline; padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .stat-row:last-child { border-bottom: none; }
+  .stat-row-label { font-size: 14px; color: var(--text-soft); }
+  .stat-row-val { font-size: 22px; font-weight: 900; color: var(--navy); letter-spacing: -0.5px; }
 
-  /* EQUATION DE VALEUR */
-  .equation-section { background: #111; }
-  .equation-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 860px; margin: 0 auto; }
+  /* PYRAMIDE LEADS */
+  .pyramid-wrap { max-width: 600px; margin: 0 auto 56px; text-align: center; }
+  .pyramid-title { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--navy); margin-bottom: 24px; }
+  .pyramid { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .pyr-level { display: flex; align-items: center; justify-content: center; border-radius: 8px; color: white; font-weight: 700; font-size: 14px; padding: 14px 20px; line-height: 1.4; text-align: center; }
+  .pyr-level.top { width: 60%; background: var(--navy); font-size: 13px; }
+  .pyr-level.mid { width: 80%; background: var(--navy-light); font-size: 13px; }
+  .pyr-level.bot { width: 100%; background: #7A9BBF; font-size: 13px; }
+  .pyr-arrow { color: var(--text-muted); font-size: 18px; }
+  .pyramid-note { margin-top: 16px; font-size: 13px; color: var(--text-soft); line-height: 1.6; }
+
+  /* CHRONOLOGIE */
+  .timeline-wrap { max-width: 860px; margin: 0 auto; }
+  .timeline-title { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--terra); margin-bottom: 24px; }
+  .timeline { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media (max-width: 600px) { .timeline { grid-template-columns: 1fr; } }
+  .tl-card { border-radius: 12px; padding: 24px 20px; }
+  .tl-card.p1 { background: #EEF3F9; border: 1px solid #C5D5E8; }
+  .tl-card.p2 { background: #EDF5F1; border: 1px solid #B8D9CB; }
+  .tl-card.p3 { background: #FDF4EE; border: 1px solid #F0C9B4; }
+  .tl-period { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+  .tl-card.p1 .tl-period { color: var(--navy); }
+  .tl-card.p2 .tl-period { color: var(--green); }
+  .tl-card.p3 .tl-period { color: var(--terra); }
+  .tl-sales { font-size: 28px; font-weight: 900; letter-spacing: -1px; margin-bottom: 4px; color: var(--navy); }
+  .tl-amount { font-size: 15px; font-weight: 700; color: var(--green); margin-bottom: 10px; }
+  .tl-note { font-size: 13px; color: var(--text-soft); line-height: 1.5; }
+  .tl-roi { margin-top: 24px; background: white; border: 1.5px solid var(--green); border-radius: 10px; padding: 18px 24px; text-align: center; }
+  .tl-roi strong { color: var(--green); font-size: 16px; }
+  .tl-roi p { font-size: 14px; color: var(--text-soft); margin-top: 4px; }
+
+  /* ÉQUATION */
+  .equation-section { background: #FFFFFF; border-top: 1px solid var(--border); }
+  .equation-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 860px; margin: 0 auto; }
   @media (max-width: 640px) { .equation-grid { grid-template-columns: 1fr; } }
   .eq-card { border-radius: 12px; padding: 28px 24px; }
-  .eq-card.up { background: rgba(61,107,90,0.1); border: 1px solid rgba(61,107,90,0.25); }
-  .eq-card.down { background: rgba(192,81,58,0.08); border: 1px solid rgba(192,81,58,0.2); }
+  .eq-card.up { background: #EDF5F1; border: 1px solid #B8D9CB; }
+  .eq-card.down { background: #FDF4EE; border: 1px solid #F0C9B4; }
   .eq-card-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 16px; }
-  .eq-card.up .eq-card-label { color: #6BBF9A; }
-  .eq-card.down .eq-card-label { color: #E07060; }
+  .eq-card.up .eq-card-label { color: var(--green); }
+  .eq-card.down .eq-card-label { color: var(--terra); }
   .eq-card ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-  .eq-card ul li { font-size: 14px; color: rgba(255,255,255,0.7); padding-left: 20px; position: relative; line-height: 1.5; }
+  .eq-card ul li { font-size: 14px; color: var(--text); padding-left: 22px; position: relative; line-height: 1.55; }
   .eq-card ul li::before { position: absolute; left: 0; font-weight: 700; }
-  .eq-card.up ul li::before { content: "↑"; color: #6BBF9A; }
-  .eq-card.down ul li::before { content: "↓"; color: #E07060; }
-  .eq-card ul li strong { color: white; }
+  .eq-card.up ul li::before { content: "↑"; color: var(--green); }
+  .eq-card.down ul li::before { content: "↓"; color: var(--terra); }
+  .eq-card ul li strong { color: var(--navy); }
 
   /* OFFRE */
-  .offer-section { background: var(--navy-dark); }
+  .offer-section { background: var(--cream); }
+  .formation-banner { max-width: 960px; margin: 0 auto 48px; border-radius: 14px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
+  .formation-banner img { width: 100%; display: block; }
   .offer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; max-width: 960px; margin: 0 auto 48px; }
-  .offer-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 28px 24px; }
-  .offer-card:hover { border-color: rgba(200,169,110,0.25); }
+  .offer-card { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 28px 24px; transition: box-shadow 0.2s; }
+  .offer-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
   .offer-icon { font-size: 28px; margin-bottom: 14px; }
-  .offer-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
-  .offer-card p { font-size: 13.5px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+  .offer-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 8px; color: var(--navy); }
+  .offer-card p { font-size: 13.5px; color: var(--text-soft); line-height: 1.6; }
 
   /* PRIX */
-  .price-box { max-width: 500px; margin: 0 auto; background: rgba(255,255,255,0.04); border: 1px solid rgba(200,169,110,0.3); border-radius: 16px; padding: 44px 36px; text-align: center; }
-  .price-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
-  .price-amount { font-size: 68px; font-weight: 900; letter-spacing: -2px; line-height: 1; margin-bottom: 6px; }
+  .price-box { max-width: 500px; margin: 0 auto; background: white; border: 2px solid var(--navy); border-radius: 16px; padding: 44px 36px; text-align: center; }
+  .price-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--terra); margin-bottom: 12px; }
+  .price-amount { font-size: 68px; font-weight: 900; letter-spacing: -2px; line-height: 1; margin-bottom: 6px; color: var(--navy); }
   .price-amount span { font-size: 30px; font-weight: 600; }
-  .price-split { font-size: 14px; color: var(--gold); font-weight: 600; margin-bottom: 20px; }
+  .price-split { font-size: 14px; color: var(--green); font-weight: 700; margin-bottom: 20px; }
   .price-items { text-align: left; list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
-  .price-items li { font-size: 14px; color: rgba(255,255,255,0.7); padding-left: 24px; position: relative; }
-  .price-items li::before { content: "→"; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+  .price-items li { font-size: 14px; color: var(--text-soft); padding-left: 24px; position: relative; }
+  .price-items li::before { content: "→"; position: absolute; left: 0; color: var(--terra); font-weight: 700; }
 
   /* GARANTIES */
-  .garanties-section { background: #0a0a0a; border-top: 1px solid rgba(255,255,255,0.05); }
+  .garanties-section { background: white; border-top: 1px solid var(--border); }
   .garanties-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 860px; margin: 0 auto; }
   @media (max-width: 640px) { .garanties-grid { grid-template-columns: 1fr; } }
   .garantie-card { border-radius: 14px; padding: 36px 30px; }
-  .garantie-card.g1 { background: rgba(61,107,90,0.1); border: 1px solid rgba(61,107,90,0.3); }
-  .garantie-card.g2 { background: rgba(200,169,110,0.07); border: 1px solid rgba(200,169,110,0.25); }
+  .garantie-card.g1 { background: #EDF5F1; border: 1px solid #B8D9CB; }
+  .garantie-card.g2 { background: #FEFBF4; border: 1px solid #E8D5A8; }
   .garantie-icon { font-size: 32px; margin-bottom: 16px; }
   .garantie-name { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
-  .garantie-card.g1 .garantie-name { color: #6BBF9A; }
-  .garantie-card.g2 .garantie-name { color: var(--gold); }
-  .garantie-card h3 { font-size: 20px; font-weight: 800; margin-bottom: 16px; line-height: 1.2; }
-  .garantie-card p { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.7; }
-  .garantie-card p strong { color: white; }
-  .garantie-note { margin-top: 16px; font-size: 13px; color: rgba(255,255,255,0.35); font-style: italic; }
+  .garantie-card.g1 .garantie-name { color: var(--green); }
+  .garantie-card.g2 .garantie-name { color: #9A7A40; }
+  .garantie-card h3 { font-size: 20px; font-weight: 800; margin-bottom: 16px; line-height: 1.2; color: var(--navy); }
+  .garantie-card p { font-size: 14px; color: var(--text-soft); line-height: 1.7; }
+  .garantie-card p strong { color: var(--navy); }
+  .garantie-note { margin-top: 14px; font-size: 13px; color: var(--text-muted); font-style: italic; }
 
   /* FILTRE */
-  .filter-section { background: var(--navy-dark); }
+  .filter-section { background: var(--cream); }
   .filter-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 860px; margin: 0 auto; }
   @media (max-width: 600px) { .filter-grid { grid-template-columns: 1fr; } }
-  .filter-card { border-radius: 12px; padding: 28px 24px; }
-  .filter-card.yes { background: rgba(61,107,90,0.1); border: 1px solid rgba(61,107,90,0.25); }
-  .filter-card.no { background: rgba(192,81,58,0.08); border: 1px solid rgba(192,81,58,0.2); }
-  .filter-card h3 { font-size: 13px; font-weight: 700; letter-spacing: 1px; margin-bottom: 16px; }
-  .filter-card.yes h3 { color: #6BBF9A; }
-  .filter-card.no h3 { color: #E07060; }
+  .filter-card { border-radius: 12px; padding: 28px 24px; background: white; }
+  .filter-card.yes { border: 1px solid #B8D9CB; }
+  .filter-card.no { border: 1px solid #F0C9B4; }
+  .filter-card h3 { font-size: 12px; font-weight: 700; letter-spacing: 1px; margin-bottom: 16px; }
+  .filter-card.yes h3 { color: var(--green); }
+  .filter-card.no h3 { color: var(--terra); }
   .filter-card ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-  .filter-card ul li { font-size: 14px; color: rgba(255,255,255,0.65); padding-left: 22px; position: relative; line-height: 1.5; }
+  .filter-card ul li { font-size: 14px; color: var(--text); padding-left: 22px; position: relative; line-height: 1.5; }
   .filter-card ul li::before { position: absolute; left: 0; }
-  .filter-card.yes ul li::before { content: "✓"; color: #6BBF9A; font-weight: 700; }
-  .filter-card.no ul li::before { content: "✗"; color: #E07060; font-weight: 700; }
-
-  /* FAQ */
-  .faq-section { background: #111; }
-  .faq-list { max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
-  .faq-item { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: 10px; overflow: hidden; }
-  .faq-q { width: 100%; text-align: left; background: none; border: none; color: white; font-size: 15px; font-weight: 600; padding: 20px 24px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
-  .faq-q .arrow { flex-shrink: 0; color: var(--gold); font-size: 20px; transition: transform 0.25s; }
-  .faq-item.open .arrow { transform: rotate(45deg); }
-  .faq-a { display: none; padding: 0 24px 20px; font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.7; }
-  .faq-item.open .faq-a { display: block; }
+  .filter-card.yes ul li::before { content: "✓"; color: var(--green); font-weight: 700; }
+  .filter-card.no ul li::before { content: "✗"; color: var(--terra); font-weight: 700; }
 
   /* FINAL CTA */
-  .final-cta { background: var(--navy); padding: 80px 20px; text-align: center; border-top: 1px solid rgba(255,255,255,0.06); }
-  .spots-badge { display: inline-block; background: rgba(192,81,58,0.15); border: 1px solid rgba(192,81,58,0.4); color: #E07060; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 6px 16px; border-radius: 100px; margin-bottom: 28px; }
-  .final-cta h2 { font-size: clamp(26px, 4.5vw, 40px); font-weight: 800; max-width: 600px; margin: 0 auto 16px; letter-spacing: -0.3px; line-height: 1.2; }
-  .final-cta p { color: rgba(255,255,255,0.5); font-size: 15px; max-width: 440px; margin: 0 auto 36px; }
+  .final-cta { background: var(--navy); padding: 80px 20px; text-align: center; }
+  .spots-badge { display: inline-block; background: rgba(192,81,58,0.2); border: 1px solid rgba(192,81,58,0.5); color: #F08070; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 6px 16px; border-radius: 100px; margin-bottom: 28px; }
+  .final-cta h2 { font-size: clamp(26px, 4.5vw, 40px); font-weight: 900; max-width: 600px; margin: 0 auto 16px; letter-spacing: -0.5px; line-height: 1.2; color: white; }
+  .final-cta p { color: rgba(255,255,255,0.6); font-size: 15px; max-width: 440px; margin: 0 auto 36px; }
+  .final-cta .btn-note { color: rgba(255,255,255,0.35); }
 
-  footer { background: #0D0D0D; padding: 24px 20px; text-align: center; font-size: 12px; color: rgba(255,255,255,0.2); border-top: 1px solid rgba(255,255,255,0.05); }
-  footer a { color: rgba(255,255,255,0.3); text-decoration: none; }
-  .divider { border: none; border-top: 1px solid rgba(255,255,255,0.06); margin: 0; }
+  footer { background: #F7F5F2; padding: 24px 20px; text-align: center; font-size: 12px; color: var(--text-muted); border-top: 1px solid var(--border); }
+  footer a { color: var(--text-muted); text-decoration: none; }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
 </style>
 </head>
 <body>
 
-<!-- TOPBAR --><!-- deploy: kGekDDIEbnY -->
+<!-- TOPBAR -->
 <div class="topbar">🔴 &nbsp;3 à 5 places maximum — Recrutement 2026</div>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-label">Recrutement Équipe Dubai</div>
   <h1>Je cherche des vendeurs.<br>Pas des <span>rêveurs.</span></h1>
-  <p class="hero-sub">Immobilier off-plan à Dubai. À distance. Sans t'installer sur place. Ton seul job : prendre des appels et vendre.</p>
+  <p class="hero-sub">Immobilier off-plan à Dubai. À distance. Sans t'installer sur place. Ton seul job : appeler et vendre à des leads qualifiés.</p>
 </section>
 
 <!-- VIDEO -->
@@ -181,75 +207,98 @@
 <!-- CTA 1 -->
 <section class="cta-section">
   <h2>Si ça t'a parlé — réserve un appel.</h2>
-  <p>20-30 minutes. Je regarde ton profil. Si tu as ce qu'il faut, tu rejoins les 3 à 5 qu'on accompagne.</p>
+  <p>20-30 minutes. Je regarde ton profil, tu poses tes questions sur l'opportunité, et si tu as ce qu'il faut, tu rejoins les 3 à 5 qu'on accompagne cette année.</p>
   <a href="https://zcal.co/i/-3UaEpyg" target="_blank" class="btn-primary">→ Réserver mon appel avec Clément</a>
   <span class="btn-note">Gratuit · Sans engagement · Places limitées</span>
 </section>
 
 <hr class="divider">
 
-<!-- STATS -->
-<section class="stats-section">
-  <div class="stats-grid">
-    <div>
-      <div class="stat-num">430K€</div>
-      <div class="stat-label">générés en 2 ans et demi</div>
-    </div>
-    <div>
-      <div class="stat-num">~30</div>
-      <div class="stat-label">ventes réalisées</div>
-    </div>
-    <div>
-      <div class="stat-num">12K€</div>
-      <div class="stat-label">commission moyenne par deal</div>
-    </div>
-    <div>
-      <div class="stat-num">100%</div>
-      <div class="stat-label">des ventes faites à distance</div>
-    </div>
-  </div>
-</section>
-
-<!-- RÉSULTAT & ÉQUATION DE VALEUR -->
-<section class="value-section">
+<!-- RÉSULTATS COMBINÉS -->
+<section class="results-section">
   <div style="max-width:960px;margin:0 auto;">
-    <div class="centered">
-      <div class="section-label">Le résultat</div>
-      <h2 class="section-title">Ce que tu peux réalistement espérer</h2>
-      <p class="section-sub">Des chiffres concrets, pas des promesses.</p>
+    <div class="centered" style="margin-bottom:48px;">
+      <div class="section-label">Ce que tu peux réellement espérer</div>
+      <h2 class="section-title">Voilà ce que j'ai fait.<br>Voilà ce à quoi toi tu peux t'attendre.</h2>
+      <p class="section-sub">Chiffres réels. Pas de projection bullshit.</p>
     </div>
-    <div class="value-grid">
-      <div class="value-card">
-        <div class="value-card-icon">💶</div>
-        <h3>1 vente par mois = 10 000€+</h3>
-        <p>La commission moyenne est de 12 000€. Les plus grosses montent à 50 000€. Une vente suffit pour dépasser ton ancien salaire.</p>
+
+    <!-- Stats perso -->
+    <div class="results-grid">
+      <div class="result-block">
+        <div class="result-block-title">📊 Mes performances (2024-2026)</div>
+        <div class="stat-row"><span class="stat-row-label">Commissions générées</span><span class="stat-row-val">430K€</span></div>
+        <div class="stat-row"><span class="stat-row-label">Ventes réalisées</span><span class="stat-row-val">~30 deals</span></div>
+        <div class="stat-row"><span class="stat-row-label">Leads exploités</span><span class="stat-row-val">~300</span></div>
+        <div class="stat-row"><span class="stat-row-label">Taux de conversion</span><span class="stat-row-val">~10%</span></div>
+        <div class="stat-row"><span class="stat-row-label">Commission par vente</span><span class="stat-row-val">8K€ → 50K€</span></div>
+        <div class="stat-row"><span class="stat-row-label">100% des ventes</span><span class="stat-row-val">à distance</span></div>
       </div>
-      <div class="value-card">
-        <div class="value-card-icon">📊</div>
-        <h3>Un marché qui fonctionne déjà</h3>
-        <p>DRN, Dubai Immo, Haaz Properties — des agences françaises avec 10 à 30 vendeurs qui brassent 150K à 500K€ par an. T'arrives pas en terrain inconnu.</p>
+      <div class="result-block">
+        <div class="result-block-title">💶 Comment fonctionne la rémunération</div>
+        <div class="stat-row"><span class="stat-row-label">Commission promoteur</span><span class="stat-row-val">~5% du bien</span></div>
+        <div class="stat-row"><span class="stat-row-label">Ta part (50%)</span><span class="stat-row-val">~2,5% net</span></div>
+        <div class="stat-row"><span class="stat-row-label">Appartement 500K€</span><span class="stat-row-val">= 12 500€</span></div>
+        <div class="stat-row"><span class="stat-row-label">Bien &gt; 1M€</span><span class="stat-row-val">= 25 000€+</span></div>
+        <div class="stat-row"><span class="stat-row-label">Minimum garanti</span><span class="stat-row-val">8 000€</span></div>
+        <div class="stat-row"><span class="stat-row-label">Commission max réalisée</span><span class="stat-row-val">50 000€</span></div>
       </div>
-      <div class="value-card">
-        <div class="value-card-icon">⏱️</div>
-        <h3>Première vente sous 3 mois</h3>
-        <p>Avec une agence classique : 3 mois avant d'avoir un lead — et c'est un lead de merde. Ici : tes 200 leads arrivent dès que tu es formé.</p>
+    </div>
+
+    <!-- Pyramide leads -->
+    <div class="pyramid-wrap">
+      <div class="pyramid-title">🎯 La qualité de tes leads</div>
+      <div class="pyramid">
+        <div class="pyr-level top">🎬 Leads YouTube — Meilleure qualité<br><span style="font-size:12px;font-weight:400;opacity:0.85;">Déjà convaincus. Viennent d'eux-mêmes. Closing plus facile.</span></div>
+        <div class="pyr-arrow">↓</div>
+        <div class="pyr-level mid">📣 Leads retargeting — Qualité intermédiaire<br><span style="font-size:12px;font-weight:400;opacity:0.85;">Ont vu du contenu Dubai. Intérêt réel mais à qualifier.</span></div>
+        <div class="pyr-arrow">↓</div>
+        <div class="pyr-level bot">📲 Leads ads froids — Volume<br><span style="font-size:12px;font-weight:400;opacity:0.85;">Qualifiés, mais besoin de plus de travail en découverte.</span></div>
       </div>
-      <div class="value-card">
-        <div class="value-card-icon">🎯</div>
-        <h3>Ton seul job : vendre</h3>
-        <p>Pas de création de contenu. Pas de prospection. Pas d'admin. Pas de visites. Juste des appels, avec des gens qui ont déjà montré de l'intérêt.</p>
+      <p class="pyramid-note" style="margin-top:20px;text-align:center;max-width:480px;margin-left:auto;margin-right:auto;">
+        <strong style="color:var(--navy)">Pour commencer, tu travailles sur des leads ads — qualifiés et intéressés par Dubai.</strong><br>
+        Une fois que tu as fait tes preuves, tu accèdes aux leads YouTube : des prospects qui ont regardé mes vidéos, écouté mes analyses, et t'appellent déjà en confiance.
+      </p>
+    </div>
+
+    <!-- Timeline projections -->
+    <div class="timeline-wrap">
+      <div class="timeline-title">📈 Ta progression réaliste mois par mois</div>
+      <div class="timeline">
+        <div class="tl-card p1">
+          <div class="tl-period">Mois 1 à 3 — Rodage</div>
+          <div class="tl-sales">1 à 2 ventes</div>
+          <div class="tl-amount">8 000€ → 24 000€</div>
+          <div class="tl-note">Tu apprends le terrain, tu montes en compétences, tu fais ta première vente.</div>
+        </div>
+        <div class="tl-card p2">
+          <div class="tl-period">Mois 4 à 6 — Montée en puissance</div>
+          <div class="tl-sales">1 à 2 / mois</div>
+          <div class="tl-amount">8 000€ → 24 000€ / mois</div>
+          <div class="tl-note">Le process est acquis. Tu closes régulièrement. L'investissement est déjà remboursé.</div>
+        </div>
+        <div class="tl-card p3">
+          <div class="tl-period">Mois 6+ — Régime de croisière</div>
+          <div class="tl-sales">2 à 4 / mois</div>
+          <div class="tl-amount">16 000€ → 48 000€ / mois</div>
+          <div class="tl-note">Tu maîtrises. Tu accèdes aux leads YouTube. Tu closes plus vite, plus haut.</div>
+        </div>
+      </div>
+      <div class="tl-roi">
+        <strong>1 seule vente rembourse les 7 500€ de départ.</strong>
+        <p>Commission minimum par deal : 8 000€. Tu es dans le vert dès la première signature.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- EQUATION : ce que tu évites vs ce que tu gagnes -->
+<!-- POURQUOI DIFFÉRENT -->
 <section class="equation-section">
   <div style="max-width:860px;margin:0 auto;">
     <div class="centered" style="margin-bottom:40px;">
       <div class="section-label">Vs la voie classique</div>
       <h2 class="section-title">Pourquoi c'est différent</h2>
-      <p class="section-sub">Ce que tu économises. Ce que tu gardes.</p>
+      <p class="section-sub" style="text-align:center;">Ce que tu économises. Ce que tu gardes.</p>
     </div>
     <div class="equation-grid">
       <div class="eq-card up">
@@ -266,7 +315,7 @@
         <div class="eq-card-label">↓ Ce que tu évites vs agence classique</div>
         <ul>
           <li><strong>30 à 40 000€</strong> de frais de vie pour s'installer à Dubai</li>
-          <li><strong>3 mois minimum</strong> avant d'avoir un vrai lead</li>
+          <li><strong>Pas de vrai lead avant 6 mois</strong> dans une agence classique — au mieux</li>
           <li><strong>Tout apprendre seul</strong> — quartiers, promoteurs, process</li>
           <li><strong>Créer ton acquisition</strong> — contenu, SEO, réseaux sociaux</li>
           <li><strong>Gérer l'admin</strong> — société, comptabilité, conformité</li>
@@ -279,17 +328,29 @@
 <!-- OFFRE -->
 <section class="offer-section">
   <div style="max-width:960px;margin:0 auto;">
-    <div class="centered">
+    <div class="centered" style="margin-bottom:40px;">
       <div class="section-label">L'offre complète</div>
       <h2 class="section-title">Ce que tu reçois</h2>
-      <p class="section-sub">Pas une formation. Un accès à tout ce qui a fonctionné.</p>
+      <p class="section-sub" style="text-align:center;margin-left:auto;margin-right:auto;">Pas une formation. Un accès à tout ce qui a fonctionné.</p>
     </div>
-    <div class="offer-grid">
-      <div class="offer-card">
-        <div class="offer-icon">🎓</div>
-        <h3>Formation complète Dubai</h3>
-        <p>Marché, quartiers, promoteurs, profils d'acheteurs, méthodes de closing. Avec examens oraux par module — je vérifie que tu maîtrises avant de passer.</p>
+
+    <!-- Screenshot formation -->
+    <div class="formation-banner">
+      <img src="https://i.ytimg.com/vi/kGekDDIEbnY/maxresdefault.jpg" alt="Aperçu de la formation Closer Immobilier Dubai" onerror="this.style.display='none'">
+      <div style="background:white;padding:24px 28px;display:flex;align-items:center;gap:32px;flex-wrap:wrap;border-top:1px solid var(--border);">
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <span style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--terra)">La formation incluse</span>
+          <span style="font-size:20px;font-weight:900;color:var(--navy)">Cinq modules pour être opérationnel.</span>
+        </div>
+        <div style="display:flex;gap:20px;flex-wrap:wrap;margin-left:auto;">
+          <div style="text-align:center;"><div style="font-size:28px;font-weight:900;color:var(--navy)">5</div><div style="font-size:12px;color:var(--text-soft)">modules</div></div>
+          <div style="text-align:center;"><div style="font-size:28px;font-weight:900;color:var(--navy)">45+</div><div style="font-size:12px;color:var(--text-soft)">vidéos</div></div>
+          <div style="text-align:center;"><div style="font-size:28px;font-weight:900;color:var(--navy)">4</div><div style="font-size:12px;color:var(--text-soft)">examens</div></div>
+        </div>
       </div>
+    </div>
+
+    <div class="offer-grid" style="margin-top:32px;">
       <div class="offer-card">
         <div class="offer-icon">📞</div>
         <h3>200 leads qualifiés</h3>
@@ -332,7 +393,7 @@
           <li>Accompagnement jusqu'à la première vente</li>
         </ul>
         <a href="https://zcal.co/i/-3UaEpyg" target="_blank" class="btn-primary" style="display:block;text-align:center;">→ Réserver mon appel</a>
-        <p style="margin-top:12px;font-size:13px;color:rgba(255,255,255,0.3);text-align:center;">2 à 3 ventes = offre remboursée. Commission moyenne : 12 000€.</p>
+        <p style="margin-top:12px;font-size:13px;color:var(--text-muted);text-align:center;">1 vente = offre remboursée. Commission minimum par deal : 8 000€.</p>
       </div>
     </div>
   </div>
@@ -344,7 +405,7 @@
     <div class="centered" style="margin-bottom:48px;">
       <div class="section-label">Garanties</div>
       <h2 class="section-title">Je prends le risque avec toi.</h2>
-      <p class="section-sub">Deux garanties. Pas de bullshit.</p>
+      <p class="section-sub" style="text-align:center;margin-left:auto;margin-right:auto;">Deux garanties. Pas de bullshit.</p>
     </div>
     <div class="garanties-grid">
       <div class="garantie-card g1">
@@ -363,8 +424,8 @@
         <p class="garantie-note">Pas de deadline. On va au bout ensemble.</p>
       </div>
     </div>
-    <p style="text-align:center;margin-top:32px;font-size:14px;color:rgba(255,255,255,0.35);max-width:560px;margin-left:auto;margin-right:auto;">
-      Pourquoi je peux me permettre ça ? Parce que si tu suis le process, ça marche. La seule façon que ça rate, c'est que tu n'exécutes pas — et dans ce cas, la garantie ne s'applique pas de toute façon.
+    <p style="text-align:center;margin-top:32px;font-size:14px;color:var(--text-muted);max-width:560px;margin-left:auto;margin-right:auto;">
+      Pourquoi je peux me permettre ça ? Parce que si tu suis le process, ça marche. La seule façon que ça rate, c'est que tu n'exécutes pas.
     </p>
   </div>
 </section>
@@ -375,7 +436,7 @@
     <div class="centered" style="margin-bottom:40px;">
       <div class="section-label">Sélection</div>
       <h2 class="section-title">Pour qui — et pour qui pas.</h2>
-      <p class="section-sub">Sois honnête avec toi-même avant de postuler.</p>
+      <p class="section-sub" style="text-align:center;margin-left:auto;margin-right:auto;">Sois honnête avec toi-même avant de postuler.</p>
     </div>
     <div class="filter-grid">
       <div class="filter-card yes">
@@ -406,63 +467,18 @@
   </div>
 </section>
 
-<!-- FAQ -->
-<section class="faq-section">
-  <div style="max-width:860px;margin:0 auto;">
-    <div class="centered" style="margin-bottom:40px;">
-      <div class="section-label">Questions</div>
-      <h2 class="section-title">Les vraies questions.</h2>
-      <p class="section-sub">Pas les polies.</p>
-    </div>
-    <div class="faq-list">
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">Je connais rien à Dubai ni à l'immobilier. <span class="arrow">+</span></button>
-        <div class="faq-a">On s'en bat les couilles. Moi c'était pareil. Je sais exactement comment former quelqu'un sur ce marché très rapidement — c'est tout ce que j'ai fait depuis 2 ans. J'ai une capacité à simplifier Dubai qui va te faire aller beaucoup plus vite que quelqu'un qui apprend seul.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">Et si ça marche pas — je perds mon argent ? <span class="arrow">+</span></button>
-        <div class="faq-a">C'est exactement pour ça que la Garantie Fit et la Garantie Première Vente existent. Tu paies 7 500€ maintenant. Si dans le premier mois ça matche pas, je te rembourse. Après, les 7 500€ restants, tu les paies quand tu closes. Et si sous 4 mois t'as pas vendu en ayant suivi le process, je reste avec toi gratuitement jusqu'à ce que ce soit fait.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">Pourquoi tu fais payer si t'as besoin de vendeurs ? <span class="arrow">+</span></button>
-        <div class="faq-a">Parce que je fais entre 150 000 et 200 000€ par an. Je vais écouter tes appels, te former, t'accompagner toutes les semaines, et investir en marketing pour t'apporter tes leads. Les gens qui paient sont déterminés. Les gratuits ne bossent jamais. Et surtout — je veux des gens qui ont déjà réussi à construire quelque chose, même modestement.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">Est-ce que je dois aller à Dubai ? <span class="arrow">+</span></button>
-        <div class="faq-a">Non. Toutes mes ventes ont été faites depuis l'étranger, par visio. Les acheteurs ne sont généralement pas à Dubai non plus — ils sont en Europe, au Moyen-Orient, partout dans le monde. C'est un des avantages fondamentaux de ce marché : tout se fait à distance.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">Combien de temps avant ma première vente ? <span class="arrow">+</span></button>
-        <div class="faq-a">Objectif réaliste : 3 mois si tu bosses sérieusement. Avec une agence classique, tu n'as même pas de lead qualifié avant 3 mois. Ici, tes 200 leads sont là dès que tu es formé. La seule variable, c'est à quelle vitesse tu montes en compétences — et pour ça, on est ensemble toutes les semaines.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">Est-ce que c'est un scam ? <span class="arrow">+</span></button>
-        <div class="faq-a">Regarde ma chaîne YouTube — @ClementInvestDubai — depuis le début. Je n'ai rien effacé. T'as accès à 2 ans d'évolution en public. Les témoignages de mes clients sont là. Mes premières vidéos aussi — tu verras que j'ai commencé de zéro. C'est ma timeline, vérifiable. Et si dans les 30 premiers jours t'as un doute, je te rembourse. Sans discussion.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- FINAL CTA -->
 <section class="final-cta">
   <div class="spots-badge">3 à 5 places · Recrutement 2026</div>
   <h2>Si t'as la rage —<br>on se parle.</h2>
-  <p>Réserve un appel. Si ton profil match, tu rejoins l'équipe. Sinon, je te dis honnêtement pourquoi.</p>
+  <p>Réserve un appel. Tu poses tes questions sur l'opportunité. Si ton profil match, tu rejoins l'équipe.</p>
   <a href="https://zcal.co/i/-3UaEpyg" target="_blank" class="btn-primary">→ Réserver mon appel avec Clément</a>
-  <span class="btn-note" style="display:block;margin-top:14px;font-size:13px;color:rgba(255,255,255,0.3);">Appel gratuit · 20-30 min · Aucun engagement</span>
+  <span class="btn-note">Appel gratuit · 20-30 min · Aucun engagement</span>
 </section>
 
 <footer>
   <p>© 2026 Talmo Properties L.L.C — Dubai, UAE &nbsp;·&nbsp; <a href="https://go.clementinvestdubai.com">go.clementinvestdubai.com</a></p>
 </footer>
 
-<script>
-function toggleFaq(btn) {
-  const item = btn.closest('.faq-item');
-  const wasOpen = item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('open'));
-  if (!wasOpen) item.classList.add('open');
-}
-</script>
 </body>
 </html>
