@@ -441,5 +441,24 @@ src="https://www.facebook.com/tr?id=1515228769880162&ev=PageView&noscript=1"
 </footer>
 
 <!-- redeploy-28aug17h58 -->
+
+<!-- Meta Pixel — VideoPlay tracking -->
+<script>
+(function() {
+  var iframeClicked = false;
+  window.addEventListener('blur', function() {
+    if (!iframeClicked && document.activeElement && document.activeElement.tagName === 'IFRAME') {
+      iframeClicked = true;
+      if (typeof fbq !== 'undefined') {
+        fbq('trackCustom', 'VideoPlay');
+      }
+    }
+  });
+  // Reset si l'utilisateur revient sur la page
+  window.addEventListener('focus', function() {
+    iframeClicked = false;
+  });
+})();
+</script>
 </body>
 </html>
