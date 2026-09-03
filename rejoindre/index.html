@@ -460,5 +460,20 @@ src="https://www.facebook.com/tr?id=1515228769880162&ev=PageView&noscript=1"
   });
 })();
 </script>
+
+<!-- Meta Pixel — 3min engagement tracker -->
+<script>
+(function() {
+  var fired3min = false;
+  setTimeout(function() {
+    if (!fired3min) {
+      fired3min = true;
+      if (typeof fbq !== 'undefined') {
+        fbq('trackCustom', 'Engaged3Min');
+      }
+    }
+  }, 180000); // 180 secondes = 3 minutes
+})();
+</script>
 </body>
 </html>
