@@ -193,6 +193,11 @@
     0%, 100% { opacity: 1; }
     50% { opacity: 0.6; }
   }
+  .confirm-case { display:flex; gap:12px; align-items:flex-start; text-align:left; font-size:14px; line-height:1.45; color:var(--navy); cursor:pointer; padding:12px 14px; border-radius:10px; border:1.5px solid rgba(0,0,0,0.12); background:rgba(0,0,0,0.02); }
+  .confirm-case input { width:20px; height:20px; margin-top:1px; flex-shrink:0; accent-color:var(--terra); cursor:pointer; }
+  .form-condition { margin:0; font-size:13px; color:var(--terra); text-align:center; }
+  #form-envoi:disabled { opacity:.45; cursor:not-allowed; transform:none; box-shadow:none; }
+  .form-merci { max-width:480px; margin:0 auto; padding:20px; border-radius:12px; background:rgba(10,125,79,0.08); color:var(--navy); text-align:center; }
 </style>
 <!-- Microsoft Clarity -->
 <script type="text/javascript">
@@ -242,8 +247,8 @@ src="https://www.facebook.com/tr?id=1515228769880162&ev=PageView&noscript=1"
 <!-- CTA 1 -->
 <section class="cta-section" id="contact">
   <h2>Envoie-moi tes coordonnées</h2>
-  <p>Laisse ton prénom, ton mail et ton numéro — je te recontacte sous 24h pour voir si ton profil correspond.</p>
-  <form action="https://formspree.io/f/mnpqgqel" method="POST"
+  <p>Ce poste est réservé aux profils qui ont déjà vendu et prospecté. Laisse tes coordonnées : je t'envoie la vidéo de présentation du poste sur WhatsApp dans la foulée.</p>
+  <form id="form-candidature" action="https://formspree.io/f/mnpqgqel" method="POST"
     style="max-width:480px;margin:0 auto;display:flex;flex-direction:column;gap:14px;">
     <input type="text" name="prenom" placeholder="Ton prénom *" required
       style="padding:14px 16px;border-radius:10px;border:1.5px solid rgba(0,0,0,0.15);background:rgba(0,0,0,0.03);color:var(--navy);font-size:15px;outline:none;">
@@ -252,7 +257,17 @@ src="https://www.facebook.com/tr?id=1515228769880162&ev=PageView&noscript=1"
     <input type="tel" name="telephone" placeholder="Ton numéro de téléphone *" required
       style="padding:14px 16px;border-radius:10px;border:1.5px solid rgba(0,0,0,0.15);background:rgba(0,0,0,0.03);color:var(--navy);font-size:15px;outline:none;">
     <input type="hidden" name="_subject" value="Nouveau candidat — /rejoindre">
-    <button type="submit" class="btn-primary" style="border:none;cursor:pointer;font-size:16px;padding:16px;"
+    <input type="text" name="site_web" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;">
+    <label class="confirm-case">
+      <input type="checkbox" name="confirme_prospection" value="oui" required>
+      <span>Je confirme avoir déjà prospecté des personnes <strong>en les appelant pour obtenir des rendez-vous</strong>.</span>
+    </label>
+    <label class="confirm-case">
+      <input type="checkbox" name="confirme_experience" value="oui" required>
+      <span>Je confirme avoir <strong>au minimum 2 ans d'expérience dans la vente</strong>.</span>
+    </label>
+    <p id="form-condition" class="form-condition">Ce poste demande une expérience en vente et en prospection téléphonique : coche les deux cases pour continuer.</p>
+    <button type="submit" id="form-envoi" class="btn-primary" disabled style="border:none;cursor:pointer;font-size:16px;padding:16px;"
       onclick="if(typeof fbq!=='undefined'){fbq('track','Lead',{content_name:'Rejoindre-Form'});}">
       &#x2192; Je veux être recontacté sur WhatsApp
     </button>
@@ -262,6 +277,10 @@ src="https://www.facebook.com/tr?id=1515228769880162&ev=PageView&noscript=1"
       <a href="/confidentialite/" target="_blank" style="color:inherit;">Confidentialité</a>
     </p>
   </form>
+  <div id="form-merci" class="form-merci" hidden>
+    <p><strong>Merci, c'est reçu !</strong></p>
+    <p>Je viens de t'envoyer la vidéo de présentation sur WhatsApp. Regarde-la, et si le poste t'intéresse, clique sur « Oui, ça m'intéresse ».</p>
+  </div>
   <span class="btn-note">Gratuit &middot; Sans engagement &middot; Places limitées</span>
 </section>
 
@@ -305,6 +324,41 @@ src="https://www.facebook.com/tr?id=1515228769880162&ev=PageView&noscript=1"
       }
     }
   }, 60000); // 60 secondes = 1 minute
+})();
+</script>
+
+<!-- Candidature : envoi au serveur de l'agence (WhatsApp + CV), Formspree en secours -->
+<script>
+(function() {
+  var form = document.getElementById('form-candidature');
+  var bouton = document.getElementById('form-envoi');
+  var condition = document.getElementById('form-condition');
+  var cases = form.querySelectorAll('input[type=checkbox]');
+  function maj() {
+    var ok = Array.prototype.every.call(cases, function(c) { return c.checked; });
+    bouton.disabled = !ok; condition.style.display = ok ? 'none' : '';
+  }
+  Array.prototype.forEach.call(cases, function(c) { c.addEventListener('change', maj); });
+  maj();
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    if (bouton.disabled) return;
+    bouton.disabled = true;
+    var p = new URLSearchParams(location.search), utm = {};
+    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function(k) { if (p.get(k)) utm[k] = p.get(k); });
+    var d = {
+      prenom: form.prenom.value, email: form.email.value, telephone: form.telephone.value,
+      site_web: form.site_web.value, confirme_prospection: form.confirme_prospection.checked,
+      confirme_experience: form.confirme_experience.checked, utm: Object.keys(utm).length ? utm : null
+    };
+    fetch('https://agence-ia-nu.vercel.app/api/candidature', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(d)
+    }).then(function(r) {
+      if (r.status === 400) return r.json().then(function(j) { alert(j.erreur); bouton.disabled = false; });
+      if (!r.ok) throw new Error('serveur');
+      form.style.display = 'none'; document.getElementById('form-merci').hidden = false;
+    }).catch(function() { form.submit(); });
+  });
 })();
 </script>
 </body>
