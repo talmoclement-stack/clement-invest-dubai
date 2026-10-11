@@ -549,6 +549,24 @@
       .profile-mini { padding: 12px 8px; }
       .profile-mini-name { font-size: 0.65rem; }
     }
+
+    /* VERSION COMPACTE (11/10/2026) : chaque écran tient sur un téléphone sans scroller. */
+    .quiz-wrapper { min-height: 100vh; min-height: 100svh; padding: 16px 16px 20px; justify-content: center; }
+    .progress-container { margin-bottom: 14px; }
+    .quiz-card { padding: 22px 18px; border-radius: 16px; }
+    .question-text { font-size: 1.2rem; line-height: 1.3; margin-bottom: 16px; }
+    .options-grid { gap: 8px; }
+    .option-btn { padding: 12px 14px; align-items: center; gap: 12px; border-radius: 12px; min-height: 50px; }
+    .option-btn:hover { transform: none; }
+    .option-title { font-size: 0.98rem; margin: 0; }
+    .option-desc { font-size: 0.78rem; }
+    .btn-primary { margin-top: 16px; padding: 15px 20px; }
+    .input-group { gap: 12px; }
+    .input-field { gap: 6px; }
+    .mention { text-align: center; font-size: 0.7rem; line-height: 1.45; color: var(--gray-400); margin-top: 10px; }
+    .mention a { color: inherit; }
+    .intro-compact { width: 100%; max-width: 440px; text-align: center; animation: fadeUp 0.4s ease; }
+    @media (max-width: 480px) { .quiz-card { padding: 22px 18px; } .question-text { font-size: 1.15rem; } }
   </style>
 <!-- Meta Pixel Code -->
 <script>
@@ -582,56 +600,15 @@ src="https://www.facebook.com/tr?id=1515228769880162&ev=PageView&noscript=1"
 
   <div class="quiz-wrapper">
 
-    <!-- INTRO — landing page blanche avec visuel -->
-    <div id="screen-intro" style="width:100%;max-width:680px;animation:fadeUp 0.4s ease;">
-
-      <!-- Carte visuelle principale -->
-      <div style="border-radius:20px;overflow:hidden;box-shadow:0 8px 40px rgba(15,31,61,0.18);margin-bottom:28px;cursor:pointer;" onclick="startQuiz()">
-        <img src="landing-visuel.jpeg" alt="Quel quartier et promoteur à Dubai vous correspond ?" style="width:100%;display:block;" />
+    <!-- INTRO — version compacte (tient sans scroller) -->
+    <div id="screen-intro" class="intro-compact" style="max-width:520px;">
+      <div style="border-radius:16px;overflow:hidden;box-shadow:0 8px 30px rgba(15,31,61,0.18);margin-bottom:18px;cursor:pointer;" onclick="startQuiz()">
+        <img src="landing-visuel.jpeg" alt="Quel quartier et promoteur à Dubaï te correspond ?" style="width:100%;display:block;" />
       </div>
-
-      <!-- Preuve sociale -->
-      <div style="display:flex;align-items:center;justify-content:center;gap:10px;background:#FEF9EC;border:1.5px solid rgba(201,168,76,0.4);border-radius:12px;padding:10px 16px;margin-bottom:16px;">
-        <span style="font-size:1.1rem;">👥</span>
-        <span style="font-size:13px;color:#92400e;font-weight:600;">+1 200 investisseurs ont déjà fait ce quiz</span>
-      </div>
-
-      <!-- Promesse + bullets -->
-      <div style="background:#fff;border-radius:20px;padding:32px 28px;margin-bottom:16px;">
-        <div style="font-size:13px;color:#6b7280;margin-bottom:6px;">Tu ne sais pas quel quartier ni quel promoteur choisir à Dubai ?</div>
-        <div style="font-size:18px;font-weight:900;color:#0F1F3D;margin-bottom:6px;letter-spacing:-0.3px;">En 2 minutes, découvrez :</div>
-        <div style="font-size:13px;color:#6b7280;margin-bottom:22px;">Résultat immédiat · Gratuit · 100% personnalisé</div>
-        <div style="display:flex;flex-direction:column;gap:11px;margin-bottom:28px;">
-          <div style="display:flex;align-items:flex-start;gap:12px;font-size:14px;color:#0F1F3D;line-height:1.5;">
-            <span style="color:#C9A84C;font-weight:900;font-size:16px;flex-shrink:0;">✓</span>
-            <span>Votre <strong>profil investisseur</strong> parmi 4 types (Cash-Flow, Bâtisseur, Pionnier, Résident)</span>
-          </div>
-          <div style="display:flex;align-items:flex-start;gap:12px;font-size:14px;color:#0F1F3D;line-height:1.5;">
-            <span style="color:#C9A84C;font-weight:900;font-size:16px;flex-shrink:0;">✓</span>
-            <span>Le <strong>quartier Dubai</strong> qui correspond exactement à vos objectifs</span>
-          </div>
-          <div style="display:flex;align-items:flex-start;gap:12px;font-size:14px;color:#0F1F3D;line-height:1.5;">
-            <span style="color:#C9A84C;font-weight:900;font-size:16px;flex-shrink:0;">✓</span>
-            <span>Le <strong>promoteur recommandé</strong> selon votre budget et votre tolérance au risque</span>
-          </div>
-          <div style="display:flex;align-items:flex-start;gap:12px;font-size:14px;color:#0F1F3D;line-height:1.5;">
-            <span style="color:#C9A84C;font-weight:900;font-size:16px;flex-shrink:0;">✓</span>
-            <span>Les <strong>projets concrets</strong> à surveiller en ce moment</span>
-          </div>
-        </div>
-
-        <!-- CTA principal -->
-        <button onclick="startQuiz()" style="width:100%;padding:18px;background:#0F1F3D;color:#fff;border:none;border-radius:14px;font-family:inherit;font-size:17px;font-weight:800;cursor:pointer;letter-spacing:-0.2px;transition:background 0.2s,transform 0.15s;" onmouseover="this.style.background='#1a2f5a'" onmouseout="this.style.background='#0F1F3D'">
-          Découvrir mon profil investisseur &nbsp;›
-        </button>
-        <p style="font-size:12px;color:#9ca3af;text-align:center;margin-top:12px;">🔒 Gratuit · Sans engagement · Résultat immédiat</p>
-        <p style="font-size:12px;color:#9ca3af;text-align:center;margin-top:8px;">Une question ? <a href="https://wa.me/33624835980" target="_blank" style="color:var(--gold);text-decoration:none;font-weight:600;">WhatsApp +33 6 24 83 59 80</a></p>
-      </div>
-
-      <!-- Footer minimal -->
-      <p style="font-size:11px;color:rgba(255,255,255,0.35);text-align:center;padding-bottom:16px;">
-        <a href="https://go.clementinvestdubai.com" style="color:rgba(255,255,255,0.4);text-decoration:none;">clementinvestdubai.com</a> · Agent immobilier certifié Dubai · RERA
-      </p>
+      <div style="font-size:1.3rem;font-weight:900;line-height:1.25;color:var(--navy);margin-bottom:8px;">Quel quartier et quel promoteur à Dubaï pour toi ?</div>
+      <p style="font-size:14px;color:var(--gray-600);line-height:1.5;margin-bottom:20px;">8 questions, 2 minutes. Ton profil envoyé sur WhatsApp.</p>
+      <button class="btn-primary" onclick="startQuiz()" style="margin-top:0;font-size:17px;padding:18px;">Découvrir mon profil →</button>
+      <p style="font-size:12px;color:var(--gray-400);margin-top:12px;">👥 +1 200 investisseurs l'ont déjà fait · Gratuit</p>
     </div>
 
     <!-- QUIZ -->
@@ -666,9 +643,6 @@ src="https://www.facebook.com/tr?id=1515228769880162&ev=PageView&noscript=1"
     <div id="screen-result" class="hidden">
       <div class="result-card" id="result-content"></div>
       <div class="other-profiles" id="other-profiles-section"></div>
-      <div class="quiz-footer">
-        <p>© 2026 Clément Talmo · <a href="https://go.clementinvestdubai.com">clementinvestdubai.com</a></p>
-      </div>
     </div>
 
   </div>
@@ -677,111 +651,47 @@ src="https://www.facebook.com/tr?id=1515228769880162&ev=PageView&noscript=1"
     // ─── DATA ────────────────────────────────────────────────────────────────
 
     const QUESTIONS = [
-      {
-        id: 'objectif',
-        tag: 'Question 1 / 8',
-        text: 'Qu\'est-ce que tu cherches en priorité ?',
-        sub: 'Ton objectif principal avec cet investissement.',
-        type: 'single',
-        options: [
-          { value: 'renta', emoji: '💰', title: 'Rentabilité', desc: 'Générer des revenus locatifs réguliers, maximiser le cash-flow.' },
-          { value: 'plusvalue', emoji: '📈', title: 'Plus-value', desc: 'Revendre avec une belle marge dans 3 à 5 ans.' },
-          { value: 'patrimonial', emoji: '🏛️', title: 'Patrimonial', desc: 'Construire un patrimoine solide sur le long terme.' },
-          { value: 'pdt', emoji: '🏖️', title: 'Pied-à-terre', desc: 'Avoir un bien à Dubai pour y vivre et louer quand absent.' }
-        ]
-      },
-      {
-        id: 'budget',
-        tag: 'Question 2 / 8',
-        text: 'Quel est ton apport disponible ?',
-        sub: 'La somme que tu peux mobiliser pour investir.',
-        type: 'single',
-        options: [
-          { value: 'lt50', emoji: '🟡', title: 'Moins de 50 000 €', desc: '' },
-          { value: '50to100', emoji: '🟠', title: 'Entre 50 000 € et 100 000 €', desc: '' },
-          { value: '100to200', emoji: '🔵', title: 'Entre 100 000 € et 200 000 €', desc: '' },
-          { value: '200to400', emoji: '🟢', title: 'Entre 200 000 € et 400 000 €', desc: '' },
-          { value: 'gt400', emoji: '⚪', title: 'Plus de 400 000 €', desc: '' }
-        ]
-      },
-      {
-        id: 'epargne',
-        tag: 'Question 3 / 8',
-        text: 'Ta capacité d\'épargne mensuelle ?',
-        sub: 'Ce que tu peux mettre de côté chaque mois pour les versements.',
-        type: 'single',
-        options: [
-          { value: 'lt500', emoji: '', title: 'Moins de 500 €/mois', desc: '' },
-          { value: '500to1500', emoji: '', title: 'Entre 500 € et 1 500 €/mois', desc: '' },
-          { value: '1500to3000', emoji: '', title: 'Entre 1 500 € et 3 000 €/mois', desc: '' },
-          { value: 'gt3000', emoji: '', title: 'Plus de 3 000 €/mois', desc: '' },
-          { value: 'cash', emoji: '', title: 'Je préfère payer en une fois', desc: '' }
-        ]
-      },
-      {
-        id: 'posthandover',
-        tag: 'Question 4 / 8',
-        text: 'Ton plan de paiement idéal ?',
-        sub: 'Comment tu préfères structurer tes versements.',
-        type: 'single',
-        options: [
-          { value: 'avant', emoji: '💰', title: 'Maximum pendant la construction', desc: 'Moins à payer à la livraison.' },
-          { value: 'equilibre', emoji: '⚖️', title: 'Plan équilibré', desc: 'Moitié pendant, moitié à la livraison.' },
-          { value: 'postho', emoji: '⏳', title: 'Le moins possible avant livraison', desc: 'J\'étale les paiements après réception du bien.' },
-          { value: 'cash', emoji: '💵', title: 'Je paie cash', desc: 'Pas de paiement échelonné.' }
-        ]
-      },
-      {
-        id: 'risque_quartier',
-        tag: 'Question 5 / 8',
-        text: 'Ta tolérance sur la maturité du quartier ?',
-        sub: 'Quel niveau de développement du quartier t\'es à l\'aise ?',
-        type: 'single',
-        options: [
-          { value: 'mur', emoji: '🏙️', title: 'Quartier établi', desc: 'Beaucoup de locataires, commerces ouverts, demande prouvée. Je préfère la sécurité.' },
-          { value: 'dev', emoji: '🌱', title: 'Quartier en développement', desc: 'Déjà un peu de vie, infrastructure en train de se mettre en place. J\'accepte d\'attendre.' },
-          { value: 'zero', emoji: '🚀', title: 'Zone qui démarre de zéro', desc: 'Je cherche le coup de 5 ans avant que ça décolle. J\'accepte le risque pour la récompense.' }
-        ]
-      },
-      {
-        id: 'risque_promoteur',
-        tag: 'Question 6 / 8',
-        text: 'Ta tolérance sur le promoteur ?',
-        sub: 'Quel niveau de sécurité tu veux sur le promoteur.',
-        type: 'single',
-        options: [
-          { value: 'livre', emoji: '🛡️', title: 'Promoteur qui a déjà livré', desc: 'Il a un historique prouvé. Je veux cette sécurité même si c\'est un peu plus cher.' },
-          { value: 'peimporte', emoji: '🔄', title: 'Peu importe', desc: 'Je regarde les fondamentaux. Livré ou pas, si le dossier est solide, ça me convient.' },
-          { value: 'nonlivre', emoji: '🎯', title: 'Pas encore livré OK', desc: 'Je peux accepter un promoteur plus jeune si le rapport qualité-prix est là.' }
-        ]
-      },
-      {
-        id: 'qualite',
-        tag: 'Question 7 / 8',
-        text: 'Ton niveau d\'exigence sur la qualité ?',
-        sub: 'Ce qui compte le plus pour toi dans les finitions et le standing.',
-        type: 'single',
-        options: [
-          { value: 'top', emoji: '⭐⭐⭐', title: 'Top qualité', desc: 'Finitions premium, se loue et se revend facilement au-dessus du marché.' },
-          { value: 'correct', emoji: '⭐⭐', title: 'Bonne qualité', desc: 'Correct, fiable, bon rapport qualité-prix. Pas besoin d\'être le meilleur.' },
-          { value: 'accessible', emoji: '⭐', title: 'Accessible', desc: 'Priorité au prix. Je veux le meilleur rendement possible sur mon budget.' }
-        ]
-      },
-      {
-        id: 'geo',
-        tag: 'Question 8 / 8',
-        text: 'Ta priorité géographique ?',
-        sub: 'Ce qui est le plus important pour toi côté localisation.',
-        type: 'single',
-        options: [
-          { value: 'mer', emoji: '🌊', title: 'Proche de la mer / plage', desc: '' },
-          { value: 'centre', emoji: '🏙️', title: 'Proche du centre / Downtown', desc: '' },
-          { value: 'marina', emoji: '⚓', title: 'Proche de la Marina', desc: '' },
-          { value: 'metro', emoji: '🚇', title: 'Proche du métro', desc: '' },
-          { value: 'calme', emoji: '🌿', title: 'Environnement calme / verdure', desc: '' },
-          { value: 'rpp', emoji: '💰', title: 'Peu importe — meilleur rapport qualité-prix', desc: '' }
-        ]
-      }
+      { id: 'objectif', text: 'Ton objectif n°1 ?', options: [
+          { value: 'renta', emoji: '💰', title: 'Rentabilité', desc: 'Des loyers réguliers' },
+          { value: 'plusvalue', emoji: '📈', title: 'Plus-value', desc: 'Revendre dans 3 à 5 ans' },
+          { value: 'patrimonial', emoji: '🏛️', title: 'Patrimoine', desc: 'Construire sur le long terme' },
+          { value: 'pdt', emoji: '🏖️', title: 'Pied-à-terre', desc: 'Y vivre et louer le reste du temps' } ] },
+      { id: 'budget', text: 'Ton apport disponible ?', options: [
+          { value: 'lt50', emoji: '', title: 'Moins de 50 000 €' },
+          { value: '50to100', emoji: '', title: '50 000 à 100 000 €' },
+          { value: '100to200', emoji: '', title: '100 000 à 200 000 €' },
+          { value: '200to400', emoji: '', title: '200 000 à 400 000 €' },
+          { value: 'gt400', emoji: '', title: 'Plus de 400 000 €' } ] },
+      { id: 'epargne', text: 'Combien peux-tu mettre de côté par mois ?', options: [
+          { value: 'lt500', emoji: '', title: 'Moins de 500 €' },
+          { value: '500to1500', emoji: '', title: '500 à 1 500 €' },
+          { value: '1500to3000', emoji: '', title: '1 500 à 3 000 €' },
+          { value: 'gt3000', emoji: '', title: 'Plus de 3 000 €' },
+          { value: 'cash', emoji: '', title: 'Je paie en une fois' } ] },
+      { id: 'posthandover', text: 'Comment tu préfères payer ?', options: [
+          { value: 'avant', emoji: '🏗️', title: 'Surtout pendant la construction' },
+          { value: 'equilibre', emoji: '⚖️', title: 'Moitié avant, moitié à la livraison' },
+          { value: 'postho', emoji: '⏳', title: 'Surtout après la livraison' },
+          { value: 'cash', emoji: '💵', title: 'Cash' } ] },
+      { id: 'risque_quartier', text: 'Quel type de quartier ?', options: [
+          { value: 'mur', emoji: '🏙️', title: 'Établi', desc: 'La sécurité d\'abord' },
+          { value: 'dev', emoji: '🌱', title: 'En développement', desc: 'J\'accepte d\'attendre un peu' },
+          { value: 'zero', emoji: '🚀', title: 'Qui part de zéro', desc: 'Un pari à 5 ans' } ] },
+      { id: 'risque_promoteur', text: 'Le promoteur doit-il déjà avoir livré ?', options: [
+          { value: 'livre', emoji: '🛡️', title: 'Oui, c\'est important' },
+          { value: 'peimporte', emoji: '🔄', title: 'Peu importe' },
+          { value: 'nonlivre', emoji: '🎯', title: 'Non, si le prix est meilleur' } ] },
+      { id: 'qualite', text: 'Quelles finitions ?', options: [
+          { value: 'top', emoji: '⭐⭐⭐', title: 'Haut de gamme' },
+          { value: 'correct', emoji: '⭐⭐', title: 'Bonne qualité' },
+          { value: 'accessible', emoji: '⭐', title: 'Le prix avant tout' } ] },
+      { id: 'geo', text: 'Ta priorité d\'emplacement ?', options: [
+          { value: 'mer', emoji: '🌊', title: 'Mer / plage' },
+          { value: 'centre', emoji: '🏙️', title: 'Centre / Downtown' },
+          { value: 'marina', emoji: '⚓', title: 'Marina' },
+          { value: 'metro', emoji: '🚇', title: 'Métro' },
+          { value: 'calme', emoji: '🌿', title: 'Calme / verdure' },
+          { value: 'rpp', emoji: '💰', title: 'Le meilleur prix' } ] }
     ];
 
     // ─── PROFILES ─────────────────────────────────────────────────────────────
@@ -954,9 +864,7 @@ src="https://www.facebook.com/tr?id=1515228769880162&ev=PageView&noscript=1"
       document.getElementById('progress-fill').style.width = pct + '%';
 
       card.innerHTML = `
-        <div class="question-tag">${q.tag}</div>
         <div class="question-text">${q.text}</div>
-        <div class="question-sub">${q.sub}</div>
         <div class="options-grid" id="options-grid">
           ${q.options.map((opt) => `
             <button class="option-btn" onclick="selectOption('${opt.value}', this)" data-value="${opt.value}">
@@ -968,7 +876,6 @@ src="https://www.facebook.com/tr?id=1515228769880162&ev=PageView&noscript=1"
             </button>
           `).join('')}
         </div>
-        <button class="btn-primary" id="btn-next" onclick="nextQuestion()" disabled>Continuer →</button>
       `;
 
       if (answers[q.id]) {
@@ -976,15 +883,16 @@ src="https://www.facebook.com/tr?id=1515228769880162&ev=PageView&noscript=1"
         btns.forEach(btn => {
           if (btn.dataset.value === answers[q.id]) btn.classList.add('selected');
         });
-        document.getElementById('btn-next').disabled = false;
       }
     }
 
     function selectOption(value, btn) {
+      if (selectOption.enCours) return; // double tap
+      selectOption.enCours = true;
       document.getElementById('options-grid').querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
       btn.classList.add('selected');
       answers[QUESTIONS[currentQ].id] = value;
-      document.getElementById('btn-next').disabled = false;
+      setTimeout(() => { selectOption.enCours = false; nextQuestion(); }, 220);
     }
 
     function nextQuestion() {
@@ -1035,92 +943,38 @@ src="https://www.facebook.com/tr?id=1515228769880162&ev=PageView&noscript=1"
     };
 
     function showContactGate() {
+      document.getElementById('screen-quiz').classList.add('hidden');
       document.getElementById('screen-result-partial').classList.add('hidden');
       document.getElementById('screen-contact').classList.remove('hidden');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0 });
 
-      const profileKey = computeProfile();
-      const profile = PROFILES[profileKey];
-      const hooks = PROFILE_HOOKS[profileKey];
-
+      const profile = PROFILES[computeProfile()];
       document.getElementById('contact-card').innerHTML = `
-
-        <!-- 1. Profil + phrase compacts -->
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-          <div style="font-size:2rem;flex-shrink:0;">${profile.emoji}</div>
-          <div>
-            <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);">Ton profil investisseur</div>
-            <div style="font-size:1.1rem;font-weight:900;color:#0F1F3D;letter-spacing:-0.02em;line-height:1.2;">${profile.name}</div>
-          </div>
+        <div style="text-align:center;margin-bottom:18px;">
+          <div style="font-size:2.4rem;line-height:1;margin-bottom:10px;">${profile.emoji}</div>
+          <div style="font-size:1.3rem;font-weight:800;line-height:1.25;color:var(--navy);">Ton profil est prêt</div>
+          <div style="font-size:0.9rem;color:var(--gray-600);margin-top:6px;line-height:1.4;">On te l'envoie sur WhatsApp, avec tes quartiers et tes promoteurs.</div>
         </div>
-        <div style="background:#F8F9FC;border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:8px 12px;font-size:0.8rem;color:#374151;line-height:1.5;margin-bottom:12px;font-style:italic;">
-          ${hooks.force}
-        </div>
-
-        <!-- 2. Vidéo centrée -->
-        <div style="display:flex;justify-content:center;margin-bottom:12px;">
-          <div style="border-radius:14px;overflow:hidden;box-shadow:0 6px 24px rgba(15,31,61,0.18);width:220px;height:391px;flex-shrink:0;">
-            <iframe
-              width="220"
-              height="391"
-              src="https://www.youtube.com/embed/Puyzs4khWHg?rel=0&modestbranding=1"
-              title="Clément Invest Dubai"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-              style="display:block;">
-            </iframe>
-          </div>
-        </div>
-
-        <!-- 3. Formulaire -->
-        <div style="margin-bottom:10px;font-size:0.9rem;font-weight:800;color:#0F1F3D;text-align:center;">→ Où on envoie ton analyse complète ?</div>
         <div class="input-group">
           <div class="input-field">
-            <label class="input-label">Ton prénom</label>
-            <input type="text" id="input-prenom" placeholder="Ex: Thomas" autocomplete="given-name">
+            <label class="input-label">Prénom</label>
+            <input type="text" id="input-prenom" placeholder="Thomas" autocomplete="given-name">
           </div>
           <div class="input-field">
-            <label class="input-label">Ton numéro WhatsApp</label>
-            <input type="tel" id="input-whatsapp" placeholder="+33 6 12 34 56 78" autocomplete="tel">
+            <label class="input-label">Numéro WhatsApp</label>
+            <input type="tel" id="input-whatsapp" placeholder="06 12 34 56 78" autocomplete="tel">
           </div>
         </div>
-        <button class="btn-primary" onclick="submitContact()" style="font-size:1rem;padding:18px;">Débloquer mon profil Dubai →</button>
-
-        <!-- 5. Promesse sous le bouton -->
-        <div style="margin-top:20px;display:flex;flex-direction:column;gap:7px;text-align:left;">
-          <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#9CA3AF;margin-bottom:2px;">Ce que tu vas recevoir</div>
-          <div style="display:flex;align-items:flex-start;gap:8px;font-size:0.82rem;color:#374151;">
-            <span style="color:var(--gold);font-weight:900;flex-shrink:0;">✓</span>
-            <span>Les <strong>quartiers Dubai</strong> qui correspondent à ton profil</span>
-          </div>
-          <div style="display:flex;align-items:flex-start;gap:8px;font-size:0.82rem;color:#374151;">
-            <span style="color:var(--gold);font-weight:900;flex-shrink:0;">✓</span>
-            <span>Les <strong>promoteurs recommandés</strong> selon ton budget</span>
-          </div>
-          <div style="display:flex;align-items:flex-start;gap:8px;font-size:0.82rem;color:#374151;">
-            <span style="color:var(--gold);font-weight:900;flex-shrink:0;">✓</span>
-            <span>Les <strong>erreurs à éviter</strong> selon ton profil</span>
-          </div>
-          <div style="display:flex;align-items:flex-start;gap:8px;font-size:0.82rem;color:#374151;">
-            <span style="color:var(--gold);font-weight:900;flex-shrink:0;">✓</span>
-            <span>La <strong>stratégie personnalisée</strong> pour ton objectif</span>
-          </div>
-        </div>
-
-        <div style="margin-top:14px;background:#F0FDF4;border-left:3px solid #16A34A;border-radius:0 8px 8px 0;padding:10px 12px;font-size:0.78rem;color:#166534;line-height:1.5;">
-          ✅ Ton profil arrive <strong>sur WhatsApp dans la minute</strong>. Un seul message. Aucun harcèlement.
-        </div>
-
-        <p style="text-align:center;font-size:0.72rem;color:var(--gray-400);margin-top:10px;">🔒 Gratuit · Sans engagement</p>
-        <p style="text-align:center;font-size:0.72rem;line-height:1.5;color:var(--gray-400);margin-top:8px;">En cliquant, tu acceptes de recevoir ton profil et d'être recontacté(e) par Clément Invest Dubai sur WhatsApp. Tu peux répondre STOP à tout moment. <a href="/confidentialite/" target="_blank" style="color:inherit;">Confidentialité</a></p>
+        <button class="btn-primary" onclick="submitContact()">Recevoir mon profil →</button>
+        <p class="mention">En cliquant, tu acceptes de recevoir ton profil et d'être recontacté(e) par Clément Invest Dubai sur WhatsApp. Tu peux répondre STOP à tout moment. <a href="/confidentialite/" target="_blank">Confidentialité</a></p>
       `;
     }
 
     function validatePhone(raw) {
-      // Strip spaces, dashes, dots, parentheses
-      const cleaned = raw.replace(/[\s\-\.\(\)]/g, '');
-      // Must start with + and contain 7-15 digits
+      // Espaces, tirets, points, parenthèses retirés ; un numéro français (06…, 07…) devient +33…
+      let cleaned = raw.replace(/[\s\-\.\(\)]/g, '');
+      if (cleaned.startsWith('00')) cleaned = '+' + cleaned.slice(2);
+      if (/^0[1-9]\d{8}$/.test(cleaned)) cleaned = '+33' + cleaned.slice(1);
       return /^\+[1-9]\d{6,14}$/.test(cleaned) ? cleaned : null;
     }
 
@@ -1135,7 +989,7 @@ src="https://www.facebook.com/tr?id=1515228769880162&ev=PageView&noscript=1"
 
       const waClean = validatePhone(waRaw);
       if (!waClean) {
-        showFieldError('input-whatsapp', 'Numéro invalide — utilise le format international : +33612345678');
+        showFieldError('input-whatsapp', 'Numéro invalide. Exemple : 06 12 34 56 78 ou +33 6 12 34 56 78');
         return;
       }
 
@@ -1334,38 +1188,13 @@ src="https://www.facebook.com/tr?id=1515228769880162&ev=PageView&noscript=1"
       window.scrollTo({ top: 0, behavior: 'smooth' });
       const prenom = answers.prenom || '';
       document.getElementById('result-content').innerHTML = `
-        <div style="text-align:center;padding:48px 24px;">
-          <div style="font-size:3rem;margin-bottom:20px;">✅</div>
-          <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;">Profil calculé</div>
-          <div style="font-size:1.8rem;font-weight:900;color:var(--navy);margin-bottom:12px;letter-spacing:-0.02em;line-height:1.2;">
-            ${prenom ? `${prenom}, votre` : 'Votre'} profil investisseur<br>arrive sur WhatsApp
-          </div>
-          <div style="font-size:1rem;color:#4B5563;margin-bottom:24px;line-height:1.7;max-width:400px;margin-left:auto;margin-right:auto;">
-            On a analysé vos réponses. Votre profil complet — zones, promoteurs, stratégie — vous est envoyé <strong style="color:var(--navy)">sur WhatsApp</strong>.
-          </div>
-          <div style="background:#FEF9EC;border:1.5px solid #C9A84C;border-radius:12px;padding:16px 20px;max-width:420px;margin:0 auto 24px;font-size:0.9rem;color:#92400e;line-height:1.6;">
-            💬 <strong>Votre profil arrive sur WhatsApp dans une minute, depuis le numéro +971 50 274 0879 (Clement invest dubai).</strong>
-          </div>
-          <div style="background:linear-gradient(135deg,rgba(201,168,76,0.1),rgba(201,168,76,0.03));border:1.5px solid rgba(201,168,76,0.35);border-radius:16px;padding:24px 28px;max-width:420px;margin:0 auto 28px;">
-            <div style="font-size:0.8rem;font-weight:700;color:var(--gold);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:10px;">Ce que vous allez recevoir</div>
-            <div style="font-size:0.9rem;color:#374151;line-height:1.8;text-align:left;">
-              ${profile.emoji} <strong>Votre profil :</strong> ${profile.name}<br>
-              📍 Les zones Dubai adaptées à votre profil<br>
-              🏗️ Les promoteurs recommandés<br>
-              ⚠️ Les erreurs à éviter selon votre profil
-            </div>
-          </div>
-          <div style="font-size:0.8rem;color:#9CA3AF;margin-top:8px;">
-            Vous ne recevez rien ? Vérifiez votre numéro WhatsApp ou contactez-nous directement.<br>
-            <a href="https://wa.me/33624835980" target="_blank" style="color:var(--gold);font-weight:600;text-decoration:none;">+33 6 24 83 59 80</a>
-          </div>
-          <div style="margin-top:28px;">
-            <button onclick="restartQuiz()" style="background:transparent;border:1px solid rgba(15,31,61,0.15);color:#6B7280;padding:10px 20px;border-radius:8px;font-size:0.8rem;cursor:pointer;font-family:inherit;transition:all 0.2s;">
-              ↺ Recommencer le quiz
-            </button>
-          </div>
+        <div style="text-align:center;padding:32px 12px;">
+          <div style="font-size:2.8rem;margin-bottom:14px;">✅</div>
+          <div style="font-size:1.45rem;font-weight:800;line-height:1.25;color:var(--navy);margin-bottom:10px;">${prenom ? prenom + ', ton' : 'Ton'} profil arrive sur WhatsApp</div>
+          <div style="font-size:0.95rem;color:var(--gray-600);line-height:1.5;">Dans une minute, depuis le<br><span style="white-space:nowrap;font-weight:600;">+971 50 274 0879</span> (Clement invest dubai).</div>
         </div>
       `;
+      document.getElementById('other-profiles-section').innerHTML = '';
     }
 
     function showFullResult() {
