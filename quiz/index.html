@@ -1020,6 +1020,7 @@ src="https://www.facebook.com/tr?id=1515228769880162&ev=PageView&noscript=1"
         </div>
         <button class="btn-primary" onclick="submitContact()">Accéder à mon profil personnalisé →</button>
         <p style="text-align:center;font-size:0.75rem;color:var(--gray-400);margin-top:12px;">Gratuit · Résultat immédiat</p>
+        <p style="text-align:center;font-size:0.72rem;line-height:1.5;color:var(--gray-400);margin-top:8px;">En cliquant, tu acceptes de recevoir ton profil et d'être recontacté(e) par Clément Invest Dubai sur WhatsApp. Tu peux répondre STOP à tout moment. <a href="/confidentialite/" target="_blank" style="color:inherit;">Confidentialité</a></p>
       `;
     }
 
@@ -1159,6 +1160,15 @@ src="https://www.facebook.com/tr?id=1515228769880162&ev=PageView&noscript=1"
         });
       }
 
+      // Serveur agence-ia (flux 09) : enregistre le lead, envoie le profil sur WhatsApp, prévient Clément sur Telegram.
+      // Make reste branché en parallèle le temps de vérifier, puis sera coupé.
+      var q = new URLSearchParams(location.search), utm = {};
+      ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function(k) { if (q.get(k)) utm[k] = q.get(k); });
+      fetch('https://agence-ia-nu.vercel.app/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(Object.assign({}, payload, { source: 'quiz', utm: Object.keys(utm).length ? utm : null }))
+      }).catch(() => {});
       fetch('https://hook.eu1.make.com/2druy645e9jwt2au52euhzqd45tm8bb7', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -1238,10 +1248,10 @@ src="https://www.facebook.com/tr?id=1515228769880162&ev=PageView&noscript=1"
             ${prenom ? `${prenom}, votre` : 'Votre'} profil investisseur<br>arrive sur WhatsApp
           </div>
           <div style="font-size:1rem;color:#4B5563;margin-bottom:24px;line-height:1.7;max-width:400px;margin-left:auto;margin-right:auto;">
-            On a analysé vos réponses. Votre profil complet — zones, promoteurs, stratégie — vous sera envoyé <strong style="color:var(--navy)">sur WhatsApp</strong> par un membre de notre équipe.
+            On a analysé vos réponses. Votre profil complet — zones, promoteurs, stratégie — vous est envoyé <strong style="color:var(--navy)">sur WhatsApp</strong>.
           </div>
           <div style="background:#FEF9EC;border:1.5px solid #C9A84C;border-radius:12px;padding:16px 20px;max-width:420px;margin:0 auto 24px;font-size:0.9rem;color:#92400e;line-height:1.6;">
-            💬 <strong>Un membre de l'équipe va vous contacter pour vous envoyer votre profil sur WhatsApp. Ne soyez pas surpris.</strong>
+            💬 <strong>Votre profil arrive sur WhatsApp dans une minute, depuis le numéro +971 50 274 0879 (Clement invest dubai).</strong>
           </div>
           <div style="background:linear-gradient(135deg,rgba(201,168,76,0.1),rgba(201,168,76,0.03));border:1.5px solid rgba(201,168,76,0.35);border-radius:16px;padding:24px 28px;max-width:420px;margin:0 auto 28px;">
             <div style="font-size:0.8rem;font-weight:700;color:var(--gold);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:10px;">Ce que vous allez recevoir</div>
