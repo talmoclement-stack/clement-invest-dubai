@@ -81,9 +81,9 @@
     .chiffres div { flex: 1; background: var(--off); border-radius: 12px; padding: 10px 4px; text-align: center; }
     .chiffres b { display: block; font-size: 1.55rem; font-weight: 900; color: var(--navy); line-height: 1.1; }
     .chiffres small { font-size: .68rem; color: var(--gray-600); font-weight: 600; }
-    .flou { position: relative; height: 92px; margin: 10px 0 2px; overflow: hidden; border-radius: 12px; }
+    .flou { position: relative; height: 84px; margin: 6px 0 2px; overflow: hidden; border-radius: 12px; }
     .flou .opt { filter: blur(5px); opacity: .75; margin-bottom: 6px; }
-    .flou::after { content: "🔒"; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; }
+    .verrou { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: .95rem; font-weight: 800; color: var(--navy); }
     .champ { margin-top: 10px; }
     .champ label { display: block; font-size: .72rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--gray-600); margin-bottom: 5px; }
     .champ input { width: 100%; background: var(--off); border: 1.5px solid rgba(15,31,61,.12); border-radius: 10px; padding: 12px 14px;
@@ -150,10 +150,9 @@ src="https://www.facebook.com/tr?id=1515228769880162&ev=PageView&noscript=1"
   <section class="ecran" id="e-accroche">
     <div class="boite" style="text-align:center">
       <span class="pastille">🧮 Calculateur · 30 secondes</span>
-      <h1>Dis-moi combien tu as, je te dis <em>ce que tu peux acheter</em> à Dubaï.</h1>
-      <p class="sous">2 chiffres : ton apport et ce que tu mets de côté chaque mois. Tu vois les quartiers, le type de bien et le plan de paiement.</p>
+      <h1>Découvre <em>dans quel quartier</em> et <em>quel type de bien</em> tu peux acheter à Dubaï.</h1>
       <button class="btn btn-or" style="margin-top:26px" onclick="aller('e-apport')">Calculer mon budget →</button>
-      <p class="petit">Gratuit · Sans engagement · Prix du marché off-plan</p>
+      <p class="petit">Gratuit · 2 questions</p>
     </div>
   </section>
 
@@ -272,8 +271,12 @@ src="https://www.facebook.com/tr?id=1515228769880162&ev=PageView&noscript=1"
       .finally(function () { b.disabled = false; b.textContent = 'Voir ce que je peux acheter →'; });
   }
 
-  var FAUSSES = [['JVC · 1 chambre', '70/30 post-handover', '250 000 €'], ['Business Bay · Studio', '60/40 post-handover', '290 000 €'],
-                 ['Arjan · Studio', '50/50 post-handover', '170 000 €']];
+  var FAUSSES = [['JVC · 1 chambre', '70/30 post-handover', '250 000 €'], ['Business Bay · Studio', '60/40 post-handover', '290 000 €']];
+  var PLANS = { '50/50': '50/50 classique', '70/30': '70/30 post-handover', '60/40': '60/40 post-handover', '50/50-ph': '50/50 post-handover' };
+  function carteHtml(c) {
+    return optionHtml(esc(c.nom) + ' · ' + esc(c.type), PLANS[c.plan], eur(c.prix_eur),
+      '≈ ' + Math.round(c.prix_aed / 1000).toLocaleString('fr-FR') + ' k AED', c.badge === 'jaune', c.badge === 'jaune' ? '🟡' : '🟢');
+  }
   function optionHtml(t, d, p, a, jaune, badge) {
     return '<div class="opt' + (jaune ? ' jaune' : '') + '"><div class="g"><div class="t">' + t + '</div><div class="d">' + d +
       (badge ? ' ' + badge : '') + '</div></div><div class="p"><b><i>dès </i>' + p + '</b>' +
@@ -289,11 +292,15 @@ src="https://www.facebook.com/tr?id=1515228769880162&ev=PageView&noscript=1"
       document.getElementById('btn-debloquer').textContent = 'Être recontacté sur WhatsApp →';
       return;
     }
-    h.innerHTML = '<div style="font-size:.78rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:1px">Ton budget est prêt</div>' +
-      '<h2 style="color:var(--navy);font-size:1.25rem;margin-top:4px">Tu peux acheter à Dubaï 🎉</h2>' +
-      '<div class="chiffres"><div><b>' + teaser.nb_quartiers + '</b><small>quartiers</small></div><div><b>' + teaser.nb_types +
-      '</b><small>types d\'unités</small></div><div><b>' + teaser.nb_options + '</b><small>options</small></div></div>' +
-      '<div class="flou">' + FAUSSES.map(function (f) { return optionHtml(f[0], f[1], f[2], '', false, ''); }).join('') + '</div>';
+    var types = (teaser.types || []).map(function (t) { return t.toLowerCase(); });
+    var reste = teaser.nb_options - (teaser.apercu ? 1 : 0);
+    h.innerHTML = '<div style="font-size:.78rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:1px">Ton budget est prêt 🎉</div>' +
+      '<h2 style="color:var(--navy);font-size:1.2rem;margin-top:4px">Tu peux acheter dans <em>' + teaser.nb_quartiers + ' quartiers</em></h2>' +
+      '<p style="font-size:.85rem;color:var(--gray-600);line-height:1.4">' + esc(types.join(', ').replace(/^./, function (c) { return c.toUpperCase(); })) +
+      ' · ' + teaser.nb_options + ' options au total</p>' +
+      '<div class="liste" style="margin-top:10px">' + (teaser.apercu ? carteHtml(teaser.apercu) : '') + '</div>' +
+      '<div class="flou">' + FAUSSES.map(function (f) { return optionHtml(f[0], f[1], f[2], '', false, ''); }).join('') +
+      '<div class="verrou">🔒 + ' + reste + ' autres options</div></div>';
     document.getElementById('btn-debloquer').textContent = 'Débloquer ma fiche →';
   }
 
@@ -342,14 +349,9 @@ src="https://www.facebook.com/tr?id=1515228769880162&ev=PageView&noscript=1"
         '<p class="note">Je t\'envoie aussi un message sur WhatsApp dans une minute, depuis le +971 50 274 0879.</p></div>';
     } else {
       msg += 'Je veux voir ces projets.';
-      var PLANS = { '50/50': '50/50 classique', '70/30': '70/30 post-handover', '60/40': '60/40 post-handover', '50/50-ph': '50/50 post-handover' };
       html = '<div class="resultat-tete"><h2>' + esc(prenom) + ', voici <em>ce que tu peux acheter</em></h2>' +
         '<p class="sous">Capacité à la livraison : <b style="color:#fff">' + eur(r.capacite_eur) + '</b> · ' + r.nb_quartiers + ' quartiers · ' + r.nb_options + ' options</p></div>' +
-        '<div class="liste">' + r.cartes.map(function (c) {
-          return optionHtml(esc(c.nom) + ' · ' + esc(c.type), PLANS[c.plan], eur(c.prix_eur),
-            '≈ ' + Math.round(c.prix_aed / 1000).toLocaleString('fr-FR') + ' k AED', c.badge === 'jaune',
-            c.badge === 'jaune' ? '🟡' : '🟢');
-        }).join('') + '</div>' +
+        '<div class="liste">' + r.cartes.map(carteHtml).join('') + '</div>' +
         '<a class="btn btn-wa" style="margin-top:12px" target="_blank" href="https://wa.me/' + WA_AGENCE + '?text=' + encodeURIComponent(msg) + '">' +
         WA_SVG + 'Je veux voir ces projets</a>' +
         '<p class="note">🟢 dans ton budget · 🟡 juste, à regarder de près<br>Ta fiche arrive aussi sur WhatsApp (+971 50 274 0879). Prix d\'entrée du marché off-plan, à confirmer projet par projet.</p>';
