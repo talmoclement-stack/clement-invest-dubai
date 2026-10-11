@@ -191,9 +191,9 @@ src="https://www.facebook.com/tr?id=1515228769880162&ev=PageView&noscript=1"
         <div class="champ"><label for="prenom">Prénom</label><input id="prenom" type="text" placeholder="Thomas" autocomplete="given-name"></div>
         <div class="champ"><label for="whatsapp">Numéro WhatsApp</label><input id="whatsapp" type="tel" placeholder="06 12 34 56 78" autocomplete="tel"></div>
         <input class="pot" id="site_web" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <button class="btn btn-or" id="btn-debloquer" onclick="envoyer()">Débloquer ma fiche →</button>
+        <button class="btn btn-or" id="btn-debloquer" onclick="envoyer()">Recevoir ma sélection sur WhatsApp →</button>
         <div class="erreur" id="erreur"></div>
-        <p class="mention">En cliquant, tu acceptes de recevoir ta fiche et d'être recontacté(e) par Clément Invest Dubai sur WhatsApp. Tu peux répondre STOP à tout moment. <a href="/confidentialite/" target="_blank">Confidentialité</a></p>
+        <p class="mention">En cliquant, tu acceptes de recevoir ta sélection et d'être recontacté(e) par Clément Invest Dubai sur WhatsApp. Tu peux répondre STOP à tout moment. <a href="/confidentialite/" target="_blank">Confidentialité</a></p>
       </div>
     </div>
   </section>
@@ -301,7 +301,7 @@ src="https://www.facebook.com/tr?id=1515228769880162&ev=PageView&noscript=1"
       '<div class="liste" style="margin-top:10px">' + (teaser.apercu ? carteHtml(teaser.apercu) : '') + '</div>' +
       '<div class="flou">' + FAUSSES.map(function (f) { return optionHtml(f[0], f[1], f[2], '', false, ''); }).join('') +
       '<div class="verrou">🔒 + ' + reste + ' autres options</div></div>';
-    document.getElementById('btn-debloquer').textContent = 'Débloquer ma fiche →';
+    document.getElementById('btn-debloquer').textContent = 'Recevoir ma sélection sur WhatsApp →';
   }
 
   function validerTel(raw) {
@@ -318,6 +318,7 @@ src="https://www.facebook.com/tr?id=1515228769880162&ev=PageView&noscript=1"
     if (!tel) { err.textContent = 'Vérifie ton numéro WhatsApp (ex. 06 12 34 56 78 ou +33…).'; return; }
     err.textContent = '';
     var b = document.getElementById('btn-debloquer'); b.disabled = true; b.textContent = 'Un instant…';
+    var petit = !teaser || teaser.petit_budget || !teaser.nb_options;
 
     var LOCAL = /^(localhost|127\.0\.0\.1)$/.test(location.hostname); // pas de conversion pendant les tests locaux
     if (!LOCAL && typeof fbq === 'function') fbq('track', 'Lead', { content_name: CONTENT_NAME, content_category: 'real_estate' });
@@ -331,32 +332,20 @@ src="https://www.facebook.com/tr?id=1515228769880162&ev=PageView&noscript=1"
       body: JSON.stringify({ source: SOURCE, prenom: prenom, whatsapp: tel, apport: choix.apport, epargne: choix.epargne,
         site_web: document.getElementById('site_web').value, utm: Object.keys(utm).length ? utm : null, fbp: cookie('_fbp'), fbc: cookie('_fbc') })
     }).then(function (r) { return r.json().catch(function () { return {}; }); })
-      .then(function (j) { afficherResultat(prenom, j && j.resultat); })
-      .catch(function () { afficherResultat(prenom, null); });
+      .then(function () { afficherResultat(prenom, petit); })
+      .catch(function () { afficherResultat(prenom, petit); });
   }
 
-  function afficherResultat(prenom, r) {
-    var msg = 'Salut Clément, j\'ai fait le calculateur budget (apport ' + eur(choix.apport) + ', épargne ' + eur(choix.epargne) + '/mois). ';
-    var html;
-    if (!r || r.petit_budget || !r.cartes || !r.cartes.length) {
-      msg += 'Tu peux regarder avec moi ce qui est possible ?';
-      html = '<div style="text-align:center"><div style="font-size:2.4rem">🤝</div>' +
-        '<h2 style="margin-top:8px">' + esc(prenom) + ', on regarde <em>ensemble</em></h2>' +
-        '<p class="sous" style="margin-top:8px">Il y a potentiellement des projets qui correspondent à ton budget, mais ça demande de regarder au cas par cas : ' +
-        'lancements à venir, plans de paiement, promoteurs. Écris-moi sur WhatsApp, je te réponds personnellement.</p>' +
-        '<a class="btn btn-wa" style="margin-top:22px" target="_blank" href="https://wa.me/' + WA_AGENCE + '?text=' + encodeURIComponent(msg) + '">' +
-        WA_SVG + 'Écrire à Clément</a>' +
-        '<p class="note">Je t\'envoie aussi un message sur WhatsApp dans une minute, depuis le +971 50 274 0879.</p></div>';
-    } else {
-      msg += 'Je veux voir ces projets.';
-      html = '<div class="resultat-tete"><h2>' + esc(prenom) + ', voici <em>ce que tu peux acheter</em></h2>' +
-        '<p class="sous">Capacité à la livraison : <b style="color:#fff">' + eur(r.capacite_eur) + '</b> · ' + r.nb_quartiers + ' quartiers · ' + r.nb_options + ' options</p></div>' +
-        '<div class="liste">' + r.cartes.map(carteHtml).join('') + '</div>' +
-        '<a class="btn btn-wa" style="margin-top:12px" target="_blank" href="https://wa.me/' + WA_AGENCE + '?text=' + encodeURIComponent(msg) + '">' +
-        WA_SVG + 'Je veux voir ces projets</a>' +
-        '<p class="note">🟢 dans ton budget · 🟡 juste, à regarder de près<br>Ta fiche arrive aussi sur WhatsApp (+971 50 274 0879). Prix d\'entrée du marché off-plan, à confirmer projet par projet.</p>';
-    }
-    document.getElementById('resultat').innerHTML = html;
+  // Après le contact : pas de résultat sur la page (décision de Clément, 11/10) ; le détail part sur WhatsApp.
+  function afficherResultat(prenom, petit) {
+    var msg = 'Salut Clément, j\'ai fait le calculateur budget sur ton site (apport ' + eur(choix.apport) + ', épargne ' + eur(choix.epargne) + '/mois).';
+    document.getElementById('resultat').innerHTML = '<div style="text-align:center"><div style="font-size:2.6rem">📲</div>' +
+      '<h2 style="margin-top:10px">C\'est noté, ' + esc(prenom) + ' !</h2>' +
+      '<p class="sous" style="margin-top:10px">' + (petit
+        ? 'Je regarde ta situation et je t\'écris sur WhatsApp dans une minute, depuis le <b style="color:#fff;white-space:nowrap">+971 50 274 0879</b>.'
+        : 'Ta sélection arrive sur WhatsApp dans une minute, depuis le <b style="color:#fff;white-space:nowrap">+971 50 274 0879</b> : les quartiers et les types de biens qui correspondent à ta situation.') + '</p>' +
+      '<p class="sous" style="margin-top:12px">Enregistre ce numéro pour être sûr de recevoir le message.</p>' +
+      '<a class="lien" style="display:inline-block;margin-top:22px" target="_blank" href="https://wa.me/' + WA_AGENCE + '?text=' + encodeURIComponent(msg) + '">Ou écris-moi directement sur WhatsApp</a></div>';
     aller('e-resultat');
   }
 
