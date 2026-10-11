@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17772499593"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-17772499593');
+</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <!--ROBOTS-->
+  <title>Calculateur budget Dubaï — ce que tu peux acheter — Clément Invest Dubai</title>
+  <meta name="description" content="Donne ton apport et ton épargne mensuelle : tu vois dans quels quartiers de Dubaï tu peux acheter, quel type d'unité et avec quel plan de paiement. Gratuit.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Calculateur budget : même fichier pour /budget/ (organique) et /budget-ads/ (pub), seule la balise robots change.
+       La page repère son adresse pour la source envoyée à /api/lead ('budget' / 'budget-ads') et le content_name
+       de l'événement Meta Lead ('Budget' / 'Budget Ads'). Calcul et cartes : serveur agence-ia (lib/budget.js). -->
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #0f1f3d; --navy-2: #162847; --gold: #c9a84c; --gold-light: #dfc06e; --gold-pale: #f5edd8;
+      --white: #fff; --off: #f8f9fc; --gray-100: #eceef2; --gray-200: #d8dbe3; --gray-400: #9198aa; --gray-600: #525a6e;
+      --vert: #1f9d55; --vert-pale: #e6f6ec; --jaune: #b7791f; --jaune-pale: #fdf3dc; --wa: #25D366;
+    }
+    html, body { height: 100%; }
+    body { font-family: 'Inter', -apple-system, sans-serif; background: var(--navy); color: var(--white);
+      -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    .ecran { min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; justify-content: center;
+      align-items: center; padding: 20px 18px calc(20px + env(safe-area-inset-bottom)); animation: monte .35s ease; }
+    .ecran.cache { display: none; }
+    .boite { width: 100%; max-width: 420px; }
+    @keyframes monte { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+    .pastille { display: inline-block; background: rgba(201,168,76,.15); color: var(--gold-light); border: 1px solid rgba(201,168,76,.4);
+      font-size: 11px; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase; padding: 5px 13px; border-radius: 20px; }
+    h1 { font-size: 2rem; font-weight: 900; line-height: 1.12; letter-spacing: -.02em; margin: 16px 0 12px; }
+    h1 em, h2 em { font-style: normal; color: var(--gold); }
+    h2 { font-size: 1.45rem; font-weight: 800; line-height: 1.2; letter-spacing: -.01em; margin-bottom: 6px; }
+    .sous { font-size: .95rem; color: rgba(255,255,255,.7); line-height: 1.45; }
+    .petit { font-size: .75rem; color: rgba(255,255,255,.45); margin-top: 10px; text-align: center; }
+    .etape { font-size: .72rem; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+
+    .btn { display: block; width: 100%; border: none; border-radius: 13px; padding: 16px 20px; font: 700 1.02rem 'Inter', sans-serif;
+      cursor: pointer; text-align: center; text-decoration: none; transition: opacity .2s, transform .1s; }
+    .btn:active { transform: scale(.98); }
+    .btn-or { background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--navy); }
+    .btn-wa { background: var(--wa); color: #fff; display: flex; align-items: center; justify-content: center; gap: 9px; }
+    .btn:disabled { opacity: .45; }
+    .lien { background: none; border: none; color: rgba(255,255,255,.55); font: 500 .85rem 'Inter', sans-serif; text-decoration: underline;
+      cursor: pointer; margin-top: 10px; }
+    .retour { position: absolute; top: calc(14px + env(safe-area-inset-top)); left: 14px; background: none; border: none;
+      color: rgba(255,255,255,.55); font: 600 .9rem 'Inter', sans-serif; cursor: pointer; padding: 6px; }
+
+    /* Roulette */
+    .roue-cadre { position: relative; height: 220px; margin: 18px 0 6px; border-radius: 16px; background: var(--navy-2);
+      border: 1px solid rgba(255,255,255,.08); overflow: hidden; }
+    .roue { height: 100%; overflow-y: scroll; scroll-snap-type: y mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+      padding: 88px 0; -webkit-mask-image: linear-gradient(transparent, #000 32%, #000 68%, transparent);
+              mask-image: linear-gradient(transparent, #000 32%, #000 68%, transparent); }
+    .roue::-webkit-scrollbar { display: none; }
+    .roue div { height: 44px; line-height: 44px; text-align: center; scroll-snap-align: center; font-size: 1.15rem; font-weight: 600;
+      color: rgba(255,255,255,.4); transition: color .15s, font-size .15s; cursor: pointer; font-variant-numeric: tabular-nums; }
+    .roue div.actif { color: var(--white); font-size: 1.6rem; font-weight: 800; }
+    .roue-viseur { position: absolute; left: 14px; right: 14px; top: 88px; height: 44px; border-radius: 10px; pointer-events: none;
+      border: 1.5px solid rgba(201,168,76,.6); background: rgba(201,168,76,.08); }
+    .saisie { display: flex; align-items: center; gap: 8px; margin: 10px 0 16px; }
+    .saisie input { flex: 1; min-width: 0; background: rgba(255,255,255,.06); border: 1.5px solid rgba(255,255,255,.14); border-radius: 11px;
+      padding: 12px 14px; color: #fff; font: 600 1rem 'Inter', sans-serif; outline: none; }
+    .saisie input:focus { border-color: var(--gold); }
+    .saisie input::placeholder { color: rgba(255,255,255,.4); font-weight: 500; }
+    .saisie span { color: rgba(255,255,255,.6); font-weight: 700; }
+
+    /* Carte blanche (teaser, résultat) */
+    .carte { background: var(--white); color: var(--navy); border-radius: 18px; padding: 20px 18px; box-shadow: 0 14px 40px rgba(0,0,0,.25); }
+    .chiffres { display: flex; gap: 8px; margin: 14px 0 6px; }
+    .chiffres div { flex: 1; background: var(--off); border-radius: 12px; padding: 10px 4px; text-align: center; }
+    .chiffres b { display: block; font-size: 1.55rem; font-weight: 900; color: var(--navy); line-height: 1.1; }
+    .chiffres small { font-size: .68rem; color: var(--gray-600); font-weight: 600; }
+    .flou { position: relative; height: 92px; margin: 10px 0 2px; overflow: hidden; border-radius: 12px; }
+    .flou .opt { filter: blur(5px); opacity: .75; margin-bottom: 6px; }
+    .flou::after { content: "🔒"; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; }
+    .champ { margin-top: 10px; }
+    .champ label { display: block; font-size: .72rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--gray-600); margin-bottom: 5px; }
+    .champ input { width: 100%; background: var(--off); border: 1.5px solid rgba(15,31,61,.12); border-radius: 10px; padding: 12px 14px;
+      font: 500 1rem 'Inter', sans-serif; color: var(--navy); outline: none; }
+    .champ input:focus { border-color: var(--gold); background: #fff; }
+    .carte .btn { margin-top: 14px; }
+    .mention { text-align: center; font-size: .66rem; line-height: 1.4; color: var(--gray-400); margin-top: 8px; }
+    .mention a { color: inherit; }
+    .erreur { color: #c53030; font-size: .8rem; margin-top: 8px; text-align: center; min-height: 1em; }
+    .pot { position: absolute; left: -9999px; }
+
+    /* Options */
+    .opt { display: flex; justify-content: space-between; align-items: center; gap: 8px; background: var(--off); border-radius: 11px;
+      padding: 7px 11px; border-left: 4px solid var(--vert); color: var(--navy); }
+    .opt.jaune { border-left-color: var(--jaune); }
+    .opt .g { min-width: 0; }
+    .opt .t { font-size: .9rem; font-weight: 800; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .opt .d { font-size: .72rem; color: var(--gray-600); line-height: 1.3; margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .opt .p { text-align: right; flex-shrink: 0; }
+    .opt .p b { display: block; font-size: .95rem; font-weight: 800; white-space: nowrap; line-height: 1.25; }
+    .opt .p b i { font-style: normal; font-size: .66rem; font-weight: 600; color: var(--gray-400); }
+    .opt .p small { display: block; font-size: .64rem; color: var(--gray-400); white-space: nowrap; }
+    .badge { font-weight: 700; color: var(--vert); }
+    .jaune .badge { background: var(--jaune-pale); color: var(--jaune); }
+    .liste { display: flex; flex-direction: column; gap: 6px; margin: 10px 0 2px; }
+    .resultat-tete { width: 100%; max-width: 420px; margin-bottom: 4px; }
+    .resultat-tete h2 { font-size: 1.25rem; }
+    .resultat-tete .sous { font-size: .82rem; }
+    .note { font-size: .68rem; color: rgba(255,255,255,.5); line-height: 1.4; margin-top: 8px; text-align: center; }
+    @media (max-height: 700px) {
+      h1 { font-size: 1.75rem; } .roue-cadre { height: 176px; } .roue { padding: 66px 0; } .roue-viseur { top: 66px; }
+      .opt { padding: 6px 10px; } .liste { gap: 5px; } .carte { padding: 16px 15px; }
+    }
+  </style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version="2.0";
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,"script",
+"https://connect.facebook.net/en_US/fbevents.js");
+fbq("init", "1515228769880162");
+fbq("track", "PageView");
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1515228769880162&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "xt1ezrja3k");
+    </script>
+</head>
+<body>
+
+  <!-- 1. Accroche -->
+  <section class="ecran" id="e-accroche">
+    <div class="boite" style="text-align:center">
+      <span class="pastille">🧮 Calculateur · 30 secondes</span>
+      <h1>Dis-moi combien tu as, je te dis <em>ce que tu peux acheter</em> à Dubaï.</h1>
+      <p class="sous">2 chiffres : ton apport et ce que tu mets de côté chaque mois. Tu vois les quartiers, le type de bien et le plan de paiement.</p>
+      <button class="btn btn-or" style="margin-top:26px" onclick="aller('e-apport')">Calculer mon budget →</button>
+      <p class="petit">Gratuit · Sans engagement · Prix du marché off-plan</p>
+    </div>
+  </section>
+
+  <!-- 2. Apport -->
+  <section class="ecran cache" id="e-apport">
+    <button class="retour" onclick="aller('e-accroche')">← Retour</button>
+    <div class="boite">
+      <div class="etape">Étape 1 sur 2</div>
+      <h2>Combien tu as <em>d'apport</em> ?</h2>
+      <p class="sous">L'argent disponible aujourd'hui pour investir.</p>
+      <div class="roue-cadre"><div class="roue-viseur"></div><div class="roue" id="roue-apport"></div></div>
+      <div class="saisie"><input id="libre-apport" type="text" inputmode="numeric" placeholder="Ou tape ton montant exact"><span>€</span></div>
+      <button class="btn btn-or" onclick="valider('apport')">Suivant →</button>
+    </div>
+  </section>
+
+  <!-- 3. Épargne -->
+  <section class="ecran cache" id="e-epargne">
+    <button class="retour" onclick="aller('e-apport')">← Retour</button>
+    <div class="boite">
+      <div class="etape">Étape 2 sur 2</div>
+      <h2>Combien tu peux <em>épargner</em> par mois ?</h2>
+      <p class="sous">Ce que tu peux mettre de côté chaque mois pendant les travaux.</p>
+      <div class="roue-cadre"><div class="roue-viseur"></div><div class="roue" id="roue-epargne"></div></div>
+      <div class="saisie"><input id="libre-epargne" type="text" inputmode="numeric" placeholder="Ou tape ton montant exact"><span>€/mois</span></div>
+      <button class="btn btn-or" id="btn-calcul" onclick="valider('epargne')">Voir ce que je peux acheter →</button>
+    </div>
+  </section>
+
+  <!-- 4. Teaser + contact -->
+  <section class="ecran cache" id="e-teaser">
+    <button class="retour" onclick="aller('e-epargne')">← Retour</button>
+    <div class="boite">
+      <div class="carte">
+        <div id="teaser-haut"></div>
+        <div class="champ"><label for="prenom">Prénom</label><input id="prenom" type="text" placeholder="Thomas" autocomplete="given-name"></div>
+        <div class="champ"><label for="whatsapp">Numéro WhatsApp</label><input id="whatsapp" type="tel" placeholder="06 12 34 56 78" autocomplete="tel"></div>
+        <input class="pot" id="site_web" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button class="btn btn-or" id="btn-debloquer" onclick="envoyer()">Débloquer ma fiche →</button>
+        <div class="erreur" id="erreur"></div>
+        <p class="mention">En cliquant, tu acceptes de recevoir ta fiche et d'être recontacté(e) par Clément Invest Dubai sur WhatsApp. Tu peux répondre STOP à tout moment. <a href="/confidentialite/" target="_blank">Confidentialité</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Résultat -->
+  <section class="ecran cache" id="e-resultat"><div class="boite" id="resultat"></div></section>
+
+<script>
+  var API = /^(localhost|127\.0\.0\.1)$/.test(location.hostname) ? 'http://localhost:3999' : 'https://agence-ia-nu.vercel.app';
+  var PUB = location.pathname.indexOf('budget-ads') !== -1;
+  var SOURCE = PUB ? 'budget-ads' : 'budget';
+  var CONTENT_NAME = PUB ? 'Budget Ads' : 'Budget';
+  var WA_AGENCE = '971502740879'; // numéro WhatsApp de l'agence (WATI) : la réponse arrive sous la fiche Telegram
+  var APPORTS = [10000, 20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000, 100000, 125000, 150000, 200000, 250000, 300000];
+  var EPARGNES = [500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000];
+  var choix = { apport: 30000, epargne: 1500 }, teaser = null;
+  var WA_SVG = '<svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41-.08-.13-.27-.2-.57-.35M12.05 21.79a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88M20.46 3.49A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.17-3.48-8.42"/></svg>';
+
+  function eur(n) { return Math.round(n).toLocaleString('fr-FR').replace(/ | /g, ' ') + ' €'; }
+  function libelle(v, liste) { return eur(v) + (v === liste[liste.length - 1] ? ' et +' : ''); }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function aller(id) {
+    document.querySelectorAll('.ecran').forEach(function (e) { e.classList.add('cache'); });
+    document.getElementById(id).classList.remove('cache');
+    window.scrollTo(0, 0);
+    if (id === 'e-apport') centrer('apport');
+    if (id === 'e-epargne') centrer('epargne');
+  }
+
+  // Roulettes : la valeur au centre est retenue ; un tap sur une valeur la centre.
+  var ROUES = { apport: APPORTS, epargne: EPARGNES };
+  function construire(nom) {
+    var r = document.getElementById('roue-' + nom), liste = ROUES[nom], t;
+    r.innerHTML = liste.map(function (v, i) { return '<div data-i="' + i + '">' + libelle(v, liste) + '</div>'; }).join('');
+    r.addEventListener('scroll', function () { clearTimeout(t); t = setTimeout(function () { lire(nom); }, 60); marquer(nom); });
+    r.addEventListener('click', function (e) {
+      var i = e.target.getAttribute('data-i'); if (i === null) return;
+      r.scrollTo({ top: i * r.firstChild.offsetHeight, behavior: 'smooth' });
+    });
+  }
+  function indexCentre(nom) {
+    var r = document.getElementById('roue-' + nom);
+    return Math.max(0, Math.min(ROUES[nom].length - 1, Math.round(r.scrollTop / r.firstChild.offsetHeight)));
+  }
+  function marquer(nom) {
+    var i = indexCentre(nom);
+    document.querySelectorAll('#roue-' + nom + ' div').forEach(function (d, k) { d.classList.toggle('actif', k === i); });
+  }
+  function lire(nom) { choix[nom] = ROUES[nom][indexCentre(nom)]; document.getElementById('libre-' + nom).value = ''; marquer(nom); }
+  function centrer(nom) {
+    var r = document.getElementById('roue-' + nom), i = ROUES[nom].indexOf(choix[nom]);
+    if (i < 0) i = ROUES[nom].reduce(function (b, v, k) { return Math.abs(v - choix[nom]) < Math.abs(ROUES[nom][b] - choix[nom]) ? k : b; }, 0);
+    requestAnimationFrame(function () { r.scrollTop = i * r.firstChild.offsetHeight; marquer(nom); });
+  }
+  function montantLibre(nom) {
+    var v = document.getElementById('libre-' + nom).value.replace(/[^\d]/g, '');
+    return v === '' ? null : parseInt(v, 10);
+  }
+
+  function valider(nom) {
+    var libre = montantLibre(nom);
+    if (libre !== null) choix[nom] = libre;
+    else choix[nom] = ROUES[nom][indexCentre(nom)];
+    if (nom === 'apport') return aller('e-epargne');
+    calculer();
+  }
+
+  function calculer() {
+    var b = document.getElementById('btn-calcul');
+    b.disabled = true; b.textContent = 'Calcul en cours…';
+    fetch(API + '/api/budget?apport=' + choix.apport + '&epargne=' + choix.epargne)
+      .then(function (r) { if (!r.ok) throw new Error(); return r.json(); })
+      .then(function (t) { teaser = t; afficherTeaser(); aller('e-teaser'); })
+      .catch(function () { teaser = null; afficherTeaser(); aller('e-teaser'); })
+      .finally(function () { b.disabled = false; b.textContent = 'Voir ce que je peux acheter →'; });
+  }
+
+  var FAUSSES = [['JVC · 1 chambre', '70/30 post-handover', '250 000 €'], ['Business Bay · Studio', '60/40 post-handover', '290 000 €'],
+                 ['Arjan · Studio', '50/50 post-handover', '170 000 €']];
+  function optionHtml(t, d, p, a, jaune, badge) {
+    return '<div class="opt' + (jaune ? ' jaune' : '') + '"><div class="g"><div class="t">' + t + '</div><div class="d">' + d +
+      (badge ? ' ' + badge : '') + '</div></div><div class="p"><b><i>dès </i>' + p + '</b>' +
+      (a ? '<small>' + a + '</small>' : '') + '</div></div>';
+  }
+  function afficherTeaser() {
+    var h = document.getElementById('teaser-haut');
+    var petit = !teaser || teaser.petit_budget || !teaser.nb_options;
+    if (petit) {
+      h.innerHTML = '<h2 style="color:var(--navy)">Il y a sûrement <em>des projets pour toi</em></h2>' +
+        '<p style="font-size:.88rem;color:var(--gray-600);line-height:1.45;margin-top:6px">Avec ' + eur(choix.apport) + ' d\'apport et ' +
+        eur(choix.epargne) + ' par mois, ça se regarde au cas par cas : plan de paiement, moment du lancement… Laisse ton WhatsApp, je regarde avec toi.</p>';
+      document.getElementById('btn-debloquer').textContent = 'Être recontacté sur WhatsApp →';
+      return;
+    }
+    h.innerHTML = '<div style="font-size:.78rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:1px">Ton budget est prêt</div>' +
+      '<h2 style="color:var(--navy);font-size:1.25rem;margin-top:4px">Tu peux acheter à Dubaï 🎉</h2>' +
+      '<div class="chiffres"><div><b>' + teaser.nb_quartiers + '</b><small>quartiers</small></div><div><b>' + teaser.nb_types +
+      '</b><small>types d\'unités</small></div><div><b>' + teaser.nb_options + '</b><small>options</small></div></div>' +
+      '<div class="flou">' + FAUSSES.map(function (f) { return optionHtml(f[0], f[1], f[2], '', false, ''); }).join('') + '</div>';
+    document.getElementById('btn-debloquer').textContent = 'Débloquer ma fiche →';
+  }
+
+  function validerTel(raw) {
+    var c = raw.replace(/[\s\-\.\(\)]/g, '');
+    if (c.indexOf('00') === 0) c = '+' + c.slice(2);
+    if (/^0[1-9]\d{8}$/.test(c)) c = '+33' + c.slice(1);
+    return /^\+[1-9]\d{6,14}$/.test(c) ? c : null;
+  }
+
+  function envoyer() {
+    var prenom = document.getElementById('prenom').value.trim(), err = document.getElementById('erreur');
+    var tel = validerTel(document.getElementById('whatsapp').value);
+    if (prenom.length < 2) { err.textContent = 'Ton prénom ?'; return; }
+    if (!tel) { err.textContent = 'Vérifie ton numéro WhatsApp (ex. 06 12 34 56 78 ou +33…).'; return; }
+    err.textContent = '';
+    var b = document.getElementById('btn-debloquer'); b.disabled = true; b.textContent = 'Un instant…';
+
+    var LOCAL = /^(localhost|127\.0\.0\.1)$/.test(location.hostname); // pas de conversion pendant les tests locaux
+    if (!LOCAL && typeof fbq === 'function') fbq('track', 'Lead', { content_name: CONTENT_NAME, content_category: 'real_estate' });
+    if (!LOCAL && typeof gtag === 'function') gtag('event', 'conversion', { send_to: 'AW-17772499593', event_category: 'lead', event_label: SOURCE + '-form-submit' });
+
+    var q = new URLSearchParams(location.search), utm = {};
+    ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (k) { if (q.get(k)) utm[k] = q.get(k); });
+    var cookie = function (n) { var m = document.cookie.match('(?:^|; )' + n + '=([^;]*)'); return m ? m[1] : undefined; };
+    fetch(API + '/api/lead', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ source: SOURCE, prenom: prenom, whatsapp: tel, apport: choix.apport, epargne: choix.epargne,
+        site_web: document.getElementById('site_web').value, utm: Object.keys(utm).length ? utm : null, fbp: cookie('_fbp'), fbc: cookie('_fbc') })
+    }).then(function (r) { return r.json().catch(function () { return {}; }); })
+      .then(function (j) { afficherResultat(prenom, j && j.resultat); })
+      .catch(function () { afficherResultat(prenom, null); });
+  }
+
+  function afficherResultat(prenom, r) {
+    var msg = 'Salut Clément, j\'ai fait le calculateur budget (apport ' + eur(choix.apport) + ', épargne ' + eur(choix.epargne) + '/mois). ';
+    var html;
+    if (!r || r.petit_budget || !r.cartes || !r.cartes.length) {
+      msg += 'Tu peux regarder avec moi ce qui est possible ?';
+      html = '<div style="text-align:center"><div style="font-size:2.4rem">🤝</div>' +
+        '<h2 style="margin-top:8px">' + esc(prenom) + ', on regarde <em>ensemble</em></h2>' +
+        '<p class="sous" style="margin-top:8px">Il y a potentiellement des projets qui correspondent à ton budget, mais ça demande de regarder au cas par cas : ' +
+        'lancements à venir, plans de paiement, promoteurs. Écris-moi sur WhatsApp, je te réponds personnellement.</p>' +
+        '<a class="btn btn-wa" style="margin-top:22px" target="_blank" href="https://wa.me/' + WA_AGENCE + '?text=' + encodeURIComponent(msg) + '">' +
+        WA_SVG + 'Écrire à Clément</a>' +
+        '<p class="note">Je t\'envoie aussi un message sur WhatsApp dans une minute, depuis le +971 50 274 0879.</p></div>';
+    } else {
+      msg += 'Je veux voir ces projets.';
+      var PLANS = { '50/50': '50/50 classique', '70/30': '70/30 post-handover', '60/40': '60/40 post-handover', '50/50-ph': '50/50 post-handover' };
+      html = '<div class="resultat-tete"><h2>' + esc(prenom) + ', voici <em>ce que tu peux acheter</em></h2>' +
+        '<p class="sous">Capacité à la livraison : <b style="color:#fff">' + eur(r.capacite_eur) + '</b> · ' + r.nb_quartiers + ' quartiers · ' + r.nb_options + ' options</p></div>' +
+        '<div class="liste">' + r.cartes.map(function (c) {
+          return optionHtml(esc(c.nom) + ' · ' + esc(c.type), PLANS[c.plan], eur(c.prix_eur),
+            '≈ ' + Math.round(c.prix_aed / 1000).toLocaleString('fr-FR') + ' k AED', c.badge === 'jaune',
+            c.badge === 'jaune' ? '🟡' : '🟢');
+        }).join('') + '</div>' +
+        '<a class="btn btn-wa" style="margin-top:12px" target="_blank" href="https://wa.me/' + WA_AGENCE + '?text=' + encodeURIComponent(msg) + '">' +
+        WA_SVG + 'Je veux voir ces projets</a>' +
+        '<p class="note">🟢 dans ton budget · 🟡 juste, à regarder de près<br>Ta fiche arrive aussi sur WhatsApp (+971 50 274 0879). Prix d\'entrée du marché off-plan, à confirmer projet par projet.</p>';
+    }
+    document.getElementById('resultat').innerHTML = html;
+    aller('e-resultat');
+  }
+
+  construire('apport'); construire('epargne');
+</script>
+</body>
+</html>
