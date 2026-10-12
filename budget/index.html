@@ -83,6 +83,18 @@
     .chiffres small { font-size: .68rem; color: var(--gray-600); font-weight: 600; }
     .flou { position: relative; height: 84px; margin: 6px 0 2px; overflow: hidden; border-radius: 12px; }
     .flou .opt { filter: blur(5px); opacity: .75; margin-bottom: 6px; }
+    .eyebrow { font-size: .78rem; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; }
+    .gros { color: var(--navy); font-size: 1.45rem; margin-top: 6px; }
+    .puces { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 4px; }
+    .puces span { background: var(--gold-pale); color: var(--navy); font-weight: 700; font-size: .85rem; padding: 6px 12px; border-radius: 20px; }
+    .flou-liste { position: relative; margin: 12px 0 4px; border-radius: 12px; background: var(--off); padding: 10px; overflow: hidden; }
+    .flou-liste div { display: flex; flex-wrap: wrap; gap: 6px; filter: blur(4px); opacity: .7; }
+    .flou-liste div span { background: #fff; border: 1px solid var(--gray-200); font-size: .8rem; padding: 4px 9px; border-radius: 8px; color: var(--navy); }
+    .flou-liste b { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: .95rem; color: var(--navy); }
+    .valide { width: 84px; height: 84px; border-radius: 50%; background: var(--vert); margin: 0 auto; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 0 10px rgba(31,157,85,.18); animation: pop .4s ease; }
+    @keyframes pop { from { transform: scale(.6); opacity: 0; } to { transform: none; opacity: 1; } }
+    @media (prefers-reduced-motion: reduce) { .valide { animation: none; } }
     .verrou { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: .95rem; font-weight: 800; color: var(--navy); }
     .champ { margin-top: 10px; }
     .champ label { display: block; font-size: .72rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--gray-600); margin-bottom: 5px; }
@@ -264,11 +276,12 @@ src="https://www.facebook.com/tr?id=1515228769880162&ev=PageView&noscript=1"
   function calculer() {
     var b = document.getElementById('btn-calcul');
     b.disabled = true; b.textContent = 'Calcul en cours…';
-    fetch(API + '/api/budget?apport=' + choix.apport + '&epargne=' + choix.epargne)
-      .then(function (r) { if (!r.ok) throw new Error(); return r.json(); })
-      .then(function (t) { teaser = t; afficherTeaser(); aller('e-teaser'); })
-      .catch(function () { teaser = null; afficherTeaser(); aller('e-teaser'); })
-      .finally(function () { b.disabled = false; b.textContent = 'Voir ce que je peux acheter →'; });
+    var url = API + '/api/budget?apport=' + choix.apport + '&epargne=' + choix.epargne;
+    var essai = function () { return fetch(url, { cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }); };
+    essai().catch(function () { return new Promise(function (ok) { setTimeout(ok, 800); }).then(essai); })
+      .then(function (t) { teaser = t; })
+      .catch(function (e) { console.warn('Calcul indisponible', e); teaser = { erreur: true }; })
+      .then(function () { afficherTeaser(); aller('e-teaser'); b.disabled = false; b.textContent = 'Voir ce que je peux acheter →'; });
   }
 
   var FAUSSES = [['JVC · 1 chambre', '70/30 post-handover', '250 000 €'], ['Business Bay · Studio', '60/40 post-handover', '290 000 €']];
@@ -282,26 +295,26 @@ src="https://www.facebook.com/tr?id=1515228769880162&ev=PageView&noscript=1"
       (badge ? ' ' + badge : '') + '</div></div><div class="p"><b><i>dès </i>' + p + '</b>' +
       (a ? '<small>' + a + '</small>' : '') + '</div></div>';
   }
+  function estPetit() { return !teaser || (!teaser.erreur && (teaser.petit_budget || !teaser.nb_options)); }
+  var NOMS_FLOUS = ['Business Bay', 'JVC', 'Arjan', 'Al Furjan', 'Dubai Hills', 'Meydan', 'Sports City', 'Majan'];
   function afficherTeaser() {
-    var h = document.getElementById('teaser-haut');
-    var petit = !teaser || teaser.petit_budget || !teaser.nb_options;
-    if (petit) {
+    var h = document.getElementById('teaser-haut'), btn = document.getElementById('btn-debloquer');
+    if (estPetit()) {
       h.innerHTML = '<h2 style="color:var(--navy)">Il y a sûrement <em>des projets pour toi</em></h2>' +
         '<p style="font-size:.88rem;color:var(--gray-600);line-height:1.45;margin-top:6px">Avec ' + eur(choix.apport) + ' d\'apport et ' +
         eur(choix.epargne) + ' par mois, ça se regarde au cas par cas : plan de paiement, moment du lancement… Laisse ton WhatsApp, je regarde avec toi.</p>';
-      document.getElementById('btn-debloquer').textContent = 'Être recontacté sur WhatsApp →';
+      btn.textContent = 'Être recontacté sur WhatsApp →';
       return;
     }
-    var types = (teaser.types || []).map(function (t) { return t.toLowerCase(); });
-    var reste = teaser.nb_options - (teaser.apercu ? 1 : 0);
-    h.innerHTML = '<div style="font-size:.78rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:1px">Ton budget est prêt 🎉</div>' +
-      '<h2 style="color:var(--navy);font-size:1.2rem;margin-top:4px">Tu peux acheter dans <em>' + teaser.nb_quartiers + ' quartiers</em></h2>' +
-      '<p style="font-size:.85rem;color:var(--gray-600);line-height:1.4">' + esc(types.join(', ').replace(/^./, function (c) { return c.toUpperCase(); })) +
-      ' · ' + teaser.nb_options + ' options au total</p>' +
-      '<div class="liste" style="margin-top:10px">' + (teaser.apercu ? carteHtml(teaser.apercu) : '') + '</div>' +
-      '<div class="flou">' + FAUSSES.map(function (f) { return optionHtml(f[0], f[1], f[2], '', false, ''); }).join('') +
-      '<div class="verrou">🔒 + ' + reste + ' autres options</div></div>';
-    document.getElementById('btn-debloquer').textContent = 'Recevoir ma sélection sur WhatsApp →';
+    var n = teaser.nb_quartiers, types = teaser.types || [];
+    h.innerHTML = '<div class="eyebrow">Ta sélection est prête 🎉</div>' +
+      (teaser.erreur
+        ? '<h2 class="gros">Les quartiers de Dubaï <em>accessibles avec ta situation</em></h2>'
+        : '<h2 class="gros">Tu peux acheter dans <em>' + n + ' quartier' + (n > 1 ? 's' : '') + '</em> de Dubaï</h2>' +
+          '<div class="puces">' + types.map(function (t) { return '<span>' + esc(t) + '</span>'; }).join('') + '</div>') +
+      '<div class="flou-liste"><div>' + NOMS_FLOUS.map(function (q) { return '<span>' + q + '</span>'; }).join('') + '</div>' +
+      '<b>🔒 La liste ' + (teaser.erreur ? 'complète' : 'des ' + n + ' quartiers') + '</b></div>';
+    btn.textContent = 'Recevoir la liste sur WhatsApp →';
   }
 
   function validerTel(raw) {
@@ -318,7 +331,7 @@ src="https://www.facebook.com/tr?id=1515228769880162&ev=PageView&noscript=1"
     if (!tel) { err.textContent = 'Vérifie ton numéro WhatsApp (ex. 06 12 34 56 78 ou +33…).'; return; }
     err.textContent = '';
     var b = document.getElementById('btn-debloquer'); b.disabled = true; b.textContent = 'Un instant…';
-    var petit = !teaser || teaser.petit_budget || !teaser.nb_options;
+    var petit = estPetit();
 
     var LOCAL = /^(localhost|127\.0\.0\.1)$/.test(location.hostname); // pas de conversion pendant les tests locaux
     if (!LOCAL && typeof fbq === 'function') fbq('track', 'Lead', { content_name: CONTENT_NAME, content_category: 'real_estate' });
@@ -336,16 +349,18 @@ src="https://www.facebook.com/tr?id=1515228769880162&ev=PageView&noscript=1"
       .catch(function () { afficherResultat(prenom, petit); });
   }
 
-  // Après le contact : pas de résultat sur la page (décision de Clément, 11/10) ; le détail part sur WhatsApp.
+  // Après le contact : pas de résultat sur la page (Clément, 11-12/10) ; validation verte, la liste part sur WhatsApp.
+  function prenomPropre(p) { return p.toLowerCase().replace(/(^|[\s-])(\S)/g, function (m, sep, l) { return sep + l.toUpperCase(); }); }
   function afficherResultat(prenom, petit) {
     var msg = 'Salut Clément, j\'ai fait le calculateur budget sur ton site (apport ' + eur(choix.apport) + ', épargne ' + eur(choix.epargne) + '/mois).';
-    document.getElementById('resultat').innerHTML = '<div style="text-align:center"><div style="font-size:2.6rem">📲</div>' +
-      '<h2 style="margin-top:10px">C\'est noté, ' + esc(prenom) + ' !</h2>' +
-      '<p class="sous" style="margin-top:10px">' + (petit
-        ? 'Je regarde ta situation et je t\'écris sur WhatsApp dans une minute, depuis le <b style="color:#fff;white-space:nowrap">+971 50 274 0879</b>.'
-        : 'Ta sélection arrive sur WhatsApp dans une minute, depuis le <b style="color:#fff;white-space:nowrap">+971 50 274 0879</b> : les quartiers et les types de biens qui correspondent à ta situation.') + '</p>' +
-      '<p class="sous" style="margin-top:12px">Enregistre ce numéro pour être sûr de recevoir le message.</p>' +
-      '<a class="lien" style="display:inline-block;margin-top:22px" target="_blank" href="https://wa.me/' + WA_AGENCE + '?text=' + encodeURIComponent(msg) + '">Ou écris-moi directement sur WhatsApp</a></div>';
+    document.getElementById('resultat').innerHTML = '<div style="text-align:center">' +
+      '<div class="valide"><svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>' +
+      '<h2 style="margin-top:18px">' + (petit ? 'C\'est noté, ' : 'Félicitations, ') + esc(prenomPropre(prenom)) + ' !</h2>' +
+      '<p class="sous" style="margin-top:10px;font-size:1.05rem">' + (petit
+        ? 'Je t\'écris dans quelques minutes sur ton WhatsApp.'
+        : 'Tu vas recevoir la liste dans quelques minutes sur ton WhatsApp.') + '</p>' +
+      '<p class="petit" style="margin-top:14px">Depuis le +971 50 274 0879</p>' +
+      '<a class="lien" style="display:inline-block;margin-top:26px" target="_blank" href="https://wa.me/' + WA_AGENCE + '?text=' + encodeURIComponent(msg) + '">Ou écris-moi directement</a></div>';
     aller('e-resultat');
   }
 
