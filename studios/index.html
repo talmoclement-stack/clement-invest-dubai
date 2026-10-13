@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17772499593"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-17772499593');
+</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Rapport studios Dubaï : où acheter, où éviter — Clément Invest Dubai</title>
+  <meta name="description" content="128 000 studios dans 14 quartiers de Dubaï : la carte des risques quartier par quartier, studio contre 1-bed à JVC et les 9 points à verrouiller avant de signer. Rapport gratuit.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Lead magnet de la vidéo YouTube « Pourquoi tu ne dois pas acheter de studio à Dubaï… » (oct. 2026).
+       Accroche → prénom + WhatsApp (envoi à /api/lead, source 'studios') → rapport affiché sur la page.
+       Lien direct vers le rapport (envoyé sur WhatsApp) : /studios/#rapport.
+       Données : agence-ia/contenus/_donnees/parc-par-quartier-typologie.md (extraction du 06/10/2026). -->
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #0f1f3d; --navy-2: #162847; --gold: #c9a84c; --gold-light: #dfc06e; --gold-pale: #f5edd8;
+      --white: #fff; --off: #f8f9fc; --gray-100: #eceef2; --gray-200: #d8dbe3; --gray-400: #9198aa; --gray-600: #525a6e;
+      --rouge: #d64545; --rouge-pale: #fdeaea; --jaune: #b7791f; --jaune-pale: #fdf3dc; --vert: #1f9d55; --vert-pale: #e6f6ec;
+      --wa: #25D366;
+    }
+    html, body { min-height: 100%; }
+    body { font-family: 'Inter', -apple-system, sans-serif; background: var(--navy); color: var(--white);
+      -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    .ecran { min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; justify-content: center;
+      align-items: center; padding: 20px 16px calc(20px + env(safe-area-inset-bottom)); animation: monte .35s ease; }
+    .ecran.cache { display: none; }
+    .boite { width: 100%; max-width: 420px; }
+    @keyframes monte { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) { .ecran { animation: none; } }
+
+    .pastille { display: inline-block; background: rgba(201,168,76,.15); color: var(--gold-light); border: 1px solid rgba(201,168,76,.4);
+      font-size: 11px; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase; padding: 5px 13px; border-radius: 20px; }
+    h1 { font-size: 2rem; font-weight: 900; line-height: 1.12; letter-spacing: -.02em; margin: 16px 0 12px; }
+    h1 em, h2 em { font-style: normal; color: var(--gold); }
+    h2 { font-size: 1.3rem; font-weight: 800; line-height: 1.2; letter-spacing: -.01em; margin-bottom: 6px; }
+    .sous { font-size: .95rem; color: rgba(255,255,255,.72); line-height: 1.45; }
+    .petit { font-size: .75rem; color: rgba(255,255,255,.45); margin-top: 10px; text-align: center; }
+
+    .btn { display: block; width: 100%; border: none; border-radius: 13px; padding: 16px 20px; font: 700 1.02rem 'Inter', sans-serif;
+      cursor: pointer; text-align: center; text-decoration: none; transition: opacity .2s, transform .1s; }
+    .btn:active { transform: scale(.98); }
+    .btn-or { background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--navy); }
+    .btn-wa { background: var(--wa); color: #fff; }
+    .btn-ligne { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,.3); }
+    .btn:disabled { opacity: .45; }
+    .retour { position: absolute; top: calc(14px + env(safe-area-inset-top)); left: 14px; background: none; border: none;
+      color: rgba(255,255,255,.55); font: 600 .9rem 'Inter', sans-serif; cursor: pointer; padding: 6px; }
+
+    /* Accroche : aperçu flouté des trois verdicts */
+    .apercu { margin: 20px 0 18px; display: flex; flex-direction: column; gap: 7px; }
+    .apercu .l { display: flex; align-items: center; gap: 10px; background: var(--navy-2); border: 1px solid rgba(255,255,255,.08);
+      border-radius: 12px; padding: 10px 12px; }
+    .apercu .pt { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+    .apercu b { font-size: .9rem; min-width: 98px; }
+    .apercu span { filter: blur(4.5px); opacity: .7; font-size: .85rem; white-space: nowrap; overflow: hidden; }
+    .apercu .cad { margin-left: auto; font-size: .8rem; flex-shrink: 0; }
+    .inclus { list-style: none; margin: 0 0 20px; display: flex; flex-direction: column; gap: 6px; }
+    .inclus li { font-size: .9rem; color: rgba(255,255,255,.85); padding-left: 24px; position: relative; line-height: 1.35; }
+    .inclus li::before { content: "✓"; position: absolute; left: 0; color: var(--gold); font-weight: 900; }
+
+    /* Contact */
+    .carte { background: var(--white); color: var(--navy); border-radius: 18px; padding: 20px 18px; box-shadow: 0 14px 40px rgba(0,0,0,.25); }
+    .eyebrow { font-size: .78rem; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; }
+    .champ { margin-top: 10px; }
+    .champ label { display: block; font-size: .72rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--gray-600); margin-bottom: 5px; }
+    .champ input { width: 100%; background: var(--off); border: 1.5px solid rgba(15,31,61,.12); border-radius: 10px; padding: 12px 14px;
+      font: 500 1rem 'Inter', sans-serif; color: var(--navy); outline: none; }
+    .champ input:focus { border-color: var(--gold); background: #fff; }
+    .carte .btn { margin-top: 14px; }
+    .mention { text-align: center; font-size: .66rem; line-height: 1.4; color: var(--gray-400); margin-top: 8px; }
+    .mention a { color: inherit; }
+    .erreur { color: #c53030; font-size: .8rem; margin-top: 8px; text-align: center; min-height: 1em; }
+    .pot { position: absolute; left: -9999px; }
+
+    /* Rapport */
+    .rapport { width: 100%; max-width: 560px; margin: 0 auto; padding: 28px 16px calc(40px + env(safe-area-inset-bottom)); }
+    .rapport.cache { display: none; }
+    .rapport header { margin-bottom: 22px; }
+    .rapport header h1 { font-size: 1.75rem; margin: 12px 0 8px; }
+    .bloc { background: var(--white); color: var(--navy); border-radius: 18px; padding: 20px 16px; margin-bottom: 14px; }
+    .bloc h2 { font-size: 1.15rem; }
+    .bloc .num { font-size: .72rem; font-weight: 800; letter-spacing: 1.2px; color: var(--gold); text-transform: uppercase; margin-bottom: 6px; }
+    .bloc p { font-size: .9rem; line-height: 1.5; color: var(--gray-600); }
+    .bloc p + p { margin-top: 8px; }
+    .bloc p b { color: var(--navy); }
+    .kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+    .kpis div { background: var(--off); border-radius: 12px; padding: 12px 10px; }
+    .kpis b { display: block; font-size: 1.45rem; font-weight: 900; line-height: 1.1; color: var(--navy); }
+    .kpis small { font-size: .74rem; color: var(--gray-600); line-height: 1.3; display: block; margin-top: 3px; }
+
+    .verdict { border-radius: 14px; padding: 12px; margin-top: 12px; }
+    .verdict.r { background: var(--rouge-pale); } .verdict.j { background: var(--jaune-pale); } .verdict.v { background: var(--vert-pale); }
+    .verdict .t { font-weight: 900; font-size: 1rem; }
+    .verdict.r .t { color: var(--rouge); } .verdict.j .t { color: var(--jaune); } .verdict.v .t { color: var(--vert); }
+    .verdict .d { font-size: .78rem; color: var(--gray-600); margin: 2px 0 8px; }
+    .q { display: grid; grid-template-columns: 1fr auto auto; gap: 2px 10px; align-items: baseline; padding: 7px 0; border-top: 1px solid rgba(15,31,61,.08); }
+    .q .n { font-weight: 800; font-size: .9rem; }
+    .q .c { font-weight: 800; font-size: .9rem; text-align: right; font-variant-numeric: tabular-nums; }
+    .q .s { font-size: .74rem; color: var(--gray-600); grid-column: 1 / -1; }
+    .q .lib { font-size: .66rem; color: var(--gray-400); text-transform: uppercase; letter-spacing: .04em; }
+
+    .barres { margin-top: 12px; display: flex; flex-direction: column; gap: 6px; }
+    .barre { display: grid; grid-template-columns: 124px 1fr 48px; gap: 8px; align-items: center; font-size: .8rem; }
+    .barre .n { font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .barre .f { height: 14px; border-radius: 0 4px 4px 0; background: var(--gray-100); }
+    .barre .f i { display: block; height: 100%; border-radius: 0 4px 4px 0; }
+    .barre .v { text-align: right; font-weight: 800; font-variant-numeric: tabular-nums; }
+
+    table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: .82rem; }
+    th, td { padding: 8px 4px; text-align: right; border-top: 1px solid rgba(15,31,61,.08); font-variant-numeric: tabular-nums; }
+    td + td, th + th { white-space: nowrap; }
+    th:first-child, td:first-child { text-align: left; color: var(--gray-600); font-weight: 600; }
+    thead th { border-top: none; font-weight: 900; font-size: .85rem; }
+    thead th.s { color: var(--rouge); } thead th.b { color: var(--vert); }
+    td b { color: var(--navy); }
+    .note { font-size: .72rem; color: var(--gray-400); line-height: 1.45; margin-top: 10px; }
+
+    .check { counter-reset: c; list-style: none; margin-top: 10px; }
+    .check li { counter-increment: c; position: relative; padding: 9px 0 9px 40px; border-top: 1px solid rgba(15,31,61,.08); }
+    .check li::before { content: counter(c); position: absolute; left: 0; top: 9px; width: 28px; height: 28px; border-radius: 8px;
+      background: var(--gold-pale); color: var(--navy); font-weight: 900; font-size: .85rem; display: flex; align-items: center; justify-content: center; }
+    .check b { display: block; font-size: .92rem; }
+    .check span { font-size: .8rem; color: var(--gray-600); line-height: 1.4; }
+
+    .choix { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+    .choix div { background: var(--off); border-radius: 12px; padding: 12px; border-left: 4px solid var(--gold); }
+    .choix b { font-size: .95rem; }
+    .choix span { display: block; font-size: .8rem; color: var(--gray-600); line-height: 1.4; margin-top: 3px; }
+
+    .fin { background: var(--navy-2); border: 1px solid rgba(201,168,76,.35); border-radius: 18px; padding: 20px 16px; margin-top: 18px; }
+    .fin h2 { color: var(--white); }
+    .fin .sous { font-size: .9rem; margin-bottom: 14px; }
+    .fin .btn + .btn { margin-top: 10px; }
+    .sources { font-size: .72rem; color: rgba(255,255,255,.45); line-height: 1.5; margin-top: 18px; }
+  </style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version="2.0";
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,"script",
+"https://connect.facebook.net/en_US/fbevents.js");
+fbq("init", "1515228769880162");
+fbq("track", "PageView");
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1515228769880162&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "xt1ezrja3k");
+    </script>
+</head>
+<body>
+
+  <!-- 1. Accroche -->
+  <section class="ecran" id="e-accroche">
+    <div class="boite">
+      <span class="pastille">Rapport gratuit · 14 quartiers</span>
+      <h1><em>128 000 studios</em> à Dubaï : où acheter, où éviter</h1>
+      <p class="sous">Le rapport de la vidéo, quartier par quartier : combien de studios, combien de logements arrivent d'ici 2028, et le verdict.</p>
+      <div class="apercu">
+        <div class="l"><i class="pt" style="background:var(--rouge)"></i><b>En danger</b><span>Résidence · Science · South</span><em class="cad">🔒</em></div>
+        <div class="l"><i class="pt" style="background:#f2c94c"></i><b>À surveiller</b><span>JVC · JVT · Arjan · Sports</span><em class="cad">🔒</em></div>
+        <div class="l"><i class="pt" style="background:var(--vert)"></i><b>Sous contrôle</b><span>Business · Islands</span><em class="cad">🔒</em></div>
+      </div>
+      <ul class="inclus">
+        <li>La carte des risques : 14 quartiers en rouge, jaune ou vert</li>
+        <li>Studio contre 1-bed à JVC : prix, loyer, charges, rendement net</li>
+        <li>Les 9 points à verrouiller avant de signer</li>
+      </ul>
+      <button class="btn btn-or" onclick="aller('e-contact')">Voir le rapport →</button>
+      <p class="petit">Gratuit · Accès immédiat</p>
+    </div>
+  </section>
+
+  <!-- 2. Contact -->
+  <section class="ecran cache" id="e-contact">
+    <button class="retour" onclick="aller('e-accroche')">← Retour</button>
+    <div class="boite">
+      <div class="carte">
+        <div class="eyebrow">Ton rapport est prêt</div>
+        <h2 style="margin-top:6px">Où acheter un studio à Dubaï, <em>quartier par quartier</em></h2>
+        <div class="champ"><label for="prenom">Prénom</label><input id="prenom" type="text" placeholder="Thomas" autocomplete="given-name"></div>
+        <div class="champ"><label for="whatsapp">Numéro WhatsApp</label><input id="whatsapp" type="tel" placeholder="06 12 34 56 78" autocomplete="tel"></div>
+        <input class="pot" id="site_web" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button class="btn btn-or" id="btn-envoyer" onclick="envoyer()">Débloquer le rapport →</button>
+        <div class="erreur" id="erreur"></div>
+        <p class="mention">En cliquant, tu acceptes de recevoir le rapport et d'être recontacté(e) par Clément Invest Dubai sur WhatsApp. Tu peux répondre STOP à tout moment. <a href="/confidentialite/" target="_blank">Confidentialité</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Rapport -->
+  <main class="rapport cache" id="rapport">
+    <header>
+      <span class="pastille">Rapport studios · octobre 2026</span>
+      <h1 id="titre-rapport">Où acheter un studio à Dubaï ?</h1>
+      <p class="sous">Studios livrés ou en construction d'ici fin 2028, dans les 14 quartiers où il y en a le plus.</p>
+    </header>
+
+    <section class="bloc">
+      <div class="num">L'essentiel</div>
+      <h2>Le studio n'est pas un mauvais produit. Mais <em>pas n'importe où</em>.</h2>
+      <div class="kpis">
+        <div><b>128 073</b><small>studios dans 14 quartiers</small></div>
+        <div><b>27 489</b><small>rien qu'à JVC, n° 1 de Dubaï</small></div>
+        <div><b>+18 %</b><small>au sqft : le studio coûte plus cher qu'un 1-bed à JVC</small></div>
+        <div><b>48 %</b><small>des projets ont déjà glissé : la vague arrive plus tard</small></div>
+      </div>
+      <p style="margin-top:12px">À la revente, ton seul acheteur est un autre investisseur, qui ne regardera qu'une chose : ton loyer. Et quand des centaines de studios identiques arrivent en location le même mois, c'est le propriétaire le plus pressé qui fixe le prix pour tout le monde.</p>
+    </section>
+
+    <section class="bloc">
+      <div class="num">1 · La carte des risques</div>
+      <h2>Le verdict, quartier par quartier</h2>
+      <p>On croise le nombre de studios et la croissance du parc d'ici fin 2028 (logements à venir ÷ logements existants).</p>
+      <div id="verdicts"></div>
+      <p class="note">Rouge ne veut pas dire interdit : il faudra te différencier fort. Vert ne veut pas dire garanti. Et un quartier vert peut cacher un immeuble rouge : regarde toujours la part de studios dans le projet.</p>
+    </section>
+
+    <section class="bloc">
+      <div class="num">2 · Où sont les studios</div>
+      <h2>Le classement des 14 quartiers</h2>
+      <p>Nombre de studios, livrés ou en construction. La couleur reprend le verdict.</p>
+      <div class="barres" id="barres"></div>
+    </section>
+
+    <section class="bloc">
+      <div class="num">3 · Le plus rentable ?</div>
+      <h2>Studio contre 1-bed à JVC</h2>
+      <table>
+        <thead><tr><th></th><th class="s">Studio</th><th class="b">1-bed</th></tr></thead>
+        <tbody>
+          <tr><td>Prix d'achat (AED, neuf)</td><td>750 – 835 k</td><td>1 – 1,3 M</td></tr>
+          <tr><td>Prix au sqft (médiane)</td><td>1 788</td><td>1 520</td></tr>
+          <tr><td>Loyer annuel (AED)</td><td>56 k</td><td>77 k</td></tr>
+          <tr><td>Charges annuelles (AED)</td><td>6 k</td><td>11 k</td></tr>
+          <tr><td>Rendement brut</td><td>6,7 – 7,5 %</td><td>5,9 – 7,7 %</td></tr>
+          <tr><td><b>Rendement net</b></td><td><b>6 – 6,7 %</b></td><td><b>5,1 – 6,6 %</b></td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:12px">Le studio rapporte un peu plus en net, mais un 1-bed bien acheté (autour d'un million d'AED) fait presque aussi bien, avec plus de plus-value à la revente. <b>Tout se joue au prix d'achat.</b></p>
+      <p class="note">Estimations d'octobre 2026, avant vacance locative et frais de gestion : prix médians du neuf (Reelly), loyers moyens des annonces (Bayut), charges de 14 AED/sqft/an, balcon compté à moitié.</p>
+    </section>
+
+    <section class="bloc">
+      <div class="num">4 · Avant de signer</div>
+      <h2>Les 9 points à verrouiller</h2>
+      <ol class="check">
+        <li><b>La zone d'abord</b><span>Elle décide du reste. En zone verte, un promoteur de second rang sérieux peut suffire ; en zone rouge, vise un top promoteur.</span></li>
+        <li><b>Le promoteur</b><span>Ses projets livrés à Dubaï, ses délais, sa qualité réelle, la revente de ses anciens projets. Alerte : « premier projet à Dubaï ».</span></li>
+        <li><b>La surface intérieure réelle</b><span>Le balcon ne doit pas dépasser environ 20 % de la surface. Demande le plan coté.</span></li>
+        <li><b>La vue et la position</b><span>Vis-à-vis, vue qui risque d'être bouchée, unité collée aux ascenseurs ou aux locaux techniques.</span></li>
+        <li><b>Le plan fonctionnel</b><span>Une cuisine utilisable, des rangements, de la lumière, une vraie place pour le lit.</span></li>
+        <li><b>Les espaces communs</b><span>Coworking, salle de sport, piscine, lobby : la pièce en plus du locataire. À loyer égal, c'est ce qui fait la différence.</span></li>
+        <li><b>La part de studios dans l'immeuble</b><span>Au-delà d'environ 50 %, tu auras de la concurrence à chaque livraison et à chaque relocation.</span></li>
+        <li><b>Les charges et le rendement net</b><span>Raisonne toujours en net, avec une hypothèse basse.</span></li>
+        <li><b>Qui te rachète, et à quel prix</b><span>Fais le calcul de l'investisseur : loyer net ÷ rendement qu'il exige. Ne surpaie pas un studio pour un plan de paiement généreux.</span></li>
+      </ol>
+    </section>
+
+    <section class="bloc">
+      <div class="num">5 · Pour qui ?</div>
+      <h2>Studio, 1-bed ou deux studios</h2>
+      <div class="choix">
+        <div><b>Le studio, pour commencer</b><span>Tu n'as pas encore le budget d'un 1-bed, tu veux te lancer, tu vises la rentabilité, tu es prêt à faire de l'Airbnb.</span></div>
+        <div><b>Le 1-bed, pour durer</b><span>Tu vises la plus-value à la revente, moins de vacance locative, pas d'Airbnb, un pied-à-terre à terme.</span></div>
+        <div><b>Deux studios, pour diversifier</b><span>Le risque divisé en deux, deux flux de revenus, dans un quartier déjà validé.</span></div>
+      </div>
+    </section>
+
+    <section class="fin">
+      <h2>Tu as un studio précis en tête&nbsp;?</h2>
+      <p class="sous">Envoie-le-nous avant de signer : on le passe aux 9 points et on te dit franchement ce qu'on en pense.</p>
+      <a class="btn btn-wa" id="lien-wa" href="https://wa.me/33624835980" target="_blank" rel="noopener">Écrire sur WhatsApp</a>
+      <a class="btn btn-ligne" href="/quiz/?utm_source=studios&amp;utm_medium=rapport">Faire le quiz : quel quartier, quel promoteur ?</a>
+    </section>
+
+    <p class="sources">Sources : parc par quartier et par typologie (existant + livraisons jusqu'à fin 2028), extraction du 06/10/2026 ; livraisons et retards, export du 01/10/2026 ; prix au sqft studio / 1-bed, Reelly (19/06/2026). Al Jaddaf, Motor City et City of Arabia : limites de quartier différentes selon les sources, croissance non comparable, pas de verdict. Ce rapport est une aide à la réflexion, pas un conseil en investissement.</p>
+  </main>
+
+<script>
+  var API = /^(localhost|127\.0\.0\.1)$/.test(location.hostname) ? 'http://localhost:3999' : 'https://agence-ia-nu.vercel.app';
+  var SOURCE = 'studios', CONTENT_NAME = 'Rapport studios';
+
+  // studios = total (existant + à venir), avenir = logements livrés d'oct. 2026 à fin 2028, existant = total − avenir.
+  var Q = [
+    { n: 'JVC', studios: 27489, total: 91228, avenir: 27668, niv: 'j' },
+    { n: 'Business Bay', studios: 17680, total: 64728, avenir: 10097, niv: 'v' },
+    { n: 'Dubai South', studios: 15086, total: 56360, avenir: 29701, niv: 'r' },
+    { n: 'Residence Complex', studios: 14051, total: 35272, avenir: 17747, niv: 'r' },
+    { n: 'Arjan', studios: 11501, total: 30814, avenir: 6304, niv: 'j' },
+    { n: 'Production City', studios: 8847, total: 20479, avenir: 7617, niv: 'j' },
+    { n: 'Sports City', studios: 7804, total: 22905, avenir: 6649, niv: 'j' },
+    { n: 'Majan', studios: 6708, total: 17412, avenir: 8469, niv: 'r' },
+    { n: 'JVT', studios: 6375, total: 19737, avenir: 8857, niv: 'j' },
+    { n: 'Science Park', studios: 5417, total: 13104, avenir: 8650, niv: 'r' },
+    { n: 'Al Jaddaf', studios: 3084, total: 9575, avenir: 6661, niv: 'g' },
+    { n: 'Motor City', studios: 2415, total: 16758, avenir: 10139, niv: 'g' },
+    { n: 'City of Arabia', studios: 899, total: 3126, avenir: 1900, niv: 'g' },
+    { n: 'Dubai Islands', studios: 717, total: 16297, avenir: 10440, niv: 'v' }
+  ];
+  var COUL = { r: 'var(--rouge)', j: '#e0a92a', v: 'var(--vert)', g: 'var(--gray-400)' };
+  var BLOCS = [
+    ['r', 'En danger', 'Beaucoup de studios, et le parc double', ['Residence Complex', 'Science Park', 'Dubai South', 'Majan']],
+    ['j', 'À surveiller', 'Beaucoup de studios, mais le quartier absorbe', ['JVC', 'JVT', 'Production City', 'Sports City', 'Arjan']],
+    ['v', 'Sous contrôle', 'Peu de studios à venir', ['Business Bay', 'Dubai Islands']]
+  ];
+  var fr = function (v) { return v.toLocaleString('fr-FR').replace(/ | /g, ' '); };
+  var croissance = function (q) {
+    var g = q.avenir / (q.total - q.avenir);
+    return g >= 0.97 ? '×' + String(Math.round((1 + g) * 10) / 10).replace('.', ',').replace(',0', '') : '+' + Math.round(g * 100) + ' %';
+  };
+  var trouver = function (n) { return Q.filter(function (q) { return q.n === n; })[0]; };
+
+  document.getElementById('verdicts').innerHTML = BLOCS.map(function (b) {
+    return '<div class="verdict ' + b[0] + '"><div class="t">' + b[1] + '</div><div class="d">' + b[2] + '</div>' +
+      b[3].map(function (n) {
+        var q = trouver(n);
+        return '<div class="q"><span class="n">' + n + '</span><span class="lib">parc 2028</span><span class="c">' + croissance(q) + '</span>' +
+          '<span class="s">' + fr(q.studios) + ' studios · ' + Math.round(q.studios / q.total * 100) + ' % des logements · ' +
+          fr(Math.round(q.avenir / 100) * 100) + ' logements à venir</span></div>';
+      }).join('') + '</div>';
+  }).join('');
+
+  var max = Q[0].studios;
+  document.getElementById('barres').innerHTML = Q.map(function (q) {
+    return '<div class="barre"><span class="n">' + q.n + '</span><span class="f"><i style="width:' + (q.studios / max * 100).toFixed(1) +
+      '%;background:' + COUL[q.niv] + '"></i></span><span class="v">' + fr(q.studios) + '</span></div>';
+  }).join('');
+
+  function aller(id) {
+    document.querySelectorAll('.ecran').forEach(function (e) { e.classList.toggle('cache', e.id !== id); });
+    window.scrollTo(0, 0);
+  }
+
+  function prenomPropre(p) { return p.toLowerCase().replace(/(^|[\s-])(\S)/g, function (m, sep, l) { return sep + l.toUpperCase(); }); }
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+
+  function afficherRapport(prenom) {
+    document.querySelectorAll('.ecran').forEach(function (e) { e.classList.add('cache'); });
+    document.getElementById('rapport').classList.remove('cache');
+    if (prenom) document.getElementById('titre-rapport').innerHTML = esc(prenomPropre(prenom)) + ', voici <em>où acheter un studio</em> à Dubaï';
+    var texte = 'Bonjour Clément, j\'ai lu le rapport studios' + (prenom ? ' (' + prenomPropre(prenom) + ')' : '') + '. J\'ai un studio en tête, tu peux le regarder ?';
+    document.getElementById('lien-wa').href = 'https://wa.me/33624835980?text=' + encodeURIComponent(texte);
+    window.scrollTo(0, 0);
+  }
+
+  function validerTel(raw) {
+    var c = raw.replace(/[\s\-\.\(\)]/g, '');
+    if (c.indexOf('00') === 0) c = '+' + c.slice(2);
+    if (/^0[1-9]\d{8}$/.test(c)) c = '+33' + c.slice(1);
+    return /^\+[1-9]\d{6,14}$/.test(c) ? c : null;
+  }
+
+  function envoyer() {
+    var prenom = document.getElementById('prenom').value.trim(), err = document.getElementById('erreur');
+    var tel = validerTel(document.getElementById('whatsapp').value);
+    if (prenom.length < 2) { err.textContent = 'Ton prénom ?'; return; }
+    if (!tel) { err.textContent = 'Vérifie ton numéro WhatsApp (ex. 06 12 34 56 78 ou +33…).'; return; }
+    err.textContent = '';
+    var b = document.getElementById('btn-envoyer'); b.disabled = true; b.textContent = 'Un instant…';
+
+    var LOCAL = /^(localhost|127\.0\.0\.1)$/.test(location.hostname); // pas de conversion pendant les tests locaux
+    if (!LOCAL && typeof fbq === 'function') fbq('track', 'Lead', { content_name: CONTENT_NAME, content_category: 'real_estate' });
+    if (!LOCAL && typeof gtag === 'function') gtag('event', 'conversion', { send_to: 'AW-17772499593', event_category: 'lead', event_label: SOURCE + '-form-submit' });
+
+    var q = new URLSearchParams(location.search), utm = {};
+    ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (k) { if (q.get(k)) utm[k] = q.get(k); });
+    var cookie = function (n) { var m = document.cookie.match('(?:^|; )' + n + '=([^;]*)'); return m ? m[1] : undefined; };
+    var fini = function () { afficherRapport(prenom); };
+    fetch(API + '/api/lead', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ source: SOURCE, prenom: prenom, whatsapp: tel,
+        site_web: document.getElementById('site_web').value, utm: Object.keys(utm).length ? utm : null, fbp: cookie('_fbp'), fbc: cookie('_fbc') })
+    }).then(fini, fini);
+  }
+
+  // Lien direct (envoyé sur WhatsApp) : le rapport s'ouvre sans repasser par le formulaire.
+  if (location.hash === '#rapport') afficherRapport('');
+</script>
+</body>
+</html>
