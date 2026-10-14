@@ -17,8 +17,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <!-- Lead magnet de la vidéo « KORE by Imtiaz » (chaîne projets, oct. 2026).
-       Accroche → prénom + WhatsApp (envoi à /api/lead, source 'kore') → dossier affiché sur la page + PDF.
-       Lien direct (envoyé sur WhatsApp) : /kore/#dossier. Données : agence-ia/contenus/2026-10_chaine-projets/kore-imtiaz/
+       Accroche → prénom + WhatsApp (envoi à /api/lead, source 'kore') → confirmation ; le dossier n'est PAS sur cette page :
+       son lien (/kore/ryiycb4/, non indexé) part uniquement par WhatsApp, pour écarter les faux numéros. Données : agence-ia/contenus/2026-10_chaine-projets/kore-imtiaz/
        (DXB Interact DLRC 01/01-13/10/2026, Property Monitor, benchmark loyers Pearl House). -->
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -156,6 +156,7 @@
     .frise { display: flex; height: 40px; border-radius: 10px; overflow: hidden; margin-top: 12px; font-size: .74rem; font-weight: 800; }
     .frise div { display: flex; align-items: center; padding: 0 10px; color: #fff; }
     .pdf { margin-top: 10px; }
+    .valide { width: 84px; height: 84px; border-radius: 50%; background: var(--vert); display: flex; align-items: center; justify-content: center; margin: 0 auto; }
     .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
     .duo div { border-radius: 12px; padding: 12px; font-size: .8rem; line-height: 1.45; }
     .duo b { display: block; font-size: .78rem; letter-spacing: .05em; text-transform: uppercase; margin-bottom: 6px; }
@@ -215,8 +216,8 @@ src="https://www.facebook.com/tr?id=1515228769880162&ev=PageView&noscript=1"
         <li>Le plan de paiement traduit en euros, mois par mois</li>
         <li>Quelle unité choisir, et pour qui ce projet n'est pas fait</li>
       </ul>
-      <button class="btn btn-or" onclick="aller('e-contact')">Recevoir le dossier →</button>
-      <p class="petit">Gratuit · Accès immédiat · PDF à imprimer</p>
+      <button class="btn btn-or" onclick="aller('e-contact')">Recevoir le dossier sur WhatsApp →</button>
+      <p class="petit">Gratuit · Envoyé sur ton WhatsApp · PDF à imprimer</p>
     </div>
   </section>
 
@@ -225,137 +226,28 @@ src="https://www.facebook.com/tr?id=1515228769880162&ev=PageView&noscript=1"
     <button class="retour" onclick="aller('e-accroche')">← Retour</button>
     <div class="boite">
       <div class="carte">
-        <div class="eyebrow">Ton dossier est prêt</div>
+        <div class="eyebrow">On t'envoie le dossier sur WhatsApp</div>
         <h2 style="margin-top:6px">KORE by Imtiaz : <em>tous les chiffres</em></h2>
         <div class="champ"><label for="prenom">Prénom</label><input id="prenom" type="text" placeholder="Thomas" autocomplete="given-name"></div>
         <div class="champ"><label for="whatsapp">Numéro WhatsApp</label><input id="whatsapp" type="tel" placeholder="06 12 34 56 78" autocomplete="tel"></div>
         <input class="pot" id="site_web" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <button class="btn btn-or" id="btn-envoyer" onclick="envoyer()">Débloquer le dossier →</button>
+        <button class="btn btn-or" id="btn-envoyer" onclick="envoyer()">Recevoir le dossier →</button>
         <div class="erreur" id="erreur"></div>
         <p class="mention">En cliquant, tu acceptes de recevoir le dossier et d'être recontacté(e) par Clément Invest Dubai sur WhatsApp. Tu peux répondre STOP à tout moment. <a href="/confidentialite/" target="_blank">Confidentialité</a></p>
       </div>
     </div>
   </section>
 
-  <!-- 3. Dossier -->
-  <main class="rapport cache" id="rapport">
-    <header>
-      <span class="pastille">Dossier récap · octobre 2026</span>
-      <h1 id="titre-rapport">KORE by Imtiaz : <em>le dossier</em></h1>
-      <p class="sous">Dubaïland Residence Complex · livraison prévue T4 2028 · studios, 1 et 2 chambres.</p>
-      <a class="btn btn-ligne pdf" href="dossier-kore.pdf" target="_blank" rel="noopener">⬇ Télécharger le PDF</a>
-    </header>
-
-    <section class="bloc">
-      <div class="num">L'essentiel</div>
-      <h2>Un projet <em>sécurisé</em>, à condition de bien choisir son unité</h2>
-      <div class="kpis">
-        <div><b>679 k AED</b><small>le studio, dès (≈ 158 000 €)</small></div>
-        <div><b>7,4 – 8,8 %</b><small>rentabilité brute du studio (loyers d'un immeuble Imtiaz)</small></div>
-        <div><b>8 376</b><small>contrats de location sur un an dans le quartier</small></div>
-        <div><b>T4 2028</b><small>livraison prévue, meublé clé en main</small></div>
-      </div>
-    </section>
-
-    <section class="bloc">
-      <div class="num">1 · Le quartier</div>
-      <h2>Dubaïland Residence Complex : en développement, mais <em>rassurant</em></h2>
-      <ul class="raisons">
-        <li data-n="1"><b>Academic City juste à côté</b>La quasi-totalité des écoles et universités de Dubaï : professeurs et familles cherchent à se loger tout près.</li>
-        <li data-n="2"><b>Entouré de communautés de villas établies</b>Des résidents aisés vivent déjà là : l'emplacement a fait ses preuves.</li>
-        <li data-n="3"><b>Downtown en 15-18 minutes</b>Une meilleure accessibilité que JVC. À Dubaï, ce qui compte, c'est l'accessibilité.</li>
-        <li data-n="4"><b>Dubaï Silicon Oasis et le métro</b>Pôle tech où l'État investit massivement ; la Blue Line (2029) passera par Silicon Oasis et Academic City.</li>
-      </ul>
-      <div class="kpis">
-        <div><b>8 376</b><small>contrats de location en 12 mois (Property Monitor)</small></div>
-        <div><b>&gt; Dubai Hills</b><small>5 675 contrats · Town Square : 6 015</small></div>
-      </div>
-      <div class="alerte"><b>Le point d'attention :</b> beaucoup de livraisons arrivent dans les prochaines années. Tout l'enjeu est de choisir les projets et les promoteurs qui vont se distinguer.</div>
-    </section>
-
-    <section class="bloc">
-      <div class="num">2 · Le promoteur</div>
-      <h2>Imtiaz = <em>la sécurité</em></h2>
-      <p>10 à 15 ans de construction pure, puis plus de 10 ans à développer ses propres immeubles. Au moins 4 ou 5 immeubles livrés, <b>tous dans les temps</b>, qui se louent <b>20 à 30 % au-dessus du marché</b> à la livraison (exemple : Hyde Walk, Jumeirah Garden City).</p>
-      <ul class="inclus" style="margin:10px 0 0">
-        <li style="color:var(--gray-600)">Pas de retard de livraison</li>
-        <li style="color:var(--gray-600)">Très bonne qualité de construction</li>
-        <li style="color:var(--gray-600)">Livré meublé, clé en main</li>
-        <li style="color:var(--gray-600)">Un produit qui surperforme, à la location comme à la revente</li>
-      </ul>
-    </section>
-
-    <section class="bloc">
-      <div class="num">3 · Le projet</div>
-      <h2>Le point différenciant : <em>le sport</em></h2>
-      <p>Salle de sport de 300 m² équipée Technogym (bilan physique, coach connecté), padel, piscine, yoga, sauna, luminothérapie, et une literie haut de gamme fournie dans chaque appartement. Dans un marché d'immeubles qui se ressemblent, KORE se démarque : les équipements sportifs sont le premier critère regardé par les locataires.</p>
-      <div class="photos">
-        <div style="background-image:url(kore-gym.jpg)"><span>Salle de sport Technogym</span></div>
-        <div style="background-image:url(kore-padel.jpg)"><span>Padel</span></div>
-        <div style="background-image:url(kore-piscine.jpg)"><span>Piscine</span></div>
-        <div style="background-image:url(kore-studio.jpg)"><span>Studio</span></div>
-      </div>
-    </section>
-
-    <section class="bloc">
-      <div class="num">4 · Les prix</div>
-      <h2>Plus cher que le quartier : <em>combien ?</em></h2>
-      <table>
-        <thead><tr><th></th><th>KORE (dès)</th><th>Médiane quartier 2026</th><th>Écart</th></tr></thead>
-        <tbody>
-          <tr><td>Studio · 38 m²</td><td><b>679 k</b></td><td>645 k</td><td>+5 %</td></tr>
-          <tr><td>1 chambre · 62 m²</td><td><b>1,10 M</b></td><td>957 k</td><td>+15 %</td></tr>
-          <tr><td>2 chambres · 131 m²</td><td><b>1,55 M</b></td><td>1,33 M</td><td>+16 %</td></tr>
-          <tr><td>Prix au pied carré</td><td><b>≈ 1 650</b></td><td>1 320</td><td>+25 %</td></tr>
-        </tbody>
-      </table>
-      <p class="note">Prix en AED. KORE : prix de départ du promoteur. Quartier : médianes des ventes à Dubaïland Residence Complex du 01/01 au 13/10/2026 (DXB Interact). 1 € ≈ 4,30 AED.</p>
-    </section>
-
-    <section class="bloc">
-      <div class="num">5 · Loyers et rentabilité</div>
-      <h2>Plus cher à l'achat… <em>plus cher à la location</em></h2>
-      <table>
-        <thead><tr><th></th><th>Prix</th><th>Loyer annuel</th><th>Brut</th></tr></thead>
-        <tbody>
-          <tr><td>Studio</td><td>679 k</td><td>50 – 60 k</td><td><b>7,4 – 8,8 %</b></td></tr>
-          <tr><td>1 chambre</td><td>1,10 M</td><td>75 – 90 k</td><td><b>6,8 – 8,2 %</b></td></tr>
-        </tbody>
-      </table>
-      <p style="margin-top:10px">Un immeuble Imtiaz ne se loue pas comme la moyenne du quartier (loyers médians 2026 : 38 k pour un studio, 51 k pour un 1 chambre). Référence retenue : <b>Pearl House</b>, immeuble Imtiaz livré à JVC. Location longue durée, rentabilité brute (avant charges et gestion).</p>
-    </section>
-
-    <section class="bloc">
-      <div class="num">6 · Le plan de paiement</div>
-      <h2>Deux options, <em>en euros</em></h2>
-      <p><b>50/50</b> : 50 % pendant la construction, 50 % à la livraison. <b>60/40</b> : 60 % jusqu'à la livraison, puis 40 % sur 3 ans après la livraison.</p>
-      <div class="frise"><div style="background:#2f5d7c;width:45%">≈ 95 k€ jusqu'à fin 2028</div><div style="background:#c8102e;width:55%">≈ 1 750 €/mois · 3 ans</div></div>
-      <p style="margin-top:10px">Exemple : un studio en 60/40. Le loyer d'un studio Imtiaz tourne autour de <b>1 000 à 1 150 € par mois</b> : prévoyez de compléter de votre poche, <b>de l'ordre de 600 à 800 € par mois</b>, pendant ces 3 ans.</p>
-    </section>
-
-    <section class="bloc">
-      <div class="num">7 · Notre recommandation</div>
-      <h2><em>Un super studio, ou un 1 chambre</em></h2>
-      <div class="choix">
-        <div><b>Studio : oui, mais pas n'importe lequel</b><span>Beaucoup de studios dans l'immeuble et dans la zone : visez une unité bien placée et bien orientée.</span></div>
-        <div><b>1 chambre : oui</b><span>Plus rare dans l'immeuble, et la typologie la plus louée du quartier.</span></div>
-        <div style="border-left-color:var(--gray-400)"><b>2 chambres : plutôt ailleurs</b><span>À chercher dans un immeuble plus familial.</span></div>
-      </div>
-      <div class="duo">
-        <div class="oui"><b>C'est pour vous si…</b>Premier investissement à Dubaï · vous cherchez la rentabilité et une sécurité presque patrimoniale.</div>
-        <div class="non"><b>Pas pour vous si…</b>Vous visez à tout prix la plus-value · petit budget · vous cherchez le prix le plus bas de la zone.</div>
-      </div>
-    </section>
-
-    <section class="fin">
-      <h2>On regarde ensemble quelle unité vous correspond&nbsp;?</h2>
-      <p class="sous">Disponibilités, étages, orientations : on vous envoie les meilleures unités pour votre budget.</p>
-      <a class="btn btn-wa" id="lien-wa" href="https://wa.me/33624835980" target="_blank" rel="noopener">Écrire sur WhatsApp</a>
-      <a class="btn btn-ligne" href="/quiz/?utm_source=kore&amp;utm_medium=dossier">Faire le quiz : quel quartier, quel promoteur ?</a>
-    </section>
-
-    <p class="sources">Sources : brochure et brief promoteur Imtiaz (octobre 2026) ; ventes et loyers médians, DXB Interact, Dubaïland Residence Complex, du 01/01 au 13/10/2026 ; contrats de location sur 12 mois, Property Monitor ; loyers de référence Imtiaz, Pearl House (JVC). Prix en AED, 1 € ≈ 4,30 AED. Ce dossier est une aide à la réflexion, pas un conseil en investissement.</p>
-  </main>
+  <!-- 3. Confirmation : le dossier part sur WhatsApp (jamais affiché ici : évite les faux numéros, Clément 14/10) -->
+  <section class="ecran cache" id="e-envoye">
+    <div class="boite" style="text-align:center">
+      <div class="valide"><svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+      <h2 style="margin-top:18px" id="titre-envoye">C'est envoyé !</h2>
+      <p class="sous" style="margin-top:10px;font-size:1.05rem">Ton dossier récap KORE arrive dans quelques minutes sur ton WhatsApp.</p>
+      <p class="petit" style="margin-top:14px">Depuis le +971 50 274 0879</p>
+      <a class="btn btn-ligne" style="margin-top:26px" id="lien-wa" href="https://wa.me/33624835980" target="_blank" rel="noopener">Ou écris-moi directement</a>
+    </div>
+  </section>
 
 <script>
   var API = /^(localhost|127\.0\.0\.1)$/.test(location.hostname) ? 'http://localhost:3999' : 'https://agence-ia-nu.vercel.app';
@@ -369,13 +261,11 @@ src="https://www.facebook.com/tr?id=1515228769880162&ev=PageView&noscript=1"
   function prenomPropre(p) { return p.toLowerCase().replace(/(^|[\s-])(\S)/g, function (m, sep, l) { return sep + l.toUpperCase(); }); }
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
 
-  function afficherRapport(prenom) {
-    document.querySelectorAll('.ecran').forEach(function (e) { e.classList.add('cache'); });
-    document.getElementById('rapport').classList.remove('cache');
-    if (prenom) document.getElementById('titre-rapport').innerHTML = esc(prenomPropre(prenom)) + ', voici <em>le dossier KORE</em>';
-    var texte = 'Bonjour Clément, j\'ai lu le dossier KORE' + (prenom ? ' (' + prenomPropre(prenom) + ')' : '') + '. Tu peux m\'envoyer les unités disponibles ?';
+  function afficherEnvoye(prenom) {
+    if (prenom) document.getElementById('titre-envoye').textContent = 'C\'est envoyé, ' + prenomPropre(prenom) + ' !';
+    var texte = 'Bonjour Clément, j\'ai demandé le dossier KORE' + (prenom ? ' (' + prenomPropre(prenom) + ')' : '') + '. J\'ai une question sur le projet :';
     document.getElementById('lien-wa').href = 'https://wa.me/33624835980?text=' + encodeURIComponent(texte);
-    window.scrollTo(0, 0);
+    aller('e-envoye');
   }
 
   function validerTel(raw) {
@@ -400,7 +290,7 @@ src="https://www.facebook.com/tr?id=1515228769880162&ev=PageView&noscript=1"
     var q = new URLSearchParams(location.search), utm = {};
     ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (k) { if (q.get(k)) utm[k] = q.get(k); });
     var cookie = function (n) { var m = document.cookie.match('(?:^|; )' + n + '=([^;]*)'); return m ? m[1] : undefined; };
-    var fini = function () { afficherRapport(prenom); };
+    var fini = function () { afficherEnvoye(prenom); };
     fetch(API + '/api/lead', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ source: SOURCE, prenom: prenom, whatsapp: tel,
@@ -408,8 +298,6 @@ src="https://www.facebook.com/tr?id=1515228769880162&ev=PageView&noscript=1"
     }).then(fini, fini);
   }
 
-  // Lien direct (envoyé sur WhatsApp) : le dossier s'ouvre sans repasser par le formulaire.
-  if (location.hash === '#dossier' || location.hash === '#rapport') afficherRapport('');
 </script>
 </body>
 </html>
